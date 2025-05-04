@@ -1,0 +1,1 @@
+export const VITE_GOOGLE_CLIENT_ID=18236046335-dm4f3um637tnvu7p352dg89743ipctim.apps.googleusercontent.com

@@ -1,0 +1,43 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "my-app",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-02-22",
+  "compatibility_flags": [
+  "nodejs_compat"
+  ],
+  "vars": {
+    "DATABASE_URL":"prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNDdhZjM2YTAtOGFhMC00MmVhLWExMDktMDJhNGJjZjU3OGRkIiwidGVuYW50X2lkIjoiNjVjYzMxOGU0NTRhZTM0NzFiNGY4YTlkN2E3MmZkMWI2YzhmNmU1YzczNDY2NzI2YTY5NjI0Y2FkNjQ1Nzg0MSIsImludGVybmFsX3NlY3JldCI6ImI1YjA0N2U5LWY1NGEtNDg1Yy1hMTdjLTllMjQ5N2EwNjhjNyJ9.6QtRStp47FLOO5zF8TTl6lPaYkjGZqRSkmhwrNmQqdo",
+    "JWT_SECRET":"Chetan20042004",
+    "GOOGLE_CLIENT_ID":"18236046335-dm4f3um637tnvu7p352dg89743ipctim.apps.googleusercontent.com",
+    "GOOGLE_CLIENT_SECRET":"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",
+    "GOOGLE_REDIRECT_URI":"https://my-app.b22023.workers.dev/auth/google/callback",
+    "VIRUSTOTAL_API_KEY":"31d3ff2faf7e0fee36de1584bddad11fd66c8c5ddedf4352d9c9908fd8b24a9f"
+    }
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "MY_KV_NAMESPACE",
+  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  //   }
+  // ],
+  // "r2_buckets": [
+  //   {
+  //     "binding": "MY_BUCKET",
+  //     "bucket_name": "my-bucket"
+  //   }
+  // ],
+  // "d1_databases": [
+  //   {
+  //     "binding": "MY_DB",
+  //     "database_name": "my-database",
+  //     "database_id": ""
+  //   }
+  // ],
+  // "ai": {
+  //   "binding": "AI"
+  // },
+  // "observability": {
+  //   "enabled": true,
+  //   "head_sampling_rate": 1
+  // }
+}
