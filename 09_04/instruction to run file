@@ -1,0 +1,13 @@
+1. Conda environment:
+    conda create conda create --name myenv
+    conda activte myenv
+
+2. Installing Dependencies
+    python -m pip install paddlepaddle==3.0.0rc1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+    pip install -r requirements.txt
+
+3. Testing
+    - change the name of the file in main.py (base="Replace with your file name without its extension")
+    python main.py
+
+4. Check Outputs in Output Directory
