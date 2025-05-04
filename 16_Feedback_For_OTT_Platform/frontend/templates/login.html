@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | MoodFlix</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+  <!-- Optionally, import a Google Font for a modern look -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+</head>
+<body>
+  <div class="login-wrapper">
+    <!-- Image section (3/4 of the width) -->
+    <div class="image-section">
+      <!-- The background image is set via CSS -->
+    </div>
+
+    <!-- Form section (1/4 of the width) -->
+    <div class="form-section">
+      <div class="form-container">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/register">Register here</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

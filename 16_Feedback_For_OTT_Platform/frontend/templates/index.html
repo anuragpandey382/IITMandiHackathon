@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MoodFlix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Fonts for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/x-icon">
+</head>
+<body>
+    <!-- Sticky Header with Logo and Navigation -->
+    <header class="sticky-header">
+        <div class="logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MoodFlix Logo" height="36">
+            </a>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="/popular-movies">Popular Movies</a></li>
+                <li><a href="/popular-shows">Popular Shows</a></li>
+                <!-- <li><a href="/about">About Us</a></li> -->
+            </ul>
+        </nav>
+    </header>    
+    
+    <!-- Background Image (full-screen) -->
+    <div class="background-image"></div>
+    
+    <div class="heading-container">
+        <h1 class="main-heading">
+            Welcome to <span class="highlight">MoodFlix</span>
+            <img src="{{ url_for('static', filename='images/ai.png') }}" alt="Icon" height="42" class="heading-icon">
+        </h1>
+        <p class="sub-heading">Discover movies that match your mood!</p>
+    </div>
+
+    <!-- Search Button -->
+    <div class="search-button-container">
+        <button id="open-overlay-btn" class="search-button">Ready, Set, Binge!</button>
+    </div>
+    
+    <!-- Movies Section -->
+    <section class="movies-section">
+        {% for movie in movies %}
+        <div class="movie-card">
+            <img src="{{ movie.poster }}" alt="{{ movie.title }} Poster">
+            <div class="movie-info">
+                <h2>{{ movie.title }} ({{ movie.year }})</h2>
+                <p class="genres">{{ movie.genres }}</p>
+                <!-- <p class="description">{{ movie.description }}</p> -->
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+<!-- Slide-in Overlay -->
+<div class="overlay" id="overlay">
+    <div class="overlay-content">
+        <span class="overlay-close" onclick="closeOverlay()">✕</span>
+
+        <!-- Search Overlay -->
+        <div class="search-overlay">
+            <form method="post" action="/">
+                <input type="text" name="query" placeholder="Express yourself here, ur mood ..." required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Recording Section (moved outside search-overlay) -->
+        <div class="recording-section">
+            <button id="mic-button" class="mic-button">
+            </button>
+            <p id="recording-status" class="recording-status"></p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const overlay = document.getElementById('overlay');
+    const openOverlayBtn = document.getElementById('open-overlay-btn');
+
+    // Open overlay when the button is clicked
+    openOverlayBtn.addEventListener('click', () => {
+        overlay.classList.add('open');
+    });
+
+    // Close overlay when clicking outside of it
+    document.addEventListener('click', (e) => {
+        const isClickInsideOverlay = overlay.contains(e.target);
+        const isClickInsideButton = openOverlayBtn.contains(e.target);
+
+        if (!isClickInsideOverlay && !isClickInsideButton) {
+            overlay.classList.remove('open');
+        }
+    });
+
+    // Manual close button
+    function closeOverlay() {
+        overlay.classList.remove('open');
+    }
+
+
+    // Microphone recording functionality
+    let mediaRecorder;
+    let audioChunks = [];
+    const micButton = document.getElementById('mic-button');
+    const recordingStatus = document.getElementById('recording-status');
+    let isRecording = false;
+
+    micButton.addEventListener('click', async () => {
+        if (!isRecording) {
+            // Start recording
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+
+                mediaRecorder.ondataavailable = (event) => {
+                    audioChunks.push(event.data);
+                };
+
+                mediaRecorder.onstop = () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+
+                    // Save the audio file
+                    const a = document.createElement('a');
+                    a.href = audioUrl;
+                    a.download = 'audio.wav';
+                    a.click();
+
+                    // Reset for next recording
+                    audioChunks = [];
+                };
+
+                mediaRecorder.start();
+                isRecording = true;
+                micButton.textContent = '🛑 Stop Recording';
+                recordingStatus.textContent = 'Recording...';
+            } catch (error) {
+                console.error('Error accessing microphone:', error);
+                recordingStatus.textContent = 'Error accessing microphone.';
+            }
+        } else {
+            // Stop recording
+            mediaRecorder.stop();
+            isRecording = false;
+            micButton.textContent = '🎤 Start Recording';
+            recordingStatus.textContent = 'Recording stopped. Saved as audio.wav.';
+        }
+    });
+</script>
+
+</body>
+</html>

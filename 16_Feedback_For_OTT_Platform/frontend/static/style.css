@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background-color: #141414;
+    position: relative;
+}
+
+/* Sticky Header with Navigation */
+.sticky-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.sticky-header .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.sticky-header .nav-menu ul {
+    list-style: none;
+    display: flex;
+}
+
+.sticky-header .nav-menu ul li {
+    margin-left: 20px;
+}
+
+.sticky-header .nav-menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.sticky-header .nav-menu ul li a:hover {
+    color: #e50914;
+}
+
+/* Fullscreen background image with a dark overlay */
+.background-image {
+    background-image: url('/static/images/background.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(50%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+/* Movies section styling */
+.movies-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.movie-card {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    margin: 15px;
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+}
+
+.movie-info {
+    padding: 15px;
+}
+
+.movie-info h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    white-space: nowrap; /* Prevents text wrapping */
+    overflow: hidden;    /* Hides overflowing text */
+    text-overflow: ellipsis; /* Adds ellipsis (...) for overflow */
+}
+
+.movie-info .genres {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+.movie-info .description {
+    font-size: 0.9em;
+    line-height: 1.4;
+    height: 80px;
+    overflow: hidden;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0 100px;  /* Increased top and bottom margins */
+    height: 60px;  /* Increased height for better visibility */
+}
+
+.search-container form {
+    display: flex;
+    width: 50%;
+}
+
+.search-container input[type="text"] {
+    width: 100%;
+    padding: 16px 20px;  /* Increased input padding for a more prominent look */
+    border: none;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+    font-size: 1em;
+}
+
+.search-container button {
+    padding: 16px 20px;  /* Increased button padding accordingly */
+    border: none;
+    background: #AC84FE;
+    color: #fff;
+    font-size: 1em;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.search-container button:hover {
+    background: #8552ED;
+}
+
+.heading-container {
+    text-align: center;
+    margin-top: 200px;
+    color: #fff;
+}
+
+.main-heading {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+}
+
+.sub-heading {
+    font-size: 1.2em;
+    color: #ccc;
+}
+
+.main-heading .highlight {
+    color: #8552ED;
+    margin: 0 12px; /* Adds horizontal space on both sides */
+}
+
+.overlay {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    height: 80%;
+    background: rgba(20, 20, 20, 0.6); /* semi-transparent */
+    backdrop-filter: blur(44px);       /* frosted glass */
+    -webkit-backdrop-filter: blur(44px); /* Safari support */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.5);
+    transition: bottom 0.3s ease-in-out;
+    z-index: 1000;
+    padding: 20px;
+}
+
+
+.overlay.open {
+    bottom: 0;
+}
+
+.overlay-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.overlay-content {
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+    color: #ffffff;
+    padding: 20px;
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.filter-section {
+    margin-top: 20px;
+}
+
+.filter-section h3 {
+    margin: 20px 0 10px;
+    font-weight: 600;
+}
+
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border: 1px solid #AC84FE;
+    color: #141414;
+}
+
+.chip input[type="checkbox"] {
+    display: none;
+}
+
+.chip:hover {
+    background-color: #e0e0e0;
+}
+
+.chip input[type="checkbox"]:checked + label,
+.chip input[type="checkbox"]:checked {
+    background-color: #ff4500;
+    color: white;
+    border-color: #ff4500;
+}
+
+.search-overlay {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0 100px;  /* Increased top and bottom margins */
+    height: 60px;  /* Increased height for better visibility */
+}
+
+.search-overlay form {
+    display: flex;
+    width: 50%;
+}
+
+.search-overlay input[type="text"] {
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+    width: 100%;
+    padding: 16px 20px;  /* Increased input padding for a more prominent look */
+    border: 2px solid #AC84FE; /* Add a border with your desired color */
+    border-radius: 8px 0 0 8px;
+    outline: none;
+    font-size: 1em;
+    /* transition: border-color 0.3s ease;  */
+    color: #141414; 
+    /* background-color: #141414; */
+}
+
+.search-overlay input[type="text"]:focus {
+    background-color: #ffffff;
+}
+
+.search-overlay button {
+    font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+    padding: 16px 20px;  /* Increased button padding accordingly */
+    border: 2px solid #AC84FE; /* Add a border to match the input */
+    background: #AC84FE;
+    color: #fff;
+    font-size: 1em;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease; /* Smooth transition for background and border */
+}
+
+.search-overlay button:hover {
+    background: #8552ED;
+    border-color: #8552ED; /* Change border color on hover */
+}
+
+.search-button-container {
+    text-align: center;
+    margin: 80px 0; /* Add padding above and below the button */
+}
+
+.search-button {
+    padding: 15px 30px; /* Increase padding for a larger button */
+    background-color: #8552ED; /* Captivating color */
+    color: #fff;
+    font-size: 1.5em; /* Larger font size */
+    font-weight: 600; /* Semi-bold font weight */
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    border: none;
+    border-radius: 80px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+.search-button:hover {
+    background-color: #7f50db; /* Slightly darker color on hover */
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}
+
+.recording-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.mic-button {
+    width: 60px; /* Set width for the circular button */
+    height: 60px; /* Set height for the circular button */
+    background-color: #FF6347;
+    border: none;
+    border-radius: 50%; /* Make the button circular */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    background-image: url('/static/images/mic.png'); /* Add the mic icon */
+    background-size: 50%; /* Adjust the size of the icon */
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+.mic-button:hover {
+    background-color: #FF4500; /* Change background color on hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}

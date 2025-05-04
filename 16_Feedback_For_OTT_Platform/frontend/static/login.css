@@ -1,0 +1,89 @@
+/* Reset some basic styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Container holding the two sections */
+  .login-wrapper {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  /* Left: Image section occupies 75% of width */
+  .image-section {
+    flex: 3;
+    background-image: url('/static/images/mockup.png');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* Right: Form section occupies 25% of width */
+  .form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #141414;
+    color: #fff;
+  }
+  
+  /* Form Container styling */
+  .form-container {
+    width: 80%;
+    /* max-width: 300px; */
+  }
+  
+  .form-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-container input {
+    padding: 12px 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  .form-container button {
+    padding: 12px 10px;
+    background: #AC84FE;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .form-container button:hover {
+    background: #8552ED;
+  }
+  
+  .form-container p {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .form-container a {
+    color: #AC84FE;
+    text-decoration: none;
+  }
+  
+  .form-container a:hover {
+    text-decoration: underline;
+  }
+  

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emotion Detection</title>
+    <script>
+        function startDetection() {
+            document.getElementById('result').innerText = "Detecting emotion...";
+            fetch('/detect_emotion', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = "Detected Emotion: " + data.emotion;
+            })
+            .catch(error => {
+                document.getElementById('result').innerText = "Error: " + error;
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Emotion Recognition App</h1>
+    <button onclick="startDetection()">Start Camera & Detect Emotion</button>
+    <p id="result"></p>
+</body>
+</html>
