@@ -1,0 +1,10 @@
+
+langchain
+sentence-transformers
+chromadb
+beautifulsoup4
+requests
+unstructured
+tqdm
+google-generativeai
+python-dotenv
