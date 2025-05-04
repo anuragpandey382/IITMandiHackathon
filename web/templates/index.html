@@ -1,0 +1,268 @@
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Vessel Segmentation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="file"] {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+        .image-box {
+            margin: 10px;
+            text-align: center;
+        }
+        .image-box img {
+            max-width: 100%; /* Make images responsive */
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .results-container {
+            margin-top: 30px;
+            text-align: left;
+            width: 100%; /* Take full width of container */
+        }
+        .results-container h2 {
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .feature-item {
+            margin-bottom: 10px;
+        }
+        .feature-item strong {
+            display: inline-block;
+            width: 150px; /* Fixed width for labels */
+        }
+        #loading {
+            display: none; /* Hidden by default */
+            margin-top: 20px;
+            font-size: 18px;
+            color: #007bff;
+        }
+        #error-message {
+            margin-top: 20px;
+            color: red;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Eye Vessel Segmentation</h1>
+        <input type="file" id="imageUpload" accept="image/*">
+        <button onclick="uploadImage()">Segment Image</button>
+
+        <div id="loading">Processing...</div>
+        <div id="error-message"></div>
+
+        <div class="image-container">
+            <div class="image-box">
+                <h3>Original Image</h3>
+                <img id="originalImage" src="#" alt="Original Image">
+            </div>
+            <div class="image-box">
+                <h3>Segmented Mask</h3>
+                <img id="segmentedMask" src="#" alt="Segmented Mask">
+            </div>
+        </div>
+
+        <div class="results-container">
+            <h2>Analysis Results</h2>
+            <div class="feature-item">
+                <strong>Health Indicator:</strong> <span id="healthIndicator">-</span>
+            </div>
+            <div class="feature-item">
+                <strong>Vessel Density:</strong> <span id="vesselDensity">-</span>
+            </div>
+            <div class="feature-item">
+                <strong>Branch Points:</strong> <span id="branchPoints">-</span>
+            </div>
+            <div class="feature-item">
+                <strong>Endpoints:</strong> <span id="endpoints">-</span>
+            </div>
+            <div class="feature-item">
+                <strong>Tortuosity:</strong> <span id="tortuosity">-</span>
+            </div>
+            <div class="feature-item">
+                <strong>Vein Length:</strong> <span id="veinLength">-</span>
+            </div>
+            <div class="feature-item">
+                <strong>Vein Width:</strong> <span id="veinWidth">-</span>
+            </div>
+             <div class="feature-item">
+                 <strong>Raw Feature Vector:</strong> <span id="rawVector">-</span>
+             </div>
+        </div>
+    </div>
+
+    <script>
+        const imageUpload = document.getElementById('imageUpload');
+        const originalImage = document.getElementById('originalImage');
+        const segmentedMask = document.getElementById('segmentedMask');
+        const loadingDiv = document.getElementById('loading');
+        const errorMessageDiv = document.getElementById('error-message');
+
+        const healthIndicatorSpan = document.getElementById('healthIndicator');
+        const vesselDensitySpan = document.getElementById('vesselDensity');
+        const branchPointsSpan = document.getElementById('branchPoints');
+        const endpointsSpan = document.getElementById('endpoints');
+        const tortuositySpan = document.getElementById('tortuosity');
+        const veinLengthSpan = document.getElementById('veinLength');
+        const veinWidthSpan = document.getElementById('veinWidth');
+        const rawVectorSpan = document.getElementById('rawVector');
+
+
+        imageUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    originalImage.src = e.target.result;
+                    segmentedMask.src = '#'; // Clear previous mask
+                    // Clear previous results
+                    healthIndicatorSpan.textContent = '-';
+                    vesselDensitySpan.textContent = '-';
+                    branchPointsSpan.textContent = '-';
+                    endpointsSpan.textContent = '-';
+                    tortuositySpan.textContent = '-';
+                    veinLengthSpan.textContent = '-';
+                    veinWidthSpan.textContent = '-';
+                    rawVectorSpan.textContent = '-';
+                    errorMessageDiv.style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        async function uploadImage() {
+            const file = imageUpload.files[0];
+            if (!file) {
+                alert("Please select an image first.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            loadingDiv.style.display = 'block'; // Show loading indicator
+            errorMessageDiv.style.display = 'none'; // Hide previous errors
+
+            // Replace with your server's actual IP/domain and port if not running locally
+            const serverUrl = 'http://127.0.0.1:5001/predict';
+
+            try {
+                const response = await fetch(serverUrl, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                loadingDiv.style.display = 'none'; // Hide loading indicator
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+                }
+
+                const result = await response.json();
+
+                if (result.error) {
+                    errorMessageDiv.textContent = `Server Error: ${result.error}`;
+                    errorMessageDiv.style.display = 'block';
+                    segmentedMask.src = '#'; // Clear mask on error
+                    // Clear previous results
+                    healthIndicatorSpan.textContent = '-';
+                    vesselDensitySpan.textContent = '-';
+                    branchPointsSpan.textContent = '-';
+                    endpointsSpan.textContent = '-';
+                    tortuositySpan.textContent = '-';
+                    veinLengthSpan.textContent = '-';
+                    veinWidthSpan.textContent = '-';
+                    rawVectorSpan.textContent = '-';
+
+                } else {
+                    // Display the segmented mask
+                    segmentedMask.src = 'data:image/png;base64,' + result.mask_image_base64;
+
+                    // Display the analysis results
+                    healthIndicatorSpan.textContent = result.health_indicator_text || '-';
+                    // Calculate and display vessel density from features or use a default
+                    // Note: Density calculation might need refinement based on ROI vs full image
+                    // For simplicity here, we'll display the density from the features object
+                    vesselDensitySpan.textContent = result.features && result.features.density !== undefined ? result.features.density.toFixed(4) : '-';
+                    branchPointsSpan.textContent = result.features && result.features.branch_points !== undefined ? result.features.branch_points : '-';
+                    endpointsSpan.textContent = result.features && result.features.endpoints !== undefined ? result.features.endpoints : '-';
+                    tortuositySpan.textContent = result.features && result.features.tortuosity !== undefined ? result.features.tortuosity.toFixed(4) : '-';
+                    veinLengthSpan.textContent = result.features && result.features.vein_length !== undefined ? result.features.vein_length.toFixed(2) : '-';
+                    veinWidthSpan.textContent = result.features && result.features.vein_width !== undefined ? result.features.vein_width.toFixed(4) : '-';
+                    rawVectorSpan.textContent = result.features && result.features.raw_vector ? '[' + result.features.raw_vector.map(f => f.toFixed(4)).join(', ') + ']' : '-';
+
+                    errorMessageDiv.style.display = 'none'; // Hide error message on success
+                }
+
+            } catch (error) {
+                loadingDiv.style.display = 'none'; // Hide loading indicator
+                errorMessageDiv.textContent = `Network or Server Error: ${error}`;
+                errorMessageDiv.style.display = 'block';
+                segmentedMask.src = '#'; // Clear mask on error
+                 // Clear previous results
+                 healthIndicatorSpan.textContent = '-';
+                 vesselDensitySpan.textContent = '-';
+                 branchPointsSpan.textContent = '-';
+                 endpointsSpan.textContent = '-';
+                 tortuositySpan.textContent = '-';
+                 veinLengthSpan.textContent = '-';
+                 veinWidthSpan.textContent = '-';
+                 rawVectorSpan.textContent = '-';
+            }
+        }
+    </script>
+</body>
+</html>

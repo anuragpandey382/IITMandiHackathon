@@ -1,0 +1,4 @@
+models/*.pth filter=lfs diff=lfs merge=lfs -text
+/home/dipanshu/Desktop/dlHackathon/models/bestmodel.pth filter=lfs diff=lfs merge=lfs -text
+models/bestmodel.pth.part_* filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
