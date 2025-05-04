@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --font-hk: var(--font-hk), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-satoshi: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+html {
+  @apply overscroll-none;
+}
+
+body {
+  @apply relative z-0 bg-zinc-950 text-zinc-100 font-hk text-base font-normal w-screen min-h-screen overflow-x-clip;
+}
