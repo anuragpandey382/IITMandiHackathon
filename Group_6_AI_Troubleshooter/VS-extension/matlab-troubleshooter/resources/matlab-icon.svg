@@ -1,0 +1,6 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple MATLAB-like icon -->
+  <rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M6 12 L10 7 L14 12 L18 7" stroke="currentColor" stroke-width="1.5" fill="none" />
+  <path d="M6 16 L10 11 L14 16 L18 11" stroke="currentColor" stroke-width="1.5" fill="none" />
+</svg>

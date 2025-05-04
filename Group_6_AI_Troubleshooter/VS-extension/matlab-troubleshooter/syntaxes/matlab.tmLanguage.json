@@ -1,0 +1,113 @@
+{
+  "name": "MATLAB",
+  "scopeName": "source.matlab",
+  "fileTypes": [
+    "m",
+    "mat"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.percentage.matlab",
+          "match": "%.*$"
+        },
+        {
+          "name": "comment.block.matlab",
+          "begin": "%\\{",
+          "end": "%\\}"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.matlab",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.matlab",
+              "match": "''"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.double.matlab",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.matlab",
+              "match": "\\\\\""
+            }
+          ]
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.matlab",
+          "match": "\\b(true|false|inf|Inf|nan|NaN|eps|pi)\\b"
+        },
+        {
+          "name": "constant.numeric.matlab",
+          "match": "\\b(\\d+(\\.\\d+)?([eE][+-]?\\d+)?)\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.matlab",
+          "match": "\\b(if|else|elseif|end|for|while|switch|case|otherwise|try|catch|return|break|continue|function)\\b"
+        },
+        {
+          "name": "storage.type.matlab",
+          "match": "\\b(global|persistent|classdef|properties|methods|enumeration|events)\\b"
+        },
+        {
+          "name": "keyword.operator.matlab",
+          "match": "\\b(and|or|not|xor)\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "support.function.matlab",
+          "match": "\\b(abs|acos|acosh|asin|asinh|atan|atanh|ceil|cos|cosh|exp|floor|log|log10|sin|sinh|sqrt|tan|tanh|disp|fprintf|plot|figure|subplot|title|xlabel|ylabel|zlabel|grid|hold|clear|size|length|find|who|whos|save|load)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.symbols.matlab",
+          "match": "\\+|\\-|\\*|\\/|\\^|=|==|~=|>|>=|<|<=|&|\\||~|:|\\.\\*|\\.\\^|\\.\\/|\\.\\\\|\\.'"
+        }
+      ]
+    }
+  }
+}

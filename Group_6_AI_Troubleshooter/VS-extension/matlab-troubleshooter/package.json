@@ -1,0 +1,81 @@
+{
+  "name": "matlab-troubleshooter",
+  "displayName": "Matlab_Troubleshooter",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:matlab",
+    "onView:matlab-troubleshooter-panel",
+    "onCommand:matlab-troubleshooter.showTroubleshooterPanel",
+    "*"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "matlab-troubleshooter.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "matlab-troubleshooter.showTroubleshooterPanel",
+        "title": "Show Matlab Troubleshooter Panel"
+      }
+    ],
+    "languages": [
+      {
+        "id": "matlab",
+        "aliases": ["MATLAB", "matlab"],
+        "extensions": [".m", ".mat"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "matlab",
+        "scopeName": "source.matlab",
+        "path": "./syntaxes/matlab.tmLanguage.json"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "matlab-troubleshooter-sidebar",
+          "title": "MATLAB Troubleshooter",
+          "icon": "resources/matlab-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "matlab-troubleshooter-sidebar": [
+        {
+          "id": "matlab-troubleshooter-panel",
+          "name": "MATLAB Troubleshooter",
+          "type": "webview"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test",
+    "start": "code --extensionDevelopmentPath=\"c:\\Users\\Nani Panyu\\matlab-troubleshooter\""
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.99.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1"
+  },
+  "dependencies": {
+    "vscode": "^1.1.34"
+  }
+}
