@@ -1,0 +1,8 @@
+image: 27.jpg
+white_coating_%: 43.329893117977235
+avg_redness: 0.7779270505830516
+avg_size: 25.873076923076923
+crack_score: 2.27
+jagged_score: 55.052913363220675
+Nutrition_Score: 95.19999999999999
+Mantle_Score: 73.865

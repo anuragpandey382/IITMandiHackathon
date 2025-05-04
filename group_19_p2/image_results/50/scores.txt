@@ -1,0 +1,8 @@
+image: 50.jpeg
+white_coating_%: 0.0
+avg_redness: 0.8676722496401678
+avg_size: 28.110749185667753
+crack_score: 2.93
+jagged_score: 30.77652466647876
+Nutrition_Score: 126.89999999999999
+Mantle_Score: 73.535
