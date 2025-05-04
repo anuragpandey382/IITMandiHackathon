@@ -1,0 +1,8 @@
+pandas
+numpy
+streamlit
+sentence-transformers
+scikit-learn
+requests
+transformers
+torch
