@@ -27,6 +27,9 @@
   - [Demo of Tracking Path](#track-path-demo)
   - [Demo of velocity map](#velocity-map-demo)
   - [Demo of anamoly detection](#anamoly-detection-demo)
+  - [Demo of simulation (ripple in center i.e bomb)](#ripple-simulation)
+    - [Demo of initial simulation](#initial-bomb-simulation)
+    - [Demo of final simulation](#final-bomb-simulation)
 - [Setting project locally](#setting-up-project-locally)
   - [Setting up backend locally](#setting-up-backend)
   - [Setting up frontend locally](#setting-up-frontend)
@@ -55,6 +58,16 @@
 
 ### Anamoly Detection Demo
 [Video](https://github.com/user-attachments/assets/c6d12907-c29b-4430-a27c-397617cc1c81)
+
+### Ripple Simulation
+
+
+### Initial Bomb Simulation
+
+
+### Final Bomb Simulation
+
+
 
 ## Setting up project locally
 
