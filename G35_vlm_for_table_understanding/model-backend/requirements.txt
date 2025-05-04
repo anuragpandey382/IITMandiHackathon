@@ -1,0 +1,16 @@
+pandas
+torch
+transformers
+flask
+flask-cors
+torchvision
+numpy
+easyocr
+pdf2image
+tqdm
+accelerate
+matplotlib
+paddleocr
+paddlepaddle
+cloudinary
+google-genai

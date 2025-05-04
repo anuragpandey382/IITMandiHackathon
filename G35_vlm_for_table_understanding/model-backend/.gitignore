@@ -1,0 +1,6 @@
+venv
+extracted_tables
+.env
+__pycache__
+uploads
+grouped_csvs
