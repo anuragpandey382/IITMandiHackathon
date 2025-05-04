@@ -1,0 +1,13 @@
+torch
+transformers
+Pillow
+beautifulsoup4
+matplotlib
+pdf2image
+timm
+flask
+jsons
+accelerate
+flask-cors
+opencv-python
+requests
