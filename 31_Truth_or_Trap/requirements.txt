@@ -1,0 +1,12 @@
+h5py==3.11.0
+librosa==0.11.0
+numpy==2.2.5
+plotly==5.24.1
+pydub==0.25.1
+pyroomacoustics==0.8.3
+scipy==1.15.2
+soundfile==0.13.1
+streamlit==1.42.1
+streamlit_mic_recorder==0.0.8
+tqdm==4.67.1
+transformers==4.47.1
