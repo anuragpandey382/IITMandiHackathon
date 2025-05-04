@@ -1,0 +1,254 @@
+/* Enhanced Gothic/Victorian Netflix-Inspired Component Styles for MovieMood App */
+
+/* Import Gothic & Victorian Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=UnifrakturMaguntia&display=swap');
+
+:root {
+  /* Core Colors */
+  --red-darkest: #A50E0E;        /* deep wine red for accents */
+  --red-dark: #C42A2A;          /* dark crimson for selected states */
+  --red-medium: #E50914;        /* signature Netflix-like red */
+  --red-light: #FF6B6B;         /* softer coral red for backgrounds */
+  --red-soft: #331212;          /* very dark red for gradients */
+  --bg-dark: #141414;
+  --bg-medium: #1F1F1F;
+  --bg-light: #2A2A2A;
+  --text-primary: #FFF;
+  --text-secondary: #BBB;
+  --border-light: rgba(255,255,255,0.1);
+  --radius-md: 0.5rem;
+  --transition-medium: 0.3s ease;
+  --shadow-md: rgba(0,0,0,0.5) 0px 4px 12px;
+  --success: #2ecc71;
+  --error: #e74c3c;
+  --info: #3498db;
+}
+
+/* Global Font */
+body, button, input, select {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--text-primary);
+  background-color: var(--bg-dark);
+}
+
+/* Center all Streamlit button containers */
+div.stButton {
+  text-align: center !important;
+}
+
+/* Buttons: primary, secondary, sidebar */
+div.stButton > button {
+  background: linear-gradient(90deg, var(--red-medium), var(--red-light));
+  border-radius: var(--radius-md) !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem !important;
+  transition: var(--transition-medium);
+  box-shadow: var(--shadow-md);
+  color: #FFF !important;
+  font-family: 'UnifrakturMaguntia', cursive;
+  display: inline-block;
+}
+
+div.stButton > button:hover {
+  background: linear-gradient(90deg, var(--red-light), var(--red-dark));
+  transform: translateY(-2px);
+  box-shadow: rgba(0,0,0,0.7) 0px 6px 16px;
+}
+
+div.stButton > button:active {
+  transform: translateY(0);
+}
+
+/* Secondary: muted gray with red accent */
+div.stButton.secondary > button {
+  background: linear-gradient(135deg, var(--bg-light), var(--bg-medium)) !important;
+  border: 1px solid var(--border-light) !important;
+  color: var(--text-primary) !important;
+}
+
+div.stButton.secondary > button:hover {
+  background: linear-gradient(135deg, var(--bg-medium), var(--bg-light)) !important;
+}
+
+/* Sidebar Buttons: dark tones */
+[data-testid="stSidebar"] div.stButton {
+  text-align: left !important;
+}
+[data-testid="stSidebar"] div.stButton > button {
+  width: 100%;
+  background: none !important;
+  border: 1px solid var(--border-light) !important;
+  color: var(--text-primary) !important;
+  display: block;
+}
+
+[data-testid="stSidebar"] div.stButton > button:hover {
+  background: var(--bg-light) !important;
+}
+
+/* Tabs: gothic styling */
+button[data-baseweb="tab"] {
+  border-radius: var(--radius-md) var(--radius-md) 0 0 !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium));
+  color: var(--text-secondary) !important;
+  font-family: 'Cinzel Decorative', serif;
+}
+button[data-baseweb="tab"][aria-selected="true"] {
+  background: linear-gradient(90deg, var(--red-dark), var(--red-medium)) !important;
+  color: #FFF !important;
+}
+
+[data-testid="stTabs"] {
+  background: var(--bg-medium);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+/* Loader: subtle red highlight */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+}
+.loader {
+  border: 4px solid rgba(255,255,255,0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: var(--red-medium);
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+.loader-text {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Mood Questionnaire */
+.mood-question-container {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--bg-medium), var(--bg-dark));
+  border-radius: 1rem;
+  border: 1px solid var(--border-light);
+}
+.mood-question {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-family: 'UnifrakturMaguntia', cursive;
+}
+.mood-progress {
+  height: 6px;
+  background: var(--bg-light);
+  border-radius: 3px;
+  margin: 2rem 0 0.5rem;
+  overflow: hidden;
+}
+.mood-progress-bar {
+  height: 100%;
+  background: var(--red-dark);
+  transition: width 0.4s ease;
+}
+
+/* Mood Summary */
+.mood-summary {
+  margin: 2rem 0;
+}
+.mood-divider {
+  height: 3px;
+  width: 60px;
+  background: var(--red-medium);
+  margin: 0.5rem 0 2rem;
+}
+.mood-answer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--bg-medium);
+  border-radius: var(--radius-md);
+  margin-bottom: 0.75rem;
+  border-left: 3px solid var(--red-light);
+}
+.mood-answer-question {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.mood-answer-value {
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  background: var(--red-light);
+  border-radius: var(--radius-md);
+  color: #FFF;
+}
+
+/* Form Inputs */
+div[data-baseweb="input"],
+div[data-baseweb="select"] {
+  background: var(--bg-light) !important;
+  border: 1px solid var(--border-light) !important;
+  border-radius: var(--radius-md) !important;
+}
+div[data-baseweb="input"] input,
+div[data-baseweb="select"] span {
+  color: var(--text-primary) !important;
+}
+
+/* Options: hover with soft red */
+.mood-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  justify-content: center;
+}
+.mood-option {
+  background: var(--bg-light);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  transition: var(--transition-medium);
+  font-weight: 500;
+  font-family: 'Cinzel Decorative', serif;
+}
+.mood-option:hover {
+  background: var(--red-light);
+  border-color: var(--red-medium);
+  color: #141414;
+}
+.mood-option.selected {
+  background: var(--red-medium);
+  border-color: var(--red-dark);
+  color: #FFF;
+}
+
+/* Alerts: colored borders */
+.success-message,
+.error-message,
+.info-message {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin: 1rem 0;
+  font-family: 'Cinzel Decorative', serif;
+}
+.success-message {
+  background: rgba(46,204,113,0.2);
+  border-left: 4px solid var(--success);
+}
+.error-message {
+  background: rgba(231,76,60,0.2);
+  border-left: 4px solid var(--error);
+}
+.info-message {
+  background: rgba(52,152,219,0.2);
+  border-left: 4px solid var(--info);
+}

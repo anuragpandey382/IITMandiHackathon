@@ -1,0 +1,17 @@
+pydantic
+python-dotenv
+langchain
+langchain-core
+langchain-groq
+langchain-openai
+langchain-chroma
+langchain-huggingface
+streamlit
+httpx
+pandas
+sqlite3
+webbrowser
+requests
+urllib
+json
+neo4j

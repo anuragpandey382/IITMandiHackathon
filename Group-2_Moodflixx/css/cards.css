@@ -1,0 +1,241 @@
+/* Enhanced Gothic/Victorian Netflix-Inspired MovieMood Card Styles */
+
+/* Import Gothic & Victorian Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=UnifrakturMaguntia&display=swap');
+
+:root {
+  --netflix-red: #E50914;
+  --netflix-dark: #141414;
+  --netflix-gray: #333;
+  --text-primary: #FFF;
+  --text-secondary: #BBB;
+  --border-radius-lg: 1rem;
+  --border-radius-sm: 0.25rem;
+  --shadow-md: rgba(0, 0, 0, 0.5) 0px 4px 12px;
+  --shadow-lg: rgba(0, 0, 0, 0.7) 0px 8px 24px;
+  --border-default: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body {
+  font-family: 'Cinzel Decorative', serif;
+  background-color: var(--netflix-dark);
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--netflix-red);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: 'Cinzel Decorative', serif;
+}
+a:hover {
+  color: #FFF;
+}
+
+/* Movie Card Base with Gradient */
+.movie-card {
+  background: linear-gradient(135deg, #2c2c2c 0%, #141414 100%);
+  border-radius: var(--border-radius-lg);
+  border: var(--border-default);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.movie-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--netflix-red);
+  background: linear-gradient(135deg, #3a3a3a 0%, #1e1e1e 100%);
+}
+
+/* Movie Media */
+.movie-card-media {
+  position: relative;
+  background-color: #222;
+  padding-top: 140%;
+  overflow: hidden;
+}
+.movie-card-media img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay on Hover with Gradient */
+.movie-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20,20,20,0.95), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+}
+.movie-card:hover .movie-card-overlay {
+  opacity: 1;
+}
+
+/* Card Content */
+.movie-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  font-family: 'UnifrakturMaguntia', cursive;
+}
+
+.movie-title {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin: 0;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.movie-meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1rem;
+  color: var(--text-secondary);
+  font-family: 'Cinzel Decorative', serif;
+}
+.movie-year {
+  margin-right: 1rem;
+}
+.movie-rating {
+  display: flex;
+  align-items: center;
+  color: var(--netflix-red);
+  font-weight: 700;
+}
+.rating-star {
+  margin-right: 0.25rem;
+}
+
+/* Genre Tags */
+.movie-genre {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  background: linear-gradient(45deg, rgba(255,255,255,0.05), rgba(255,255,255,0.15));
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: 'Cinzel Decorative', serif;
+}
+.movie-genre:hover {
+  background: linear-gradient(45deg, rgba(229,9,20,0.2), rgba(229,9,20,0.1));
+  color: var(--netflix-red);
+}
+
+/* Description */
+.movie-description {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-director {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-top: var(--border-default);
+  padding-top: 0.75rem;
+  margin-top: auto;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+/* Card Actions */
+.movie-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+.button {
+  background: linear-gradient(90deg, #E50914, #B20710);
+  color: #FFF;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-weight: 700;
+  font-family: 'Cinzel Decorative', serif;
+  transition: background 0.2s ease;
+}
+.button:hover {
+  background: linear-gradient(90deg, #B20710, #800F0A);
+}
+
+/* Badges */
+.movie-card-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(90deg, #E50914, #B20710);
+  color: #FFF;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+/* Compact Layout */
+.movie-card.compact {
+  flex-direction: row;
+  height: 120px;
+}
+.movie-card.compact .movie-card-media {
+  width: 30%;
+  padding-top: 0;
+  height: 100%;
+}
+.movie-card.compact .movie-card-content {
+  width: 70%;
+  padding: 1rem;
+}
+.movie-card.compact .movie-title {
+  font-size: 1.1rem;
+}
+.movie-card.compact .movie-description {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  font-size: 0.8rem;
+}
+
+/* Animation Grid */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.movie-grid-item {
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.movie-grid-item:nth-child(1) { animation-delay: 0.1s; }
+.movie-grid-item:nth-child(2) { animation-delay: 0.2s; }
+.movie-grid-item:nth-child(3) { animation-delay: 0.3s; }
+.movie-grid-item:nth-child(4) { animation-delay: 0.4s; }
+.movie-grid-item:nth-child(5) { animation-delay: 0.5s; }
+.movie-grid-item:nth-child(6) { animation-delay: 0.6s; }
+.movie-grid-item:nth-child(7) { animation-delay: 0.7s; }
+.movie-grid-item:nth-child(8) { animation-delay: 0.8s; }
