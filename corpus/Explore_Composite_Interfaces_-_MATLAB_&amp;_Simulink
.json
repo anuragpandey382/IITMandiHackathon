@@ -1,0 +1,27 @@
+{
+    "title": "Explore Composite Interfaces",
+    "introduction": "To reduce visual complexity in a model, you can group multiple signals, messages, or conserving connections into a composite interface for a block or model component. The grouped elements retain their separate identities, and you can extract them. As you create composite interfaces, consider these potential requirements:",
+    "chunks": [
+        {
+            "heading": "Composite Interfaces",
+            "content": "The different types of composite interfaces serve a variety of modeling requirements.\n\nModeling RequirementType of Composite InterfaceAppearance in ModelMore InformationFlexible interfaces and incremental changesVirtual busA virtual bus is a flexible group of named elements.A virtual bus is analogous to a bundle of wires held together by tie wraps.Group Signals or Messages into Virtual BusesDefined interfaces in code generationNonvirtual busA nonvirtual bus is a defined group of named elements.A nonvirtual bus is analogous to a structure in C code.Create Nonvirtual BusesIterative processing of multiple elementsArray of busesAn array of buses is an array of nonvirtual buses that have the same interface definition.Group Nonvirtual Buses in Arrays of BusesIterative processing of individual elementsArrayAn array is a nonscalar signal with one or more dimensions. (default) (Wide nonscalar lines information overlay enabled)Multidimensional ArraysMatrix Concatenate\n\nModels can use a combination of these interfaces.\n\nYou can identify composite interfaces by their line style after you compile a model. When you create a composite interface or open a model that contains composite interfaces, the composite interfaces have the same line style as scalar signals. To compile a model, in the SimulinkÂ® Toolstrip, on the Modeling tab, select Update Model."
+        },
+        {
+            "heading": "High-Level Composite Interface Selection Guidelines",
+            "content": "This flow chart helps you choose among virtual buses, nonvirtual buses, arrays of buses, and arrays.\n\nThe flow chart identifies whether you have one of these specialized use cases for a composite interface:\n\nIf the interface will provide multiple signals for a subsystem to iteratively process, consider using an array of buses.If the interface will provide one signal for a subsystem to iteratively process or a composite signal for matrix or vector operations, consider using an array.If you will require the generated code to use a structure to represent the interface, consider using a nonvirtual bus.\n\nFor other use cases, consider using a virtual bus.\n\nNoteTo group function-call signals in a virtual vector, see Mux."
+        },
+        {
+            "heading": "Modeling Requirement Considerations",
+            "content": "Before implementing a composite interface based on the high-level guidelines, consider additional modeling requirements. For example, if you want to group messages, you must use a virtual bus.\n\nTo determine what composite interfaces meet your modeling requirements, see Compare Capabilities of Composite Interfaces."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/types-of-composite-interfaces.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/linestyle_virtualbus_ex.gif",
+        "https://in.mathworks.com/help/simulink/ug/linestyle_nonvirtualbus_ex.gif",
+        "https://in.mathworks.com/help/simulink/ug/array_of_buses_line_style.png",
+        "https://in.mathworks.com/help/simulink/ug/linestyle_scalar_ex.gif",
+        "https://in.mathworks.com/help/simulink/ug/linestyle_widenonscalar_ex.gif",
+        "https://in.mathworks.com/help/simulink/ug/composite-interface-selection.png"
+    ]
+}

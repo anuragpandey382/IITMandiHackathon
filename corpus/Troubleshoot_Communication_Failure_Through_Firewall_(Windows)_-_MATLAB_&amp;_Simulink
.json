@@ -1,0 +1,39 @@
+{
+    "title": "Troubleshoot Communication Failure Through Firewall (Windows)",
+    "introduction": "When attempting to connect to the SpeedgoatÂ® target computer by using Simulink Real-Time Explorer, this error message appears. Even though the connection fails, clicking on the Update button or Reboot button in Simulink Real-Time Explorer works. These operations indicate that the target computer can be reached through the Ethernet port.",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "In R2020b and later releases, SimulinkÂ® Real-Timeâ¢ uses a protocol for the development-to-target computer connection that is blocked by default in Window Defender Firewall for networks classified as Public. Windows also classifies all Ethernet connections as Public by default.\n\nIf you do not select the correct options when first running MATLABÂ®, it is can be possible to ping, update, and reboot the target computer from MATLAB. But, these incorrect option selections prevent communication connection to the target computer. This communication connection is necessary to load and run real-time applications on the target computer."
+        },
+        {
+            "heading": "Try These Workarounds",
+            "content": "Resolve this issue by allowing MATLAB to communicate on all types of networks. Apply this setting when prompted on first connection or apply this setting later through the Windows Defender Firewall Allow an app through Windows Firewall selection. If that is not possible due to privilege restrictions, the issue can also be resolved by changing the classification of the Ethernet interface used for development-to-target computer connection from Public to Private.\n\nNoteIf you develop a compiled application as described in Create Standalone Instrument Panel App by Using Application Compiler, apply these workarounds to let the compiled application communicate with the target computer through the firewall."
+        },
+        {
+            "heading": "Allow MATLAB for Public and Private Networks by Using Prompt",
+            "content": "When you first try to connect to a target computer, Windows Defender Firewall prompts you to allow MATLAB to communicate on Private and Public networks. Make sure that both Private and Public options are selected. Only one is selected by default.\n\nClick Allow access."
+        },
+        {
+            "heading": "Manually Allow MATLAB for Public and Private Networks",
+            "content": "From the WindowsÂ® Start menu, search Allow an app through Windows Firewall.\n\nClick the Allow an app through Windows Firewall option.\n\nScroll down in the Allowed apps and features list and find the MATLAB release that you are using. This rule should apply to the application path:\n\nC:\\Program Files\\MATLAB\\RXXXXx\\bin\\win64\\matlab.exe\n\nwhere RXXXXx is the release number. You can show this path by double-clicking on the rule. If missing, this rule can be added manually.\n\nIf both Private and Public check boxes are selected, see Configure Development-to-Target Computer Ethernet Interface as Private.\n\nClick the Change settings button and confirm the security dialog. Make sure that the Private and Public boxes are selected. A Domain option or others may be available, but these options are not relevant for the MATLAB network access configuration."
+        },
+        {
+            "heading": "Configure Development-to-Target Computer Ethernet Interface as Private",
+            "content": "You can use the Windows UI or PowerShell command window to configure development-to-target computer Ethernet interface as private.\n\nWindows UI Method\n\nThe Windows UI method is straightforward, but may not be available depending on your system configuration. If not, use the PowerShell Command Window Method.\n\nRight-click on the Wi-FiÂ® or Ethernet network icon in the lower right corner of the Windows taskbar (next to the clock). Select Open Network & Internet settings. Under the Ethernet section, click Properties. Select the radio button for Private.\n\nPowerShell Command Window Method\n\nRight-click on the Windows Start menu and click the Windows PowerShell (Admin) selection. Run the command Get-NetConnectionProfile. Find the name of the Ethernet interface that you are using for development-to-target computer communication.Enter the command Set-NetConnectionProfile. Use the interface name that you find as the Name argument. Confirm the changes by running Get-NetConnectionProfile.\n\nFor example, if the interface is named Unidentified network, enter the command:\n\nSet-NetConnectionProfile -Name \"Unidentified network\" -NetworkCategory \"Private\""
+        },
+        {
+            "heading": "Confirm Successful Configuration",
+            "content": "To confirm successful configuration, in Simulink Real-Time Explorer or in the Simulink Editor on the Real-Time tab, click the Disconnected button. Confirm that the button label changes to Connected.\n\nIf the label does not change to Connected, the connection problem persists. Contact a systems administrator for further assistance. Administrator credentials may be required to configure the Windows Defender Firewall, or there may be another firewall on the development computer that requires configuration. A systems administrator may need to allow communications on specific ports or add more specific firewall rules."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-communication-failure-through-firewall.html#mw_ab9e2152-94a2-4e31-b407-0a612ebe3495",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/ug/window-cannot-connect-to-target-error.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-windows-defender-firewall-blocked.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-windows-network-setup1.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-windows-network-setup2.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-windows-network-setup3.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-powershell-screen.png"
+    ]
+}

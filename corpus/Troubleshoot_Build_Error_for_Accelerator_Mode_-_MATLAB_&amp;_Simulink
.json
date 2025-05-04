@@ -1,0 +1,16 @@
+{
+    "title": "Troubleshoot Build Error for Accelerator Mode",
+    "introduction": "A build error occurs when building a model in accelerator mode or rapid accelerator mode when the model contains Simulink Real-Time blocks (for example, model blocks that represent hardware).",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "Simulink Real-Time does not support accelerator mode or rapid accelerator mode simulation of models with blocks that represent hardware. For example, open the slrt_ex_serialasciitest model.\n\nopenExample('slrt_ex_serialasciitest').\n\nChange the Simulink mode to rapid accelerator, and run the model, Simulink displays this error:\n\nUnable to build a standalone executable to simulate the model 'slrt_ex_serialasciitest' in rapid accelerator mode.\n\nThis error occurs because accelerator mode and rapid accelerator mode produce compiled code that runs on the development computer, not on the SpeedgoatÂ® target computer. Any blocks that access hardware report a build error if you compile the model by using accelerator mode or rapid accelerator mode."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "Change the simulation mode to normal mode or external mode."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-build-error-for-accelerator-mode.html",
+    "images": []
+}

@@ -1,0 +1,67 @@
+{
+    "title": "Test Real-Time Application in Simulink Test - MATLAB &amp; Simulink\n",
+    "introduction": "Test Assessment (Simulink Test) | Test Sequence (Simulink Test)",
+    "chunks": [
+        {
+            "heading": "Open the Model",
+            "content": "To open the model, in the MATLAB\u00c2\u00ae Command Window, type:\n\nmodel = 'slrt_ex_osc_sltest'; open_system(model);\n\nThe figure shows representative output from a real-time application running on a target computer. At low frequencies, the output of the Integrator1 block settles to the same value as the output of the Signal Generator block. At high frequencies, the output of the Integrator1 block is still ringing at the end of each pulse.\n\nThe test determines the highest frequency at which the output values of the Integrator and Signal Generator blocks are within a specified criterion of each other. The test uses the model itself as a signal source and uses a Test Harness to compare the outputs of the Integrator and Signal Generator blocks."
+        },
+        {
+            "heading": "Step 1. Create Frequency Parameter",
+            "content": "Create the parameter Frequency that is tuned at the end of this example.\n\nOpen model explorer.Create a Simulink\u00c2\u00ae parameter Frequency in model workspace for model slrt_ex_osc_sltest.Mark the parameter as a model argument.Enter a default Value of 1. Change the Storage Class to be Model Default.Open the Signal Generator block parameters and change the Frequency parameter to be the new Simulink parameter Frequency."
+        },
+        {
+            "heading": "Step 2. Create Test Harness",
+            "content": "On the Simulink Apps tab, click Simulink Test.On the Test tab, click Add Test Harness. The software creates a Test Harness with the default name slrt_ex_osc_sltest_Harness1.In the Basic Properties tab, for the Input to Component under Test, select None.For the Output from Component under Test, select Outport.Select the Add separate assessment block check box.Select the Open harness after creation check box.Take the defaults in the remaining tabs.\n\n8. Click OK.\n\nThe example model slrt_ex_osc_sltest stores the Test Harness within the model. To access the Test Harness from the example model:\n\nIn Simulink Editor, on the Test tab, click Manage Test Harnesses.Click slrt_ex_osc_sltest_Harness1."
+        },
+        {
+            "heading": "Step 3. Configure Test Harness",
+            "content": "Open the Test Assessment block.To simplify the Test Assessment configuration, in the Input symbol list, delete the existing input Outport and add inputs Int1 and SigGen.Open the Block Parameters for the Test Assessment block and change the Show port labels option to FromPortIcon. This will show the input symbol names next to the port icon of the block.In slrt_ex_osc_sltest_Harness1, connect a Demux block to the signal named Out.In the Demux block dialog box, set Number of outputs to 2.Connect the top Demux block output to Test Assessment/Int1 and the bottom output to Test Assessment/SigGen."
+        },
+        {
+            "heading": "Step 4. Configure Simulink Parameters",
+            "content": "Open the Model Explorer. On the Modeling tab, pull down the Design section and click Model Explorer.Click node slrt_ex_osc_sltest_Harness1 > Model Workspace.In the toolbar, click the Add Simulink Parameter button.Add the following Simulink.Parameter object:\n\nName \u00e2\u0080\u0094 CriterionValue \u00e2\u0080\u0094 0DataType \u00e2\u0080\u0094 doubleStorage Class \u00e2\u0080\u0094 ExportedGlobal\n\n5. In a similar manner, add Simulink parameters w_open and w_close. Because these parameters are in the slrt_ex_osc_sltest_Harness1 model workspace as model parameters, you access them by name directly, without model hierarchy.\n\n6. Save the model."
+        },
+        {
+            "heading": "Step 5. Setup Frequency Argument",
+            "content": "Right click on slrt_ex_osc_sltest_Harness1/slrt_ex_osc_sltest.Select Block Parameter(Model reference).Select Instance parameters on pop out window.Mark Frequency as an argument."
+        },
+        {
+            "heading": "Step 6. Prepare Test Assessment Steps",
+            "content": "1. Open the Test Assessment block\n\n2. Add these parameters to the Parameter symbol list:\n\nCriterionw_openw_close\n\n3. To add a step, in the Step column, move the cursor to the top row, click Add step after, and type:\n\nCheckSetting\n\n4. Right-click step CheckSetting and set the When decomposition check box.\n\n5. To add a substep to CheckSetting, click Add sub-step, and type:\n\nHi when (SigGen > 0)\n\nThe when expression selects one half of the waveform.\n\n6. Right-click substep Hi when and set the When decomposition check box.\n\n7. To substep Hi when, add substep:\n\nHiCheck when ((et >= w_open) && (et <= w_close)) verify((abs(Int1) >= abs(SigGen) * (1.0 - Criterion)) && ... (abs(Int1) <= abs(SigGen) * (1.0 + Criterion)));\n\nThe when expression selects the time window for testing the acceptance criterion. The verify command tests the acceptance criterion.\n\n8. In a similar manner, to step CheckSetting, add substep:\n\nLo when (SigGen < 0)\n\n9. To substep Lo when, add substep:\n\nLoCheck when ((et >= w_open) && (et <= w_close)) verify((abs(Int1) >= abs(SigGen) * (1.0 - Criterion)) && ... (abs(Int1) <= abs(SigGen) * (1.0 + Criterion)));\n\n10. Right-click substep Lo when and set the When decomposition check box.\n\n11. To satisfy the requirements of When decomposition, remove the default Run step and insert DefaultStep substeps after steps CheckSetting, Hi when, and Lo when. When decomposition requires at least two steps at each level of nesting, and one nondecomposed step at the end of each list of steps.\n\n11. Close the Test Sequence Editor and save the model."
+        },
+        {
+            "heading": "Step 7. Initialize Test Suite",
+            "content": "Open the slrt_ex_osc_sltest_Harness1 Test Harness if not already open. Then, click on the slrt_ex_osc_sltest subsystem.On the Harness tab, click Simulink Test Manager.Select New > Test File.Name the Test File realtimetest.Right-click on the existing Test Suite and click Delete to remove the example Test File contents.Right-click the Test File and select New > Real-Time Test.In the new real-time test dialog box, enter Simulation in the Test Type field.Click Create.Rename the new Test Case to frequencysweep.Rename the new Test Suite to realtimesuite."
+        },
+        {
+            "heading": "Step 8. Initialize System Under Test",
+            "content": "In the Simulink Test Manager, select Test Case frequencysweep.Select tab System Under Test.Set Model to slrt_ex_osc_sltest.Expand the Test Harness tab, set Harness to slrt_ex_osc_sltest_Harness1.Expand the Simulation Settings Overrides tab, select the Stop Time check box.Take the defaults for the other fields."
+        },
+        {
+            "heading": "Step 9. Initialize Parameter Overrides",
+            "content": "1. In Test Manager, select tab Parameter Overrides.\n\n2. Click the Add button. A dialog box opens containing a list of parameters. If parameters are not visible, click the Refresh line at the top of the dialog box.\n\nThe refresh builds the model and uploads the model and block parameters from slrt_ex_osc_sltest_Harness1 and slrt_ex_osc_sltest.\n\n3. Open Parameter Set 1 and select the Criterion, Frequency, w_close, and w_open check boxes."
+        },
+        {
+            "heading": "Step 10. Create Scripted Iterations",
+            "content": "To configure and control iterated runs of the Test Harness, a number of constants and variables provide input.\n\nTest Harness constants include:\n\ncStartFreq = 15.0 Start frequency of parameter sweep. cStopFreq = 25.0 End frequency of parameter sweep. cFreqIncr = 1.0 Frequency increment. cWOpen = 0.90 Start of time window for evaluating criterion. cWClose = 0.99 End of time window for evaluating criterion. cCriterion = 0.025 Maximum normalized amplitude difference between Signal Generator and Integrator1 within the time window.\n\nTest Harness variables include:\n\nvfreq Frequency at each iteration. vw_open Window opens once in each half-period. vw_close Window closes once in each half-period.\n\nIn Test Manager, select tab Iterations > Scripted Iterations.In the text box, enter the following code. To resize the Scripted Iterations text box, click and drag the lower-right corner of the box.\n\n% Initialize constants cStartFreq = 15.0; cStopFreq = 25.0; cFreqIncr = 1.0; cWOpen = 0.90; cWClose = 0.99; cCriterion = 0.025; % Loop through test frequencies for vfreq = cStartFreq:cFreqIncr:cStopFreq % Create a new iteration testItr = sltest.testmanager.TestIteration(); % Calculate the time window half_period = 0.5 * (1.0/vfreq); vw_open = half_period * cWOpen; vw_close = half_period * cWClose; % Set the parameters for the iteration testItr.setVariable('Name','Frequency','Source', ... 'slrt_ex_osc_sltest','Value',vfreq); testItr.setVariable('Name','w_open','Source', ... '','Value', vw_open); testItr.setVariable('Name','w_close','Source', ... '','Value', vw_close); testItr.setVariable('Name','Criterion','Source', ... '','Value', cCriterion); % Name and add the iteration to the testcase str = sprintf('%.0f Hz', vfreq); addIteration(sltest_testCase, testItr, str); end"
+        },
+        {
+            "heading": "Step 11. Run Test",
+            "content": "Connect to your target computer. Build and download real-time application slrt_ex_osc_sltest to the target computer.In the Simulink Test Manager, click the Run button with the Test Case selected.To view test results, in the left column, click Results and Artifacts. In this case, the test failed at iteration 23 Hz.To view the failing results, open nodes 23 Hz > Verify Statements and 23 Hz > Sim Output (slrt_ex_osc_sltest)."
+        },
+        {
+            "heading": "Step 12. Display Results",
+            "content": "In the Data Inspector tab, select the Subplots button.Select a 2x1 grid configuration.In the Simulation Data Inspector top display, select the two Out check boxes and the top Test Assessment check box. This assessment corresponds to the HiCheck substep.In the bottom display, select the two Out check boxes and the bottom Test Assessment check box. This assessment corresponds to the LoCheck substep.Click the Zoom in Time button and select the range 4.00-4.1.\n\nIn the top display, the vertical red line near 4.04 followed by a horizontal green line shows that the HiCheck test failed briefly before succeeding. In the bottom display, the vertical red spike near 4.02 followed by a horizontal green line shows that the LoCheck test failed briefly before succeeding."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/test-real-time-application-in-simulink-test.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtTestRealTimeApplicationExample_01.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxslrealtime_osc_slt_waveform.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxslrealtime_osc_slt_harness_params.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxslrealtime_osc_slt_model_params.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxslrealtime_osc_slt_test_assessment.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxsltest-parameter-refresh-icon.png"
+    ]
+}

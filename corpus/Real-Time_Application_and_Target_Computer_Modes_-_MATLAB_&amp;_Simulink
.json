@@ -1,0 +1,7 @@
+{
+    "title": "Real-Time Application and Target Computer Modes",
+    "introduction": "At startup, the SpeedgoatÂ® target machine (target computer) boots the QNXÂ® NeutrinoÂ® RTOS. After the boot process is complete, you can deploy a real-time application to the target computer and run the application in one of these target computer modes:",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/gs/target-computer-operating-modes.html",
+    "images": []
+}

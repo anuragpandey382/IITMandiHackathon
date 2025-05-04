@@ -1,0 +1,24 @@
+{
+    "title": "Troubleshoot Model Upgrade for R2020b",
+    "introduction": "When building a pre-R2020b Simulink Real-Time models in R2020b, build errors occur. Some of the blocks in the model have the label Obsolete Simulink Real-Time Block. Troubleshoot System Upgrade for R2020b",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "For R2020b, you must upgrade the Simulink Real-Time model. A model Upgrade Advisor check is available to support this upgrade."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "To upgrade your model for Simulink Real-Time R2020b features, use this software upgrade process:\n\nInstall Simulink Real-Time and other required products.Install the Simulink Real-Time Target Support Package by using the MATLAB Add-Ons menu.âInstall the Speedgoat I/O Blockset. Go to the Speedgoat website.Upgrade the target machine software. See Troubleshoot System Upgrade for R2020b.Open a R2020b or earlier Simulink Real-Time model.Run the Upgrade Advisor. On the Modeling tab, select Model Advisor > Upgrade Advisor.In the Upgrade Advisor dialog box, select Check model for upgradable Simulink Real-Time features. Click the Run This Check button. The advisor lists the upgrades that it can apply and the upgrades that require manual changes.After the check, click the Upgrade button. The advisor upgrades the model by applying all nonmanual changes."
+        },
+        {
+            "heading": "Apply Manual Changes",
+            "content": "When the Upgrade Advisor encounters model issues that it cannot resolve by using automated changes, the Upgrade Advisor reports these as Warning: Some of the features require manual changes. It is a good practice to copy the text of these warnings and save it for reference as you apply changes to your model."
+        },
+        {
+            "heading": "Apply Speedgoat Utilities",
+            "content": "In R2020b, SpeedgoatÂ® software provides support for configuring interrupts and Ethernet communications.\n\nTo configure model interrupts, use a single block from the Speedgoat I/O Blockset. You can use this block for asynchronous subsystems or for triggering the base rate of the model. The list of available interrupt sources reflects the Speedgoat I/O Blockset blocks configured in the model. For more information see the block documentation in speedgoatlib_utilities.\n\nTo configure additional Ethernet ports on the target machine, the Speedgoat I/O Blockset provides a tool to configure these Ethernet ports. The configuration is specific to the target machine and reflects the labeling on the front plates of the target machine. For more information, in the MATLAB Command Window, type:\n\nspeedgoat.configureEthernet"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug_upgrade/troubleshoot-model-upgrade-to-r2020b.html",
+    "images": []
+}

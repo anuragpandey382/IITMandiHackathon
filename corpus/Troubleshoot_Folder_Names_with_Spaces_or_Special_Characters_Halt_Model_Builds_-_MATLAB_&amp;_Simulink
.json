@@ -1,0 +1,24 @@
+{
+    "title": "Troubleshoot Folder Names with Spaces or Special Characters Halt Model Builds",
+    "introduction": "When a space character appears the file path, the SimulinkÂ® Real-Timeâ¢ model build reports an error: When a special character, such as an open parenthesis character \"(\", appears in the file path, the model build reports an error:",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "For the Simulink Real-Time model build â¦ message or for the Error(s) encountered while building â¦ message, message indicates that a space character or special character appears in the file path. The QNXÂ® NeutrinoÂ® toolchain for the code generation target is not compatible with file paths that contain spaces or special characters, the model build halts and does not output a real-time application."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "Try these workaround options to resolve the model build errors."
+        },
+        {
+            "heading": "Create a Build Folder",
+            "content": "Create a folder name that does not have spaces or special characters in it. Build your model in that folder."
+        },
+        {
+            "heading": "Map the Build Folder",
+            "content": "Map the folder name or path that has spaces or special characters in it to a folder name or path without spaces or special characters. Build your model in the mapped folder."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-folder-names-with-spaces-or-special-characters-halt-model-builds.html",
+    "images": []
+}

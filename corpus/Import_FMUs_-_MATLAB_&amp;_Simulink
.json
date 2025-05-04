@@ -1,0 +1,56 @@
+{
+    "title": "Import FMUs",
+    "introduction": "Use the FMU block to import Functional Mockup Units (FMUs) into SimulinkÂ®. The FMU block automatically selects the FMU mode based on the existing FMU you want to import: This block supports FMI versions 1.0, 2.0 and 3.0. For FMI version 2.0 and 3.0, if your FMU contains both Co-Simulation and Model Exchange elements, the block detects this state and prompts you to select the operation mode for the block. You can use your FMU block as you do other Simulink blocks. The FMU block supports normal, rapid accelerator, and accelerator modes. Rapid accelerator mode is unsupported for FMU blocks with FMU logging. This topic assumes that you provide a .fmu file. FMU",
+    "chunks": [
+        {
+            "heading": "FMU XML File Directives",
+            "content": "The default parameter values derive from the corresponding parameter start value defined in the FMU ModelDescription.xml file. A block parameter value overwrites the initial value of the corresponding parameter defined in the FMU binary implementation.\n\nSimulink interprets these FMU tags accordingly.\n\nFMU TagSimulinkScalarVariable has attributes set as follows: causality=\"none\" or causality=\"internal\"variability=\"parameter\"start value is defined Interprets ScalarVariable element as block parameterRealInterprets block parameter as edit fieldIntegerInterprets block parameter as edit fieldBooleanInterprets block parameter as check boxEnumerationInterprets block parameter as drop-down listStringInterprets as UTF-8 encoded string\n\nThe FMU block supports the following encoding formats for the model description XML file:\n\nISO-8859â1UTF-8UTF-16"
+        },
+        {
+            "heading": "Additional Support and Limitations",
+            "content": "CapabilityFMI Version 3.0 SupportFMI Version 2.0 SupportFMI Version 1.0 SupportSave model operating point to base workspace (FMU flags that it supports this feature by setting canGetAndSetFMUstate and canSerializeFMUstate fields in its model description XML to true) (FMU flags that it supports this feature by setting canGetAndSetFMUstate and canSerializeFMUstate fields in its model description XML to true)Â Fast restart (FMU flags that it supports this feature by setting canGetAndSetFMUstate and canSerializeFMUstate fields in its model description XML to true.) (FMU flags that it supports this feature by setting canGetAndSetFMUstate and canSerializeFMUstate fields in its model description XML to true.)Â Simulation Stepper (FMU flags that it supports this feature by setting canGetAndSetFMUstate and canSerializeFMUstate fields in its model description XML to true.) (FMU flags that it supports this feature by setting canGetAndSetFMUstate and canSerializeFMUstate fields in its model description XML to true.)Â Solver Jacobian (FMU flags that it supports this feature by setting providesDirectionalDerivatives field in its model description XML to true.) (FMU flags that it supports this feature by setting providesDirectionalDerivatives field in its model description XML to true.)Â Linearize models (FMU flags that it supports this feature by setting providesDirectionalDerivatives field in its model description XML to true.) (FMU flags that it supports this feature by setting providesDirectionalDerivatives field in its model description XML to true.)Â Declare parameter as tunable and tune it during simulation (FMU flags that it supports this feature by setting canGetAndSetFMUstate and canSerializeFMUstate fields in its model description XML to true.) (FMU flags that it supports this feature by setting canGetAndSetFMUstate and canSerializeFMUstate fields in its model description XML to true.)Â For Each subsystem blocks (Supported only when canBeInstantiatedOnlyOncePerProcess attribute is set to false in modelDescription.xml file) (Supported only when canBeInstantiatedOnlyOncePerProcess attribute is set to false in modelDescription.xml file)Â Parameters of type string (Array of string type parameters are not supported) Rapid accelerator mode Software-in-the-loop (SIL) and processor-in-the-loop (PIL) modesÂ Â Â Code generation Nested FMU export Protected model export Model coverageÂ Â Â Simulink Design Verifierâ¢Â Â Â Model reference in accelerator mode Event Mode Â Â Scheduled Execution ModeÂ Â Â Enumerated data type for inputs, outputs and parameters Â\n\nSimulink supports stepping back and forth, tuning parameters in between, and saving states for the FMU Import block as long as the FMU itself supports these features. FMU flags that it supports these features by setting canGetAndSetFMUstate and canSerializeFMUstate fields in its model description XML to true."
+        },
+        {
+            "heading": "FMU Import Examples",
+            "content": "ExampleDescription Import Co-Simulation FMU into Simulink This model shows how to use the FMU block to load an FMU file that supports Co-Simulation mode. Importing a Model Exchange FMU into Simulink This model shows how to use the FMU block to load an FMU file that supports Model Exchange mode. Simplify Interface for Structured Data with FMU Import Block This model shows how to use buses and structure parameters in an FMU block that supports Model Exchange mode."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/work-with-fmi-in-simulink.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.png"
+    ]
+}

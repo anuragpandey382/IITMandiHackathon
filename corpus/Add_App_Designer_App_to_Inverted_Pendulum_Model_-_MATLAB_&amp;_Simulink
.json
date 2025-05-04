@@ -1,0 +1,31 @@
+{
+    "title": "Add App Designer App to Inverted Pendulum Model - MATLAB &amp; Simulink\n",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Create Target Object and Connect",
+            "content": "Create a Target object for the default target computer and connect to the target computer.\n\nIn the MATLAB\u00c2\u00ae Command Window, type:\n\ntg = slrealtime; connect(tg);"
+        },
+        {
+            "heading": "Start Target Computer and Build Real-Time Application",
+            "content": "These tasks generate the real-time application that streams data to the App Designer instrument panel app.\n\nOpen the model slrt_ex_pendulum_100Hz.Build the slrt_ex_pendulum_100Hz model.\n\nIn the MATLAB\u00c2\u00ae Command Window, type:\n\nmodel = 'slrt_ex_pendulum_100Hz'; open_system(model); modelSTF = getSTFName(tg); set_param(model,\"SystemTargetFile\",modelSTF) set_param(model, 'RTWVerbose', 'off'); evalc('slbuild(model)');"
+        },
+        {
+            "heading": "Run App Designer Instrument Panel App",
+            "content": "The App Designer instrument panel app slrt_ex_pendulumApp provides controls to start and interact with the real-time application slrt_ex_pendulum_100Hz.\n\n1. Run the app. To start the App Designer app slrt_ex_pendulumApp.mlapp and create the handle app, in the MATLAB Command Window, type:\n\napp = slrt_ex_pendulumApp;\n\n2. To connect with an available target computer, click the Connect button. The text on the button will switch to 'Disconnect' and the Load button will be enabled.\n\n3. To load the application to the target computer, click the Load button. After the application is loaded on the target computer, the Start button and Stop time edit field will be enabled.\n\n4. To set the stop time of the application, type your preferred stop time in the edit field and hit the Enter key on your keyboard.\n\n5. To start the application, click the Start button.\n\n6. To disrupt the equilibrium of the pendulum on each cart, click the Nudge Cart button. You can adjust the nudge magnitude by using the value selection next to the button, change the reference position by adjusting the value of reference position spinner, or choose a variation pattern for the reference position."
+        },
+        {
+            "heading": "App Callback Code",
+            "content": "The instrument panel app functionality is provided by callback code.\n\nComments in the callback code in the instrument panel app slrt_ex_pendulumApp.mlapp describe the callback operations and programming suggestions. To view the callback code, open slrt_ex_pendulumApp.mlapp in the App Designer, and then click the Code View tab. In the Command Window, type:\n\nedit slrt_ex_pendulumApp\n\nSpecify Block Paths for Signals\n\nTo stream data from signals in the model, see the use of connectLine functions in the setupInstrumentation(app) function in the app.\n\nupdateAnimationCallback Function\n\nFor each AcquireGroup, this function checks whether there is fresh data since the last time the callback was called. If there is data, the function updates the animation objects.\n\nSignals are placed in an AcquireGroup based on sample rate and decimation such that all signals in an AcquireGroup have the same time vector.\n\nUpdate Axes and Animation by Using Acquire Groups\n\nIn the callback code, this processing is visible as AcquireGroupData signal groups in the updateAnimationCallback function."
+        },
+        {
+            "heading": "Close the App and Models",
+            "content": "The instrument panel app handle app provides access to close the app.\n\nClose the app. In the MATLAB Command Window, type:\n\nclose(app.UIFigure)\n\nClose the open models. In the Command Window, type:\n\nbdclose (model);"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/add-app-des-app-to-inverted-pendulum-model.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtAddAppDesignerAppToInvertedPendulumModelExample_01.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxartwork-pendulum-mlapp-start-up.png"
+    ]
+}

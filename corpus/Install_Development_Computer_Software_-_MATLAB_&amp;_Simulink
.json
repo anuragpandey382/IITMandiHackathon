@@ -1,0 +1,16 @@
+{
+    "title": "Install Development Computer Software",
+    "introduction": "You install the SimulinkÂ® Real-Timeâ¢ software only on the MATLABÂ® development computer. The development computer downloads the real-time application to the target computer at run time. The Simulink Real-Time software is distributed on a DVD or as a file that you download from the Internet. Simulink Real-Time supports development workflows and test engineering workflows: For information about installing target computer software, see Speedgoat Target Computers and Speedgoat Support. slbuild",
+    "chunks": [
+        {
+            "heading": "License Requirements",
+            "content": "Before you install the Simulink Real-Time product, you must have a valid File Installation Key and License file. The File Installation Key identifies the products that you purchased from MathWorksÂ®. The License file activates the installation.\n\nIf you have not received either of these items, go to the License Center at the MathWorks website. For a list of required products, go to Product Requirements & Platform Availability for Simulink Real-Time.\n\nAfter you install Simulink Real-Time, if you are setting up a development installation, you must install the Simulink Real-Time Target Support package. During support package installation, you accept the license terms for the BlackBerryÂ® QNXÂ® NeutrinoÂ® development tools and run-time components as part of the target computer. These tools generate a real-time application that runs on the target computer.\n\nUsing Simulink Real-Time and BlackBerry QNX Neutrino, you can develop Simulink Real-Time applications that you run on a SpeedgoatÂ® target machine (target computer). You can run these real-time applications by using the target computer in connected mode. In connected mode, the development and target computers are connected via Simulink Real-Time software and an Ethernet cable. You also can run these real-time applications by using the target computer in standalone mode. In standalone mode, the development and target computers are not connected via Simulink Real-Time software.\n\nFor more information about the connected mode and the standalone mode, see Real-Time Application and Target Computer Modes."
+        },
+        {
+            "heading": "Location of Files on Development Computer",
+            "content": "Select a working folder outside the MATLAB root. Simulink Real-Time generates files and folders in this location:\n\nMATLAB working folder â Simulink cache files (.slxc), dynamic link libraries (for example, .mex64 ), and Simulink Real-Time applications (.mldatx).Simulink Coder Build folder â The Simulink Coder C code files (.c, .cpp, .h, .hpp) are in a subfolder called modelname_slrealtime_rtw."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/gs/install-development-computer-software.html",
+    "images": []
+}

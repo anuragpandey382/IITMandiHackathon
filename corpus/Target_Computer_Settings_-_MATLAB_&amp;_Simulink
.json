@@ -1,0 +1,7 @@
+{
+    "title": "Target Computer Settings",
+    "introduction": "To run a SimulinkÂ® Real-Timeâ¢ model on a SpeedgoatÂ® target computer, configure the target settings to match the capabilities of the target computer. Repeat this procedure as required for each target computer. Simulink Real-Time Explorer",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/gs/target-computer-settings.html",
+    "images": []
+}

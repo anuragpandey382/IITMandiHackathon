@@ -1,0 +1,24 @@
+{
+    "title": "Troubleshoot Cannot Load Shared Object on Target Computer",
+    "introduction": "When loading and running on the target computer a real-time application that depends on a shared object (.so), the real-time application cannot run and load the library. In the system log, A message like this error appears: update | slrealtime.getSupportInfo",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "An error loading a shared object can indicate some issue with missing or corrupt library dependencies on the target computer. The issue could be:\n\nThe download to the SpeedgoatÂ® target computer has modified or has removed some required files on the target computer.The download to the target computer put the library in a location that is not accessible when the real-time application runs."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "These workarounds explore the possible issues."
+        },
+        {
+            "heading": "Check for Issues with Required Files",
+            "content": "To check for this issue, connect to the target computer, and then try to build, load, and run example model slrt_ex_osc. If working with the default target computer, in the MATLABÂ® Command Window, type:\n\ntg = slrealtime; connect(tg); openExample('slrealtime/SlrtAddIOBlocksToSimulinkModelExample'); open_system('slrt_ex_osc'); slbuild('slrt_ex_osc'); load('slrt_ex_osc'); start('slrt_ex_osc');\n\nIf you can successfully connect to the target computer and build, load, and run the real-time application, there is no issue with files from the Simulink Real-Time Target Support Package on the target computer.\n\nIf you cannot complete those operations successfully, update the target computer software by using the force option. If working with the default target computer, in the MATLAB Command Window, type:\n\nupdate(tg,'force',true);\n\nAfter the software update, connect to the target computer and try to build, load, and run the real-time application.."
+        },
+        {
+            "heading": "Check Location of Shared Object on Target Computer",
+            "content": "To check for this issue, use SSH or FTP to examine the location of the shared object file on the target computer. For more information, see Execute Target Computer RTOS Commands at Target Computer Command Line.\n\nAfter you build the real-time application that links to a shared object, you must install the real-time application and the shared object on the target computer. Put the shared objects in a location on the target computer where they can be found and loaded at run time. The recommended locations are /lib, /usr/lib, or /usr/local/lib. Root access is required to copy or modify files in these locations."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-cannot-load-shared-object-on-target-computer.html",
+    "images": []
+}

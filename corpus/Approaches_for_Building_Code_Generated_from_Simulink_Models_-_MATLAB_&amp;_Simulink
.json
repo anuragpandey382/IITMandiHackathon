@@ -1,0 +1,7 @@
+{
+    "title": "Approaches for Building Code Generated from Simulink Models",
+    "introduction": "Use one of these approaches for building (compiling and linking) code that you generate from SimulinkÂ® models: Each build approach supports: For information about customizing a build approach, see Code Compilation Customization. slbuild | codebuild",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/ecoder/ug/approaches-for-building-generated-code.html",
+    "images": []
+}

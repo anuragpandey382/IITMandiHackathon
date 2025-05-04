@@ -1,0 +1,44 @@
+{
+    "title": "Create Structures in MATLAB Function Blocks",
+    "introduction": "You can create and use structures for input, output, local, persistent, or parameter variables in MATLAB Function blocks. Structures in MATLAB Function blocks can contain fields of any type and size, including mux signals, buses, and arrays of structures. Before you create a structure, you must decide the scope of the MATLAB Function variable. See Create and Define MATLAB Function Block Variables. MATLAB Function",
+    "chunks": [
+        {
+            "heading": "Input Variables",
+            "content": "When you create structure for input variables, the MATLAB Function block determines the type, size, and complexity of the structure from the input signal. To define a structure for an input variable:\n\nCreate a Simulink.Bus object in the base workspace that defines the structure.Identify or add an input variable to the MATLAB Function block. Input variables have the Scope property set to Input.Set the variable Type property to Inherit: Same as Simulink or Bus: <object name>. For <object name>, enter the name of the Simulink.Bus object that defines the structure properties.\n\nBuses in a SimulinkÂ® model appear inside MATLAB Function blocks as structures."
+        },
+        {
+            "heading": "Output Variables",
+            "content": "When you create structures for outputs variables, you create a Simulink.Bus object and then define the type, size, and complexity of the variable in the MATLABÂ® function code. The properties in the code and the object must match. To define structures for outputs variables:\n\nCreate a Simulink.Bus object in the base workspace to define the structure.Identify or add output variables to the MATLAB Function block. Output variables have the Scope property set to Output.Set the Type property to Bus: <object name>. For <object name>, enter the name of the Simulink.Bus object that defines the structure.Initialize the output structure as a variable in the MATLAB function, as described in Structure Definition for Code Generation. Match the structure configuration of the output variable to the Simulink.Bus object, including the number, type, and sizes of each element.\n\nStructure outputs from the MATLAB Function block appear as buses in Simulink models. MATLAB Function blocks support nonvirtual bus outputs but do not support virtual bus outputs."
+        },
+        {
+            "heading": "Local Variables",
+            "content": "To define local variables that are structures, define the structure in the MATLAB function, as described in Structure Definition for Code Generation. You do not define local variables in the Symbols pane, and you cannot modify the properties in the Property Inspector. By default, MATLAB Function blocks clear local variable values after each time step."
+        },
+        {
+            "heading": "Persistent Variables",
+            "content": "To define persistent variables that are structures, declare the variable as persistent in the function code. See persistent and Initialize Persistent Variables in MATLAB Functions. For example, to declare the persistent variable, myVar, enter:\n\npersistent myVar\n\nThen define the variable structure in the MATLAB function. You do not define persistent variables in the Symbols pane, and they do not have properties that you can modify in the Property Inspector."
+        },
+        {
+            "heading": "Parameter Variables",
+            "content": "To define parameter variables that are structures:\n\nCreate a structure variable in the base workspace, model workspace, or a masked subsystem that contains the MATLAB Function block.Identify or add parameter variables to the MATLAB Function block. See Use Data in Multiple MATLAB Function Blocks by Defining Parameter Variables. Parameter variables have the Scope property set to Parameter. Match the names of the variables."
+        },
+        {
+            "heading": "fimath Properties of Nontunable Structure Parameters",
+            "content": "The initial values of the structure determine the fimath properties for nontunable structure parameters that contain fixed-point values. The fimath properties of the MATLAB Function block that you define in the Property Inspector do not specify these values."
+        },
+        {
+            "heading": "Global Variables",
+            "content": "You can define global variables in MATLAB Function blocks to access simulation data from Simulink.Signal objects or Data Store Memory blocks. See Access Data Store Data in MATLAB Function Blocks. To define global variables that are structures:\n\nCreate a Simulink.Bus object in the base workspace to define the structure.Identify or add global variables to the MATLAB Function block. Global variables have the Scope property set to Data Store Memory. Variables with this scope inherit their properties from the associated data in the Data Store Memory block or Simulink.Signal object.Declare the global variable in the function code. For example, to declare the global variable myVar, enter:global myVar\n\nFor an example, see Write Buses from Data Store Memory to a MATLAB Function Block."
+        },
+        {
+            "heading": "Assign Values to Structures and Fields",
+            "content": "After you define the structure, you can assign values to the structure, substructure, or field of the structure variable. Follow these guidelines:\n\nOperationConditionsAssign one structure to another structureYou must define each structure with the same number, type, and size of fields, either as Simulink.Bus objects in the base workspace or locally as implicit structure declarations.Assign one structure to a substructure of a different structureYou must define the structure with the same number, type, and size of fields as the substructure, either as Simulink.Bus objects in the base workspace or locally as a structure declaration.Assign an element of one structure to an element of another structureThe elements must have the same type and size.\n\nFor example, this table describes valid and invalid structure assignments based on the specifications for the model described in Read and Write Buses with a MATLAB Function Block:\n\nAssignmentValid or Invalid?Rationaleoutbus = mystruct;ValidThe Simulink.Bus object MainBus defines the structure outbus and the local definition of mystruct matches the field properties of MainBus.outbus = inbus;ValidThe Simulink.Bus object, MainBus, defines both outbus and inbus.outbus1 = inbus.ele3;ValidBecause the Simulink.Bus object SubBus defines both outbus1 and inbus.ele3, they have the same type and size.outbus1 = inbus;InvalidA different Simulink.Bus object defines structure outbus1 and inbus."
+        },
+        {
+            "heading": "Limitations for Structures in MATLAB Function Blocks",
+            "content": "You cannot use structures that contain cell arrays or classes for Simulink signals, parameters, or data store memory.You cannot use variable-size data with arrays of buses. See Group Nonvirtual Buses in Arrays of Buses."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/create-structures-in-matlab-function-blocks.html",
+    "images": []
+}

@@ -1,0 +1,16 @@
+{
+    "title": "Troubleshoot Gaps in Streamed Data",
+    "introduction": "A real-time application is producing a live streaming overload while attempting to stream signal data at a high rate.",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "Live streaming from a real-time application does not guarantee all the data appears in the Simulation Data Inspector. Live stream instrumentation runs at a lower priority than the real-time application. So, data sent by live streaming could be dropped if the development computer to SpeedgoatÂ® target computer connection cannot keep up.\n\nIf a live stream overload occurs, you could see noticeable gaps in the data in the Simulation Data Inspector or see that some time steps are lost when you export data from the Simulation Data Inspector."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "The issue is caused by high data rates and live streaming of data.\n\nTo workaround the issue:\n\nModify the real-time application to decrease the data rate for live streaming data. To do this, you could increase the sample rate, instrument fewer signals, or increase the decimation of instrumented signals. Change the real-time application to use file logging instead of live streaming. File logging is capable of logging higher data rates without dropping data."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-gaps-in-streamed-data.html",
+    "images": []
+}

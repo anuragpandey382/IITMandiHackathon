@@ -1,0 +1,26 @@
+{
+    "title": "Apply Functional Mock-up Units by Using Simulink Real-Time - MATLAB &amp; Simulink\n",
+    "introduction": "FMU",
+    "chunks": [
+        {
+            "heading": "FMU Limitations for Simulink Real-Time",
+            "content": "These limitations apply:\n\nSimulink Real-Time supports FMU blocks for Co-Simulation mode.Simulink Real-Time does not support FMU blocks for Model Exchange mode.Simulink Real-Time generates a mask dialog box that contains both numeric-valued and string-valued parameters. Simulink Real-Time generates code for only numeric-valued parameters.\n\nTo convert a Simulink model that contains FMU blocks to a Simulink Real-Time model, set the model configuration parameters to values compatible with real-time execution:\n\nIn the Code Generation pane, set System target file to speedgoat.tlc or other Simulink Real-Time STF.In the Solver pane, set Type to Fixed-step.In the Solver pane, set Fixed-step size to a step size compatible with the real-time requirements of your model.Generate a shared object SO file by using the QNX Neutrino tools for the FMU. For more information, see slrealtime.fmu.compileFMUSources.\n\nYou can then build and download the model to a target computer and run the real-time application. This process loads the required FMU binary files on the target computer. For more information about creating the FMU files, see Compile Source Code for Functional Mock-up Units."
+        },
+        {
+            "heading": "Create Target Object and Connect",
+            "content": "Create a Target object for the default target computer and connect to the target computer. In the Command Window, type:\n\ntg = slrealtime; connect(tg);"
+        },
+        {
+            "heading": "Open the Model",
+            "content": "To open an example model that contains FMU blocks running in Simulink Real-Time, in the Command Window, type:\n\nmodel = 'slrt_ex_vanderpol'; open_system(model); modelSTF = getSTFName(tg); set_param(model,\"SystemTargetFile\",modelSTF);"
+        },
+        {
+            "heading": "Close the Model",
+            "content": "bdclose(model);"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/apply-functional-mockup-units-with-simulink-real-time.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtApplyFunctionalMockupUnitsByUsingSimulinkRealTimeExample_01.png"
+    ]
+}

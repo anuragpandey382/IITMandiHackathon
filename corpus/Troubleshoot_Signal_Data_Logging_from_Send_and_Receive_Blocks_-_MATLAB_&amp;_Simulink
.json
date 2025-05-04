@@ -1,0 +1,16 @@
+{
+    "title": "Troubleshoot Signal Data Logging from Send and Receive Blocks",
+    "introduction": "A model uses Send and Receive blocks. It would be helpful to view signal data from the message line (output of send or input of receive) in the Simulation Data Inspector. Unexpected data appears when a message line in Simulink Real-Time Explorer is selected for streaming to the Simulation Data Inspector. File Log",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "There are some guidelines to data logging message line signals:\n\nMessage line signals that are marked for logging with the Simulation Data Inspector display the data accurately in the Simulation Data Inspector.Message line signals that are connected to File Log blocks display the data accurately in the Simulation Data Inspector.Message line signals that are selected for dynamic streaming with an instrument objectâeither by selecting the signals in Simulink Real-Time Explorer or adding the signals by using the Application object APIâdo not display the data accurately in the Simulation Data Inspector or in App Designer instrument panel applications.\n\nFor more information about message lines, see Animate and Understand Sending and Receiving Messages."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "To get accurate display of message line signals in the Simulation Data Inspector, mark the signals for data logging in the model or connect the signals to File Log blocks."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-signal-data-logging-from-send-and-receive-blocks.html",
+    "images": []
+}

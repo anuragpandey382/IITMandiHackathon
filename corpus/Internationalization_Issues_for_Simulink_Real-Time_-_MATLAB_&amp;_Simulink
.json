@@ -1,0 +1,7 @@
+{
+    "title": "Internationalization Issues for Simulink Real-Time",
+    "introduction": "SimulinkÂ® Real-Timeâ¢ inherits the internationalization support of the products that it works with: Simulink, Simulink Coderâ¢, and Embedded CoderÂ®. Signal and parameter names that include UnicodeÂ® characters are displayed as expected in Simulink Real-Time Explorer and at the MATLABÂ® command line. When you use the Simulation Data Inspector to observe signals, the non-ASCII signal names are displayed as expected. For example, assume that the signal with ID 1 appears in an English-language and a Japanese-language version of the same model. In the English-language version, the signal label is input1 and the block path is block1/block2. In the Japanese-language version, the signal label is å ¥å1 and the block path is ãã­ãã¯1/ãã­ãã¯2. Third-party code (for example, parsers for vendor configuration files) sometimes does not support cross-locale, cross-platform internationalization. For such code, you must give files and folders locale-specific names. For example, when parsing a configuration file on an English-locale machine, name the file and enclosing folder with English-locale-specific names.",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/internationalization-issues-for-simulink-real-time.html",
+    "images": []
+}

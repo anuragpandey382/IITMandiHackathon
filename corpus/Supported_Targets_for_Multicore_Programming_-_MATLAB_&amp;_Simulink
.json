@@ -1,0 +1,16 @@
+{
+    "title": "Supported Targets for Multicore Programming",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Supported Multicore Targets",
+            "content": "You can build and download models that are implicitly or explicitly partitioned for the following multicore targets using system target files:\n\nLinuxÂ®, WindowsÂ®, and macOS using ert.tlc and grt.tlc. SimulinkÂ® Real-Timeâ¢ using slrealtime.âtlc.\n\nNoteTo build and download your model, you must have Simulink Coderâ¢ software installed.To build and download your model to a Simulink Real-Time system, you must have Simulink Real-Time software installed. You must also have a multicore target system supported by the Simulink Real-Time product. Deploying to an embedded processor that runs Linux and VxWorksÂ® operating systems requires the Embedded CoderÂ® product."
+        },
+        {
+            "heading": "Supported Heterogeneous Targets",
+            "content": "In addition to multicore targets, Simulink also supports building and downloading partitions of an explicitly partitioned model to heterogeneous targets that contain a multicore target and one or more field-programmable gate arrays (FPGAs).\n\nSelect the heterogeneous architecture using the Target architecture option in the Concurrent Execution dialog box Concurrent Execution pane:\n\nItemDescriptionSample ArchitectureExample architecture consisting of single CPU with multiple cores and two FPGAs. You can use this architecture to model for concurrent execution.Simulink Real-TimeSimulink Real-Time target containing FPGA boards.Xilinx Zynq ZC702 evaluation kitXilinxÂ® ZynqÂ® ZC702 evaluation kit target.Xilinx Zynq ZC706 evaluation kitXilinx Zynq ZC706 evaluation kit target.Xilinx Zynq ZedboardXilinx Zynq ZedBoardâ¢ target.Altera Cyclone V SoC development kit Rev. CAlteraÂ® CycloneÂ® SoC Rev. C development kit target.Altera Cyclone V SoC development kit Rev. DAltera Cyclone SoC Rev. D development kit target.Arrow SoCKit development boardArrowÂ® SoCKit development board target.\n\nNoteBuilding HDL code and downloading it to FPGAs requires the HDL Coderâ¢ product. You can generate HDL code if:You have an HDL Coder licenseYou are building on Windows or Linux operating systemsYou cannot generate HDL code on Macintosh systems."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/supported-targets-for-multicore-programming.html",
+    "images": []
+}

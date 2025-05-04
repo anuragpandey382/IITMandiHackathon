@@ -1,0 +1,92 @@
+{
+    "title": "Use the Sequence Viewer to Visualize Messages, Events, and Entities",
+    "introduction": "To see the interchange of messages and events between the blocks from the SimulinkÂ® Messages & Events library, StateflowÂ® charts in Simulink models, and SimEventsÂ® blocks, you can: The Sequence Viewer allows you to visualize message transition events and the data that the messages carry. In the Sequence Viewer, you can view event data related to Stateflow chart execution and the exchange of messages between Stateflow charts. The Sequence Viewer window shows messages as they are created, sent, forwarded, received, and destroyed at different times during model execution. The Sequence Viewer window also displays state activity, transitions, and function calls to Stateflow graphical functions, Simulink functions, and MATLABÂ® functions. With the Sequence Viewer, you can also visualize the movement of entities between blocks when simulating SimEvents models. All SimEvents blocks that can store entities appear as lifelines in the Sequence Viewer window. Entities moving between these blocks appear as lines with arrows. You can view calls to Simulink Function blocks and to MATLAB Function blocks. You can add a Sequence Viewer block to the top level of a model or any subsystem. If you place a Sequence Viewer block in a subsystem that does not have messages, events, or state activity, the Sequence Viewer window informs you that there is nothing to display. For instance, open the Stateflow example sf_msg_traffic_light. This model has three Simulink subsystems: Traffic Light 1, Traffic Light 2, and GUI. During simulation, the Stateflow charts in these subsystems exchange data by sending messages. As messages pass through the system, you can view them in the Sequence Viewer window. The Sequence Viewer window represents each block in the model as a vertical lifeline with simulation time progressing downward.",
+    "chunks": [
+        {
+            "heading": "Components of the Sequence Viewer Window",
+            "content": ""
+        },
+        {
+            "heading": "Navigation Toolbar",
+            "content": "At the top of the Sequence Viewer window, a navigation toolbar displays the model hierarchy path. Using the toolbar buttons, you can:\n\nShow or hide the Property Inspector. Select an automatic or manual layout. Show or hide inactive lifelines. Save Sequence Viewer settings. Restore Sequence Viewer settings. Configure Sequence Viewer parameters. Access the Sequence Viewer documentation."
+        },
+        {
+            "heading": "Property Inspector",
+            "content": "In the Property Inspector, you can choose filters to show or hide:\n\nEventsMessagesFunction CallsState Changes and Transitions"
+        },
+        {
+            "heading": "Header Pane",
+            "content": "The header pane below the Sequence Viewer toolbar shows lifeline headers containing the names of the corresponding blocks in a model.\n\nGray rectangular headers correspond to subsystems.White rectangular headers correspond to masked subsystems.Yellow headers with rounded corners correspond to Stateflow charts.\n\nTo open a block in the model, click the name in the corresponding lifeline header. To show or hide a lifeline, double-click the corresponding header. To resize a lifeline header, click and drag its right-hand side. To fit all lifeline headers in the Sequence Viewer window, press the space bar."
+        },
+        {
+            "heading": "Message Pane",
+            "content": "Below the header pane is the message pane. The message pane displays messages, events, and function calls between lifelines as arrows from the sender to the receiver. To display sender, receiver, and payload information in the Property Inspector, click the arrow corresponding to the message, event, or function call."
+        },
+        {
+            "heading": "Navigate the Lifeline Hierarchy",
+            "content": "In the Sequence Viewer window, the hierarchy of lifelines corresponds to the model hierarchy. When you pause or stop the model, you can expand or contract lifelines and change the root of focus for the viewer."
+        },
+        {
+            "heading": "Expand a Parent Lifeline",
+            "content": "In the message pane, a thick, gray lifeline indicates that you can expand the lifeline to see its children. To show the children of a lifeline, click the expander icon below the header or double-click the parent lifeline.\n\nFor example, expanding the lifeline for the Traffic Light 1 block reveals two new lifelines corresponding to the Stateflow charts Ped Button Sensor and Controller."
+        },
+        {
+            "heading": "Expand a Masked Subsystem Lifeline",
+            "content": "The Sequence Viewer window displays masked subsystems as white blocks. To show the children of a masked subsystem, point over the bottom left corner of the lifeline header and click the arrow.\n\nFor example, the GUI subsystem contains four masked subsystems: Traffic Lamp 1,Traffic Lamp 2, Ped Lamp 1, and Ped Lamp 2.\n\nYou can display the child lifelines in these masked subsystems by clicking the arrow in the parent lifeline header."
+        },
+        {
+            "heading": "Change Root of Focus",
+            "content": "To make a lifeline the root of focus for the viewer, point over the bottom left corner of the lifeline header and click the arrow. Alternatively, you can use the navigation toolbar at the top of the Sequence Viewer window to move the current root up and down the lifeline hierarchy. To move the current root up one level, press the Esc key.\n\nThe Sequence Viewer window displays the current root lifeline path and shows its child lifelines. Any external events and messages are displayed as entering or exiting through vertical slots in the diagram gutter. When you point to a slot in the diagram gutter, a tooltip displays the name of the sending or receiving block."
+        },
+        {
+            "heading": "View State Activity and Transitions",
+            "content": "To see state activity and transitions in the Sequence Viewer window, expand the state hierarchy until you have reached the lowest child state. Vertical yellow bars show which state is active. Blue horizontal arrows denote the transitions between states.\n\nIn this example, you can see a transition from Go to PrepareToStop followed, after 1 second, by a transition to Stop.\n\nTo display the start state, end state, and full transition label in the Property Inspector, click the arrow corresponding to the transition.\n\nTo display information about the interactions that occur while a state is active, click the yellow bar corresponding to the state. In the Property Inspector, use the Search Up and Search Down buttons to move through the transitions, messages, events, and function calls that take place while the state is active."
+        },
+        {
+            "heading": "View Function Calls",
+            "content": "The Sequence Viewer displays function calls and replies. This table lists the type of support for each type of function call.\n\nFunction Call TypeSupportCalls to Simulink Function blocksFully supported.Calls to Stateflow graphical or Stateflow MATLAB functions Scoped â Select the Export chart level functions chart option. Use the chartName.functionName dot notation.Global â Select the Treat exported functions as globally visible chart option. You do not need the dot notation. Calls to function-call subsystemsFully supported and displayed.Calls from MATLAB Function blockSupports displaying function call events with the limitation of calls crossing model reference boundaries.\n\nThe Sequence Viewer window displays function calls as solid arrows labeled with the format function_name(argument_list). Replies to function calls are displayed as dashed arrows labeled with the format [argument_list]=function_name.\n\nFor example, in the model slexPrinterExample, a subsystem calls the Simulink Function block addPrinterJob. The function block replies with an output value of false.\n\nTo open this example, enter:\n\nopenExample(\"slexPrinterExample\")"
+        },
+        {
+            "heading": "Simulation Time in the Sequence Viewer Window",
+            "content": "The Sequence Viewer window shows events vertically, ordered in time. Multiple events in Simulink can happen at the same time. Conversely, there can be long periods of time during simulation with no events. As a consequence, the Sequence Viewer window shows time by using a combination of linear and nonlinear displays. The time ruler shows linear simulation time. The time grid shows time in a nonlinear fashion. Each time grid row, bordered by two blue lines, contains events that occur at the same simulation time. The time strip provides the times of the events in that grid row.\n\nTo show events in a specific simulation time range, use the scroll wheel or drag the time slider up and down the time ruler. To navigate to the beginning or end of the simulation, click the Go to first event or Go to last event buttons. To see the entire simulation duration on the time ruler, click the Fit to view button .\n\nWhen using a variable step solver, you can adjust the precision of the time ruler. In the Model Explorer, on the Main tab of the Sequence Viewer Block Parameters pane, adjust the value of the Time Precision for Variable Step field."
+        },
+        {
+            "heading": "Redisplay of Information in the Sequence Viewer Window",
+            "content": "The Sequence Viewer saves the order and states of lifelines between simulation runs. When you close and reopen the Sequence Viewer window, it preserves the last open lifeline state. To save a particular viewer state, click the Save Settings button in the toolbar. Saving the model then saves that state information across sessions. To load the saved settings, click the Restore Settings button .\n\nNoteWhen you update your model or rerun simulation, the Sequence Viewer clears results from past runs. To save results from past runs, use the Simulation Data Inspector.\n\nYou can modify the Time Precision for Variable Step and History parameters only between simulations. You can access the buttons in the toolbar before simulation or when the simulation is paused. During a simulation, the buttons in the toolbar are disabled."
+        },
+        {
+            "heading": "Blocks",
+            "content": "• Sequence Viewer"
+        },
+        {
+            "heading": "Tools",
+            "content": "• Sequence Viewer\n\n• Communicate with Stateflow Charts by Sending Messages (Stateflow)\n• Model Distributed Traffic Control System by Using Messages (Stateflow)"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/use-sequence-viewer-block.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/sf_msg_traffic_light_model.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_display21.png",
+        "https://in.mathworks.com/help/simulink/ug/property_inspector_button.png",
+        "https://in.mathworks.com/help/simulink/ug/manual_layout_button.png",
+        "https://in.mathworks.com/help/simulink/ug/inactive_lifelines_button.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_savesettings.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_restoresettings.png",
+        "https://in.mathworks.com/help/simulink/ug/configure_button.png",
+        "https://in.mathworks.com/help/simulink/ug/doc_button.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_display61.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_payload1.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_display9.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_display31.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer15.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer13.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_display41.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_display51.png",
+        "https://in.mathworks.com/help/simulink/ug/state_activity.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_function_call.png",
+        "https://in.mathworks.com/help/simulink/ug/message-viewer-time.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_fittoview.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_savesettings.png",
+        "https://in.mathworks.com/help/simulink/ug/message_viewer_restoresettings.png"
+    ]
+}

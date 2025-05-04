@@ -1,0 +1,32 @@
+{
+    "title": "Calibrate Parameters with ETAS Inca",
+    "introduction": "This example shows how to view signals and tune parameters by using ETASÂ® Inca. You must have already completed the steps in Prepare ASAP2 Data Description File. You also must be familiar with the ETAS Inca user interface. For information about the user interface, see the vendor documentation (www.etas.com).",
+    "chunks": [
+        {
+            "heading": "Prepare Database",
+            "content": "Open model slrt_ex_osc_cal.openExample('slrt_ex_osc_cal');Build and download real-time application slrt_ex_osc_cal. Start the real-time application by selecting REAL-TIME > RUN ON TARGET > Start Application.Disconnect the connection from MATLAB:tg = slrealtime disconnect(tg)You can then connect to third-party calibration tools.Open ETAS Inca.Add an ETAS Inca database by using the folder named SLRTDatabase.Add subfolders named Experiment, Project, and Workspace."
+        },
+        {
+            "heading": "Prepare Project",
+            "content": "Under folder Project, add an ECU project.When prompted, select A2L file slrt_ex_osc_cal.a2l, which is extracted from the project file. Ignore the prompt for a HEX file.If you change and rebuild the real-time application, delete the ECU project and recreate it with the new A2L file."
+        },
+        {
+            "heading": "Prepare Workspace",
+            "content": "Under folder Workspace, add workspace slrt_ex_osc_cal_wksp.Add project slrt_ex_osc_cal_slrt to workspace slrt_ex_osc_cal_wksp.When prompted, add an Ethernet system XCP device to the workspace.Configure the XCP device and initialize it. Autoconfigure the ETAS network. To upload data from the device hardware, use enhanced operations on memory pages.Data is uploaded from the real-time application on the target computer."
+        },
+        {
+            "heading": "Prepare Experiment",
+            "content": "Under folder Experiment, add experiment slrt_ex_osc_cal_exp.Add experiment slrt_ex_osc_cal_exp to workspace slrt_ex_osc_cal_wksp."
+        },
+        {
+            "heading": "Configure Signals and Parameters",
+            "content": "Start experiment slrt_ex_osc_cal_exp.To create graphic controls for the variables, add variables Kg, DampedOsc, SignalGenerator, L_1D, and L_2D.Add YT oscilloscopes for DampedOsc, SignalGenerator, L_1D, and L_2D.For each signal, set the sample time to the base sample time of the real-time application (250 Âµs)."
+        },
+        {
+            "heading": "Measure Signals and Calibrate Parameters",
+            "content": "Start the ETAS Inca measurement.To shorten the ring time on DampedOsc, L_1D, and L_2D, set parameter Kg to 800.As required, toggle between the reference page and the working page.\n\nWhen using the Run on Target button on the Simulink Editor Real-Time tab to run the simulation, there is a time lag of a couple of seconds between the start of the real-time application on the target computer and the connect model operation on the development computer. If you are examining signals at or very close to application start, consider using the step-by-step approach to connect model and then using an SSH connection (for example, using PuTTY) start the real-time application. For more information, see Execute Real-Time Application in Simulink External Mode by Using Step-by-Step Commands and Execute Target Computer RTOS Commands at Target Computer Command Line."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/calibrate-by-using-etas-inca.html",
+    "images": []
+}

@@ -1,0 +1,69 @@
+{
+    "title": "Highlight Signal Sources and Destinations",
+    "introduction": "You can highlight a signal and its source or destination blocks in SimulinkÂ®, and then remove the highlighting when it is not required any more. Signal highlighting crosses subsystem and model reference boundaries, allowing you to trace a signal across multiple subsystem levels. If a signal is composite, all source or destination blocks are highlighted. For more information on composite signals, see Composite Interface Guidelines. To continue the trace towards the source or destination of the signal, use the left and right arrow keys of your keyboard, respectively.",
+    "chunks": [
+        {
+            "heading": "Highlight Signal Source",
+            "content": "To begin a trace to the source blocks of a signal, select the Highlight Signal to Source option from the context menu for the signal. The badge identifies the start of the trace. This option highlights:\n\nAll branches of the signal anywhere in the modelAll virtual blocks through which the signal passesThe nonvirtual blocks that write the value of the signal\n\nTo continue tracing towards the source of the signal, press the Left arrow key."
+        },
+        {
+            "heading": "Highlight Signal Destination",
+            "content": "To begin a trace to the destination blocks of a signal, select the Highlight Signal to Destination option from the context menu for the signal. Press the Right arrow key to move the trace towards the final destination. The badge identifies the start of the trace. This option highlights:\n\nAll branches of the signal anywhere in the modelAll virtual blocks through which the signal passesThe nonvirtual blocks that read the value of the signalThe signal and destination block for all blocks that are duplicates of the Inport block for the line that you select\n\nIn this example, the selected trace shows a path of the signal from the Stick Input to the Elevator Command in the Controller subsystem of the f14 model.\n\nIn the next example, selecting the signal from In2 and choosing the Highlight Signal to Destination option highlights the signal and destination block for In2 and In1, because In1 and In2 are duplicate Inport blocks."
+        },
+        {
+            "heading": "Choose the Path of a Trace",
+            "content": "In some situations, a signal trace can take multiple viable paths in the next segment of the trace. This can be seen when a signal is combined or split through a Mux or Demux block, or if it is branched out as an input to another block. In such cases, the options are highlighted in blue and can be cycled using the Up and Down arrow keys on the keyboard. Once you have highlighted the block to which you would like to move, proceed as normal.\n\nIn the figure above, the trace to source has reached the Sum block where it can take one of three possible paths. The first option to Gain Zd is highlighted in blue."
+        },
+        {
+            "heading": "Trace a Signal to and from Subsystems",
+            "content": "When the trace reaches a subsystem, it does not automatically trace in. Instead, the trace highlights the target subsystem and you are able to see a preview of the trace within the subsystem.\n\nIn this example, the selected signal trace to destination has reached the Controller subsystem of the f14 model. You can see that the contents of the subsystem are visible and the next segment of the trace is highlighted within the preview.\n\nWhen the trace comes out of a subsystem, the subsystem preview also displays the path of the trace inside it. The next example shows the path of a trace through the Aircraft Dynamics Model subsystem from the input wGust to vertical velocity w output.\n\nNoteYou cannot jump over a subsystem or a referenced model in your trace. You need to trace the signal path through them."
+        },
+        {
+            "heading": "Show All Possible Paths of a Trace",
+            "content": "To highlight all possible paths a trace can take, press Ctrl key along with the Left (towards source) or the Right (towards destination) key. You can continue to trace as before.\n\nTo clear the highlighting, simultaneously press the Ctrl key and the arrow key in the direction opposite to the trace."
+        },
+        {
+            "heading": "Display Port Values Along a Trace",
+            "content": "After you trace the path of a signal, press the L key to display the values of a signal at the output port of each block.\n\nIf you highlight all the possible paths of the trace as described in Show All Possible Paths of a Trace, press the Ctrl + L to view the signal values at all the output ports."
+        },
+        {
+            "heading": "Remove Highlighting",
+            "content": "To remove all highlighting, right-click the model, and then select Remove Highlighting, or, on the Signal tab, click Remove Trace. You can also press Ctrl+Shift+H or click the icon at the top right corner of the editor.\n\nTo back up a trace, press the arrow key opposite to the original intent of the trace. For example, if you would like to back up a trace to the destination of the signal, press the left arrow key. To back up a trace to the source of a signal, press the right arrow key."
+        },
+        {
+            "heading": "Resolve Incomplete Highlighting to Library Blocks",
+            "content": "If the path from a source block or to a destination block includes an unresolved reference to a library block, the highlighting options highlight the path from or to the library block, respectively. To display the complete path, press Ctrl+D to update the diagram. The diagram update resolves all library references and displays the complete path to a destination block or from a source block."
+        },
+        {
+            "heading": "Signal Highlighting in Variant Systems",
+            "content": "Tracing a signal that passes through inline variant blocks such as Variant Source and Variant Sink highlights the path of the active variant choice. In this example, the selected signal trace to its source shows the path of the active variant passing through the Variant Source2 block.\n\nFor a Variant Subsystem block, the trace highlights the active choice within the subsystem by default.\n\nIf the Variant activation time parameter of the Variant Subsystem block is set to code compile, the trace highlights both the active and inactive choices within the subsystem."
+        },
+        {
+            "heading": "Limitations",
+            "content": "The signal tracing tool has the following limitations in its usage:\n\nThe signal trace does not preserve bus information when tracing into or out of a referenced model.Tracing past a Goto block changes the active level to that containing the matching From block. However, this does not guarantee that the matching From block is the active block if there are other valid blocks at the same level.Signal tracing is unsupported by certain blocks. Unsupported blocks are blocks where: You cannot trace into them to highlight their contents. Examples of such blocks include but are not limited to StateflowÂ® charts, Simscapeâ¢ subsystems, and function blocks,.You cannot cross them and continue tracing (e.g. Simscape blocks). The styling of the signal does not update with modifications to the model when signal tracing is enabled.The operation to Show All Possible Paths of a Trace does not traverse through referenced models in the same way as it does subsystems. Referenced models are treated as nonvirtual blocks and the impact region will not highlight their contents."
+        },
+        {
+            "heading": "Bus Element Tracing and Highlighting",
+            "content": "To trace the source or destination of a bus element using the Signal Hierarchy Viewer:\n\nSelect a bus in your model.In the Simulink Toolstrip, on the Signal tab, select Signal Hierarchy.The Signal Hierarchy Viewer opens, showing the signal hierarchy for the selected bus.In the Signal Hierarchy Viewer, select the element name.In the Signal Hierarchy Viewer, click Source or Destination to highlight source blocks or destination blocks, respectively.\n\nFor example, this figure traces a bus element named sine to its source blocks. The tracing highlights the currently selected bus, a Bus Assignment block, two Bus Creator blocks, a Sine Wave block, and the intermediary signals.\n\nThe Signal Hierarchy Viewer displays the signal that is currently selected. If you select a different signal line while the Signal Hierarchy Viewer is open, the Signal Hierarchy Viewer updates to the corresponding selection. If you do not select a signal, the Signal Hierarchy Viewer is blank. Thus, tracing the signal via the Signal Hierarchy Viewer requires at least one signal line selected.\n\nFor more information, see Signal Hierarchy Viewer."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/displaying-signal-sources-and-destinations.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/sourcebadge.png",
+        "https://in.mathworks.com/help/simulink/ug/highlight_to_src_new.png",
+        "https://in.mathworks.com/help/simulink/ug/destinationbadge.png",
+        "https://in.mathworks.com/help/simulink/ug/highlight_to_dest_new.png",
+        "https://in.mathworks.com/help/simulink/ug/duplicatedestinationhighlighting-callouts.png",
+        "https://in.mathworks.com/help/simulink/ug/highlight_options.png",
+        "https://in.mathworks.com/help/simulink/ug/highlight_subsystem.png",
+        "https://in.mathworks.com/help/simulink/ug/highlight_subsystem_exit.png",
+        "https://in.mathworks.com/help/simulink/ug/trace_all.png",
+        "https://in.mathworks.com/help/simulink/ug/trace_pvd.png",
+        "https://in.mathworks.com/help/simulink/ug/trace_all_all_port_values.png",
+        "https://in.mathworks.com/help/simulink/ug/highlight_exit.png",
+        "https://in.mathworks.com/help/simulink/ug/trace_variantsource_block.png",
+        "https://in.mathworks.com/help/simulink/ug/trace_variantsubsystem_block.png",
+        "https://in.mathworks.com/help/simulink/ug/trace_variantsubsystem_codecompile.png",
+        "https://in.mathworks.com/help/simulink/ug/bus_tracing_highlight.png"
+    ]
+}

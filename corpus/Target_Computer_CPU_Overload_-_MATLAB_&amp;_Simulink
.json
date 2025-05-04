@@ -1,0 +1,7 @@
+{
+    "title": "Target Computer CPU Overload",
+    "introduction": "Sometimes a real-time application running on the SpeedgoatÂ® target computer does not have enough time to complete processing before the next time step. This condition is called a CPU overload. An overload is registered every time an execution step is triggered while the previous step is running. SLRT Overload Options",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/target-computer-cpu-overloads.html",
+    "images": []
+}

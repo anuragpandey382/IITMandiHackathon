@@ -1,0 +1,16 @@
+{
+    "title": "Troubleshoot System Upgrade for R2020b",
+    "introduction": "After upgrading Simulink Real-Time software to R2020b and installing the Simulink Real-Time Target Support Package, the system cannot download real-time applications to the target computer.",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "The upgrade for release R2020b requires software upgrades to the Simulink Real-Time software and the Speedgoat Target Machine software."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "In R2020b, the change to a 64-bit POSIX compliant real-time operating system on the target computer requires a software upgrade for your SpeedgoatÂ® real-time target machine. For this upgrade, the Speedgoat I/O Blockset provides an interactive tool. To retain compatibility with previous versions of MATLAB, you can choose to upgrade the target machine to a dual-boot system where you can select the operating system at startup. Or, you can upgrade the target machine to use only the new operating system. For the upgrade, you need a USB drive and the target machine needs a keyboard and a monitor.\n\nTo upgrade your software:\n\nInstall Simulink Real-Time and other required products.Install the Simulink Real-Time Target Support Package by using the MATLAB Add-Ons menu.âInstall the Speedgoat I/O Blockset. Go to the Speedgoat customer portal.To start the target machine upgrade, in the MATLAB Command Window, type:speedgoat.migrateTarget\n\nFor more information, go to the Speedgoat website."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug_upgrade/troubleshoot-system-upgrade-to-r2020b.html",
+    "images": []
+}

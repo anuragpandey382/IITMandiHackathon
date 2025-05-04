@@ -1,0 +1,35 @@
+{
+    "title": "Post-Process Real-time Signals Streamed to the Simulation Data Inspector - MATLAB &amp; Simulink\n",
+    "introduction": "slrtTETMonitor | SLRT Overload Options",
+    "chunks": [
+        {
+            "heading": "Create Target Object and Connect",
+            "content": "Create a Target object for the default target computer and connect to the target computer. In the Command Window, type:\n\ntg = slrealtime; connect(tg);"
+        },
+        {
+            "heading": "Open, Build, and Download Model",
+            "content": "Open the model slrt_suspn_3dof. This model simulates vehicle dynamics based on the interaction between road and suspension for different road profiles. The model captures vehicle dynamics in three degrees of freedom: vertical displacement, roll, and pitch. The Signal Editor block stores measured road profile data for the left and right tires as different test groups. The Road-Suspension Interaction subsystem calculates the suspension forces on the vehicle at the four tire locations based on the road data and the current vehicle state. The Body Dynamics subsystem uses these forces and the resulting pitch and roll moments to calculate the vehicle motion in each of the three degrees of freedom.\n\nOpen the model.\n\nmodel = 'slrt_suspn_3dof'; open_system(model); modelSTF = getSTFName(tg); set_param(model,\"SystemTargetFile\",modelSTF); set_param(model,'RTWVerbose','off');\n\nBuild the model:\n\nevalc('slbuild(model)');\n\nClose the model it is open.\n\nbdclose(model);"
+        },
+        {
+            "heading": "Run Model to Calculate the Vertical Vehicle Displacement",
+            "content": "Using the Target object, tg, load the real-time application, modify application parameters, and start the application.\n\nload(tg,model); setparam(tg,'','Cf',125); start(tg); while ~strcmp(tg.status,'stopped') pause(5); end stop(tg);"
+        },
+        {
+            "heading": "Update Parameters and Re-calculate the Vertical Vehicle Displacement",
+            "content": "Using the Target object, tg, load the real-time application, modify application parameters, and start the application.\n\nload(tg,model); setparam(tg,'','Cf',2375); start(tg); while ~strcmp(tg.status,'stopped') pause(5); end stop(tg);"
+        },
+        {
+            "heading": "Display Signals in Simulation Data Inspector",
+            "content": "To view the plotted signal data, open the Simulation Data Inspector.\n\nSimulink.sdi.view"
+        },
+        {
+            "heading": "Retrieve and Plot Signal Data from Simulation Data Inspector",
+            "content": "You can also retrieve the signal data from the Simulation Data Inspector and plot (post-process) the data by using these commands.\n\nGet all the runsGet the run informationGet the signalGet the signal objectsPlot the signals\n\nThe result shows the effect on vehicle dynamics from the interaction between road and suspension for different road profiles.\n\nrunIds = Simulink.sdi.getAllRunIDs(); for i = 1:length(runIds) run = Simulink.sdi.getRun(runIds(i)); signalID = run.getSignalIDsByName('vertical_disp'); if ~isempty(signalID) signalObj = Simulink.sdi.getSignal(signalID); signalArray(:,i) = signalObj.Values(:,1).Data; timeValues = signalObj.Values(:,1).Time; plot(timeValues,signalArray); drawnow; end end grid on; title('Response of a 3-DoF Suspension Model'); xlabel('Time (s)'); ylabel('Vehicle vertical displacement (m)');"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/inspect-signals-in-external-mode-using-simulation-data-inspector.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtDataLoggingWithSimulationDataInspectorSDIExample_01.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtDataLoggingWithSimulationDataInspectorSDIExample_02.png"
+    ]
+}

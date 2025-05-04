@@ -1,0 +1,7 @@
+{
+    "title": "Limitations with Multicore Programming in Simulink",
+    "introduction": "The following limitations apply when partitioning a model for concurrent execution.",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/simulink/ug/limitations-with-multicore-programming-in-simulink.html",
+    "images": []
+}

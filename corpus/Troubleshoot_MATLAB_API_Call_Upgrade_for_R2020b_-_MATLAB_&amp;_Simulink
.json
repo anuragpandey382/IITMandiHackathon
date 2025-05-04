@@ -1,0 +1,52 @@
+{
+    "title": "Troubleshoot MATLAB API Call Upgrade for R2020b",
+    "introduction": "In R2020b, many objects and functions in the SimulinkÂ® Real-Timeâ¢ API changed. Check model for upgradable Simulink Real-Time features",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "MATLABÂ® m-scripts written by using the Simulink Real-Time API require updates to run in R2020b and later releases."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "These tables identify Simulink Real-Time API changes in R2020 and identify new workflows. Use these tables to guide your updates to pre-R2020b m-scripts. For information about Simulink Real-Time in previous releases, see:\n\nhttps://www.mathworks.com/help/doc-archives.html"
+        },
+        {
+            "heading": "Target Computer Operations",
+            "content": "R2020a and Previous CommandCommand DescriptionR2020b and Later Command StatusNew Workflow slrealtime.Application object, ApplicationName property slrealtime.target object, Application propertyGet name of real-time application.Changed nameUse Target object, Application property. slrealtime.target object, Connected property value is 'Yes'.Get communication status between development computer and target computers.Changed nameUse Target object, Connected event.Use connect function to make connection. close functionClose connection between development and target computers.Changed nameUse disconnect function to close connection. getDiskSpace functionGet free space and total space on the drive, in bytes.Moved to Speedgoat APISee the speedgoat.getDiskSpace function at www.speedgoat.com. load functionDownload real-time application to target computer.UnchangedUse load function after creating Target object. The real-time application is not automatically loaded as part of the build process. reboot functionRestart target computer.UnchangedUse reboot function to restart target computer in standalone mode. Other, previously supported boot modes are not available.saveparamsetSave a set of parameters to a real-time applicationChanged name. Changed workflow.Use saveParamSet to save the parameter set to a file.loadparamsetLoad a set of saved parameters to a real-time applicationChanged name. Changed workflow.Use importParamSet to Import the parameter set into a ParameterSet object on the development computer."
+        },
+        {
+            "heading": "Real-Time Execution Operations",
+            "content": "R2020a and Previous CommandCommand DescriptionR2020b and Later Command StatusNew Workflow slrealtime.target object, CPUoverload propertyGet CPU overload status.Changed nameUse Target object, TargetStatus property or ModelStatus property. slrealtime.target object, AvgTET propertyGet average task execution time.Changed nameUse Target object, ModelStatus.TETInfo property. slrealtime.target object, ExecTime propertyGet real-time application execution time.Changed nameUse Target object, ModelStatus.TETInfo property. slrealtime.target object, MaxTET propertyGet maximum task execution time.Changed nameUse Target object, ModelStatus.TETInfo property. slrealtime.target object, MinTET propertyGet minimum task execution time.Changed nameUse Target object, ModelStatus.TETInfo property. slrealtime.target object, SampleTime propertyGet time between samples (step size).Changed nameUse Target object, ModelStatus.TETInfo.Rate property. start functionStart execution of real-time application on target computer.Changed workflowUse start function to start real-time application and set real-time application options. slrealtime.target object, Status propertyGet execution status of real-time application.Changed workflowUse Target object, ModelStatus property or status function. stop functionStop execution of real-time application on target computer.UnchangedUse stop function. slrealtime.target object, StopTime propertyGet or set time when real-time application stops running.Changed workflowGet by using Target object, ModelStatus.StopTime property and set by using setStopTime function. slrealtime.target object, TETLog propertyAccess storage in the MATLAB workspace for task execution time.Changed workflowUse slrtTETMonitor function."
+        },
+        {
+            "heading": "Execution Profiler Operations",
+            "content": "R2020a and Previous CommandCommand DescriptionR2020b and Later Command StatusNew Workflow getProfilerData functionRetrieve profile data object.UnchangedUse getProfilerData function. Start the execution profiler before you start the real-time application. slrealtime.target object, ProfilerStatus propertyGet state of profiler.Changed workflowUse Target object, Application property. There are added property values. resetProfiler functionReset profiling service state to Ready.UnchangedUse resetProfiler function. The profiler resets itself when you start the real-time application. startProfiler functionStart profiling service on target computer.UnchangedUse startProfiler function. Start the execution profiler before you start the real-time application. stopProfiler functionStop profiling service on target computer.Changed limitationUse stopProfiler function. The profiler auto stop at 1GB is eliminated."
+        },
+        {
+            "heading": "Parameter Tuning Operations",
+            "content": "R2020a and Previous CommandCommand DescriptionR2020b and Later Command StatusNew Workflow setparam functionChange value of tunable parameter in real-time application.Changed syntaxUse setparam function. getparam functionRead value of observable parameter in real-time application.Changed syntaxUse getparam function. slrealtime.target object, NumParameters propertyGet number of tunable parameters.Changed workflowUse Application object and getParameters function. slrealtime.target object, Parameters propertyGet list of tunable parameters.Changed workflowUse Application object and getParameters function. slrealtime.target object, ShowParameters propertySet flag to display the list of parameters.Changed workflowUse Application object and getParameters function."
+        },
+        {
+            "heading": "Signal Tracing Operations",
+            "content": "R2020a and Previous CommandCommand DescriptionR2020b and Later Command StatusNew Workflow getsignal functionGet single numerical value of a signal.Changed workflowUse Instrument object and connectScalar function. slrealtime.target object, NumSignals propertyGet number of observable signals.Changed workflowUse Application object and getSignals function. slrealtime.target object, OutputLog propertyAccess storage in MATLAB workspace for output or Y-vector.Changed workflowUse Simulink model Signal logging parameter: set_param(bdroot,... 'SignalLogging','on') slrealtime.target object, ShowSignals propertySet flag to display the list of signals.Changed workflowUse Application object and getSignals function. slrealtime.target object, Signals propertyGet list of observable signals.Changed workflowUse Application object and getSignals function."
+        },
+        {
+            "heading": "Signal Logging Operations",
+            "content": "R2020a and Previous CommandCommand DescriptionR2020b and Later Command StatusNew Workflow importLogData functionImport buffered logging data to the active session of the Simulation Data Inspector.ReplacedUse list function and import function. For more information, see the Target.FileLog object."
+        },
+        {
+            "heading": "Instrumentation Operations",
+            "content": "R2020a and Previous CommandCommand DescriptionR2020b and Later Command StatusNew Workflow addscope functionCreate a scope of specified type.ReplacedUse the Simulation Data Inspector. Use File Log blocks instead File Scope blocks. Use Instrument objects instead of Host Scope blocks. getscope functionReturn scope identified by scope number.ReplacedUse the Simulation Data Inspector. Use File Log blocks instead File Scope blocks. Use Instrumentobjects instead of Host Scope blocks."
+        },
+        {
+            "heading": "Ethernet and EtherCAT Operations",
+            "content": "R2020a and Previous CommandCommand DescriptionR2020b and Later Command StatusNew WorkflowTarget Computer Settings provided information about Ethernet setup on target computer.Configure Ethernet ports on target computerMoved to Speedgoat APISee the speedgoat.configureEthernet function at www.speedgoat.com. slrealtime.etherCAT.filterNotifications functionDisplay EtherCAT notifications in human-readable formatChanged nameUse slrealtime.EtherCAT.filterNotifications function"
+        },
+        {
+            "heading": "Target Computer Settings Operations",
+            "content": "R2020a and Previous CommandCommand DescriptionR2020b and Later Command StatusNew Workflow slrealtime.getTargetSettings functionGet target computer settings.Changed nameUse getTargetSettings function."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug_upgrade/troubleshoot-matlab-api-call-upgrade-for-r2020b.html",
+    "images": []
+}

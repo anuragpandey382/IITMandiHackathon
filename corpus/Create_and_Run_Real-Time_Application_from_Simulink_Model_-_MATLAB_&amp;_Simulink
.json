@@ -1,0 +1,40 @@
+{
+    "title": "Create and Run Real-Time Application from Simulink Model - MATLAB &amp; Simulink\n",
+    "introduction": "Target | Mux | load",
+    "chunks": [
+        {
+            "heading": "Open the Non-Real-Time Model",
+            "content": "To open the model, in the MATLAB\u00c2\u00ae Command Window, type:\n\nmodel_nrt = 'slrt_ex_osc_nrt'; open_system(model_nrt);\n\nTo complete the tutorial, you must already know how to create, configure, and simulate such a model. As you go through the tutorial, you transform slrt_ex_osc_nrt into a Simulink Real-Time\u00e2\u0084\u00a2 model configured to build as a real-time application. You then build, download, and execute the real-time application on your target computer.\n\nThe final model is named slrt_ex_osc_rt. To open the model, in the MATLAB Command Window, type:\n\nmodel_rt = 'slrt_ex_osc_rt'; open_system(model_rt);"
+        },
+        {
+            "heading": "Transform Simulink Model to Real-Time Application",
+            "content": "Add blocks and set configuration parameters for running a Simulink model as a real-time application.\n\nTo run a Simulink model as a real-time application under Simulink Real-Time, add and configure a real-time File Log block and set configuration parameters for code generation and target execution."
+        },
+        {
+            "heading": "Add Simulink Real-Time File Log Block",
+            "content": "Simulink Real-Time supports a real-time File Log block. This tutorial uses the File Log block, which logs signal data for display in the Simulation Data Inspector after the simulation run.\n\nIn the MATLAB Command Window, type slrt_ex_osc_nrt. MATLAB loads the oscillator model and displays the Simulink block diagram.In Simulink Editor, from the Apps tab, click Simulink Real-Time.From the Real-Time tab Prepare section, click Library Browser.In the Simulink left pane, browse to and double-click the node Simulink Real-Time.From the list of I/O block categories, click node Logging.Click and drag the File Log block to the Simulink block diagram. Simulink adds a new real-time File Log block to the model.Connect the Mux output to the File Log block input.On the Simulation tab, from the Save button, click Save As. Enter a file name. For example, enter slrt_ex_osc_ucf, and then click OK. To open the unconfigured model slrt_ex_osc_ucf, in the MATLAB Command Window, type:\n\nmodel_ucf = 'slrt_ex_osc_ucf'; open_system(model_ucf);"
+        },
+        {
+            "heading": "Set File Log Block Parameters",
+            "content": "File Log block parameters define the decimation for logged signals. After the simulation run, the signals that you log by using this block are available in the Simulation Data Inspector. For this tutorial, configure a File Log block.\n\nIn the MATLAB Command Window, type slrt_ex_osc_ucf. MATLAB loads the oscillator model and displays the Simulink block diagram.Double-click the File Log block.In the Decimation text box, type 1. This value means that data is collected at each sample interval.Click OK, and then from the Simulation tab, click Save."
+        },
+        {
+            "heading": "Set Configuration Parameters",
+            "content": "The example model, slrt_ex_osc_ucf, is a non-real-time model of a damped oscillator. You enter the simulation and real-time run parameters in the Configuration Parameters dialog box. These parameters provide information to Simulink Coder\u00e2\u0084\u00a2 on how to build a real-time application from the Simulink model.\n\nAfter you open a Simulink model and start the target computer, you can enter the simulation parameters.\n\nIn the MATLAB Command Window, type slrt_ex_osc_ucf.In Simulink Editor, from the Apps tab, click Simulink Real-Time.From the Real-Time tab, click Hardware Settings.In the Configuration Parameters dialog box, click the Solver node.In the Solver selection section, from the Type list, select Fixed-step.From the Solver list, select a solver. For example, select the general-purpose solver ode4 (Runge-Kutta).Under Solver details, in the Fixed-step size (fundamental sample time) box, enter the sample time for the real-time application. For example, enter 0.00025 seconds (250 microseconds). After creating the real-time application, you can change this value. If you find that a value overloads the CPU on the target computer, try a larger Fixed-step size value, such as 0.0002 seconds. The sample times of the model blocks can be multiples only of Fixed-step size. If you enter 'auto' in Fixed-step size, the fundamental sample time is calculated from the sample times of the model blocks.Click OK.From the Apps tab, select Simulink Real-Time. This selection configures the system target file and other model settings for Simulink Real-Time.In the Simulation tab, from the Save button, click Save As.Enter a file name. For example, enter slrt_ex_osc_rt."
+        },
+        {
+            "heading": "Start Target Computer and Display Status Monitor",
+            "content": "Boot the RTOS on the target computer and display the status monitor.\n\nStarting the target computer boots the RTOS. The target computer waits for the Simulink Real-Time software to download and start a real-time application from the development computer or to start a real-time application that was previously downloaded.\n\nAfter you have configured the Simulink Real-Time product by using the Simulink Real-Time Explorer, you can start the target computer and connect the development computer to the target computer. Before building the real-time application, you start the target computer. After the build process is complete, you download the real-time application to the target computer.\n\nThe status monitor application on the target computer displays status of the real-time application and other target computer status information. The target computer display supports multiple sessions. You can choose to display the status monitor (default, session 1) or display the target computer command line interface (session 2). To display the target computer status monitor:\n\nStart the target computer.The target computer displays session 1 (default) and the target computer status monitor.\n\nTo view the status monitor from the development computer, you can use PuTTY to open an SSH client and start the status monitor application /usr/target/bin/statusmonitor on the target computer.\n\nFor more information, see Target Computer Status Monitor."
+        },
+        {
+            "heading": "Close Models",
+            "content": "bdclose(model_nrt); bdclose(model_rt); bdclose(model_ucf);"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/gs/create-and-run-a-real-time-application.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtCreateAndRunRealTimeAppFromSimulinkModelExample_01.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtCreateAndRunRealTimeAppFromSimulinkModelExample_02.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtCreateAndRunRealTimeAppFromSimulinkModelExample_03.png"
+    ]
+}

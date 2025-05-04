@@ -1,0 +1,46 @@
+{
+    "title": "Create App Designer Instrument Panels by Using Simulink Real-Time Components - MATLAB &amp; Simulink\n",
+    "introduction": "Simulink Real-Time Explorer | Instrument | ConnectButton | InstrumentManager | LoadButton | Menu | ParameterTable | ParameterTuner | SignalTable | SimulationTimeEditField | StartStopButton | StatusBar | StopTimeEditField | SystemLog | TETMonitor | TargetSelector | UpdateButton | slrealtime.ui Properties",
+    "chunks": [
+        {
+            "heading": "Create Blank App",
+            "content": "To create an App Designer instrument panel by using Simulink Real-Time components:\n\nOpen the App Designer. In MATLAB\u00c2\u00ae, select Home > New > App.\n\nOr, in the MATLAB Command Window, type appdesigner. Then, select New > Blank App"
+        },
+        {
+            "heading": "Add Components to App",
+            "content": "From the Simulink Real-Time group in the Component Library, add real-time application components to the instrument panel. For this instrument panel, add:\n\nTarget SelectorConnectLoadStart/StopStop TimeParameter TableSignal Table\n\nFrom the Instrumentation group in the Component Library, add Instrumentation components to the instrument panel. For this instrument panel, add Knob and Gauge.\n\nFrom the Common group in the Component Library, add common components to the instrument panel. For this instrument panel, add Axes."
+        },
+        {
+            "heading": "Arrange Components in App",
+            "content": "Arrange the instrument panel to appear as shown in this instrument panel."
+        },
+        {
+            "heading": "Configure Options for Components",
+            "content": "Select the Knob instrument and change the Limits to 0,20 in the Inspector tab of the Component Browser.\n\nSelect the Gauge instrument and change the Limits to -1.5,1.5 in the Inspector tab of the Component Browser.\n\nSave the instrument panel as myInstPanel_slrt_ex_osc.mlapp."
+        },
+        {
+            "heading": "Add Callback Code",
+            "content": "To add callback code to your App Designer instrument panel and test the instrument panel as a UI to a real-time application:\n\nChange to the Code View tab.\n\nIn the Component Browser, select node myInstPanel_slrt_ex_osc. Select Callbacks. From the StartupFcn drop-down list, select <add StartupFcn callback>.\n\nAdd callback code to connect the instruments to the real-time application. Paste this callback code into the startup function callback of the instrument panel application. This code connects the instruments to the real-time application slrt_ex_osc.\n\n% Define the real-time application file to load. app.LoadButton.Application = 'slrt_ex_osc'; % Define parameters parameters to display in the % Parameter Table component. The parameters are % defined in a structure. The block path is the % first element the parameter name. app.ParameterTable.Parameters = struct( ... 'BlockPath', {'slrt_ex_osc/Signal Generator', ... 'slrt_ex_osc/Signal Generator'}, ... 'ParameterName', {'Amplitude', ... 'Frequency'}); % Create a ParameterTuner object and bind % to the knob component. myParamFreq = slrealtime.ui.tool.ParameterTuner(app.UIFigure); myParamFreq.Component = app.Knob; myParamFreq.BlockPath = 'slrt_ex_osc/Signal Generator'; myParamFreq.ParameterName = 'Frequency'; % Define the signals to display in the Signal Table. % The structure requires the block path of all parameters, % and the port index of the port connected to the signal. app.SignalTable.Signals = struct( ... 'BlockPath', {'slrt_ex_osc/Signal Generator', ... 'slrt_ex_osc/Transfer Fcn'}, ... 'PortIndex', {1,1}); % Create an Instrument object and connect the gauge % component. instMyGauge = slrealtime.Instrument(); instMyGauge.connectScalar(app.Gauge, 'slrt_ex_osc/Transfer Fcn', 1); % Create another Instrument object and connect to the % axes component. % % An Instrument object is needed for each component, but % you can add more signals to the same axes by using connectLine. instMyAxes = slrealtime.Instrument(); instMyAxes.connectLine(app.UIAxes, 'XfrFnc'); instMyAxes.AxesTimeSpan = 10; instMyAxes.AxesTimeSpanOverrun = 'scroll'; % Create an InstrumentManager and connect the previously created % Instrument object. instMgr = slrealtime.ui.tool.InstrumentManager(app.UIFigure); instMgr.Instruments = [instMyGauge, instMyAxes];\n\nSave the instrument panel."
+        },
+        {
+            "heading": "Tuning a Workspace Variable",
+            "content": "The code shows how to connect the ParameterTuner component to a value on a block. Instead, you can use slightly different code to connect the ParameterTuner component to a variable or parameter in the workspace. In the code for the component, the BlockPath is empty, and the ParameterName is the parameter name instead of the property of the block to tune. The syntax for the callback could be:\n\n% Create Parameter Tuning object hParamTuner = slrealtime.ui.tool.ParameterTuner(app.UIFigure); hParamTuner.Component = app.Knob; hParamTuner.BlockPath = ''; hParamTuner.ParameterName = 'myParameter';"
+        },
+        {
+            "heading": "Recommendations for Callback Code",
+            "content": "It is recommended that you make the bindings between instrument panel controls and their related signals or parameters robust. Robust bindings do not break due to minor changes in a model and are more easily re-used with a new model.\n\nFor signals, a technique that helps produce robust bindings is to specify signals by using signal names instead of by using a full block path and port index. This technique applies to the SignalTable component and functions such as connectLine or connectScalar.\n\nFor parameters, a technique that helps produce robust bindings is to use workspace variables instead of block parameters. This technique applies to the ParameterTable component.\n\nFor more information, see the examples for SignalTable, ParameterTable, connectLine, and connectScalar."
+        },
+        {
+            "heading": "Open Model, Configure for Simulink Real-Time",
+            "content": "In MATLAB, open the slrt_ex_osc model. In the Command Window, type:\n\nopen_system('slrt_ex_osc');\n\nFrom the Apps tab in the Simulink\u00c2\u00ae editor, select Simulink Real-Time. This app configures the model for Simulink\u00c2\u00ae Real-Time\u00e2\u0084\u00a2."
+        },
+        {
+            "heading": "Connect Target Computer, Build Real-Time Application, Run Instrument Panel",
+            "content": "Connect the target computer. In the Simulink editor, select the computer from the Connect to Target Computer section.\n\nBuild the real-time application. In the Simulink editor, select Real-Time > Run on Target.\n\nAfter the model builds and the real-time application runs, in the App Designer, run the instrument panel application.\n\nFrom the instrument panel application, connect to the target computer, load the real-time application slrt_ex_osc, set the stop time at 10 seconds, and start the real-time application.\n\nThe instrument panel controls indicate signal and parameter values for the real-time application. Start the real-time application, use the knob to change the parameter value, and see the affect on the output.\n\nWhen done observing the operation of the instrument panel, close the app and close the App Designer."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/create-app-designer-instrument-panels-by-using-simulink-real-time-components.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/CreateAppDesignerInstPanelWithSlrtComponentsExample_01.png"
+    ]
+}

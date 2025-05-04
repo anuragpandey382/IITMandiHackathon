@@ -1,0 +1,35 @@
+{
+    "title": "Specify Block Properties",
+    "introduction": "For each block in a model, you can set general block properties, such as: To set block properties, use the Property Inspector. You can set properties in the Properties and Info tabs of the Property Inspector when the block is selected. Alternatively, you can use the Block Properties dialog box.",
+    "chunks": [
+        {
+            "heading": "Set Block Annotation Properties",
+            "content": "In the Property Inspector, use the Block Annotation section to display the values of selected block parameters in an annotation. The annotation appears below the block icon.\n\nEnter the text of the annotation in the text box. You can use a block property token in the annotation. The value for the property replaces the token in the annotation in the model. To display a list of tokens that you can use in an annotation, type % in the text box. The parameters that are valid for the selected block appear. See Common Block Properties and Programmatically Specify Block Parameters and Properties.\n\nSuppose that you specify the following annotation text and tokens for a Product block:\n\nMultiplication = %<Multiplication> Sample time = %<SampleTime>\n\nIn the SimulinkÂ® Editor, the block displays this annotation:\n\nYou can also create block annotations programmatically. See Create Block Annotations Programmatically."
+        },
+        {
+            "heading": "Specify Block Callbacks",
+            "content": "Use the Callbacks section to specify block callbacks. Callbacks are MATLABÂ® commands that execute when a specific model action occurs, such as when you select or delete a block. For more information on callbacks, see Customize Model Behavior with Callbacks.\n\nSelect the block whose callback you want to set.In Properties tab of the Property Inspector, in the Callbacks section, select the function that you want to assign the callback to. For example, select OpenFcn to specify a behavior for double-clicking a block.In the text box, enter the command that you want to execute when that block function occurs.After you assign a callback to a function, the function displays an asterisk next to it in the list. The asterisks helps you to see the functions that have callbacks assigned to them.NoteAfter you add an OpenFcn callback to a block, double-clicking the block does not open the block dialog box. Also, the block parameters do not appear in the Property Inspector when the block is selected. To set the block parameters, select Block Parameters from the block context menu."
+        },
+        {
+            "heading": "Set a Block Callback Programmatically",
+            "content": "This example shows how to use the OpenFcn callback to execute MATLAB scripts when you double-click a block. For example, in a MATLAB script you can define variables or open a plot of simulated data.\n\nTo create a callback programmatically, select the block to which you want to add this property. Then, at the MATLAB command prompt, enter a command in this form:\n\nset_param(gcb,'OpenFcn','myfunction')"
+        },
+        {
+            "heading": "Specify Block Execution Order, Execution Priority and Tag",
+            "content": "In the block properties, you can specify the block execution order, execution priority and identify the block by assigning a value to the Tag property.\n\nExecution Orderâ Specify execution order of blocks relative to other blocks. By default, blocks execute based on priority. You can use this property to designate blocks at the root level of a model or inside a nonvirtual subsystem to execute first or last relative to other blocks. You can set the block execution order through Block Properties dialog. In the Block Properties dialog, from the Execution Order list, select Based on Priority, First or Last per your modeling requirements. For more information, see Specify Blocks to Execute First or Last.Priority â Specify the execution priority of the block relative to other blocks. Specify a numerical value. A smaller number indicates a higher priority. This option is available only when the Execution Order is set to Based on priority. For more information, see Set Priority in Execution Order of Blocks.Tag â Specify an identifier for the block. Specify text to assign to the block Tag property. Setting this property is useful for finding the block in the model by searching or programmatically using find_system. See Explore Model Hierarchy.\n\nNoteIn determining execution priority, Simulink compares the Priority of blocks only to that of other blocks in the same block diagram, even if the block diagram is a virtual subsystem, and only to other blocks that have their Priority explicitly set."
+        },
+        {
+            "heading": "Use Block Description to Identify a Block",
+            "content": "The Info tab displays information about the block type. The block author provides this description.\n\nYou can also enter a description in the Description box to provide information about the block instance.\n\nIf you add a description, you can set up your model display so that the description appears in a tooltip when you hover over the block. To enable this tooltip, on the Debug tab, select Information Overlays > Description in Tooltip .The Description property can help you to find a block by searching. See Simulink Editor."
+        },
+        {
+            "heading": "Create Block Annotations Programmatically",
+            "content": "You can use a block AttributesFormatString parameter to display specified block parameter values below the block. Common Block Properties and Programmatically Specify Block Parameters and Properties describe the parameters that a block can have. Use the Simulink set_param function to set this parameter to the attributes format that you want.\n\nThe attributes format can be any text that has embedded parameter names. An embedded parameter name is a parameter name preceded by %< and followed by >, for example, %<priority>. Simulink displays the attributes format text below the block icon, replacing each parameter name with the corresponding value. You can use line-feed characters (\\n) to display each parameter on a separate line. For example, select a Gain block and enter this command at the MATLAB command prompt:\n\nset_param(gcb,'AttributesFormatString','pri=%<priority>\\ngain=%<Gain>')\n\nThe Gain block displays this block annotation:\n\nIf a parameter value is not text or an integer, N/S (for not supported) appears in place of the value. If the parameter name is not valid, Simulink displays ??? in place of the value."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/block-properties-dialog-box.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/block_annot.png",
+        "https://in.mathworks.com/help/simulink/ug/block_annotation_programmatic.png"
+    ]
+}

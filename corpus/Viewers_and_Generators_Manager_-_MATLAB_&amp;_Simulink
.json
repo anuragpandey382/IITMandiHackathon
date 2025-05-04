@@ -1,0 +1,38 @@
+{
+    "title": "Viewers and Generators Manager",
+    "introduction": "Using the Viewers and Generators Manager, you can manage viewers and generators from a central point. Viewers and generators are not blocks. Blocks are dragged from the Library Browser and managed with block dialog boxes. Viewers and generators are mechanisms that create or visualize signals, but are added and managed through the Viewers and Generators Manager. Symbols identify a viewer attached to a signal line, and signal names identify generators. Floating Scope | Scope | Scope Viewer",
+    "chunks": [
+        {
+            "heading": "Open the Viewers and Generators Manager",
+            "content": "From the Simulation tab, open the Prepare gallery and select Viewers Manager. The Viewers and Generators Manager panel opens to the side of the Simulink editor.\n\nYou can also access the Viewers and Generators Manager by right-clicking a signal or block input and selecting Viewers and Generators Manager."
+        },
+        {
+            "heading": "Change Parameters",
+            "content": "Open the Viewers and Generators Manager.In the list of Generators or Viewers, select the viewer or generator you want to modify.Select the button.For a generator, the parameters dialog box opens for that generator type.For a viewer, either a parameter dialog opens or the viewer itself opens. If the viewer opens, you can access parameters from the button.Review and change parameters."
+        },
+        {
+            "heading": "Connect Viewers and Generators",
+            "content": "Connect signals to a new viewer or generator using the Viewers and Generators Manager.\n\nOpen the Viewers and Generators Manager panel.Select either the Viewers or Generators tab.Click .From the list of viewers or generators, select the viewer or generator you just added. Select the button. The canvas grays, indicating you are now in connect mode. For generators, click the block you want to connect the generator to and in the pop-up, select the check box for the input port you want to attach to.For viewers, click the signal or signals you want to visualize and in the pop-up, select the check box next to the signals you want to connect. If you have multiple displays or specific inputs, select the display you want to connect to from the drop down before selecting the check box.Close connect mode by clicking the X in the upper right corner of the canvas."
+        },
+        {
+            "heading": "View Test Point Data",
+            "content": "Use a Scope viewer available from the Viewers and Generators Manager to view any signal that is defined as a test point in a referenced model. A test point is a signal that you can always see when using a Scope viewer in a model.\n\nNoteWith some viewers (for example, To Video Display, Matrix Viewer), you cannot use the Signal Selector to select signals with test points in referenced models.\n\nFor more information, see Configure Signals as Test Points."
+        },
+        {
+            "heading": "Customize Viewers and Generators Manager",
+            "content": "You can add custom signal viewers or generators so that they appear in the Viewers and Generators Manager. This procedure adds a custom viewer named newviewer to the Viewers and Generators Manager:\n\nCreate a new SimulinkÂ® library by selecting Simulation > New > Library.Save the library as newlib.In the MATLABÂ® Command Window, set the library type to a viewer library:set_param('newlib','LibraryType','SSMgrViewerLibrary')To set the library type for generators, use the type 'SSMgrGenLibrary'. For example:set_param('newlib','LibraryType','SSMgrGenLibrary')Set the display name of the library:set_param('newlib','SSMgrDisplayString','My Custom Library')Add your custom viewer or generator to the library by dragging and dropping into the Simulink canvas.NoteIf the viewer is a compound viewer, such as a subsystem with multiple blocks, make the top-level subsystem an atomic one.Set the iotype of the viewer. For example:set_param('newlib/newviewer','iotype','viewer')Save the library newlib.Using the MATLAB editor, create a file named sl_customization.m. In this file, enter a directive to incorporate the new library as a viewer library. For example, to save newlib as a viewer library, add these lines:function sl_customization(cm) cm.addSigScopeMgrViewerLibrary('newlib') %end functionTo add a library as a generator library, use this syntax instead:cm.addSigScopeMgrGeneratorLibrary('newlib')Add a corresponding cm.addSigScope line for each viewer or generator library you want to add.Save the sl_customization.m file on your MATLAB path. Edit this file to add new viewer or generator libraries.To see the new custom libraries, restart MATLAB and start the Viewers and Generators Manager."
+        },
+        {
+            "heading": "Limitations",
+            "content": "Viewers and Generators Manager workflows do not support library models, subsystem references, and System Composerâ¢."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/signal-and-scope-manager.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/description_pix1.png",
+        "https://in.mathworks.com/help/simulink/ug/sasm_scope_param_icon.png",
+        "https://in.mathworks.com/help/simulink/ug/icon_propertiesea4aa85b1eab3790251ae3c1b15bdaad.png",
+        "https://in.mathworks.com/help/simulink/ug/icon_add.png",
+        "https://in.mathworks.com/help/simulink/ug/sasm_icon_signal_selector.png"
+    ]
+}

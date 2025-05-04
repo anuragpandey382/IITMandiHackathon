@@ -1,0 +1,7 @@
+{
+    "title": "Nonvirtual and Virtual Blocks",
+    "introduction": "SimulinkÂ® blocks fall into two basic categories: nonvirtual blocks and virtual blocks. Some Simulink blocks are virtual in some circumstances and nonvirtual in others. Such blocks are called conditionally virtual blocks. The table lists Simulink virtual and conditionally virtual blocks.",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/simulink/ug/nonvirtual-and-virtual-blocks.html",
+    "images": []
+}

@@ -1,0 +1,29 @@
+{
+    "title": "Log or Stream Real-Time Signals by Using the Simulation Data Inspector",
+    "introduction": "With the Simulation Data Inspector and SimulinkÂ® Real-Timeâ¢, you can send real-time signal data directly to the Simulation Data Inspector or by logging signal data by recording it through a File Log block. If streaming signal data directly, you view the output in real time as the application produces it. The application can produce more data than the SpeedgoatÂ® target computer can transmit in real time to the MATLABÂ® development computer. Data accumulates in the network buffer, and, if the buffer fills up, the RTOS drops data points. Streaming signal data directly does not support decimation or limit data points. To avoid dropped data points caused by network buffer overruns, you can use logging through a File Log block. When logging, you connect signals to File Log blocks in the model. In the real-time application, these blocks store data for the buffered signals on the target computer. At the end of execution, the real-time application transmits the data to the development computer for display in the Simulation Data Inspector. You can then view the most important signals immediately and view the buffered signals afterward. Logging signal data through a File Log block supports decimation or limit data points and supports conditional block execution semantics. Some examples are logging signal data by enabling data logging for a signal inside a for-iterator, function-call, or enabled/triggered subsystem. For more information, see Simulation Data Inspector and Real-Time Signal Logging is Affected by How Application is Run.",
+    "chunks": [
+        {
+            "heading": "Set Up Model for Logging",
+            "content": "To set up the model for logging signal data:\n\nOpen slrt_ex_osc.Select the MuxOut output signal, place your cursor over the signal, and select Enable Data Logging.TipConsider whether to configure the Logging sample time in the Instrumentation Properties for the logged signal. Use this property to set a lower sample time for signals that go into the Simulation Data Inspector while the simulation is running. Configuring this property can help makes the Simulation Data Inspector more responsive and easier to use.Double-click the File Log block. The Decimation value is 1."
+        },
+        {
+            "heading": "Set Up Simulation Data Inspector",
+            "content": "To set up the Simulation Data Inspector:\n\nOpen the Simulation Data Inspector (). Click Layout ().Select two horizontal displays."
+        },
+        {
+            "heading": "View Simulation Data",
+            "content": "To view the simulation data:\n\nBuild and download slrt_ex_osc.Start real-time execution.When the Simulation Data Inspector button glows , click the top display and select the Sum output signal.Click in the bottom display and select the Mux output signals.Stop real-time execution.When the Sum output appears, click Fit to View ().To zoom in on a time segment of interest, for example, 10.0â10.1 s, click Zoom in Time () and use the mouse and mouse wheel.To save the Simulation Data Inspector session as an MLDATX file, click Save."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/log-or-stream-real-time-signals-by-using-simulation-data-inspector.html",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/ug/gui-icon-sdi.png",
+        "https://in.mathworks.com/help/slrealtime/ug/gui-icon-sdi-layout.png",
+        "https://in.mathworks.com/help/slrealtime/ug/gui-icon-sdi-gold.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-sdi-immediate.png",
+        "https://in.mathworks.com/help/slrealtime/ug/gui-icon-sdi-fit-to-view.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-sdi-deferred.png",
+        "https://in.mathworks.com/help/slrealtime/ug/gui-icon-sdi-time-zoom.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-sdi-deferred-zoom.png"
+    ]
+}

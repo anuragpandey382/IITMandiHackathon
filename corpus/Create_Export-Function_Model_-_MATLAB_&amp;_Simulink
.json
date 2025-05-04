@@ -1,0 +1,35 @@
+{
+    "title": "Create Export-Function Model",
+    "introduction": "The first step for creating independent functions in the generated code from a SimulinkÂ® model is to define the functions in the context of an export-function model. For high-level information about export-function models, see Export-Function Models Overview. Function-Call Subsystem",
+    "chunks": [
+        {
+            "heading": "Designate Model as Export-Function Model and Satisfy Export-Function Model Requirements",
+            "content": "To designate a model as an export-function model:\n\nClick the canvas to clear the selection from any blocks. Open the Property Inspector and go to the Execution tab.Select the Set execution domain parameter.From the Domain list, select Export function.\n\nTo satisfy export-function model requirements:\n\nOpen the Configuration Parameters dialog box. On the Modeling tab, select Model Settings .In the Solver pane, set solver selection Type to Fixed-step, Solver to auto, and Fixed-step size to auto.In the Code Generation pane, set System target file to ert.tlc. This step requires an Embedded CoderÂ® license."
+        },
+        {
+            "heading": "Create Model Algorithms",
+            "content": "At the top level of an export-function model, functions are modeled within Function-Call Subsystem, function-call Model, Simulink Function, and S-Function blocks. This example uses Function-Call Subsystem blocks to model two functions.\n\nAdd two Function-Call Subsystem blocks.In the first subsystem, model a unit delay that increments by 0.05 at each time step.In the second subsystem, model the square of an input signal.At the top level of the model, add Inport and Outport blocks."
+        },
+        {
+            "heading": "Add Function-Call Inputs",
+            "content": "Inport blocks configured to output function-call signals control the execution of Function-Call Subsystem blocks during a simulation. The function-call Inport blocks also create an entry-point function in the generated code.\n\nConnect Inport blocks to the function() input ports on the Function-Call Subsystem blocks.Specify sample times. Open the Inport block dialog boxes and select the Signal Attributes tab. Select the Output function call parameter. Set Sample time for the delay function to 0.1 (100 ms) and the square function to 0.01 (10 ms).Setting the sample time is only for simulation testing. Sample time values do not affect the generated code. However, comments are added in the code identifying the rate you should call the functions.You could set the sample times to -1 and allow any function-call rate (periodic or aperiodic) during simulation. By setting sample times, the software checks the calling rate with the specified rate and displays an error if there is a mismatch.Rename blocks. The names help to identify signals in the generated code.Update the model (Ctrl+D). Dotted-and-dashed lines identify function-call signals."
+        },
+        {
+            "heading": "Export-Function Model with Unit Delay and Square Functions",
+            "content": "Open Script\n\nTo open the completed export-function model, open the model named export_function_model.\n\nThe model contains two function-call subsystems. One subsystem contains a Unit Delay block, while the other subsystem contains a Square block."
+        },
+        {
+            "heading": "Test Model",
+            "content": "After you create an export-function model, test it with simulations. Choose one of these simulation testing methods:\n\nTest Export-Function Model Simulation Using Input MatrixTest Export-Function Model Simulation Using Function-Call GeneratorsTest Export-Function Model Simulation Using Stateflow ChartTest Export-Function Model Simulation Using Schedule Editor"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/create-export-function-model.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/icon_model_settings.png",
+        "https://in.mathworks.com/help/simulink/ug/export_function_model_create_model_delay.png",
+        "https://in.mathworks.com/help/simulink/ug/export_function_model_create_model_square.png",
+        "https://in.mathworks.com/help/simulink/ug/export_function_model_create_model_functions.png",
+        "https://in.mathworks.com/help/simulink/ug/export_function_model_create_model_inports.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ExportfunctionModelWithUnitDelayAndSquareFunctionsExample_01.png"
+    ]
+}

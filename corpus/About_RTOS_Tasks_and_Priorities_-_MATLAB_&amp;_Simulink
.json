@@ -1,0 +1,7 @@
+{
+    "title": "About RTOS Tasks and Priorities",
+    "introduction": "Real-time application execution tasks come from an number of model features, including: The RTOS task scheduler automates scheduling of tasks for all sample rates in the model. You can configure your model to influence task priority of some rate-related tasks. For more information, see Concurrent Execution on Simulink Real-Time. Thread Trigger",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/io_ref/about-rtos-interrupt-priorities-and-tasks.html",
+    "images": []
+}

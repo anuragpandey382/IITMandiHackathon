@@ -1,0 +1,24 @@
+{
+    "title": "Calibrate Parameters with Vector CANape",
+    "introduction": "This example shows how to view signals and tune parameters by using Vector CANapeÂ®. You must have already completed the steps in Prepare ASAP2 Data Description File. You also must be familiar with the Vector CANape user interface. For information about the user interface, see the vendor documentation (www.vector.com).",
+    "chunks": [
+        {
+            "heading": "Prepare Project",
+            "content": "Open model slrt_ex_osc_cal.openExample('slrt_ex_osc_cal');Build and download the real-time application slrt_ex_osc_cal.Start the real-time application by selecting REAL-TIME > RUN ON TARGET > Start Application.Disconnect the connection from MATLAB:tg = slrealtime disconnect(tg)You can now connect to third-party calibration tools.Open Vector CANape.Create a Vector CANape project with project name slrt_ex_osc_cal. Accept the default folder."
+        },
+        {
+            "heading": "Prepare Device",
+            "content": "From the extracted slrt_ex_osc_cal.a2l, create an XCP device named slrt_ex_osc_cal_slrt.Do not configure dataset management.Select your local computer Ethernet adapter as the Ethernet channel.Accept the remaining defaults.Upload data from the device."
+        },
+        {
+            "heading": "Configure Signals and Parameters",
+            "content": "Open device slrt_ex_osc_cal_slrt, and then open slrt_ex_osc_cal.a2l.Add signals DampedOsc, SignalGenerator, L_1D, and L_2D in separate display windows.To make the waveform easier to evaluate, set the time and y-axis scaling.For example, try the following settings for DampedOsc:y-axis min home value â â25y-axis max home value â 25Min home time-axis value â 0 sMax home time-axis value â 0.1 sTime duration â 0.1 sOpen the measurement list.To set the required sample time for a signal, open the measurement properties for the signal. Select the required sample time from the measurement mode list.The default sample time is the base sample time.Add a graphic control on parameter Kg."
+        },
+        {
+            "heading": "Measure Signals and Calibrate Parameters",
+            "content": "Start the Vector CANape measurement.To shorten the ring time on DampedOsc, L_1D, and L_2D, set parameter Kg to 800.As required, toggle between calibration RAM active and inactive.\n\nWhen using the Run on Target button on the Simulink Editor Real-Time tab to run the simulation, there is a time lag of a couple of seconds between the start of the real-time application on the target computer and the connect model operation on the development computer. If you are examining signals at or very close to application start, consider using the step-by-step approach to connect model and then using an SSH connection (for example, using PuTTY) start the real-time application. For more information, see Execute Real-Time Application in Simulink External Mode by Using Step-by-Step Commands and Execute Target Computer RTOS Commands at Target Computer Command Line."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/calibrate-by-using-vector-canape.html",
+    "images": []
+}

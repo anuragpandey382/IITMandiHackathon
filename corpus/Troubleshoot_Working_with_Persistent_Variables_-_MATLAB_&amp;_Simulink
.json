@@ -1,0 +1,16 @@
+{
+    "title": "Troubleshoot Working with Persistent Variables",
+    "introduction": "When running the getPersistentVariables function or setPersistentVariables function, this error appears: getPersistentVariables | setPersistentVariables | Persistent Variable Read | Persistent Variable Write",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "This error message indicates that the file on the SpeedgoatÂ® target computer that stores the persistent variable values is corrupted or unreadable."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "To resolve this issue, clear the persistent variable values that are stored on the target computer.\n\nOn the development computer, create a Target object tg and connect to the target computer.tg = slrealtime; connect(tg);Use the setPersistentVariables function to clear the persistent variable values that are stored on the target computer.setPersistentVariables(tg,[]);"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-working-with-persistent-variables.html",
+    "images": []
+}

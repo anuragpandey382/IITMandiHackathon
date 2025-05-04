@@ -1,0 +1,7 @@
+{
+    "title": "Enable Development Computer Communication (Windows)",
+    "introduction": "To communicate from your MATLABÂ® development computer (WindowsÂ®) to your SpeedgoatÂ® target computer by using an Ethernet connection, perform a one-time configuration of your MATLAB development computer (Windows) Ethernet port to use Internet Protocol Version 4 (TCP/IPv4) only. Specify a nonroutable static IP address of the form 192.168.x.x.",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/gs/development-computer-communication-setup-windows.html",
+    "images": []
+}

@@ -1,0 +1,22 @@
+{
+    "title": "Generate Inlined Subsystem Code",
+    "introduction": "To inline subsystem code with your model code, configure a nonvirtual subsystem. In the Subsystem Block Parameters dialog box, the Function packaging parameter specifies the format of the subsystem generated code. This parameter has these settings: The code generator can generate inlined code for the Auto and Inline settings. The inline setting directs the code generator to inline the subsystem code unconditionally. The default Auto setting directs the code generator to generate the most efficient code for the subsystem based on the type and number of instances of the subsystem that exist in the model. When there is only one instance of a subsystem, the Auto setting inlines the subsystem code. In Embedded CoderÂ®, when there are multiple instances of a subsystem that are not too complex, the Auto setting inlines the code for each subsystem. Otherwise, the Auto setting generates a single copy of the function (as a reusable function). For a function-call subsystem that has multiple callers, the Auto setting generates subsystem code that is consistent with the Nonreusable function setting.",
+    "chunks": [
+        {
+            "heading": "Configure Subsystem to Inline Code",
+            "content": "Open a model with a subsystem, such as SubsystemAtomic.openExample('SubsystemAtomic')Open SimulinkÂ® Coderâ¢ or Embedded Coder. If you are using Embedded Coder, from the C Code tab, click View Code to open the Code View editor.Right-click the Subsystem block. From the context menu, select Block Parameters (Subsystem).In the Subsystem Parameters dialog box, verify that Treat as atomic unit is selected. This option makes the subsystem nonvirtual. When the subsystem is nonvirtual, the Function packaging option is available on the Code Generation tab.Click the Code Generation tab and select Auto or Inline from the Function packaging parameter.Click Apply and close the dialog box.The border of the subsystem thickens, indicating that it is nonvirtual.Generate code from the model. The code generator inlines subsystem code within SubsystemAtomic.c. You can identify this code by system and block identification tags, such as:/* Atomic SubSystem Block: <Root>/AtomicSubsys1 */"
+        },
+        {
+            "heading": "Exceptions to Inlining",
+            "content": "There are certain cases in which the code generator does not inline a nonvirtual subsystem, even though you select the Inline setting.\n\nIf a noninlined S-function calls a function-call subsystem, the code generator ignores the Inline setting. Because noninlined S-functions use function pointers to make function calls, the code generator must generate a function with all arguments present.In a feedback loop involving function-call subsystems, the code generator generates a function instead of inlined code for one of the subsystems. Based on the internal, sorted order of the subsystems, the code generator selects which subsystem to generate a function.If an S-function, an Async Interrupt, or a Task Sync block that has the option SS_OPTION_FORCE_NONINLINED_FCNCALL set to TRUE calls a subsystem, the code generator generates a function instead of inlined code for the subsystem. The VxWorksÂ® block library (vxlib1) contains the user-defined Async Interrupt and Task Sync blocks.1\n\nThe Function packaging parameter is disabled in Simulink Function blocks."
+        },
+        {
+            "heading": "See Also",
+            "content": "Generate Subsystem Code as Separate Function and FilesGenerate Reentrant Code from SubsystemsRemove Algebraic Loops"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/rtw/ug/inline-subsystem-code-ecoder.html",
+    "images": [
+        "https://in.mathworks.com/help/rtw/ug/rtwdemo_atomic.png"
+    ]
+}

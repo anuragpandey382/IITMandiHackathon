@@ -1,0 +1,18 @@
+{
+    "title": "Access Logged Signals with Spaces and Newlines in Logged Names - MATLAB &amp; Simulink\n",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Functions",
+            "content": "\u2022 get | find | getElementNames | Simulink.SimulationData.forEachTimeseries | newline"
+        },
+        {
+            "heading": "Objects",
+            "content": "\u2022 Simulink.SimulationData.Dataset | Simulink.SimulationData.Signal\n\n\u2022 Save Run-Time Data from Simulation\n\u2022 Save Signal Data Using Signal Logging\n\u2022 Save Simulation Data"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/spaces-newlines-logged-signals.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/simulink/win64/AccessLoggedSignalsWithSpacesAndNewlinesInLoggedNamesExample_01.png"
+    ]
+}

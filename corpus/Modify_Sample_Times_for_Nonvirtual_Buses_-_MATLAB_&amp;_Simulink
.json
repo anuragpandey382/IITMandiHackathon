@@ -1,0 +1,15 @@
+{
+    "title": "Modify Sample Times for Nonvirtual Buses",
+    "introduction": "Unlike virtual buses, which can combine signals that have different sample times, all of the signals in a nonvirtual bus must have the same sample time. To group signals with different sample times in a nonvirtual bus, make the sample times of the input signals the same by inserting Rate Transition blocks. Suppose a model creates a nonvirtual bus using a Bus Creator block. To standardize the sample time of the input signals, the model uses three Rate Transition blocks before the Bus Creator block. Suppose another model converts a virtual bus to a nonvirtual bus using a root-level Outport block. To standardize the sample time of the elements of the virtual bus, the model uses a single Rate Transition block before the Outport block. Alternatively, specify the same sample time at each block that generates an element of the bus.",
+    "chunks": [
+        {
+            "heading": "Blocks",
+            "content": "• Rate Transition\n\n• Composite Interface Guidelines\n• Identify Automatic Bus Conversions\n• What Is Sample Time?\n• Specify Sample Time\n• View Sample Time Information"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/specify-bus-signal-sample-times.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/ex_large_bus_multirate_mdl.png",
+        "https://in.mathworks.com/help/simulink/ug/ex_large_bus_multirate_mdl_virt.png"
+    ]
+}

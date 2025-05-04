@@ -1,0 +1,568 @@
+{
+    "title": "Code Configuration Functions",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "LibAddSourceFileCustomSection (file, builtInSection, newSection)",
+            "content": "Adds a custom section to a source file. You must associate a custom section with one of the built-in sections: Includes, Defines, Types, Enums, Definitions, Declarations, Functions, or Documentation. Nothing happens if the section already exists, except to report an error if an inconsistent built-in section association is attempted. LibAddSourceFileCustomSection is available only with the Embedded CoderÂ® product."
+        },
+        {
+            "heading": "Arguments",
+            "content": "file â Source file reference\n\nbuiltInSection â Name of the associated built-in section\n\nnewSection â Name of the new (custom) section\n\nSee LibAddSourceFileCustomSection in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibAddToCommonIncludes(incFileName)",
+            "content": "Adds items to a list of #include /package specification items. Each member of the list is unique. Attempting to add a duplicate member does nothing.\n\nLibAddToCommonIncludes should be called from block TLC methods to specify generation of #include statements in model.h. Specify the names of files on the include path inside angle brackets, e.g., <sysinclude.h>. Specify the names of local files without angle brackets, e.g., myinclude.h. Each call to LibAddToCommonIncludes adds the specified file to the list only if it is not already there. Filenames with and without angle brackets (e.g., <math.h> and math.h) are considered different. The #include statements are placed inside model.h."
+        },
+        {
+            "heading": "Example",
+            "content": "LibAddToCommonIncludes(\"tpu332lib.h\")\n\nSee LibAddToCommonIncludes in cachelib.tlc."
+        },
+        {
+            "heading": "LibAddToModelSources(newFile)",
+            "content": "LibAddToModelSources serves two purposes:\n\nTo notify the build process that it must build with the specified source file To update the SOURCES: file1.c file2.c ... comment in the generated code.\n\nFor inlined S-functions, LibAddToModelSources is generally called from BlockTypeSetup. LibAddToModelSources adds a filename to the list of sources for building this model. LibAddToModelSources returns 1 if the filename passed in was a duplicate (i.e., it was already in the sources list) and 0 if it was not a duplicate.\n\nYou can use the LibAddToModelSources function for other purposes in TLC aside from writing S-functions. If you write your own S-functions, use the SFunctionModules block parameter instead of LibAddToModelSources. See LibAddToModelSources in utils_api.tlc."
+        },
+        {
+            "heading": "LibCacheDefine(buffer)",
+            "content": "Each call to LibCacheDefine appends your buffer to the existing cache buffer. For blocks, LibCacheDefine is generally called from BlockTypeSetup.\n\nLibCacheDefine caches #define statements for inclusion in model_private.h or model.c. Call LibCacheDefine from inside BlockTypeSetup to cache a #define statement. Each call to LibCacheDefine appends your buffer to the existing cache buffer. The #define statements are placed inside model_private.h or model.c."
+        },
+        {
+            "heading": "Example",
+            "content": "%openfile buffer #define INTERP(x,x1,x2,y1,y2) ( y1+((y2 - y1)/(x2 - x1))*(x-x1)) #define this that %closefile buffer %<LibCacheDefine(buffer)>\n\nSee LibCacheDefine in codecache_api.tlc."
+        },
+        {
+            "heading": "LibCacheExtern(buffer)",
+            "content": "LibCacheExtern should be called from inside BlockTypeSetup to cache an extern statement. Each call to LibCacheExtern appends your buffer to the existing cache buffer. The extern statements are placed in model_private.h."
+        },
+        {
+            "heading": "Example",
+            "content": "%openfile buffer extern real_T mydata; %closefile buffer %<LibCacheExtern(buffer)>\n\nSee LibCacheExtern in codecache_api.tlc."
+        },
+        {
+            "heading": "LibCacheFunctionPrototype(buffer)",
+            "content": "LibCacheFunctionPrototype should be called from inside BlockTypeSetup to cache a function prototype. Each call to LibCacheFunctionPrototype appends your buffer to the existing cache buffer. The prototypes are placed inside model_private.h."
+        },
+        {
+            "heading": "Example",
+            "content": "%openfile buffer extern int_T fun1(real_T x); extern real_T fun2(real_T y, int_T i); %closefile buffer %<LibCacheFunctionPrototype(buffer)>\n\nSee LibCacheFunctionPrototype in codecache_api.tlc."
+        },
+        {
+            "heading": "LibCacheTypedefs(buffer)",
+            "content": "LibCacheTypedefs should be called from inside BlockTypeSetup to cache typedef declarations. Each call to LibCacheTypedefs appends your buffer to the existing cache buffer. The typedef statements are placed inside model.h (or model_common.h)."
+        },
+        {
+            "heading": "Example",
+            "content": "%openfile buffer typedef foo bar; %closefile buffer %<LibCacheTypedefs(buffer)>\n\nSee LibCacheTypedefs in codecache_api.tlc."
+        },
+        {
+            "heading": "LibCallModelInitialize()",
+            "content": "Returns code for calling the model's initialize function (valid for ERT only).\n\nSee LibCallModelInitialize in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibCallModelStep(tid)",
+            "content": "Returns code for calling the model's step function (valid for ERT only).\n\nSee LibCallModelStep in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibCallModelTerminate()",
+            "content": "Returns code for calling the model's terminate function (valid for ERT only).\n\nSee LibCallModelTerminate in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibCallSetEventForThisBaseStep(buffername)",
+            "content": "Returns code for calling the model's set events function (valid for ERT only)."
+        },
+        {
+            "heading": "Argument",
+            "content": "buffername â Name of the variable used to buffer the events. For the example ert_main.c, this is eventFlags.\n\nSee LibCallSetEventForThisBaseStep in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibClearFileSectionContents(fileIdx, attrib)",
+            "content": "Before writing file to disk, clear file sections with custom values."
+        },
+        {
+            "heading": "Arguments",
+            "content": "fileIdx (scope or number) â File index\n\nattrib (string) â Name of model attribute\n\nSee LibGetSourceFileAttribute in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibCreateSourceFile(type, creator, name)",
+            "content": "Creates a new C or C++ file and returns its reference. If the file already exists, LibCreateSourceFile returns the existing file's reference."
+        },
+        {
+            "heading": "Syntax",
+            "content": "%assign fileH = LibCreateSourceFile (\"Source\", \"Custom\", \"foofile\")"
+        },
+        {
+            "heading": "Arguments",
+            "content": "type (string) â Valid values are \"Source\" and \"Header\" for .c and .h files, respectively.\n\ncreator (string) â Who is creating the file? An error is reported if different creators attempt to create the same file.\n\nname (string) â Base name of the file (i.e., without the extension). Note that files are not written to disk if they are empty."
+        },
+        {
+            "heading": "Returns",
+            "content": "Reference to the model file (scope).\n\nSee LibCreateSourceFile in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetFileRecordName (file)",
+            "content": "Returns model file name (including the path) without the file extension. To retrieve the file name (including the path) with the file extension, use LibGetSourceFileSection."
+        },
+        {
+            "heading": "Arguments",
+            "content": "file â Source file reference\n\nSee LibGetFileRecordName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetMdlPrvHdrBaseName()",
+            "content": "Returns the base name of the model's private header file, for example, model_private.h.\n\nSee LibGetMdlPrvHdrBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetMdlPubHdrBaseName()",
+            "content": "Returns the base name of the model's public header file, for example, model.h.\n\nSee LibGetMdlPubHdrBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetMdlSrcBaseName()",
+            "content": "Returns the base name of the model's main source file, for example, model.c.\n\nSee LibGetMdlSrcBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetMdlDataSrcBaseName()",
+            "content": "Returns the base name of the model's data file, for example, model_data.c.\n\nSee LibGetMdlDataSrcBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetMdlTypesHdrBaseName()",
+            "content": "Returns the base name of the model types file, for example, model_types.h.\n\nSee LibGetMdlTypesHdrBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetMdlCapiHdrBaseName()",
+            "content": "Returns the base name of the model capi header file, for example, model_capi.h.\n\nSee LibGetMdlCapiHdrBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetMdlCapiSrcBaseName()",
+            "content": "Returns the base name of the model capi source file, for example, model_capi.c.\n\nSee LibGetMdlCapiSrcBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetMdlCapiHostHdrBaseName()",
+            "content": "Returns the base name of the model capi host header file, for example, model_host_capi.h.\n\nSee LibGetMdlCapiHostHdrBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetMdlTestIfHdrBaseName()",
+            "content": "Returns the base name of the model testinterface header file, for example, model_testinterface.h.\n\nSee LibGetMdlTestIfHdrBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetMdlTestIfSrcBaseName()",
+            "content": "Returns the base name of the model testinterface source file, for example, model_testinterface.c.\n\nSee LibGetMdlTestIfSrcBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetDataTypeTransHdrBaseName()",
+            "content": "Returns the base name of the data type transition file, for example, model_dt.h for code generation's Real-Time and Embedded-C code formats.\n\nSee LibGetDataTypeTransHdrBaseName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetModelDotCFile()",
+            "content": "Returns a reference to the model.c or .cpp source file. You can then cache additional code using LibSetSourceFileSection."
+        },
+        {
+            "heading": "Syntax",
+            "content": "%assign srcFile = LibGetModelDotCFile() %<LibSetSourceFileSection(srcFile, \"Functions\", mybuf)>"
+        },
+        {
+            "heading": "Returns",
+            "content": "Returns a reference to the model.c or .cpp source file.\n\nSee LibGetModelDotCFile in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetModelDotHFile()",
+            "content": "Returns a reference to the model.h source file. You can then cache additional code using LibSetSourceFileSection."
+        },
+        {
+            "heading": "Syntax",
+            "content": "%assign hdrFile = LibGetModelDotHFile() %<LibSetSourceFileSection(hdrFile, \"Functions\", mybuf)>"
+        },
+        {
+            "heading": "Returns",
+            "content": "Returns a reference to the model.h source file.\n\nSee LibGetModelDotHFile in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetModelName()",
+            "content": "Returns the name of the model (without an extension).\n\nSee LibGetModelName in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetNumSourceFiles()",
+            "content": "Returns the number of source files (.c or .cpp and .h) that have been created."
+        },
+        {
+            "heading": "Syntax",
+            "content": "%assign numFiles = LibGetNumSourceFiles()"
+        },
+        {
+            "heading": "Returns",
+            "content": "Returns the number of files (number).\n\nSee LibGetNumSourceFiles in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetRTModelErrorStatus()",
+            "content": "Returns the code required to get the model error status."
+        },
+        {
+            "heading": "Syntax",
+            "content": "%<LibGetRTModelErrorStatus()>;\n\nSee LibGetRTModelErrorStatus in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetSourceFileAttribute(fileIdx, attrib)",
+            "content": "Returns the specified attribute of a file. The table lists the valid attributes.\n\nAttributeName (with file extension)SystemsInFileIsEmptySharedTypeBaseNameRequiredIncludesIndentCodeTemplateTypeUtilityIncludesWrittenToDiskOutputDirectoryCreatorFilterSharedGroup"
+        },
+        {
+            "heading": "Arguments",
+            "content": "fileIdx (scope or number) â File index\n\nattrib (string) â Name of model attribute\n\nSee LibGetSourceFileAttribute in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetSourceFileFromIdx(fileIdx)",
+            "content": "Returns a model file reference based on its index. This reference can be useful for a common operation on all files, for example, to set the leading file banner of all files."
+        },
+        {
+            "heading": "Syntax",
+            "content": "%assign fileH = LibGetSourceFileFromIdx(fileIdx)"
+        },
+        {
+            "heading": "Argument",
+            "content": "fileIdx (number) â Index of model file"
+        },
+        {
+            "heading": "Returns",
+            "content": "Reference (scope) to the model file.\n\nSee LibGetSourceFileFromIdx in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetSourceFileSection(fileIdx, section)",
+            "content": "Returns the contents of a file. See LibSetSourceFileSection(fileH, section, value) for a list of valid sections."
+        },
+        {
+            "heading": "Arguments",
+            "content": "fileIdx (scope or number) â File index\n\nsection (string) â File section of interest\n\nSee LibGetSourceFileSection in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibGetSourceFileTag(fileIdx)",
+            "content": "Returns fileName_h and fileName_c for header and source files, respectively, where fileName is the name of the model file."
+        },
+        {
+            "heading": "Syntax",
+            "content": "%assign tag = LibGetSourceFileTag(fileIdx)"
+        },
+        {
+            "heading": "Argument",
+            "content": "fileIndex (number) â File index"
+        },
+        {
+            "heading": "Returns",
+            "content": "Returns the tag (string).\n\nSee LibGetSourceFileTag in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibMdlRegCustomCode(buffer, location)",
+            "content": "Places declaration statements and executable code inside the model_initialize function."
+        },
+        {
+            "heading": "Arguments",
+            "content": "buffer â String buffer containing text to append to the internal cache buffer.\n\nlocation â String specifying where to place the buffer's contents. Possible values are\n\n\"header\" â Place buffer at top of function\"declaration\" â Place buffer at top of function\"execution\" â Place buffer at top of function, but after header\"trailer\" â Place buffer at bottom of function"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing\n\nSee LibMdlRegCustomCode in hookslib.tlc."
+        },
+        {
+            "heading": "LibMdlStartCustomCode(buffer, location)",
+            "content": "Places declaration statements and executable code inside the start function. Start code is executed once, during the model initialization phase."
+        },
+        {
+            "heading": "Syntax",
+            "content": "LibMdlStartCustomCode(buffer, location)"
+        },
+        {
+            "heading": "Arguments",
+            "content": "buffer â String buffer containing text to append to the internal cache buffer.\n\nlocation â String specifying where to place the buffer's contents. Possible values are\n\n\"header\" â Place buffer at top of function\"declaration\" â Place buffer at top of function\"execution\" â Place buffer at top of function, but after header\"trailer\" â Place buffer at bottom of function"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing"
+        },
+        {
+            "heading": "Description",
+            "content": "LibMdlStartCustomCode places declaration statements and executable code inside the start function. This code is output into the following functions, depending on the current value for the CodeFormat TLC variable:\n\nFunction NameValue of CodeFormat TLC variablemodel_initializeEmbedded-C (if not ModelReferenceCoderTarget)mdlStartEmbedded-C (if ModelReferenceCoderTarget)mdlStartS-FunctionMdlStartRealTime\n\nEach call to LibMdlStartCustomCode appends your buffer to the internal cache buffer.\n\nSee LibMdlStartCustomCode in hookslib.tlc."
+        },
+        {
+            "heading": "LibMdlTerminateCustomCode(buffer, location)",
+            "content": ""
+        },
+        {
+            "heading": "Purpose",
+            "content": "Places declaration statements and executable code inside the terminate function."
+        },
+        {
+            "heading": "Syntax",
+            "content": "LibMdlTerminateCustomCode(buffer, location)"
+        },
+        {
+            "heading": "Arguments",
+            "content": "buffer â String buffer containing text to append to the internal cache buffer.\n\nlocation â String specifying where to place the buffer's contents. Possible values are\n\n\"header\" â Place buffer at top of function\"declaration\" â Place buffer at top of function\"execution\" â Place buffer at top of function, but after header\"trailer\" â Place buffer at bottom of function"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing"
+        },
+        {
+            "heading": "Description",
+            "content": "LibMdlTerminateCustomCode places declaration statements and executable code inside the terminate function. This code is output into the following functions, depending on the current value of the CodeFormat TLC variable:\n\nFunction NameValue of CodeFormat TLC variablemodel_terminateEmbedded-CmdlTerminateS-FunctionMdlTerminateRealTime\n\nEach call to LibMdlTerminateCustomCode appends your buffer to the internal cache buffer.\n\nNoteDo not use the LibMdlTerminateCustomCode outside of the \"case 'content' \" section of the TLC code of a custom storage class.\n\nSee LibMdlTerminateCustomCode in hookslib.tlc."
+        },
+        {
+            "heading": "LibNotifySymbolExportedFromFile",
+            "content": "Notifies the code generation infrastructure that the symbol is being exported from the file.\n\nThis function is recommended for custom user symbols such as variable, type, macro, and function declarations. The function signals the code generation infrastructure to include appropriate headers when the passed symbol is used in auto generated files."
+        },
+        {
+            "heading": "Arguments",
+            "content": "symbol â Macro, variable, type, or function name, specified as a string.\n\nfileNameWithExtension â File name with language extension, specified as a string. For example, <modelName>.h."
+        },
+        {
+            "heading": "Example",
+            "content": "%openfile myFcnDecl extern real_T myCustomFcn(void); %closefile myFcnDecl %<LibCacheFunctionPrototype(myFcnDecl)> %assign modelPrivateFile = \"%<LibGetMdlPrvHdrBaseName()>.h %<LibNotifySymbolExportedFromFile(\"myCustomFcn\",modelPrivateFile)>"
+        },
+        {
+            "heading": "LibNotifySymbolUsedByFile",
+            "content": "Notifies the code generation infrastructure that the symbol is being used by the file.\n\nThis function is recommended for custom user symbols such as variable, type, macro, and function declarations. The function signals the code generation infrastructure to include headers for the symbol passed to the function."
+        },
+        {
+            "heading": "Arguments",
+            "content": "symbol â Macro, variable, type, or function name, specified as a string.\n\nfileNameWithExtension â File name with language extension, specified as a string. For example, <modelName>.h."
+        },
+        {
+            "heading": "Example",
+            "content": "%% The following line is expanded and placed in <model>.c %<y> = myCustomFcn(); %assign modelSrcFile = LibGetModelDotCFile() %<LibNotifySymbolUsedByFile(\"myCustomFcn\",modelSrcFile)>"
+        },
+        {
+            "heading": "LibSetRTModelErrorStatus(str)",
+            "content": "Returns the code required to set the model error status."
+        },
+        {
+            "heading": "Syntax",
+            "content": "LibSetRTModelErrorStatus(\"\\\"Overrun\\\"\")"
+        },
+        {
+            "heading": "Argument",
+            "content": "str (string) â char * to a C string\n\nSee LibSetRTModelErrorStatus in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibSetSourceFileCodeTemplate(opFile, name)",
+            "content": "By default, *.c and *.h files are generated with the code templates specified in the Code Generation > Templates pane of the Configuration Parameters dialog box. LibSetSourceFileCodeTemplate allows you to change the template for a file.\n\nNoteCustom templates are a feature of the Embedded Coder product."
+        },
+        {
+            "heading": "Syntax",
+            "content": "%assign tag = LibSetSourceFileCodeTemplate(opFile,name)"
+        },
+        {
+            "heading": "Arguments",
+            "content": "opFile (scope) â Reference to file\n\nname (string) â Name of the desired template"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing\n\nSee LibSetSourceFileCodeTemplate in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibSetSourceFileCustomSection(file, attrib, value)",
+            "content": "Adds to the contents of a custom section previously created with LibAddSourceFileCustomSection. Available only with Embedded Coder software."
+        },
+        {
+            "heading": "Arguments",
+            "content": "file (scope or number) â Source file reference or index\n\nattrib (string) â Name of custom section\n\nvalue (string) â Value to be appended to section\n\nSee LibSetSourceFileCustomSection in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibSetSourceFileOutputDirectory(opFile, name)",
+            "content": "By default, *.c and *.h files are generated into a build folder at the current location. LibSetSourceFileOutputDirectory allows you to change the folder into which a specified source file is to be generated. Note that the caller is responsible for specifying a valid folder."
+        },
+        {
+            "heading": "Syntax",
+            "content": "%assign tag = LibSetSourceFileOutputDirectory(opFile,dirName)"
+        },
+        {
+            "heading": "Arguments",
+            "content": "opFile (scope) â Reference to file\n\ndirName (string) â Name of the desired output folder"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing\n\nSee LibSetSourceFileOutputDirectory in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibSetSourceFileSection(fileH, section, value)",
+            "content": "Adds to the contents of a specified section within a specified file. Valid file sections include\n\nFile SectionDescriptionBannerSet the file banner (comment) at the top of the file.IncludesAppend to the #include section.DefinesAppend to the #define section.IntrinsicTypesAppend to the intrinsic typedef section. Intrinsic types are those that depend only on intrinsic C types.PrimitiveTypedefsAppend to the primitive typedef section. Primitive typedefs are those that depend only on intrinsic C types and typedefs previously defined in the IntrinsicTypes section.UserTopAppend to the User Top section.TypedefsAppend to the typedef section. The typedefs can depend on a previously defined type.EnumsAppend to the enumerated types section.DefinitionsAppend to the data definition section.ExternData(Reserved) Code generator extern data.ExternFcns(Reserved) Code generator extern functions.FcnPrototypes(Reserved) Code generator function prototypes.DeclarationsAppend to the data declaration section.FunctionsAppend to the C functions section.CompilerErrorsAppend to the #error section.CompilerWarnings Append to the #warning section.DocumentationAppend to the documentation (comment) section.UserBottomAppend to the User Bottom section.\n\nThe code generator orders the code as listed above."
+        },
+        {
+            "heading": "Syntax",
+            "content": "Example (iterating over the files):\n\n%openfile tmpBuf whatever %closefile tmpBuf %foreach fileIdx = LibGetNumSourceFiles() %assign fileH = LibGetSourceFileFromIdx(fileIdx) %<LibSetSourceFileSection(fileH,\"SectionOfInterest\",tmpBuf)> %endforeach %assign fileH = LibCreateSourceFile(\"Header\",\"Custom\",\"foofile\") %<LibSetSourceFileSection(fileH,\"Defines\",\"#define FOO 5.0\\n\")>"
+        },
+        {
+            "heading": "Arguments",
+            "content": "fileH (scope or number) â Reference or index to a file\n\nsection (string) â File section of interest\n\nvalue (string) â Value\n\nSee LibSetSourceFileSection in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibSystemDerivativeCustomCode (system, buffer, location)",
+            "content": ""
+        },
+        {
+            "heading": "Purpose",
+            "content": "Places declaration statements and executable code inside a subsystem's derivative function."
+        },
+        {
+            "heading": "Syntax",
+            "content": "LibSystemDerivativeCustomCode(system, buffer, location)"
+        },
+        {
+            "heading": "Arguments",
+            "content": "system â Reference to the subsystem whose derivative function is to be modified.\n\nbuffer â String buffer containing text to append to the internal cache buffer.\n\nlocation â String specifying where to place the buffer's contents. Possible values are\n\n\"header\" â Place buffer at top of function\"declaration\" â Place buffer at top of function\"execution\" â Place buffer at top of function, but after header\"trailer\" â Place buffer at bottom of function"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing"
+        },
+        {
+            "heading": "Description",
+            "content": "LibSystemDerivativeCustomCode places declaration statements and executable code inside the derivative function for the subsystem specified by system. This code is output into the following functions, depending on the current value of the CodeFormat TLC variable:\n\nFunction NameValue of CodeFormat TLC variablemdlDerivativesS-Functionmodel_derivativesRealTime\n\nLibSystemDerivativeCustomCode is not relevant when the value of the CodeFormat TLC variable is Embedded-C, because blocks with continuous states cannot be used.\n\nEach call to LibSystemDerivativeCustomCode appends your buffer to the internal cache buffer. An error is generated if you attempt to add code to a subsystem that does not have continuous states.\n\nSee LibSystemDerivativeCustomCode in hookslib.tlc.\n\nNoteTo avoid a potential mismatch between simulation and code generation results, do not use LibSystemDerivativeCustomCode to read from and write to global Simulink data (signals, states, and block parameters). Instead, use the proper modeling pattern (for example, Data Store Read, Data Store Write, State Reader, and State Writer blocks.)"
+        },
+        {
+            "heading": "LibSystemDisableCustomCode (system, buffer, location)",
+            "content": ""
+        },
+        {
+            "heading": "Purpose",
+            "content": "Places declaration statements and executable code inside a subsystem's disable function."
+        },
+        {
+            "heading": "Syntax",
+            "content": "LibSystemDisableCustomCode(system, buffer, location)"
+        },
+        {
+            "heading": "Arguments",
+            "content": "system â Reference to the subsystem whose disable function is to be modified.\n\nbuffer â String buffer containing text to append to the internal cache buffer.\n\nlocation â String specifying where to place the buffer's contents. Possible values are\n\n\"header\" â Place buffer at top of function\"declaration\" â Place buffer at top of function\"execution\" â Place buffer at top of function, but after header\"trailer\" â Place buffer at bottom of function"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing"
+        },
+        {
+            "heading": "Description",
+            "content": "LibSystemDisableCustomCode places declaration statements and executable code inside the disable function for the subsystem specified by system. Each call to LibSystemDisableCustomCode appends your buffer to the internal cache buffer.\n\nAn error is generated if you attempt to add code to a subsystem that does not have a disable function.\n\nSee LibSystemDisableCustomCode in hookslib.tlc.\n\nNoteTo avoid a potential mismatch between simulation and code generation results, do not use LibSystemDisableCustomCode to read from and write to global Simulink data (signals, states, and block parameters). Instead, use the proper modeling pattern (for example, Data Store Read, Data Store Write, State Reader, and State Writer blocks.)"
+        },
+        {
+            "heading": "LibSystemEnableCustomCode (system, buffer, location)",
+            "content": ""
+        },
+        {
+            "heading": "Purpose",
+            "content": "Places declaration statements and executable code inside a subsystem's enable function."
+        },
+        {
+            "heading": "Syntax",
+            "content": "LibSystemEnableCustomCode(system, buffer, location)"
+        },
+        {
+            "heading": "Arguments",
+            "content": "system â Reference to the subsystem whose enable function is to be modified.\n\nbuffer â String buffer containing text to append to the internal cache buffer.\n\nlocation â String specifying where to place the buffer's contents. Possible values are\n\n\"header\" â Place buffer at top of function\"declaration\" â Place buffer at top of function\"execution\" â Place buffer at top of function, but after header\"trailer\" â Place buffer at bottom of function"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing"
+        },
+        {
+            "heading": "Description",
+            "content": "LibSystemEnableCustomCode places declaration statements and executable code inside the enable function for the subsystem specified by system. Each call to LibSystemEnableCustomCode appends your buffer to the internal cache buffer.\n\nAn error is generated if you attempt to add code to a subsystem that does not have an enable function.\n\nSee LibSystemEnableCustomCode in hookslib.tlc.\n\nNoteTo avoid a potential mismatch between simulation and code generation results, do not use LibSystemEnableCustomCode to read from and write to global Simulink data (signals, states, and block parameters). Instead, use the proper modeling pattern (for example, Data Store Read, Data Store Write, State Reader, and State Writer blocks.)"
+        },
+        {
+            "heading": "LibSystemInitializeCustomCode (system, buffer, location)",
+            "content": ""
+        },
+        {
+            "heading": "Purpose",
+            "content": "Places declaration statements and executable code inside a subsystem's initialize function."
+        },
+        {
+            "heading": "Syntax",
+            "content": "LibSystemInitializeCustomCode(system, buffer, location)"
+        },
+        {
+            "heading": "Arguments",
+            "content": "system â Reference to the subsystem whose initialize function is to be modified.\n\nbuffer â String buffer containing text to append to the internal cache buffer.\n\nlocation â String specifying where to place the buffer's contents. Possible values are\n\n\"header\" â Place buffer at top of function\"declaration\" â Place buffer at top of function\"execution\" â Place buffer at top of function, but after header\"trailer\" â Place buffer at bottom of function"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing"
+        },
+        {
+            "heading": "Description",
+            "content": "LibSystemInitializeCustomCode places declaration statements and executable code inside the initialize function for the subsystem specified by system. This code is output into the following functions, depending on the current value of the CodeFormat TLC variable:\n\nFunction NameValue of CodeFormat TLC variablemodel_initializeEmbedded-CmdlInitializeConditionsS-FunctionMdlStartRealTime\n\nCode for a subsystem is output into the subsystem's initialization function. Each call to LibSystemInitializeCustomCode appends your buffer to the internal cache buffer.\n\nNoteEnable systems that are not configured to reset on enable are inlined into MdlStart. For this case, the subsystem's custom code is found in MdlStart above and below the enable subsystem's initialization code.\n\nSee LibSystemInitializeCustomCode in hookslib.tlc.\n\nNoteTo avoid a potential mismatch between simulation and code generation results, do not use LibSystemInitializeCustomCode to read from and write to global Simulink data (signals, states, and block parameters). Instead, use the proper modeling pattern (for example, Data Store Read, Data Store Write, State Reader, and State Writer blocks.)"
+        },
+        {
+            "heading": "LibSystemOutputCustomCode (system, buffer, location)",
+            "content": ""
+        },
+        {
+            "heading": "Purpose",
+            "content": "Places declaration statements and executable code inside a subsystem's output function."
+        },
+        {
+            "heading": "Syntax",
+            "content": "LibSystemOutputCustomCode(system, buffer, location)"
+        },
+        {
+            "heading": "Arguments",
+            "content": "system â Reference to the subsystem whose output function is to be modified.\n\nbuffer â String buffer containing text to append to the internal cache buffer.\n\nlocation â String specifying where to place the buffer's contents. Possible values are\n\n\"header\" â Place buffer at top of function\"declaration\" â Place buffer at top of function\"execution\" â Place buffer at top of function, but after header\"trailer\" â Place buffer at bottom of function"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing"
+        },
+        {
+            "heading": "Description",
+            "content": "LibSystemOutputCustomCode places declaration statements and executable code inside the output function for the subsystem specified by system. This code is output into the following functions, depending on the current value of the CodeFormat TLC variable:\n\nFunction NameValue of CodeFormat TLC variablemodel_stepEmbedded-C (CombineOutputUpdateFcns is 1)model_outputEmbedded-C (CombineOutputUpdateFcns is 0)mdlOutputsS-FunctionMdlOutputsRealTime\n\nEach call to LibSystemOutputCustomCode appends your buffer to the internal cache buffer.\n\nSee LibSystemOutputCustomCode in hookslib.tlc.\n\nNoteTo avoid a potential mismatch between simulation and code generation results, do not use LibSystemOutputCustomCode to read from and write to global Simulink data (signals, states, and block parameters). Instead, use the proper modeling pattern (for example, Data Store Read, Data Store Write, State Reader, and State Writer blocks.)"
+        },
+        {
+            "heading": "LibSystemUpdateCustomCode (system, buffer, location)",
+            "content": ""
+        },
+        {
+            "heading": "Purpose",
+            "content": "Places code inside a subsystem's update function."
+        },
+        {
+            "heading": "Syntax",
+            "content": "LibSystemUpdateCustomCode(system, buffer, location)"
+        },
+        {
+            "heading": "Arguments",
+            "content": "system â Reference to the subsystem whose update function is to be modified.\n\nbuffer â String buffer containing text to append to the internal cache buffer.\n\nlocation â String specifying where to place the buffer's contents. Possible values are\n\n\"header\" â Place buffer at top of function\"declaration\" â Place buffer at top of function\"execution\" â Place buffer at top of function, but after header\"trailer\" â Place buffer at bottom of function"
+        },
+        {
+            "heading": "Returns",
+            "content": "Nothing"
+        },
+        {
+            "heading": "Description",
+            "content": "LibSystemUpdateCustomCode places declaration statements and executable code inside the update function for the subsystem specified by system. This code is output into the following functions, depending on the current value of the CodeFormat TLC variable:\n\nFunction NameValue of CodeFormat TLC variablemodel_stepEmbedded-C (CombineOutputUpdateFcns is 1)model_updateEmbedded-C (CombineOutputUpdateFcns is 0)mdlUpdateS-FunctionMdlUpdateRealTime\n\nEach call to LibSystemUpdateCustomCode appends your buffer to the internal cache buffer.\n\nSee LibSystemUpdateCustomCode in hookslib.tlc.\n\nNoteTo avoid a potential mismatch between simulation and code generation results, do not use LibSystemUpdateCustomCode to read from and write to global Simulink data (signals, states, and block parameters). Instead, use the proper modeling pattern (for example, Data Store Read, Data Store Write, State Reader, and State Writer blocks.)"
+        },
+        {
+            "heading": "LibWriteModelData()",
+            "content": "Returns data for the model (valid for ERT only).\n\nSee LibWriteModelData in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibWriteModelInput(tid, rollThreshold)",
+            "content": "Returns the code for writing to a specified root input (that is, a model inport block). This function is valid for ERT only, and not valid for referenced models."
+        },
+        {
+            "heading": "Arguments",
+            "content": "tid (number) â Task identifier (0 is fastest rate and n is the slowest)\n\nrollThreshold â Width of signal before wrapping in a for loop.\n\nSee LibWriteModelInput in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibWriteModelInputs()",
+            "content": "Returns code that writes to all root inputs (that is, the model inport blocks). This function is valid for ERT only, and is not valid for referenced models.\n\nSee LibWriteModelInputs in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibWriteModelOutput(tid, rollThreshold)",
+            "content": "Returns code that writes to a specified root output (that is, a model outport block). This function is valid for ERT only, and not valid for referenced models."
+        },
+        {
+            "heading": "Arguments",
+            "content": "tid (number) â Task identifier (0 is fastest rate and n is the slowest)\n\nrollThreshold â Width of signal before wrapping in a for loop.\n\nSee LibWriteModelOutput in codetemplatelib.tlc."
+        },
+        {
+            "heading": "LibWriteModelOutputs()",
+            "content": "Returns code that writes to all root outputs (that is, the model outport blocks). This function is valid for ERT only, and not valid for referenced models.\n\nSee LibWriteModelOutputs in codetemplatelib.tlc."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/rtw/tlc/code-configuration-functions.html#bp6sftd",
+    "images": []
+}

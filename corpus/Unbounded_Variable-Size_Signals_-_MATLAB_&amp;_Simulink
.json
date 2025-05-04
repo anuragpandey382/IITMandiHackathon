@@ -1,0 +1,57 @@
+{
+    "title": "Unbounded Variable-Size Signals",
+    "introduction": "In SimulinkÂ®, variable-size signals are signals whose size (the number of elements in a dimension), in addition to its values can change during model simulation. For example, a variable-size signal with dimensions [2 5] allows the first dimension to vary in the range of [0 2] and the second dimension to vary in the range of [0 5]. Unbounded variable-size signals or dynamic arrays extend the functionality of variable-size signals by modeling data whose sizes are unknown during model compilation. You can configure an unbounded variable-size signal by specifying the size of a variable-size signal as Inf. For example, an unbounded variable-size signal with dimension [2 Inf] allows the first dimension to vary in the range of [0 2] and the second dimension in the range of [0 intmax(\"int32\")]. intmax(\"int32\") indicates the maximum allowable size limit. For more information, see Maximum Size Limits of Simulink Models. Unbounded variable-size signals use dynamic memory allocation and deallocation to react to varying signal sizes during model simulation. This functionality allows efficient storage and management of signal data. Unbounded variable-size signals can be beneficial in these scenarios: This table describes the differences between bounded and unbounded variable-size signals.",
+    "chunks": [
+        {
+            "heading": "Using Unbounded Variable-Size Signals",
+            "content": "Follow these steps to use unbounded variable-size signals in a model."
+        },
+        {
+            "heading": "Determine Whether Model Meets Requirements",
+            "content": "Determine whether your model meets the requirements to use unbounded variable-size signals.\n\nFor each model component and for component interfaces, identify the signals whose sizes are unknown at model compilation.Check if the source and sink blocks for the signals support unbounded variable-size signals: If the blocks are not supported, you must define finite values for all the dimensions of such signals. In this case, the next steps and sections do not apply to your model.If the blocks are supported, proceed to the next step. For more information about the blocks supported, see Supported Blocks. If the blocks are supported but the model features are not supported, you must change to supported model features. For more information, see Supported Features."
+        },
+        {
+            "heading": "Configure Model Components",
+            "content": "Configure the model based on whether signals are associated with blocks or contained in signal or bus objects.\n\nThese are four typical configuration scenarios:\n\nUnbounded variable-size signals associated with the Inport blockUnbounded variable-size signals associated with the input or output port of the MATLAB Function blockUnbounded variable-size Simulink.BusElement objects contained in Simulink.Bus objectUnbounded variable-size Simulink.Signal object\n\nFor more information, see Unbounded Variable-Size Signal Basic Operations."
+        },
+        {
+            "heading": "Compile Model and Verify Signal Dimensions",
+            "content": "Verify if the model is configured to handle unbounded variable-size signals.\n\nUpdate the block diagram (Ctrl+D).In the Simulink Editor, on the Debug tab, select Information Overlays and click Signal Dimensions. Each signal is labeled with its dimensions, so you can check that the signals are properly configured to carry unbounded size data."
+        },
+        {
+            "heading": "Prepare Model for Simulation",
+            "content": "To prepare the model for simulation, in the Configuration Parameters dialog box:\n\nIn the Solver pane, in the Solver Selection section, check that Solver is set to the default auto option. Otherwise, select auto(Automatic Solver Selection) or discrete(no continuous states). Unbounded variable-size signals only support discrete solvers.In the Data Import/Export pane, check that the data logging Format is set to Dataset (default).\n\nNoteYou will need additional configuration settings when you use MATLAB Function block or plan to generate C++ code from the model. For the MATLAB Function block, see Unbounded Variable-Size Arrays in MATLAB Function Block. For code generation, see Unbounded Variable-Size Signals in C++ Code Generation."
+        },
+        {
+            "heading": "Set Up Data Logging",
+            "content": "You can log unbounded variable-size signals using any of the mechanism described in View the Signal Logging Configuration. Logging non-virtual buses that contain unbounded variable-size signals is not supported."
+        },
+        {
+            "heading": "Unbounded Variable-Size Signals in C++ Code Generation",
+            "content": "Configure the model for code generation. In the Code Generation pane:\n\nSet the target language to C++.In the Interface section, select Support: variable-size signals and set Array Layout to Column-major.\n\nFor more information about code generation, see Variable-Size Signals in Generated Code (Simulink Coder)."
+        },
+        {
+            "heading": "Unbounded Variable-Size Arrays in MATLAB Function Block",
+            "content": "You must use MATLAB Function blocks to implement math operations for unbounded variable-size signals, because nonvirtual mathematical operation blocks are not supported.\n\nWhen using a MATLAB Function block, in the Simulation Target pane:\n\nIn Advanced parameters section, check that Dynamic memory allocation in MATLAB functions is selected. This option is selected by default. For more information, see Declare Variable-Size MATLAB Function Block Variables.Set Language as C++.\n\nWhen using unbounded variable-size signals, MATLAB Function blocks use dynamic memory allocation. For more information, see Use Dynamic Memory Allocation for Variable-Size Arrays in a MATLAB Function Block.\n\nFor an example that has a MATLAB Function block which uses unbounded variable-size arrays, see Unbounded Variable-Size Signal Basic Operations."
+        },
+        {
+            "heading": "Supported Blocks and Features for Simulation",
+            "content": "This section lists blocks and features that you can use with unbounded variable-size signals. Any block or feature not listed in this section is not supported."
+        },
+        {
+            "heading": "Supported Blocks",
+            "content": "These Simulink blocks support unbounded variable-size signals. The list below shows the blocks based on the Simulink library they belong to. To access the Simulink Library Browser, in the Simulink Toolstrip, on the Simulation tab, click Library Browser.\n\nSimulink / Port & SubsystemsSubsystemSwitch Case Action SubsystemIf Action SubsystemFor Iterator SubsystemWhile Iterator SubsystemFunction-Call SubsystemEnabled SubsystemEnabled and Triggered SubsystemTriggered SubsystemResettable SubsystemVariant SubsystemModelSimulink / Signal AttributesProbeSignal SpecificationSignal ConversionSimulink / User-Defined FunctionsSimulink FunctionMATLAB FunctionS-FunctionFunction CallerSimulink / Signal RoutingSelectorBus SelectorBus AssignmentBus CreatorMultiport SwitchData Store MemoryVector ConcatenateMatrix ConcatenateSimulink / SourcesGroundInportSimulink / SinksOutportTerminatorTo WorkspaceRecordSimulink / Math OperationsAssignment"
+        },
+        {
+            "heading": "Supported Features",
+            "content": "Normal simulation mode for top-level model in a model hierarchyBoth normal and accelerator simulation modes for referenced modelsAll data types except string"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/unbounded-variable-size-signals.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/unbounded_varsize_signal_blocks.png",
+        "https://in.mathworks.com/help/simulink/ug/unbounded_varsize_bus.png",
+        "https://in.mathworks.com/help/simulink/ug/unbounded_varsize_simulinksignal.png",
+        "https://in.mathworks.com/help/simulink/ug/unbounded_varsize_signal_model.png"
+    ]
+}

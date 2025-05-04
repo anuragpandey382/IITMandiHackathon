@@ -1,0 +1,22 @@
+{
+    "title": "Simulink Real-Time Options Pane",
+    "introduction": "Control the code created by SimulinkÂ® Coderâ¢ code generation software for a Simulink Real-Timeâ¢ application. Set up general information about building real-time applications, including target, execution, data logging, and other options.",
+    "chunks": [
+        {
+            "heading": "Configuration",
+            "content": "The Simulink Real-Time Options node in the Configuration Parameters dialog box allows you to specify how the software generates the real-time application. To reveal the Simulink Real-Time Options node, do the following:\n\nIn the Code Generation pane, in the System target file list, select slrealtime.tlc or another Simulink Real-Time STF. This setting generates system target code for Simulink Real-Time.NoteIf you open a model that was originally saved with System target file set to xpctarget.tlc, the software updates the setting to slrealtime.tlc. To retain the updated setting, save the updated model."
+        },
+        {
+            "heading": "Tips",
+            "content": "The default values work for the generation of most real-time applications. If you want to customize the build of your real-time application, set the option parameters to suit your specifications.To access configuration parameters from the MATLABÂ® command line, use:gcs â To access the current model.set_param â To set the parameter value.get_param â To get the current value of the parameter."
+        },
+        {
+            "heading": "To get help on an option",
+            "content": "Right-click the option text label.From the context menu, select What's This."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ref/simulink-real-time-options-pane.html",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/ref/whatsthis.gif"
+    ]
+}

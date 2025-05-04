@@ -1,0 +1,89 @@
+{
+    "title": "App Building Components",
+    "introduction": "App Designer and UI figures support a large set of components for designing modern, full-featured applications. The tables below list the components that are available. All components are available programmatically. Most UI components are also available in the App Designer Component Library for you to drag and drop onto the canvas. To add components to an App Designer app that are not available in the Component Library, or that you want to add dynamically to the running app, see Add UI Components to App Designer Programmatically. When calling graphics functions in App Designer, the workflow is slightly different than you typically use at the MATLABÂ® command line. For more information about how to call graphics functions in App Designer, see Display Graphics in App Designer.",
+    "chunks": [
+        {
+            "heading": "Common Components",
+            "content": "Component InformationExampleButton CheckBox ColorPicker DatePicker DropDown NumericEditField EditField Hyperlink Image Label ListBox ButtonGroup RadioButton Slider RangeSlider Spinner StateButton Table TextArea ButtonGroup ToggleButton Tree TreeNode CheckBoxTree TreeNode"
+        },
+        {
+            "heading": "Axes",
+            "content": "Axes InformationExampleUIAxes Properties Axes Properties This object can be added programmatically only. GeographicAxes Properties This object can be added programmatically only. PolarAxes Properties This object can be added programmatically only."
+        },
+        {
+            "heading": "Containers and Figure Tools",
+            "content": "Container InformationExampleGridLayout Panel TabGroup Tab Menu ContextMenu Toolbar PushTool ToggleTool"
+        },
+        {
+            "heading": "Dialogs and Notifications",
+            "content": "Dialog InformationExampleuialert This object can be added programmatically only. uiconfirm This object can be added programmatically only. uiprogressdlg This object can be added programmatically only. uisetcolor This object can be added programmatically only. uigetfile This object can be added programmatically only. uiputfile This object can be added programmatically only. uigetdir This object can be added programmatically only. uiopen This object can be added programmatically only. uisave This object can be added programmatically only."
+        },
+        {
+            "heading": "Instrumentation",
+            "content": "Component InformationExampleGauge NinetyDegreeGauge LinearGauge SemicircularGauge Knob DiscreteKnob Lamp Switch RockerSwitch ToggleSwitch"
+        },
+        {
+            "heading": "Extensible Components",
+            "content": "Component InformationExamplematlab.ui.componentcontainer.ComponentContainer Classmatlab.graphics.chartcontainer.ChartContainer Class HTML"
+        },
+        {
+            "heading": "Toolbox Components",
+            "content": "Apps created in App Designer or with the uifigure function support components in multiple additional products. To use these components, a valid license and installation of the associated product is required.\n\nAerospace Toolbox components â For more information, see Flight Instruments (Aerospace Toolbox).SimulinkÂ® components â For more information, see Create Apps to Control Simulations (Simulink)."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/matlab/creating_guis/choose-components-for-your-app-designer-app.html",
+    "images": [
+        "https://in.mathworks.com/help/matlab/creating_guis/component_button.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_checkbox.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component-color-picker.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_datepicker.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_dropdown.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_numericfield.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_textfield.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_hyperlink.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_image.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_label.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_listbox.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_rbuttongroup.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_slider_20b.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component-range-slider.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_spinner.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_statebutton.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_table_20b.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_textarea.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_tbuttongroup.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_tree.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_checkboxtree.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_axes.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_regularaxes.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_geoaxes.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_polaraxes.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_gridlayout_19b.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_panel.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_tabgroup.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/appd_menu_example.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_contextmenu.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_toolbar_pushtool_toggletool.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_uialert.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_uiconfirm.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_progressdlg.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_colorpicker.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_uigetfile.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_uiputfile.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_uigetdir.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_uiopen.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_uisave.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_cgauge.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_90gauge.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_lineargauge.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_ssgauge.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_knob.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_discreteknob.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_lamp.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_switch.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_rockerswitch.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_toggleswitch.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_componentcontainer.png",
+        "https://in.mathworks.com/help/matlab/creating_guis/component_html_file.png"
+    ]
+}

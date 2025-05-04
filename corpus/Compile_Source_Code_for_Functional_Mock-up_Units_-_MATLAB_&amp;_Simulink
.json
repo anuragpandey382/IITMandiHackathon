@@ -1,0 +1,16 @@
+{
+    "title": "Compile Source Code for Functional Mock-up Units - MATLAB &amp; Simulink\n",
+    "introduction": "FMU | slrealtime.fmu.compileFMUSources",
+    "chunks": [
+        {
+            "heading": "Implement the FMU Block in Model",
+            "content": "To implement the vanDerPol block in the Simulink model by using the FMU, specify the FMU name for the block. Open the model slrt_ex_vanderpol, double-click the FMU block vanDerPol, and select the vanDerPol.fmu file for the FMU name block parameter.\n\nBuild the model, load the real-time application on the target computer, and run the real-time application."
+        },
+        {
+            "heading": "Compile FMU File That Contains Source Code",
+            "content": "The slrealtime.fmu.compileFMUSources function compiles an FMU file that contains source code. The process outputs an FMU file and Simulink Real-Time binary file in the same folder as the input FMU file and appends an _slrt suffix to the output file name. This example selects an FMU file to compile and overwrites previous compiler output.\n\nCopy an example file to the current working folder.\n\nmkdir tempdir myFmuDir; cd tempdir; cd myFmuDir; copyfile ../../slrt_ex_fmu_work;\n\nWarning: Directory already exists.\n\nCreate variable to provide path and file name.\n\nmy_file = 'vanDerPol.fmu';\n\nCompile the FMU file and overwrite previous output.\n\nevalc('slrealtime.fmu.compileFMUSources(my_file,''overwriteBinary'',true)');"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/build-considerations-for-functional-mockup-units.html",
+    "images": []
+}

@@ -1,0 +1,49 @@
+{
+    "title": "Save Signal Data Using Signal Logging",
+    "introduction": "You can use signal logging to capture signal data from a simulation without adding blocks to your model. When signals are marked for logging, the software displays a logging badge . This example shows you how to use signal logging to log simulation data to the workspace and the Simulation Data Inspector. To collect and use signal logging data: You can also log subsets of marked signals. One approach for testing parts of a model as you develop it is to mark a superset of signals for logging and then override signal logging settings to select different subsets of signals for logging. You can use the Signal Logging Selector or a programmatic interface. For more information, see Override Signal Logging Settings. For a summary of other approaches to capture simulation data, see Save Simulation Data.",
+    "chunks": [
+        {
+            "heading": "Open Model",
+            "content": "Open Live Script\n\nThis example uses a model of a damped nonlinear spring given by the equation\n\nxÂ¨+xË+k(x-a)+(x-a)3=0,\n\nwhere:\n\na = 3 m is the resting length of the spring.k = 1 N/m is the spring constant.\n\nThe model does not contain any Outport blocks and has no signals marked for logging. This example shows how to turn on signal logging and specify signal logging names."
+        },
+        {
+            "heading": "Enable Signal Logging for Model",
+            "content": "By default, signal logging is enabled. With signal logging enabled, the software logs data during simulation for signals you mark for logging. You can enable or disable signal logging for a model using the Configuration Parameters dialog box. For example, check whether signal logging is enabled for the model damped_nonlin_spring.\n\nIn the Modeling pane, select Model Settings.In the Data Import/Export tab, make sure the Signal logging parameter is selected.\n\nSignal logging is enabled, so when you mark signals in the model for logging, the software logs the signal data during simulation. If the Signal logging parameter is not selected, the software does not log signals that are marked for signal logging.\n\nYou can also use the set_param function to enable or disable signal logging for a model programmatically.\n\nset_param(\"damped_nonlin_spring\",'SignalLogging','on')"
+        },
+        {
+            "heading": "Mark Signals for Logging",
+            "content": "To analyze the damped nonlinear spring dynamics, mark signals for logging. The signal coming from the Integrator block named Integrator1 represents the position. The signal coming from the Integrator block named Integrator represents the velocity. To log signal data for the position and velocity of the spring, mark the signals for logging:\n\nSelect the signals in the model.On the Simulation tab, click Log Signals.\n\nA logging badge indicates that the signals are marked for signal logging.\n\nAlternatively, you can mark signals for logging programmatically using the Simulink.sdi.markSignalForStreaming function.\n\nSimulink.sdi.markSignalForStreaming('damped_nonlin_spring/Integrator',1,'on') Simulink.sdi.markSignalForStreaming('damped_nonlin_spring/Integrator1',1,'on')\n\nYou can use the Model Data Editor to simplify the process of marking signals for signal logging throughout a model hierarchy. The Model Data Editor displays a flat list of signals in your model that you can sort, group, and filter."
+        },
+        {
+            "heading": "Specify Signal Names",
+            "content": "The signals in the damped_nonlin_spring model are unnamed. Naming signals that you log in a model allows you to more easily analyze the logged data. By default, the software uses the signal name in the workspace and the Simulation Data inspector. If the signal does not have a name, the software uses a blank name when the data is logged to the workspace. The Simulation Data Inspector identifies unnamed signals by their block path and port number.\n\nFor example, to make the logged data easier to analyze, you can name the signals representing position and velocity interactively.\n\nDouble-click the signal output from the block named Integrator1. Then, type position.Double-click the signal output from the block named Integrator. Then, type velocity.\n\nAlternatively, you can specify signal names programmatically.\n\nGet the port handle for the signal representing the position and the signal representing velocity.posph = get_param('damped_nonlin_spring/Integrator1','PortHandles'); velph = get_param('damped_nonlin_spring/Integrator','PortHandles');Use the get_param function to get the handle of the line connected to each port.poslh = get_param(posph.Outport,'Line'); vellh = get_param(velph.Outport,'Line');Use the set_param function to set the signal names.set_param(poslh,'Name','position') set_param(vellh,'Name','velocity')\n\nYou can also specify a signal logging name that is different than the signal name used in the model. Specifying a signal-level logging name can be useful for signals that you want to remain unnamed in the model or that share a duplicate name with another signal in the model hierarchy. To set a custom signal logging name, you can use the Signal Properties dialog box, the Instrumentation Properties dialog box, or the Model Explorer."
+        },
+        {
+            "heading": "Simulate Model and View Data",
+            "content": "Because signal logging logs data to the Simulation Data Inspector, you can easily visualize simulation data. To view the logged position and velocity data in the Simulation Data Inspector:\n\nSimulate the model.On the Simulation tab, under Review Results, click Data Inspector. In the Simulation Data Inspector, select the position and velocity signals to add the signal data to the plot area.\n\nInitially, the spring is compressed. When released, the spring oscillates. Eventually, because the system is damped, the spring comes to rest at its resting spring length of 3 m.\n\nFor more information about viewing logged signal data in the Simulation Data Inspector, see Inspect Simulation Data and Create Plots Using the Simulation Data Inspector."
+        },
+        {
+            "heading": "Access Signal Logging Data Programmatically",
+            "content": "You can also analyze the logged workspace data using MATLABÂ®. By default, all logged simulation data is returned as a single Simulink.SimulationOutput object in a variable named out.\n\nout\n\nout = Simulink.SimulationOutput: logsout: [1x1 Simulink.SimulationData.Dataset] tout: [59x1 double] SimulationMetadata: [1x1 Simulink.SimulationMetadata] ErrorMessage: [0x0 char]\n\nSignal logging data is grouped in a Simulink.SimulationData.Dataset object with the default name of logsout. When simulation results are returned as a single Simulink.SimulationOutput object, you can access the signal logging data using a dot.\n\nout.logsout\n\nans = Simulink.SimulationData.Dataset 'logsout' with 2 elements Name BlockPath ________ ________________________________ 1 [1x1 Signal] velocity damped_nonlin_spring/Integrator 2 [1x1 Signal] position damped_nonlin_spring/Integrator1 - Use braces { } to access, modify, or add elements using index.\n\nWhen you log data to the workspace and return a single simulation output, the Simulink.SimulationOutput object contains a property for each logging type. For example, when you log data using signal logging and use the default workspace variable name for the Dataset object, the Simulink.SimulationOutput object has the property logsout that contains the logged signal data. You can use the Configuration Parameters dialog box to enable or disable the Single simulation output parameter. For an example, see Access Data in Simulink.SimulationOutput Object.\n\nEach signal logged using signal logging is stored as an element within the Dataset object. To change the workspace variable name of the signal logging Dataset object, you can use the text box next to the Signal logging parameter in the Configuration Parameters dialog box."
+        },
+        {
+            "heading": "Model Settings",
+            "content": "• Signal logging | Single simulation output"
+        },
+        {
+            "heading": "Objects",
+            "content": "• Simulink.SimulationData.Dataset | Simulink.SimulationOutput"
+        },
+        {
+            "heading": "Tools",
+            "content": "• Instrumentation Properties | Signal Properties | Simulation Data Inspector\n\n• Save Simulation Data\n• Visualize and Access Signal Logging Data\n• Log Signals in For-Each Subsystems\n• Specify Signal Values to Log"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/exporting-signal-data-using-signal-logging.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/logging_badge.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ExportDataUsingSignalLoggingExample_01.png",
+        "https://in.mathworks.com/help/simulink/ug/logging_badge.png",
+        "https://in.mathworks.com/help/simulink/ug/signal-logging-sdi.png"
+    ]
+}

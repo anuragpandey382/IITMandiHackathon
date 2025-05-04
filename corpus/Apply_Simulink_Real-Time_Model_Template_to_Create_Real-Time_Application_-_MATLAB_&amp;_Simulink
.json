@@ -1,0 +1,30 @@
+{
+    "title": "Apply Simulink Real-Time Model Template to Create Real-Time Application - MATLAB &amp; Simulink\n",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Create Simulink Model from Template",
+            "content": "To create a Simulink model from the Simulink start page, in the MATLAB\u00c2\u00ae Command Window, type:\n\nsimulink\n\nSelect the Simulink Real-Time template from the start page and create the exampleSlrealtimeApp model. Or, in the Command Window, use the Simulink.createFromTemplate command. See code for this script for full syntax."
+        },
+        {
+            "heading": "Blocks, Connections, and Data Logging in the Model",
+            "content": "The Simulink Real-Time model template contains a Gain block that connects a Signal Generator to a Scope block. The Gain block output is marked for logging with the Simulation Data Inspector (SDI)."
+        },
+        {
+            "heading": "Create Target Object and Connect",
+            "content": "Create a Target object for the default target computer and connect to the target computer."
+        },
+        {
+            "heading": "Simulate Real-Time Application and View Logged Data",
+            "content": "Build the real-time application, run it on the target computer, and view the logged data:\n\n1. Make sure that the development computer has a connection to the target computer.\n\n2. Build the model and download the real-time application to the target computer. On the Real-Time tab, click Run on Target. Or, use the slbuild command and the load command.\n\n3. Run the real-time application and log data by using the Run on Target button.\n\n4. Open the Simulation Data Inspector by double-clicking the Simulation Data Inspector icon on the Gain block output signal or by using the Simulink.sdi.view command."
+        },
+        {
+            "heading": "More Information",
+            "content": "Create and Run Real-Time Application from Simulink Model Configure and Control Real-Time Application by Using Simulink Real-Time Explorer Simulation Data Inspector"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/apply-simulink-real-time-model-template-to-create-real-time-application.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/ApplySlrealtimeModelTemplateToCreateRtAppExample_01.png"
+    ]
+}

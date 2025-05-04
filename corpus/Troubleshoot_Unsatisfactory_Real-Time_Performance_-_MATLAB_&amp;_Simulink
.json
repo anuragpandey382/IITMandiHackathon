@@ -1,0 +1,36 @@
+{
+    "title": "Troubleshoot Unsatisfactory Real-Time Performance",
+    "introduction": "I want some recommended methods to improve unsatisfactory real-time application performance. Compile with GCC -ffast-math",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "Run-time performance and reduce the task execution time (TET) of a model depend on model design, SpeedgoatÂ® target computer capacity, and target computer utilization."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "You can improve run-time performance and reduce the task execution time (TET) of a model with these methods."
+        },
+        {
+            "heading": "Enable Compile with GCC -ffast-math Option",
+            "content": "The Compile with GCC -ffast-math option enables the GCC compiler -ffast-math option when compiling real-time application code. This option is disabled by default for SimulinkÂ® Real-Timeâ¢ models.\n\nBy enabling the Compile with GCC -ffast-math option, you provide the compiler with more flexibility to optimize floating-point math at the expense of deviating from the IEEE-754 floating-point standard.\n\nFor more information about the -ffast-math option, see the Semantics of Floating-Point Math in GCC and gcc.gnu.org/wiki/FloatingPointMath/."
+        },
+        {
+            "heading": "Run Performance Tools",
+            "content": "Use these performance tools:\n\nTo profile execution of a real-time application , use the startProfiler command. To run the profiler and plot the results, use the plot function.\n\nFor more information, see Execution Profiling for Real-Time Applications."
+        },
+        {
+            "heading": "Customize Concurrent Execution on Multicore Target Computer",
+            "content": "You can improve run-time performance by configuring your model to take advantage of your multicore target computer:\n\nPartition the model into subsystems according to the physical requirements of the system that you are modeling. Set the block sample rates within each subsystem to the slowest rate that meets the physical requirements of the system. Create execution tasks and triggers, and then explicitly assign subsystem partitions to the tasks. See Partition Your Model Using Explicit Partitioning and Multicore Programming with Simulink.You can also use the Simulink Schedule Editor to partition the model. In the Simulink Editor, click the Modeling tab and select Design > Schedule Editor. For more information, see Create Partitions from a Rate-Based Model. Run the real-time application.\n\nNoteDo not use MATLAB System blocks in the top level of Simulink Real-Time models in which task execution is explicitly partitioned. These blocks generate a TLC error when building the real-time application, for example:\"Unable to find TLCBlockSID within the Block scope\""
+        },
+        {
+            "heading": "Minimize the Model",
+            "content": "You can improve run-time performance by minimizing your model to make more memory and CPU cycles available for the real-time application:\n\nOn the Solver pane, increase Fixed-step size (fundamental sample time). Executing with a short sample time can overload the CPU.Use polling mode. See Execution Modes for Real-Time Applications.Reduce the number of I/O channels in the model."
+        },
+        {
+            "heading": "Contact Technical Support",
+            "content": "For additional guidance, refer to these sources:\n\nMathWorksÂ® Tech Support: MathWorks Help Center websiteMATLABÂ® Answers: www.mathworks.com/matlabcentral/answers/?term=Simulink+Real-TimeMATLAB Central: www.mathworks.com/matlabcentral\n\nFor Speedgoat hardware issues, contact Speedgoat Tech Support: www.speedgoat.com/knowledge-center."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-unsatisfactory-real-time-performance.html",
+    "images": []
+}

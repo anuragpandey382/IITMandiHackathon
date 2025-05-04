@@ -1,0 +1,30 @@
+{
+    "title": "Perform Acceleration",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Customize the Build Process",
+            "content": "Compiler optimizations are off by default. This results in faster build times, but slower simulation times. You can optimize the build process toward a faster simulation.\n\nOn the Modeling tab, under Setup, click Model Settings.In the Configuration Parameters dialog box, from the Compiler optimization level drop-down list, select Optimizations on (faster runs).Code generation takes longer with this option, but the simulation runs faster.Select Verbose accelerator builds to display progress information using code generation, and to see the compiler options in use."
+        },
+        {
+            "heading": "Changing the Location of Generated Code",
+            "content": "By default, accelerator mode places the generated code in a subfolder of the working folder called slprj/accel/modelname (for example, slprj/accel/f14). To change the name of the folder into which accelerator mode writes generated code:\n\nIn the SimulinkÂ® Editor window, on the Modeling tab, select Environment > Simulink Preferences.In the Simulink Preferences window, navigate to the Simulation cache folder parameter.Enter the absolute or relative path to your subfolder and click Apply."
+        },
+        {
+            "heading": "Run Acceleration Mode from the User Interface",
+            "content": "To accelerate a model, first open it, and then on the Simulation tab, in the Simulate section, select Accelerator or Rapid Accelerator from the drop-down list. Then start the simulation.\n\nThe following example shows how to accelerate the already opened f14 model using accelerator mode:\n\nOn the Simulation tab, in the Simulate section, select Accelerator from the drop-down list.On the Simulation tab, click Run.The accelerator and rapid accelerator modes first check to see if code was previously compiled for your model. If code was created previously, accelerator or rapid accelerator mode runs the model. If code was not previously built, they first generate and compile the C code, and then run the model.For an explanation of why these modes rebuild your model, see Code Regeneration in Accelerated Models.\n\nAccelerator mode places the generated code in a subfolder of the working folder called slprj/accel/modelname (for example, slprj/accel/f14). If you want to change this path, see Changing the Location of Generated Code.\n\nRapid accelerator mode places the generated code in a subfolder of the working folder called slprj/raccel/modelname (for example, slprj/raccel/f14).\n\nNoteThe warnings that blocks generate during simulation (such as divide-by-zero and integer overflow) are not displayed when your model runs in accelerator or rapid accelerator mode."
+        },
+        {
+            "heading": "Making Run-Time Changes",
+            "content": "A feature of the accelerator and rapid accelerator modes is that simple adjustments (such as changing the value of a Gain or Constant block) can be made to the model while the simulation is still running. More complex changes (for example, changing from a sin to tan function) are not allowed during run time.\n\nThe Simulink software issues a warning if you attempt to make a change that is not permitted. The absence of a warning indicates that the change was accepted. The warning does not stop the current simulation, and the simulation continues with the previous values. If you wish to alter the model in ways that are not permitted during run time, you must first stop the simulation, make the change, and then restart the simulation.\n\nIn general, simple model changes are more likely to result in code regeneration when in rapid accelerator mode than when in accelerator mode."
+        },
+        {
+            "heading": "Switching Solvers Between Runs",
+            "content": "You can switch variable-step solvers between runs and Simulink will automatically determine if a solver change will trigger a rebuild, based on the mathematical structure of the model, such as whether the model is an ordinary differential equation (ODE) or a differential algebraic equation (DAE) model, if the solver needs a Jacobian, whether it handles mass matrices, or if the model contains rate limiter blocks."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/performing-acceleration.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/run_accel.png"
+    ]
+}

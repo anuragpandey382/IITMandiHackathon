@@ -1,0 +1,1768 @@
+{
+    "title": "Simulink Checks",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Simulink Check Overview",
+            "content": "Use the SimulinkÂ® Model Advisor checks to configure your model for simulation."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Check Checks (Simulink Check)"
+        },
+        {
+            "heading": "By Product Overview",
+            "content": "Use the By Product Model Advisor checks to configure your model The MathWorksÂ® product applications."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks"
+        },
+        {
+            "heading": "By Task Overview",
+            "content": "Use the By Task Model Advisor checks to configure your model for specific tasks."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks"
+        },
+        {
+            "heading": "Model Referencing Overview",
+            "content": "Use the Model Referencing Model Advisor checks to configure your model for model referencing considerations."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Check Checks (Simulink Check)"
+        },
+        {
+            "heading": "Simulink Model File Integrity",
+            "content": "Use the Simulink Model File Integrity Model Advisor checks to find problems with character encoding and nondefault model properties."
+        },
+        {
+            "heading": "See Also",
+            "content": "Check Model History properties"
+        },
+        {
+            "heading": "Units Inconsistencies",
+            "content": "Use the Units Inconsistencies Model Advisor checks to find inconsistencies with unit specifications."
+        },
+        {
+            "heading": "See Also",
+            "content": "Identify unit mismatches in the model Identify automatic unit conversions in the model Identify disallowed unit systems in the model Identify undefined units in the model"
+        },
+        {
+            "heading": "Managing Library Links Overview",
+            "content": "Use the Managing Library Links Model Advisor checks to find common problems with library links."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Check Checks (Simulink Check)"
+        },
+        {
+            "heading": "Migrating to Simplified Initialization Mode Overview",
+            "content": "Simplified initialization mode was introduced in R2008b to improve the consistency of simulation results. This mode is especially important for models that do not specify initial conditions for conditionally executed subsystem output ports. For more information, see Simplified Initialization Mode and Classic Initialization Mode.\n\nUse the Model Advisor checks in Migrating to Simplified Initialization Mode to help migrate your model to simplified initialization mode."
+        },
+        {
+            "heading": "See Also",
+            "content": "Simplified Initialization Mode Classic Initialization Mode Underspecified initialization detection Check usage of Merge blocks Check usage of Outport blocks Check usage of Discrete-Time Integrator blocks Check model settings for migration to simplified initialization mode"
+        },
+        {
+            "heading": "Modeling Guidelines for MISRA C:2012 Overview",
+            "content": "These Model Advisor checks facilitate designing and troubleshooting models, subsystems, and the corresponding generated code for applications to comply with MISRA C:2012."
+        },
+        {
+            "heading": "See Also",
+            "content": "MISRA C:2012 Compliance Considerations Run Model Advisor Checks"
+        },
+        {
+            "heading": "Modeling Guidelines for Secure Coding (CERT C, CWE, ISO/IEC TS 17961)",
+            "content": "These Model Advisor checks facilitate designing and troubleshooting models, subsystems, and the corresponding generated code for applications to comply with the CERT C, CWE, ISO/IEC TS 17961 secure coding standards."
+        },
+        {
+            "heading": "See Also",
+            "content": "Secure Coding (Embedded Coder) Run Model Advisor Checks"
+        },
+        {
+            "heading": "Upgrading to the Current Simulink Version Overview",
+            "content": "Use the Open the Upgrade Advisor check to access the Upgrade Advisor. Use the Upgrade Advisor for help with using the current release to upgrade and improve models. The Upgrade Advisor identifies cases where you can benefit by changing your model to use new features and settings in Simulink. The Advisor provides advice for transitioning to new technologies, and upgrading a model hierarchy.\n\nThe Upgrade Advisor also identifies cases when a model will not work because changes and improvements in Simulink require changes to a model.\n\nThe Upgrade Advisor offers options to perform recommended actions automatically or instructions for manual fixes.\n\nAlternatively, you can open the Upgrade Advisor in the following ways:\n\nFrom the Model Editor, in the Modeling tab, select Model Advisor > Upgrade Advisor.From the MATLABÂ® command line, use the upgradeadvisor function:upgradeadvisor modelname"
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Model Upgrades"
+        },
+        {
+            "heading": "Modeling Signals and Parameters Using Buses Overview",
+            "content": "Use the Modeling Signals and Parameters Using Buses checks to find common problems with signals and parameters when using buses."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks"
+        },
+        {
+            "heading": "Code Generation Efficiency Overview",
+            "content": "Use the Code Generation Efficiency checks to configure your model with consideration for code generation efficiency."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks"
+        },
+        {
+            "heading": "Data Transfer Efficiency Overview",
+            "content": "Use the Data Transfer Efficiency checks to configure your model with consideration for data transfer efficiency."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks"
+        },
+        {
+            "heading": "Modeling Standards for DO-178C/DO-331 Overview",
+            "content": "These Model Advisor checks facilitate designing and troubleshooting models from which code is generated for applications that must meet safety or mission-critical requirements.\n\nThe Model Advisor performs a checkout of the Simulink Checkâ¢ license when you run the checks."
+        },
+        {
+            "heading": "See Also",
+            "content": "Radio Technical Commission for Aeronautics (RTCA) for information on the DO-178C Software Considerations in Airborne Systems and Equipment Certification and related standards"
+        },
+        {
+            "heading": "Requirements Traceability Overview",
+            "content": "Model Advisor checks for requirements traceability."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Checks"
+        },
+        {
+            "heading": "Model Diagnostic Settings Overview",
+            "content": "Model Advisor checks for model diagnostic settings."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Checks"
+        },
+        {
+            "heading": "Simulink Overview",
+            "content": "Model Advisor checks for Simulink modeling elements."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Checks"
+        },
+        {
+            "heading": "Stateflow Overview",
+            "content": "Model Advisor checks for StateflowÂ® modeling objects."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Checks"
+        },
+        {
+            "heading": "Library Links Overview",
+            "content": "Model Advisor checks for library links."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Checks"
+        },
+        {
+            "heading": "Model Referencing Overview",
+            "content": "Model Advisor checks for referenced models."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Checks"
+        },
+        {
+            "heading": "Bug Reports Overview",
+            "content": "Checks to display bug reports."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Checks"
+        },
+        {
+            "heading": "Simulink Coder Overview",
+            "content": "Model Advisor checks for Simulink Coderâ¢."
+        },
+        {
+            "heading": "See Also",
+            "content": "Model Advisor Checks (Simulink Coder) Run Model Advisor Checks"
+        },
+        {
+            "heading": "Modeling Standards for ISO 26262 Overview",
+            "content": "These Model Advisor checks facilitate designing and troubleshooting models, subsystems, and the corresponding generated code for applications to comply with ISO 26262â6.\n\nThe Model Advisor performs a checkout of the Simulink Check license when you run the modeling standards for ISO 26262 checks."
+        },
+        {
+            "heading": "Tip",
+            "content": "If your model uses model referencing, run the checks on all referenced models before running them on the top model."
+        },
+        {
+            "heading": "See Also",
+            "content": "International Organization for Standardization for information on ISO 26262â6 Road vehicles â Functional safety â Part 6: Product development: Software levelISO 26262: 2018 (Embedded Coder)Modeling Guidelines for ISO 26262-6: 2018 (IEC Certification Kit)Run Model Advisor Checks"
+        },
+        {
+            "heading": "Modeling Standards for IEC 61508 Overview",
+            "content": "These Model Advisor checks facilitate designing and troubleshooting models, subsystems, and the corresponding generated code for applications to comply with IEC 61508-3.\n\nThe Model Advisor performs a checkout of the Simulink Check license when you run the modeling standards for IEC 61508 checks."
+        },
+        {
+            "heading": "Tip",
+            "content": "If your model uses model referencing, run the checks on all referenced models before running them on the top model."
+        },
+        {
+            "heading": "See Also",
+            "content": "International Electrotechnical Commission for more information on IEC 61508â3 Functional safety of electrical/electronic/programmable electronic safety-related systems â Part 3: Software requirementsIEC 61508: 2010 (Embedded Coder) Run Model Advisor Checks"
+        },
+        {
+            "heading": "Modeling Standards for IEC 62304 Overview",
+            "content": "These Model Advisor checks facilitate designing and troubleshooting models, subsystems, and the corresponding generated code for applications to comply with IEC 62304.\n\nThe Model Advisor performs a checkout of the Simulink Check license when you run the modeling standards for IEC 62304 checks."
+        },
+        {
+            "heading": "Tip",
+            "content": "If your model uses model referencing, run the checks on all referenced models before running them on the top model."
+        },
+        {
+            "heading": "See Also",
+            "content": "MATLAB and Simulink for Medical Devices for more information on IEC 62304 Medical device software - Software life cycle processesIEC 62304: 2015 (Embedded Coder) Run Model Advisor Checks"
+        },
+        {
+            "heading": "Modeling Standards for EN 50128 Overview",
+            "content": "These Model Advisor checks facilitate designing and troubleshooting models, subsystems, and the corresponding generated code for applications to comply with the EN 50128 standard.\n\nThe Model Advisor performs a checkout of the Simulink Check license when you run the modeling standards for EN 50128 checks."
+        },
+        {
+            "heading": "Tip",
+            "content": "If your model uses model referencing, run the checks on all referenced models before running them on the top model."
+        },
+        {
+            "heading": "See Also",
+            "content": "European Committee for Electrotechnical Standardization for more information on EN 50128 (Railway applications â Software for railway control and protection systems)EN 50128 / EN 50128: 2011 (Embedded Coder) Run Model Advisor Checks"
+        },
+        {
+            "heading": "Modeling Standards for ISO 25119 Overview",
+            "content": "These Model Advisor checks facilitate designing and troubleshooting models, subsystems, and the corresponding generated code for applications to comply with ISO 25119.\n\nThe Model Advisor performs a checkout of the Simulink Check license when you run the modeling standards for ISO 25119 checks."
+        },
+        {
+            "heading": "Tip",
+            "content": "If your model uses model referencing, run the checks on all referenced models before running them on the top model."
+        },
+        {
+            "heading": "See Also",
+            "content": "ISO 25119 Standard (Embedded Coder) Run Model Advisor Checks"
+        },
+        {
+            "heading": "Requirements Consistency Checking Overview",
+            "content": "Checks consistency of requirements.\n\nThe Model Advisor performs a checkout of the Simulink Check license when you run the requirements consistency checking checks."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Checks Model Advisor Checks (Simulink Coder)"
+        },
+        {
+            "heading": "S-function Checks Overview",
+            "content": "Checks the S-functions in a model or a library to identify potential problems and improvements."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Quality Checks on S-Functions Using S-Function Analyzer Troubleshoot S-Function Checks"
+        },
+        {
+            "heading": "Modeling Single-Precision Systems Overview",
+            "content": "Checks for blocks that introduce double-precision operations."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Simulink Checks Model Advisor Checks (Simulink Coder)"
+        },
+        {
+            "heading": "Identify unconnected lines, input ports, and output ports",
+            "content": "Check ID: mathworks.design.UnconnectedLinesPorts\n\nCheck for unconnected lines or ports."
+        },
+        {
+            "heading": "Description",
+            "content": "This check lists unconnected lines or ports. These can have difficulty propagating signal attributes such as data type, sample time, and dimensions.\n\nNotePorts connected to ground/terminator blocks will pass this test."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionLines, input ports, or output ports are unconnected.Connect the signals. Double-click the list of unconnected items to locate failure."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your library models.Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "Tips",
+            "content": "Use the PortConnectivity command to obtain an array of structures describing block input or output ports."
+        },
+        {
+            "heading": "See Also",
+            "content": "Common Block Properties for information on the PortConnectivity command.\n\nModel Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check root model Inport block specifications",
+            "content": "Check ID: mathworks.design.RootInportSpec\n\nCheck that root model Inport blocks fully define dimensions, sample time, and data type."
+        },
+        {
+            "heading": "Description",
+            "content": "Using root model Inport blocks that do not fully define dimensions, sample time, or data type can lead to undesired simulation results. Simulink software back-propagates dimensions, sample times and data types from downstream blocks unless you explicitly assign them values."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionRoot-level Inport blocks have undefined attributes.Fully define the attributes of the root-level Inport blocks."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "If you have a Simulink Check license, you can exclude blocks and charts from this check."
+        },
+        {
+            "heading": "Tips",
+            "content": "The following configurations pass this check:\n\nConfiguration Parameters > Solver > Periodic sample time constraint is set to Ensure sample time independent For export-function models, inherited sample time is not flagged."
+        },
+        {
+            "heading": "See Also",
+            "content": "About Data Types in Simulink.Determine Signal Dimensions. Model Advisor Exclusion Overview (Simulink Check)Specify Sample TimePeriodic sample time constraint"
+        },
+        {
+            "heading": "Check optimization settings",
+            "content": "Check ID: mathworks.design.OptimizationSettings\n\nCheck for optimizations that can lead to non-optimal code generation and simulation."
+        },
+        {
+            "heading": "Description",
+            "content": "This check reviews the status of optimizations that can improve code efficiency and simulation time."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThe specified optimizations are off.Select the following optimization check boxes on the Optimization pane in the Configuration Parameters dialog box: Remove root level I/O zero initialization (Embedded Coder) Remove internal data zero initialization (Embedded Coder) Select the following optimization check boxes on the Optimization pane in the Configuration Parameters dialog box:Inline invariant signals (Simulink Coder) (only if you have a Simulink Coder license)Select the following optimization check boxes in the Configuration Parameters dialog box: Block reduction Conditional input branch execution Implement logic signals as Boolean data (vs. double) Use memset to initialize floats and doubles to 0.0 (Simulink Coder) Remove code from floating-point to integer conversions that wraps out-of-range values (Simulink Coder) (only if you have a Simulink Coder license)Signal storage reuse (Simulink Coder) (only if you have a Simulink Coder license) Enable local block outputs (Simulink Coder) Reuse local block outputs (Simulink Coder) Eliminate superfluous local variables (Expression folding) (Simulink Coder) Select the following optimization check boxes on the Optimization pane in the Configuration Parameters dialog box:NoteModel Advisor checks these parameters only if there is a Stateflow chart in the model. Use bitsets for storing state configuration (Simulink Coder) Use bitsets for storing Boolean data (Simulink Coder) Application lifespan (days) is set as infinite. This could lead to expensive 64-bit counter usage. Choose a stop time if this is not intended.The specified diagnostics, which can increase the time it takes to simulate your model, are set to warning or error.Select none for: Solver data inconsistencyArray bounds exceededDiagnostics > Data Validity > Simulation range checking The specified Embedded CoderÂ® parameters are off.If you have an Embedded Coder license and you are using an ERT-based system target file: Select Single output/update function. For details, see Single output/update function (Simulink Coder).Select Ignore test point signals. For details, see Ignore test point signals (Embedded Coder).Set Pass reusable subsystem outputs as to Individual arguments. For details, see Pass reusable subsystem outputs as (Embedded Coder)."
+        },
+        {
+            "heading": "Tips",
+            "content": "If the system contains Model blocks and the referenced model is in Accelerator mode, simulating the model requires generating and compiling code.\n\ncheck"
+        },
+        {
+            "heading": "See Also",
+            "content": "Model Configuration Parameters: Code Generation Optimization (Simulink Coder)"
+        },
+        {
+            "heading": "Check diagnostic settings ignored during accelerated model reference simulation",
+            "content": "Check ID: mathworks.design.ModelRefSIMConfigCompliance\n\nChecks for referenced models for which Simulink changes configuration parameter settings during accelerated simulation."
+        },
+        {
+            "heading": "Description",
+            "content": "For models referenced in accelerator mode, Simulink ignores the settings of the following configuration parameters that you set to a value other than None.\n\nArray bounds exceededDiagnostics > Data Validity > Inf or NaN block outputDiagnostics > Data Validity > Division by singular matrixDiagnostics > Data Validity > Wrap on overflow\n\nAlso, for models referenced in accelerator mode, Simulink ignores the following Configuration Parameters > Diagnostics > Data Validity > Data Store Memory block parameters if you set them to a value other than Disable all. For details, see Data Store Diagnostics.\n\nDetect read before writeDetect write after read Detect write after write"
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionYou want to see the results of running the identified diagnostics with settings to produce warnings or errors.Simulate the model in Normal mode and resolve diagnostic warnings or errors."
+        },
+        {
+            "heading": "Check for parameter tunability information ignored for referenced models",
+            "content": "Check ID: mathworks.design.ParamTunabilityIgnored\n\nChecks if parameter tunability information is included in the Model Parameter Configuration dialog box."
+        },
+        {
+            "heading": "Description",
+            "content": "Simulink software ignores tunability information specified in the Model Parameter Configuration dialog box. This check identifies those models containing parameter tunability information that Simulink software will ignore if the model is referenced by other models."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModel contains ignored parameter tunability information.Click the links to convert to equivalent Simulink parameter objects in the MATLAB workspace."
+        },
+        {
+            "heading": "See Also",
+            "content": "Create Tunable Calibration Parameter in the Generated Code (Simulink Coder)"
+        },
+        {
+            "heading": "Check for implicit signal resolution",
+            "content": "Check ID: mathworks.design.ImplicitSignalResolution\n\nIdentify models that attempt to resolve named signals and states to Simulink.Signal objects."
+        },
+        {
+            "heading": "Description",
+            "content": "Requiring Simulink software to resolve all named signals and states is inefficient and slows incremental code generation and model reference. This check identifies those signals and states for which you may turn off implicit signal resolution and enforce resolution."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionNot all signals and states are resolved.Turn off implicit signal resolution and enforce resolution for each signal and state that does resolve."
+        },
+        {
+            "heading": "See Also",
+            "content": "Resolve Signal Objects for Output Variables."
+        },
+        {
+            "heading": "Check for optimal bus virtuality",
+            "content": "Check ID: mathworks.design.OptBusVirtuality\n\nIdentify virtual buses that could be made nonvirtual. Making these buses nonvirtual improves generated code efficiency."
+        },
+        {
+            "heading": "Description",
+            "content": "This check identifies blocks incorporating virtual buses that cross a subsystem boundary. Changing these to nonvirtual improves generated code efficiency."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionBlocks that specify a virtual bus crossing a model reference boundary.Change the highlighted bus to nonvirtual."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your library models.Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "See Also",
+            "content": "Signal Basics Composite Interface Guidelines Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check for Discrete-Time Integrator blocks with initial condition uncertainty",
+            "content": "Check ID: mathworks.design.DiscreteTimeIntegratorInitCondition\n\nIdentify Discrete-Time Integrator blocks with state ports and initial condition ports that are fed by neither an Initial Condition nor a Constant block."
+        },
+        {
+            "heading": "Description",
+            "content": "Discrete-Time Integrator blocks with state port and initial condition ports might not be suitably initialized unless they are fed from an Initial Condition or Constant block. This is more likely to happen when Discrete-Time Integrator blocks are used to model second-order or higher-order dynamic systems."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionDiscrete-Time Integrator blocks are not initialized during the model initialization phase.Add a Constant or Initial Condition block to feed the external Initial Condition port."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your library models.Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "See Also",
+            "content": "IC blockDiscrete-Time Integrator blockConstant block Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Identify disabled library links",
+            "content": "Check ID: mathworks.design.DisabledLibLinks\n\nSearch model for disabled library links."
+        },
+        {
+            "heading": "Description",
+            "content": "Disabled library links can cause unexpected simulation results. Resolve disabled links before saving a model.\n\nNoteThis check may overlap with Check model for block upgrade issues."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionLibrary links are disabled.Click the Library Link > Resolve link option in the context menu."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your library models.Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "Tips",
+            "content": "Use the Model Browser to find library links.To enable a broken link, right-click a block in your model to display the context menu. Select Library Link > Resolve link."
+        },
+        {
+            "heading": "See Also",
+            "content": "Restore Disabled Links\n\nModel Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check for large number of function arguments from virtual bus across model reference boundary",
+            "content": "Check ID: mathworks.design.CheckVirtualBusAcrossModelReferenceArgs\n\nChecks virtual buses that cross model reference boundaries and flags cases where using virtual buses across a model reference boundary increases the number of function arguments significantly."
+        },
+        {
+            "heading": "Description",
+            "content": "To improve the speed of the code generation process, you can use this check to reduce the number of generated function arguments. If the check finds a model that where many arguments will be generated for a function, you can click Update Model to modify the model so that it generates fewer arguments."
+        },
+        {
+            "heading": "Results and Recommended Action",
+            "content": "Methods that generate many function arguments as the result of a virtual bus crossing model reference boundary slow down the code generation process.\n\nConditionRecommended ActionMethods are listed that generate a large number of arguments for the current the model configuration that this check can reduce by modifying the model.Click Update Model.\n\nClicking Update Model resets Inport and Outport block parameters and inserts Signal Conversion blocks, as necessary, to reduce the number of generated function arguments for the model."
+        },
+        {
+            "heading": "See Also",
+            "content": "Use Buses at Model Interfaces"
+        },
+        {
+            "heading": "Identify parameterized library links",
+            "content": "Check ID: mathworks.design.ParameterizedLibLinks\n\nSearch model for parameterized library links."
+        },
+        {
+            "heading": "Description",
+            "content": "Parameterized library links that are unintentional can result in unexpected parameter settings in your model. This can result in improper model operation."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionParameterized links are listed.Verify that the links are intended to be parameterized."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your library models.Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "Tips",
+            "content": "Right-click a block in your model to display the context menu. Choose Link Options and click Go To Library Block to see the original block from the library.To parameterize a library link, choose Look Under Mask, from the context menu and select the parameter."
+        },
+        {
+            "heading": "See Also",
+            "content": "Restore Disabled Links\n\nModel Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Identify unresolved library links",
+            "content": "Check ID: mathworks.design.UnresolvedLibLinks\n\nSearch the model for unresolved library links, where the specified library block cannot be found."
+        },
+        {
+            "heading": "Description",
+            "content": "Check for unresolved library links. Models do not simulate while there are unresolved library links."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionLibrary links are unresolved.Locate missing library block or an alternative."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your library models.Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "See Also",
+            "content": "Fix Unresolved Library Links\n\nModel Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Identify configurable subsystem blocks for converting to variant subsystem blocks",
+            "content": "Check ID: mathworks.design.CSStoVSSConvert\n\nSearch the model to identify configurable subsystem blocks at the model or subsystem level."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended Action Configurable subsystem blocks are identified.Convert these blocks to variant subsystem blocks to avoid compatibility issues. See Convert Configurable Subsystem to Variant Subsystem."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can run this check on your library models."
+        },
+        {
+            "heading": "See Also",
+            "content": "Simulink.VariantUtils.convertToVariantSubsystem"
+        },
+        {
+            "heading": "Identify Variant Model blocks and convert those to Variant Subsystem containing Model block choices",
+            "content": "Check ID: mathworks.design.ConvertMdlrefVarToVSS\n\nSearch the model to identify Variant Model blocks."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionVariant Model blocks available in the model are listed.Convert these blocks to Variant Subsystem blocks."
+        },
+        {
+            "heading": "See Also",
+            "content": "Simulink.VariantUtils.convertToVariantSubsystem"
+        },
+        {
+            "heading": "Identify Variant blocks using Variant objects with empty conditions",
+            "content": "Check ID: mathworks.design.emptyVariantObjects\n\nSearch the model to identify the Variant blocks or library having empty Variant objects."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThe Variant blocks in the model or library having empty Variant objects are listed.Use valid conditions in the variant objects."
+        },
+        {
+            "heading": "See Also",
+            "content": "Introduction to Variant Controls"
+        },
+        {
+            "heading": "Check usage of function-call connections",
+            "content": "Check ID: mathworks.design.CheckForProperFcnCallUsage\n\nCheck model diagnostic settings that apply to function-call connectivity and that might impact model execution."
+        },
+        {
+            "heading": "Description",
+            "content": "Check for connectivity diagnostic settings that might lead to non-deterministic model execution."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionConfiguration parameter Context-dependent inputs is set to Warning. This might lead to non-deterministic model execution.Set Configuration parameter Context-dependent inputs to Error."
+        },
+        {
+            "heading": "See Also",
+            "content": "Function-Call Subsystem"
+        },
+        {
+            "heading": "Managing Data Store Memory Blocks",
+            "content": "Use these checks for the Data Store Memory Blocks to configure your model for acceptable usage of Data Store Memory blocks."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Model Advisor Checks (Simulink Coder) Simulink Check Checks (Simulink Check)"
+        },
+        {
+            "heading": "Check Data Store Memory blocks for multitasking, strong typing, and shadowing issues",
+            "content": "Check ID: mathworks.design.DataStoreMemoryBlkIssue\n\nLook for modeling issues related to Data Store Memory blocks."
+        },
+        {
+            "heading": "Description",
+            "content": "Checks for multitasking data integrity, strong typing, and shadowing of data stores of higher scope."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThe Duplicate data store names check is set to none or warning. Consider setting the Duplicate data store names check to error in the Configuration Parameters dialog box, on the Diagnostics > Data Validity pane.The data store variable names are not strongly typed in one of the following: Signal Attributes pane of the Block Parameters dialog for the Date Store Memory blockGlobal data store name Specify a data type other than auto by taking one of the following actions: Choose a data type other than Inherit: auto on the Signal Attributes pane of the Block Parameters dialog for the Date Store Memory block.If you are using a global data store name, then specify its data type in the Simulink.Signal object. The Multitask data store check is set to none or warning. Consider setting the Multitask data store check to error in the Configuration Parameters dialog box, on the Diagnostics > Data Validity pane."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "If you have a Simulink Check license, you can exclude blocks and charts from this check."
+        },
+        {
+            "heading": "See Also",
+            "content": "Local and Global Data Stores Storage Classes for Data Store Memory Blocks (Simulink Coder) Data Store MemoryData Store ReadData Store Write Duplicate data store names Multitask data store Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check if read/write diagnostics are enabled for data store blocks",
+            "content": "Check ID: mathworks.design.DiagnosticDataStoreBlk\n\nFor data store blocks in the model, enable the read-and-write diagnostics order checking to detect run-time issues."
+        },
+        {
+            "heading": "Description",
+            "content": "Check for the read-and-write diagnostics order checking. By enabling the read-and-write diagnostics, you detect potential run-time issues."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThe Detect read before write check is disabled.Consider enabling Detect read before write in the Configuration Parameter dialog box Diagnostics> Data Validity pane.The Detect write after read check is disabled.Consider enabling Detect write after read in the Configuration Parameter dialog box Diagnostics> Data Validity pane.The Detect write after write check is disabled.Consider enabling Detect write after write in the Configuration Parameter dialog box Diagnostics> Data Validity pane."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "Tips",
+            "content": ".\n\nThe run-time diagnostics can slow simulations down considerably. Once you have verified that Simulink does not generate warnings or errors during simulation, set them to Disable all."
+        },
+        {
+            "heading": "See Also",
+            "content": "Local and Global Data Stores Data Store MemoryData Store ReadData Store Write Detect read before write Detect write after read Detect write after write Check for potential ordering issues involving data store access Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check data store block sample times for modeling errors",
+            "content": "Check ID: mathworks.design.DataStoreBlkSampleTime\n\nIdentify modeling errors due to the sample times of data store blocks."
+        },
+        {
+            "heading": "Description",
+            "content": "Check data store blocks for continuous or fixed-in-minor-step sample times."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionData store blocks in your model have continuous or fixed-in-minor-step sample times.Consider making the listed blocks discrete or replacing them with either Memory or Goto and From blocks."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "If you have a Simulink Check license, you can exclude blocks and charts from this check."
+        },
+        {
+            "heading": "See Also",
+            "content": "Local and Global Data Stores Data Store MemoryData Store ReadData Store Write Fixed-in-Minor-Step Sample Time Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check for potential ordering issues involving data store access",
+            "content": "Check ID: mathworks.design.OrderingDataStoreAccess\n\nLook for read/write issues which may cause inaccuracies in the results."
+        },
+        {
+            "heading": "Description",
+            "content": "During an Update Diagram, identify potential issues relating to read-before-write, write-after-read, and write-after-write conditions for data store blocks."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionReading and writing (read-before-write or write-after-read condition) occur out of order.Consider restructuring your model so that the Data Store Read block executes before the Data Store Write block.Multiple writes occur within a single time step.Change the model to write data only once per time step or refer to the following Tips section."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "If you have a Simulink Check license, you can exclude blocks and charts from this check."
+        },
+        {
+            "heading": "Tips",
+            "content": "This check performs a static analysis which might not identify every instance of improper usage. Specifically, Function-Call Subsystems, Stateflow Charts, MATLAB for code generation, For Iterator Subsystems, and For Each Subsystems can cause both missed detections and false positives. For a more comprehensive check, consider enabling the following diagnostics on the Diagnostics > Data Validity pane in the Configuration Parameters dialog box: Detect read before write, Detect write after read, and Detect write after write."
+        },
+        {
+            "heading": "See Also",
+            "content": "Local and Global Data Stores Data Store MemoryData Store ReadData Store Write Detect read before write Detect write after read Detect write after write Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check structure parameter usage with bus signals",
+            "content": "Check ID: mathworks.design.MismatchedBusParams\n\nIdentify blocks and Simulink.Signal objects that initialize buses by using mismatched structures."
+        },
+        {
+            "heading": "Description",
+            "content": "In a model, you can use a MATLAB structure to initialize a bus. For example, if you pass a bus through a Unit Delay block, you can set the Initial condition parameter to a structure. For basic information about initializing buses by using structures, see Specify Initial Conditions for Bus Elements.\n\nRun this check to generate efficient and readable code by matching the shape and numeric data types of initial condition structures with those of buses. Matching these characteristics avoids unnecessary explicit typecasts and replaces field-by-field structure assignments with, for example, calls to memcpy."
+        },
+        {
+            "heading": "Partial Structures",
+            "content": "This check lists blocks and Simulink.Signal objects that initialize buses by using partial structures. During the iterative process of creating a model, you can use partial structures to focus on a subset of signal elements in a bus. For a mature model, use full structures to:\n\nGenerate readable and efficient code.Support a modeling style that explicitly initializes unspecified signals. When you use partial structures, Simulink implicitly initializes unspecified signals.\n\nFor more information about full and partial structures, see Specify Initial Conditions for Bus Elements."
+        },
+        {
+            "heading": "Data Type Mismatches",
+            "content": "This check lists blocks and Simulink.Signal objects whose initial condition structures introduce data type mismatches. The fields of these structures have numeric data types that do not match the data types of the corresponding bus elements.\n\nThis check does not detect a mismatch for blocks, such as the Unit Delay block, that implicitly convert the data type of initial condition to the input signal.\n\nWhen you configure an initial condition structure to appear as a tunable global structure in the generated code, avoid unnecessary explicit typecasts by matching the data types. See Generate Tunable Initial Condition Structure for Bus (Simulink Coder)."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionBlock or signal object uses partial structureConsider using the function Simulink.Bus.createMATLABStructure to create a full initial condition structure.Data types of structure fields do not match data types of corresponding signal elementsConsider defining the structure as a Simulink.Parameter object, and creating a Simulink.Bus object to use as the data type of the bus and of the parameter object. To control numeric data types, use the Simulink.BusElement objects in the bus object."
+        },
+        {
+            "heading": "See Also",
+            "content": "Specify Initial Conditions for Bus Elements Generate Tunable Initial Condition Structure for Bus (Simulink Coder) Data Stores with Signal Objects Simulink.Bus.createMATLABStructSimulink.Signal"
+        },
+        {
+            "heading": "Check Delay, Unit Delay and Zero-Order Hold blocks for rate transition",
+            "content": "Check ID: mathworks.design.ReplaceZOHDelayByRTB\n\nIdentify Delay, Unit Delay, or Zero-Order Hold blocks that are used for rate transition. Replace these blocks with actual Rate Transition blocks."
+        },
+        {
+            "heading": "Description",
+            "content": "If a model uses Delay, Unit Delay, or Zero-Order Hold blocks to provide rate transition between input and output signals, Simulink makes a hidden replacement of these blocks with built-in Rate Transition blocks. In the compiled block diagram, a yellow symbol and the letters âRTâ appear in the upper-left corner of a replacement block. This replacement can affect the behavior of the model, as follows:\n\nThese blocks lose their algorithmic design properties to delay a signal or implement zero-order hold. Instead, they acquire rate transition behavior.This modeling technique works only in specific transition configurations (slow-to-fast for Delay and Unit Delay blocks, and fast-to-slow for Zero-Order Hold block). Set the block sample time to be equal to the slower rate (source for the Delay and Unit Delay blocks and destination for the Zero-Order Hold block).When the block sample time of a downstream or upstream block changes, these Delay, Unit Delay and Zero-Order Hold blocks might not perform rate transition. For example, setting the source and destination sample times equal stops rate transition. The blocks then assume their original algorithmic design properties.The block sample time shows incomplete information about sample time rates. The block code runs at two different rates to handle data transfer. However, the block sample time and sample time color show it as a single-rate block. Tools and MATLAB scripts that use sample time information base their behavior on this information.\n\nAn alternative is to replace Delay, Unit Delay, or Zero-Order Hold blocks with actual Rate Transition blocks.\n\nThe technique ensures unambiguous results in block behavior. Delay, Unit Delay, or Zero-Order Hold blocks act according to their algorithmic design to delay and hold signals respectively. Only Rate Transition blocks perform actual rate transition.Using an actual Rate Transition block for rate transition offers a configurable solution to handle data transfer if you want to specify deterministic behavior or the type of memory buffers to implement.\n\nUse this check to identify instances in your model where Delay, Unit Delay or Zero-Order Hold blocks undergo hidden replacement to provide rate transition between signals. Click Upgrade Model to replace these blocks with actual Rate Transition blocks."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModel has no instances of Delay, Unit Delay, or Zero-Order Hold blocks used for rate transition.No action required.Model has instances of Delay, Unit Delay, or Zero-Order Hold blocks used for rate transition. The check identifies these instances and allows you to upgrade the model. Click Upgrade Model to replace with actual Rate Transition blocks.Save changes to your model.\n\nIf you do not choose to replace the Delay, Unit Delay, and/or Zero-Order Hold blocks with actual Rate Transition blocks, Simulink continues to perform a hidden replacement of these blocks with built-in rate transition blocks."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your library models.Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Model Upgrades Rate Transition Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check for calls to slDataTypeAndScale",
+            "content": "Check ID: mathworks.design.CallslDataTypeAndScale\n\nIdentify calls to the internal function slDataTypeAndScale."
+        },
+        {
+            "heading": "Description",
+            "content": "In some previous versions of Simulink, opening a model that had been saved in an earlier version triggers an automatic upgrade to code for data type handling. The automatic upgrade inserts calls to the internal function slDataTypeAndScale. Although Simulink continues to support some uses of the function, if you eliminate calls to it, you get cleaner and faster code.\n\nSimulink does not support calls to slDataTypeAndScale when:\n\nThe first argument is a Simulink.AliasType object.The first argument is a Simulink.NumericType object with property IsAlias set to true.\n\nRunning Check for calls to slDataTypeAndScale identifies calls to slDataTypeAndScale that are required or recommended for replacement. In most cases, running the check and following the recommended action removes the calls. You can ignore calls that remain. Run the check unless you are sure there are not calls to slDataTypeAndScale."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionRequired Replacement CasesManually or automatically replace calls to slDataTypeAndScale. Cases listed require you to replace calls to slDataTypeAndScale.Recommended Replacement CasesFor the listed cases, it is recommended that you manually or automatically replace calls to slDataTypeAndScale. Manual Inspection CasesInspect each listed case to determine whether it should be manually upgraded."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "If you have a Simulink Check license, you can exclude blocks and charts from this check."
+        },
+        {
+            "heading": "Tips",
+            "content": "Do not manually insert a call to slDataTypeAndScale into a model. The function was for internal use only.Running Check for calls to slDataTypeAndScale calls the Simulink function slRemoveDataTypeAndScale. Calling this function directly provides a wider range of conversion options. However, you very rarely need more conversion options."
+        },
+        {
+            "heading": "See Also",
+            "content": "For more information about upgrading data types and scales, in the MATLAB Command Window, execute the following:help slDataTypeAndScalehelp slRemoveDataTypeAndScale Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check bus signals treated as vectors",
+            "content": "Check ID: mathworks.design.BusTreatedAsVector\n\nIdentify buses that Simulink treats as vectors."
+        },
+        {
+            "heading": "Description",
+            "content": "You cannot use buses that the Simulink software implicitly converts to vectors. Instead, either insert a Bus to Vector conversion block between the bus and the block input port that it feeds, or use the Simulink.BlockDiagram.addBusToVector function."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionBuses are implicitly converted to vectors.Use Simulink.BlockDiagram.addBusToVector or insert a Bus to Vector block.Model is not configured to identify buses that Simulink treats as vectors.In the Configuration Parameters dialog box, on the Diagnostics > Connectivity pane, set Bus signal treated as vector to error."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking Modify inserts a Bus to Vector block at the input ports of blocks that implicitly convert buses to vectors."
+        },
+        {
+            "heading": "Tips",
+            "content": "Run this check before running Check consistency of initialization parameters for Outport and Merge blocks.For more information, see Identify Automatic Bus Conversions."
+        },
+        {
+            "heading": "See Also",
+            "content": "Identify Automatic Bus Conversions Bus to Vector block Bus signal treated as vector Migrating to Simplified Initialization Mode Overview Simulink.BlockDiagram.addBusToVector"
+        },
+        {
+            "heading": "Check for potentially delayed function-call subsystem return values",
+            "content": "Check ID: mathworks.design.DelayedFcnCallSubsys\n\nIdentify function-call return values that might be delayed because Simulink software inserted an implicit Signal Conversion block."
+        },
+        {
+            "heading": "Description",
+            "content": "So that signals reside in contiguous memory, Simulink software can automatically insert an implicit Signal Conversion block in front of function-call initiator block input ports. This can result in a one-step delay in returning signal values from calling function-call subsystems. The delay can be avoided by ensuring the signal originates from a signal block within the function-call system. Or, if the delay is acceptable, insert a Unit Delay block in front of the affected input ports."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThe listed block input ports could have an implicit Signal Conversion block.Decide if a one-step delay in returning signal values is acceptable for the listed signals.If the delay is not acceptable, rework your model so that the input signal originates from within the calling subsystem.If the delay is acceptable, insert a Unit Delay block in front of each listed input port."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "If you have a Simulink Check license, you can exclude blocks and charts from this check."
+        },
+        {
+            "heading": "See Also",
+            "content": "Signal Conversion block\n\nUnit Delay block\n\nModel Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Identify block output signals with continuous sample time and non-floating point data type",
+            "content": "Check ID: mathworks.design.OutputSignalSampleTime\n\nFind continuous sample time, non-floating-point output signals."
+        },
+        {
+            "heading": "Description",
+            "content": "Non-floating-point signals might not represent continuous variables without loss of information."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionSignals with continuous sample times have a non-floating-point data type.On the identified signals, either change the sample time to be discrete or fixed-in-minor-step ([0 1])."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "If you have a Simulink Check license, you can exclude blocks and charts from this check."
+        },
+        {
+            "heading": "See Also",
+            "content": "What Is Sample Time?.\n\nModel Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check usage of Merge blocks",
+            "content": "Check ID: mathworks.design.MergeBlkUsage\n\nIdentify Merge blocks with parameter settings that can lead to unexpected behavior, and help migrate your model to simplified initialization mode.\n\nNoteRun this check along with the other checks in the Migrating to Simplified Initialization Mode Overview."
+        },
+        {
+            "heading": "Description",
+            "content": "Simplified initialization mode was introduced in R2008b to improve the consistency of simulation results. For more information, see Simplified Initialization Mode and Classic Initialization Mode.\n\nThis Model Advisor check identifies settings in the Merge blocks in your model that can cause problems if you use classic initialization mode. It also recommends settings for consistent behavior of Merge blocks. The results of the subchecks contain two types of statements: Failed and Warning. Failed statements identify issues that you must address manually before you can migrate the model to the simplified initialization mode. Warning statements identify issues or changes in behavior that can occur after migration."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionCheck the run-time diagnostic setting of the Merge block. In the Configuration Parameters dialog box, set Detect multiple driving blocks executing at the same time step to error. Verify that the model simulates without errors before running this check again. Check for Model blocks that are using the PIL simulation mode.The simplified initialization mode does not support the Processor-in-the-loop (PIL) simulation for model references.Check for library blocks with instances that cannot be migrated.Examine the failed subcheck results for each block to determine the corrective actions.Check for single-input Merge blocks.Replace both the Mux block used to produce the input signal and the Merge block with one multi-input Merge block.Single-input Merge blocks are not supported in the simplified initialization mode.Check for root Merge blocks that have an unspecified Initial output value.If you do not specify an explicit value for the Initial output parameter of root Merge blocks, then Simulink uses the default initial value of the output data type.A root Merge block is a Merge block with an output port that does not connect to another Merge block. For information on the default initial value, see Initialize Signal Values.Check for Merge blocks with nonzero input port offsets.Clear the Allow unequal port widths parameter of the Merge block. NoteConsider using Merge blocks only for signal elements that require true merging. You can combine other elements with merged elements using the Concatenate block.Check for Merge blocks that have unconnected inputs or that have inputs from non-conditionally executed subsystems.Set the Number of inputs parameter of the Merge block to the number of Merge block inputs. You must connect each input to a signal. Verify that each Merge block input is driven by a conditionally executed subsystem. Merge blocks cannot be driven directly by an Iterator Subsystem or a block that is not a conditionally executed subsystem.Check for Merge blocks with inputs that are combined or reordered outside of conditionally executed subsystems.Verify that combinations or reordering of Merge block input signals takes place within a conditionally executed subsystem. Such designs may use Mux, Bus Creator, or Selector blocks.Check for Merge blocks with multiple input ports that are driven by a single source.Verify that the Merge block does not have multiple input signals that are driven by the same conditionally executed subsystem or conditionally executed Model block. Check for Merge blocks that use signal objects to specify the Initial output value.Verify that the following behavior is acceptable.In the simplified initialization mode, signal objects cannot specify the Initial output parameter of the Merge block. While you can still initialize the output signal for a Merge block using a signal object, the initialization result may be overwritten by that of the Merge block.NoteSimulink generates a warning that the initial value of the signal object has been ignored."
+        },
+        {
+            "heading": "See Also",
+            "content": "Migrating to Simplified Initialization Mode Overview Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check usage of Outport blocks",
+            "content": "Check ID: mathworks.design.InitParamOutportMergeBlk\n\nIdentify Outport blocks and conditional subsystems with parameter settings that can lead to unexpected behavior, and help migrate your model to simplified initialization mode.\n\nNoteRun this check along with the other checks in the Migrating to Simplified Initialization Mode Overview."
+        },
+        {
+            "heading": "Description",
+            "content": "Simplified initialization mode was introduced in R2008b to improve the consistency of simulation results. This mode is especially important for models that do not specify initial conditions for conditionally executed subsystem output ports. For more information, see Simplified Initialization Mode and Classic Initialization Mode.\n\nThis Model Advisor check identifies Outport blocks and conditional subsystems in your model that can cause problems if you use the simplified initialization mode. It also recommends settings for consistent behavior of Outport blocks. The results of the subchecks contain two types of statements: Failed and Warning. Failed statements identify issues that you must address manually before you can migrate the model to the simplified initialization mode. Warning statements identify issues or changes in behavior can occur after migration."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended Action Check for blocks inside of the Iterator Subsystem that require elapsed time. Within an Iterator Subsystem hierarchy, do not use blocks that require a service that maintains the time that has elapsed between two consecutive executions.Since an Iterator Subsystem can execute multiple times at a given time step, the concept of elapsed time is not well-defined between two such executions. Using these blocks inside of an Iterator Subsystem can cause unexpected behavior. Check for Outport blocks that have conflicting signal buffer requirements.The Outport block has a function-call trigger or function-call data dependency signal passing through it, along with standard data signals. Some of the standard data signals require an explicit signal buffer for the initialization of the output signal of the corresponding subsystem. However, buffering function-call related signals lead to a function-call data dependency violation. Consider modifying the model to pass function-call related signals through a separate Outport block. For examples of function-call data dependency violations, see Simulink Subsystem Semantics. A standard data signal may require an additional signal copy for one of the following reasons: The Outport block is driven by a block with output that cannot be overwritten. The Ground block and the Constant block are examples of such blocks.The Outport block shares the same signal source with another Outport block in the same subsystem or in one nested within the current subsystem but having a different initial output value.The Outport block connects to the input of a Merge blockOne of the input signals of the Outport block is specifying a Simulink.Signal object with an explicit initial value. Check for Outport blocks that are driven by a bus and whose Initial output value is not scalar.For Outport blocks driven by buses, classic initialization mode does not support Initial Condition (IC) structures, while simplified initialization mode does. Hence, when migrating a model from classic to simplified mode, specify a scalar for the Initial Output parameter. After migration completes, to specify different initial values for different elements of the bus, use IC structures. For more information, see Specify Initial Conditions for Bus Elements.Check for Outport blocks that require an explicit signal copy.An explicit copy of the bus driving the Outport block is required for the initialization of the output signal of the corresponding subsystem. Insert a Signal Conversion block before the Outport block, then set the Output parameter of the Signal Conversion block to Bus copy. A standard data signal may require an additional signal copy for one or more of the following reasons: A block with output that cannot be overwritten is driving the Outport block. The Ground block and the Constant block are examples of such blocks.The Outport block shares the same signal source with another Outport block in the same subsystem or in one nested within the current subsystem but having a different initial output value.The Outport block connects to the input of a Merge blockOne of the input signals of the Outport block is specifying a Simulink.Signal object with an explicit initial value. Check for merged Outport blocks that inherit the Initial Output value from Outport blocks that have been configured to reset when the blocks become disabled.When Outport blocks are driving a Merge block, do not set their Output when disabled parameters to reset.Check for merged Outport blocks that are driven by nested conditionally executed subsystems.Determine if the new behavior of the Outport blocks is acceptable. If it is not acceptable, modify the model to account for the new behavior before migrating to the simplified initialization mode.Check for merged Outport blocks that reset when the blocks are disabled.Set the Output when disabled parameter of the Outport block to held. This setting is required because the Outport block connects to a Merge block.For more information, see Outport.Check for Outport blocks that have an undefined Initial output value with invalid initial condition sources.Verify that the following behavior is acceptable.When the Initial output parameter is unspecified ([]), it inherits the initial output from the source blocks. If at least one of the sources of the Outport block is not a valid source to inherit the initial value, the block uses the default initial value for that data type.For simplified initialization mode, valid sources an Outport blocks can inherit the Initial output value from are: Constant, Initial Condition, Merge (with initial output), Stateflow chart, function-call model reference, or conditionally executed subsystem blocks. Check Outport blocks that have automatic rate transitions.Simulink has inserted a Rate Transition block at the input of the Outport block. Specify the Initial output parameter for each Outport block. Otherwise, perform the following procedure:In the Configuration Parameters dialog box, on the Solver pane, clear the option Automatically handle rate transition for data transfer.Run this Model Advisor check again.Check Outport blocks that have a special signal storage requirement and have an undefined Initial output value.Verify that the following behavior is acceptable.Specify the Initial output parameter for the Outport block. Set this value to [] (empty matrix) to use the default initial value of the output data type.Check the Initial output setting of Outport blocks that reset when they are disabled.Specify the Initial output parameter of the Outport block. You must specify the Initial output value for blocks that are configured to reset when they become disabled.Check the Initial output setting for Outport blocks that pass through a function-call data dependency signal.You cannot specify an Initial output value for the Outport block because function-call data dependency signals are passing through it. To set the Initial output value:Set the Initial output parameter of the Outport block to [].Provide the initial value at the source of the data dependency signal rather than at the Outport block.Check for Outport blocks that use signal objects to specify the Initial output value.Verify that the following behavior is acceptable.In the simplified initialization mode, signal objects cannot specify the Initial output parameter of an Outport block. You can still initialize the input or output signals for an Outport block using signal objects, but the initialization results may be overwritten by those of the Outport block.NoteIf you are working with a conditionally executed subsystem Outport block, Simulink generates a warning that the initial value of the signal object has been ignored.Check for library blocks with instances that have warnings.Examine the warning subcheck results for each block before migrating to the simplified initialization mode.Check for merged Outport blocks that are either unconnected or connected to a Ground block.Verify that the following behavior is acceptable. The Outport block is driving a Merge block, but its inputs are either unconnected or connected to Ground blocks. In the classic initialization mode, unconnected or grounded output ports do not update the merge signal even when their parent conditionally executed subsystems are executing. In the simplified initialization mode, however, these output ports will update the merge signal with a value of zero when their parent conditionally executed subsystems are executing.Check for Outport blocks that obtain the Initial output value from an input signal when they are migrated.Verify that the following behavior is acceptable.The Initial output parameter of the Outport block is not specified. As a result, the simplified initialization mode will assume that the Initial output value for the Outport block is derived from the input signal. This assumption may result in different initialization behavior.If this behavior is not acceptable, modify your model before you migrate to the simplified initialization mode.Check for outer Outport blocks that have an explicit Initial output.Verify that the following behavior is acceptable.In classic initialization mode, the Initial output and Output when disabled parameters of the Outport block must match those of their source Outport blocks.In simplified initialization mode, Simulink sets the Initial output parameter of outer Outport blocks to [] (empty matrix) and Output when disabled parameter to held.Check for blocks that read input from conditionally executed subsystems during initialization.Verify that the following behavior is acceptable.Some blocks, such as the Discrete-Time Integrator block, read their inputs from conditionally executed subsystems during initialization in the classic initialization mode. Simulink performs this step as an optimization technique.This optimization is not allowed in the simplified initialization mode because the output of a conditionally executed subsystem at the first time step after initialization may be different than the initial value declared in the corresponding Outport block. In particular, this discrepancy occurs if the subsystem is active at the first time step.Check for a migration conflict for Outport blocks that use a Dialog as the Source of initial output value.Other instances of Outport blocks with the same library link either cannot be migrated or are being migrated in a different manner. Review the results from the Check for library blocks with instances that cannot be migrated to learn about the different migration paths for other instances of each Outport block.The Outport block will maintain its current settings and use its specified Initial output value.Check for a migration conflict for Outport blocks that use Input signal as the Source of initial output value.Other instances of Outport blocks with the same library link either cannot be migrated or are being migrated in a different manner. Review the results from the Check for library blocks with instances that cannot be migrated to learn about the different migration paths for other instances of each Outport block.The Outport block currently specifies an Initial output of [] (empty matrix), and the Output when disabled as held. This means that each output port does not perform initialization, but implicitly relies on source blocks to initialize its input signal. After migration, the parameter Source of initial output value will be set to Input signal to reflect this behavior. Check for a migration conflict for Outport blocks that have SimEventsÂ® semantics.Other instances of Outport blocks with the same library link either cannot be migrated or are being migrated in a different manner. Review the results from the Check for library blocks with instances that cannot be migrated to learn about the different migration paths for other instances of each Outport block.The Outport blocks will continue to use an Initial output value of [] (empty matrix) and an Output when disabled setting of held. Simulink will maintain these settings because their parent conditionally executed subsystems are connected to SimEvents blocks. Check for a migration conflict for innermost Outport blocks with variable-size input and unspecified Initial output.For these Outport blocks, the signal size varies only when the parent subsystem of the block is re-enabled. Therefore, Simulink implicitly assumes that the Initial output parameter is equal to 0, even though the parameter is unspecified, []. Consequently, unless you specify the parameter, the Model Advisor will explicitly set the parameter to 0 when the model is migrated to the simplified initialization mode. Other instances of Outport blocks with the same library link either cannot be migrated or are being migrated in a different manner. Review the results from the Check for library blocks with instances that cannot be migrated to learn about the different migration paths for other instances of each Outport block.Check for a migration conflict for Outport blocks that use a default ground value as the Initial output.The parameter Initial output is set to [] (empty matrix) and the source of the Outport is an invalid initial condition source. Thus, the block uses the default initial value as the initial output in the simplified initialization mode. Other instances of Outport blocks with the same library link either have errors or are being migrated differently.Check for a migration conflict for merged Outport blocks without explicit specification of Initial output.Review the results from the subcheck Check for library blocks with instances that cannot be migrated to learn about different migration paths for other instances of each Outport block. For the remaining Outport blocks, Initial output is set to [] (empty matrix) and Output when disabled is set to held respectively, in simplified initialization mode."
+        },
+        {
+            "heading": "See Also",
+            "content": "Migrating to Simplified Initialization Mode Overview Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check usage of Discrete-Time Integrator blocks",
+            "content": "Check ID: mathworks.design.DiscreteBlock\n\nIdentify Discrete-Time Integrator blocks with parameter settings that can lead to unexpected behavior, and help migrate your model to simplified initialization mode.\n\nNoteRun this check along with the other checks in the Migrating to Simplified Initialization Mode Overview."
+        },
+        {
+            "heading": "Description",
+            "content": "Simplified initialization mode was introduced in R2008b to improve the consistency of simulation results. For more information, see Simplified Initialization Mode and Classic Initialization Mode.\n\nThis Model Advisor check identifies settings in Discrete-Time Integrator blocks in your model that can cause problems if you use the simplified initialization mode. It also recommends settings for consistent behavior of Discrete-Time Integrator blocks. The results of the subchecks contain two types of statements: Failed and Warning. Failed statements identify issues that you must address manually before you can migrate the model to the simplified initialization mode. Warning statements identify issues or changes in behavior that can occur after migration."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionCheck for Discrete-Time Integrator blocks whose parameter Initial condition setting is set to Output.Determine if the new behavior of the Discrete-Time Integrator blocks is acceptable. If it is not acceptable, modify the model to account for the new behavior before migrating to the simplified initialization mode.Check for Discrete-Time Integrator blocks whose Initial condition setting parameter is set to State (most efficient) and are in a subsystem that uses triggered sample time.Use periodic sample time for the block, or set Initial Condition setting to Output.Check for blocks inside of the Iterator Subsystem that require elapsed time.Within an Iterator Subsystem hierarchy, do not use blocks that require a service that maintains the time that has elapsed between two consecutive executions.Since an Iterator Subsystem can execute multiple times at a given time step, the concept of elapsed time is not well-defined between two such executions. Using these blocks inside of an Iterator Subsystem can cause unexpected behavior."
+        },
+        {
+            "heading": "See Also",
+            "content": "Migrating to Simplified Initialization Mode Overview Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check model settings for migration to simplified initialization mode",
+            "content": "NoteDo not run this check in isolation. Run this check along with the other checks in the Migrating to Simplified Initialization Mode Overview.\n\nCheck ID: mathworks.design.ModelLevelMessages\n\nIdentify settings in Model blocks and model configuration parameters that can lead to unexpected behavior, and help migrate your model to simplified initialization mode."
+        },
+        {
+            "heading": "Description",
+            "content": "Simplified initialization mode was introduced in R2008b to improve consistency of simulation results. For more information, see Simplified Initialization Mode and Classic Initialization Mode.\n\nThis Model Advisor check identifies issues in the model configuration parameters and Model blocks in your model that can cause problems when you migrate to simplified initialization mode. The results of the subchecks contain two types of statements: Failed and Warning. Failed statements identify issues that you must address manually before you can migrate the model to simplified initialization mode. Warning statements identify issues or changes in behavior that can occur after migration.\n\nAfter running this Model Advisor consistency check, if you click Explore Result button, the messages pertain only to blocks that are not library-links.\n\nNoteBecause it is difficult to undo these changes, select File > Save Restore Point As to back up your model before migrating to the simplified initialization mode.\n\nFor more information, see Model Configuration Parameters: Connectivity Diagnostics."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionVerify that all Model blocks are using the simplified initialization mode.Migrate the model referenced by the Model block to the simplified initialization mode, then migrate the top model.Verify simplified initialization mode settingSet Configuration Parameters > Underspecified initialization detection to Simplified."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking Modify Settings causes the following:\n\nThe Model parameter is set to simplifiedIf an Outport block has the Initial output parameter set to the empty character vector, [], then the SourceOfInitialOutputValue parameter is set to Input signal.If an Outport has an empty Initial output and a variable-size signal, then the Initial output is set to zero."
+        },
+        {
+            "heading": "See Also",
+            "content": "Migrating to Simplified Initialization Mode Overview Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Simulation Accuracy Overview",
+            "content": "Use the Simulation Accuracy Model Advisor checks to configure your model for accuracy considerations."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Model Advisor Checks (Simulink Coder) Simulink Check Checks (Simulink Check)"
+        },
+        {
+            "heading": "Check S-functions in the model",
+            "content": "Check ID: mathworks.design.SFuncAnalyzer\n\nPerform quality checks on S-functions in Simulink models or subsystems."
+        },
+        {
+            "heading": "Description",
+            "content": "The S-function analyzer performs quality checks on S-functions to identify improvements and potential problems in the specified model. The checks displays an error when the build dependency cannot be automatically derived, for example, when the source code is not in the current folder."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionContinuous states are modified in mdlOutputs method.Modify Continuous States at a major time step and use ssSetSolverNeedsReset function in S-function code.Continuous states are modified in the mdlUpdate method.Modify Continuous States only at a major time step and use ssSetSolverNeedsReset function in S-function code.S-function discrete states are modified in the mdlOutputs at a minor step.Modify the discrete states only at a major step guarded by ssIsMajorTimeStep function. S-function mode vector is modified in the mdlOutputs method at a minor step.Modify the mode vector only at a major step guarded by sslsMajorTimeStep function.S-function is using static or global variables to declare internal states.Declare the states explicitly using ssSetNumDiscStates function or Model Global Data by Creating Data Stores.S-function has continuous states but sample time is not declared continuous.Specify continuous sample time using ssSetSampleTime function.S-function has discrete states but the mdlOutputs and mdlUpdate methods are combined.Define the mdlOutputs and mdlUpdate methods separately and modify discrete states only in mdlUpdate method.S-function sets the SS_OPTION_CAN_BE_CALLED_CONDITIONALLY option when having state-like data or multiple sample times.Remove the options when the S-function has state-like data or multiple sample times.MEX compilers do not exist on the machine.Check for the presence or install MEX compilers on the machine.S-function encounters errors while compiling the model. Check the Diagnostic Viewer output and recompile the model."
+        },
+        {
+            "heading": "Check for non-continuous signals driving derivative ports",
+            "content": "Check ID: mathworks.design.NonContSigDerivPort\n\nIdentify noncontinuous signals that drive derivative ports."
+        },
+        {
+            "heading": "Description",
+            "content": "Noncontinuous signals that drive derivative ports cause the solver to reset every time the signal changes value, which slows down simulation."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThere are noncontinuous signals in the model driving derivative ports. Make the specified signals continuous.Replace the continuous blocks receiving these signals with discrete state versions of the blocks."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "If you have a Simulink Check license, you can exclude blocks and charts from this check."
+        },
+        {
+            "heading": "See Also",
+            "content": "Simulink Models Simulation Phases in Dynamic Systems Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Simulation Runtime Accuracy Diagnostics Overview",
+            "content": "Use the Simulation Runtime Accuracy Diagnostics Model Advisor checks to configure your model for simulation accuracy diagnostics that can help find problems, but slows simulations."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks Model Advisor Checks (Simulink Coder) Simulink Check Checks (Simulink Check)"
+        },
+        {
+            "heading": "Runtime diagnostics for S-functions",
+            "content": "Check ID: mathworks.design.DiagnosticSFcn\n\nCheck array bounds and solver consistency if S-Function blocks are in the model."
+        },
+        {
+            "heading": "Description",
+            "content": "Validates whether S-Function blocks adhere to the ODE solver consistency rules that Simulink applies to its built-in blocks."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionSolver data inconsistency is set to none.In the Configuration Parameters dialog box, set Solver data inconsistency to warning or error.Array bounds exceeded is set to none.In the Configuration Parameters dialog box, set Array bounds exceeded to warning or error"
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "If you have a Simulink Check license, you can exclude blocks and charts from this check."
+        },
+        {
+            "heading": "See Also",
+            "content": "What Is an S-Function? How S-Functions Work Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Identify unit mismatches in the model",
+            "content": "Check ID: mathworks.design.UnitMismatches\n\nIdentify instances of unit mismatches between ports in the model and between model argument values and definitions."
+        },
+        {
+            "heading": "Description",
+            "content": "Check for instances of unit mismatches between:\n\nPorts in the modelModel argument values and definitions\n\nTo detect and report warnings for mismatched units on model arguments, you must set the simulation mode of Model blocks to normal mode."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionUnit mismatches foundChange one of the mismatched unit settings to match the unit settings for the other port."
+        },
+        {
+            "heading": "See Also",
+            "content": "Unit Specification in Simulink Models."
+        },
+        {
+            "heading": "Identify automatic unit conversions in the model",
+            "content": "Check ID: mathworks.design.AutoUnitConversions\n\nIdentify instances of automatic unit conversions in the model."
+        },
+        {
+            "heading": "Description",
+            "content": "Identify instances of automatic unit conversions in the model."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionAutomatic unit conversions foundCheck that the converted units are expected for the model."
+        },
+        {
+            "heading": "See Also",
+            "content": "Unit Specification in Simulink Models."
+        },
+        {
+            "heading": "Identify disallowed unit systems in the model",
+            "content": "Check ID: mathworks.design.DisallowedUnitSystems\n\nIdentify instances of disallowed unit systems in the model."
+        },
+        {
+            "heading": "Description",
+            "content": "Identify instances of disallowed unit systems in the model."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionDisallowed unit systems foundEither choose a unit that conforms to the configured unit system, or select another unit system. For more information, see Restricting Unit Systems."
+        },
+        {
+            "heading": "See Also",
+            "content": "Unit Specification in Simulink Models."
+        },
+        {
+            "heading": "Identify undefined units in the model",
+            "content": "Check ID: mathworks.design.UndefinedUnits\n\nIdentify instances of unit specifications, not defined in the unit database, in the model."
+        },
+        {
+            "heading": "Description",
+            "content": "Identify instances of unit specifications, not defined in the unit database, in the model."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionUndefined units foundChange the unit to one that Simulink supports."
+        },
+        {
+            "heading": "See Also",
+            "content": "Unit Specification in Simulink Models. Allowed Units"
+        },
+        {
+            "heading": "Identify ambiguous units in the model",
+            "content": "Check ID: mathworks.design.AmbiguousUnits\n\nIdentify instances of ambiguous unit specifications, such as duplicate unit names in the unit database, in the model."
+        },
+        {
+            "heading": "Description",
+            "content": "Identify instances of ambiguous unit specifications, such as duplicate unit names in the unit database, in the model."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionAmbiguous units foundYou can ignore the warning or specify the unit with corresponding unit system using the format unit_system::unit_name."
+        },
+        {
+            "heading": "See Also",
+            "content": "Unit Specification in Simulink Models. Allowed Units"
+        },
+        {
+            "heading": "Open the Upgrade Advisor",
+            "content": "Check ID: com.mathworks.Simulink.UpgradeAdvisor.MAEntryPoint\n\nThis check provides access to the Upgrade Advisor."
+        },
+        {
+            "heading": "Description",
+            "content": "Run this check to access the Upgrade Advisor. Use the Upgrade Advisor for help with using the current release to upgrade and improve models. The Upgrade Advisor identifies cases where you can benefit by changing your model to use new features and settings in Simulink. The Advisor provides advice for transitioning to new technologies, and upgrading a model hierarchy.\n\nThe Upgrade Advisor also identifies cases when a model will not work because changes and improvements in Simulink require changes to a model.\n\nThe Upgrade Advisor offers options to perform recommended actions automatically or instructions for manual fixes."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionCheck for upgrade issues.Click the link âOpen the Upgrade Advisorâ to close the Model Advisor and open the Upgrade Advisor for the current model."
+        },
+        {
+            "heading": "Tips",
+            "content": "Alternatively, you can open the Upgrade Advisor in the following ways:\n\nFrom the Model Editor, in the Modeling tab, select Model Advisor > Upgrade Advisor.From the MATLAB command line, use the upgradeadvisor function:upgradeadvisor modelnameSee Programmatically Open Upgrade Advisor and Programmatically Analyze and Upgrade Model."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor. Model Upgrades"
+        },
+        {
+            "heading": "Check model for block upgrade issues",
+            "content": "Check ID: mathworks.design.Update\n\nCheck for common block upgrade issues."
+        },
+        {
+            "heading": "Description",
+            "content": "Check blocks in the model for compatibility issues resulting from using a new version of Simulink software."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionBlocks with compatibility issues found.Click Modify to fix the detected block issues.Check update status for the Level 2 API S-functions.Consider replacing Level 1 S-functions with Level 2."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking Modify replaces blocks from a previous release of Simulink software with the latest versions."
+        },
+        {
+            "heading": "See Also",
+            "content": "Write Level-2 MATLAB S-Functions.Upgrade Models Using Upgrade Advisor. Model Upgrades"
+        },
+        {
+            "heading": "Check model for block upgrade issues requiring compile time information",
+            "content": "Check ID: mathworks.design.UpdateRequireCompile\n\nCheck for common block upgrade issues."
+        },
+        {
+            "heading": "Description",
+            "content": "Check blocks for compatibility issues resulting from upgrading to a new version of Simulink software. Some block upgrades require the collection of information or data when the model is in the compile mode. For this check, the model is set to compiled mode and then checked for upgrades."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModel contains Lookup Table or Lookup Table (2-D) blocks and some of the blocks specify Use Input Nearest or Use Input Above for a lookup method.Replace Lookup Table blocks and Lookup Table (2-D) blocks with n-D Lookup Table blocks. Do not apply Use Input Nearest or Use Input Above for lookup methods; select another option.Model contains Lookup Table or Lookup Table (2-D) blocks and some blocks perform multiplication first during interpolation.Replace Lookup Table blocks and Lookup Table (2-D) blocks with n-D Lookup Table blocks. However, because the n-D Lookup Table block performs division first, this replacement might cause a numerical difference in the result.Model contains Lookup Table or Lookup Table (2-D) blocks. Some of these blocks specify Interpolation-Extrapolation as the Lookup method but their input and output are not the same floating-point type.Replace Lookup Table blocks and Lookup Table (2-D) blocks with n-D Lookup Table blocks. Then change the extrapolation method or the port data types for block replacement.Model contains Unit Delay blocks with Sample time set to -1 that inherit a continuous sample time.Replace Unit Delay blocks with Memory blocks."
+        },
+        {
+            "heading": "Check Data Store Memory blocks for multitasking",
+            "content": ""
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking Modify replaces blocks from a previous release of Simulink software with the latest versions."
+        },
+        {
+            "heading": "See Also",
+            "content": "n-D Lookup Table Unit Delay Upgrade Models Using Upgrade Advisor Model Upgrades"
+        },
+        {
+            "heading": "Check if SLX file compression is off",
+            "content": "Check ID: mathworks.design.CheckSLXFileCompressionLevel\n\nCheck if SLX file compression is turned off to reduce Gitâ¢ repository size."
+        },
+        {
+            "heading": "Description",
+            "content": "Check whether compression for the SLX model is turned off."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModel, library, or subsystem is saved in SLX format. File compression is turned on.Consider turning off file compression to optimize storage under source control."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can run this check on models, libraries, and subsystems checked in to Git source control."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor. Model Upgrades"
+        },
+        {
+            "heading": "Check that the model or library is saved in current version",
+            "content": "Check ID: mathworks.design.CheckSavedInCurrentVersion\n\nCheck that the model, library, or subsystem is saved in the current version of Simulink."
+        },
+        {
+            "heading": "Description",
+            "content": "Check whether the model file is saved in the current Simulink release."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModel, library, or subsystem not saved in the current version of Simulink.Consider saving the model file in the current version of Simulink."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can run this check on your models, libraries, and subsystems."
+        },
+        {
+            "heading": "Tips",
+            "content": "Projects can help you save all the models and libraries in your project to the current Simulink release. See Check for Compatibility Issues and Upgrade Simulink Models Using Project Upgrade."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor. Model Upgrades Check for Compatibility Issues and Upgrade Simulink Models Using Project Upgrade"
+        },
+        {
+            "heading": "Check model for SB2SL blocks",
+            "content": "Check ID: mathworks.simulink.SB2SL.Check\n\nCheck that the model does not have outdated SB2SL blocks."
+        },
+        {
+            "heading": "Description",
+            "content": "Check if the model contains outdated SB2SL blocks."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModel contains outdated SB2SL blocksConsider upgrading the model to current SB2SL blocks."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking Update SB2SL Blocks replaces blocks with the latest versions."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor."
+        },
+        {
+            "heading": "Check Model History properties",
+            "content": "Check ID: mathworks.design.SLXModelProperties\n\nCheck for edited model history properties"
+        },
+        {
+            "heading": "Description",
+            "content": "Check models for edited Model History property values that could be used with source control tool keyword substitution. This keyword substitution is incompatible with SLX file format.\n\nIn the MDL file format you can configure some model properties to make use of source control tool keyword substitution. If you save your model in SLX format, source control tools cannot perform keyword substitution. Information in the model file from such keyword substitution is cached when you first save the MDL file as SLX, and is not updated again. The Model Properties History pane and Model Info blocks in your model show stale information from then on."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionEdited model history propertiesManually or automatically reset the properties to the default values. Click the button to reset, or to inspect and change these properties manually, open the Model Properties dialog box and look in the History pane."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can run this check on your library models."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor. Model Upgrades"
+        },
+        {
+            "heading": "Identify Model Info blocks that can interact with external source control tools",
+            "content": "Check ID: mathworks.design.ModelInfoKeywordSubstitution\n\nUse this check to find Model Info blocks that can be altered by external source control tools through keyword substitution."
+        },
+        {
+            "heading": "Description",
+            "content": "This check searches for character vectors in the Model Info block enclosed within dollar signs that can be overwritten by an external source control tool. Using third-party source control tool keyword expansion might corrupt your model files when you submit them. Keyword substitution is not available in SLX model file format.\n\nFor a more flexible interface to source control tools, use a Simulink project instead of the Model Info block. See About Source Control with Projects."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThe Model Info block contains fields like this: $keyword$Review the list of fields in the report, then remove the keyword character vectors from the Model Info block."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor. About Source Control with Projects"
+        },
+        {
+            "heading": "Check model for upgradable SerDes Toolbox blocks",
+            "content": "Check ID: mathworks.design.serdesUpgrades\n\nLists blocks saved in a previous version of SerDes Toolboxâ¢ that are outdated."
+        },
+        {
+            "heading": "Description",
+            "content": "This check searches for and lists SerDes Toolbox blocks that can be upgraded for compatibility with the current release."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionBlocks saved in older versions of SerDes Toolbox are found.Click Upgrade SerDes Toolbox Blocks to upgrade the SerDes Toolbox blocks to be compatible with the current release."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking Upgrade SerDes Toolbox Blocks upgrades the outdated SerDes Toolbox blocks to be compatible with the current release."
+        },
+        {
+            "heading": "See Also",
+            "content": "Design and Simulate SerDes Systems (SerDes Toolbox)"
+        },
+        {
+            "heading": "Check model for legacy 3DoF or 6DoF blocks",
+            "content": "Check ID: mathworks.design.Aeroblks.CheckDOF\n\nLists 3DoF and 6DoF blocks are outdated."
+        },
+        {
+            "heading": "Description",
+            "content": "This check searches for 3DoF and 6DoF blocks from library versions prior to 3.13 (R2014a)."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionBlocks configured with old versions of 3DoF or 6DoF blocks found.Click Replace 3DoF and 6DoF Blocks to replace the blocks with latest versions."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking Replace 3DoF and 6DoF Blocks replaces blocks with the latest versions."
+        },
+        {
+            "heading": "See Also",
+            "content": "Equations of Motion (Aerospace Blockset)"
+        },
+        {
+            "heading": "Check model for Aerospace Blockset navigation blocks",
+            "content": "Check ID: mathworks.design.Aeroblks.CheckNAV\n\nSearches for Three-Axis Inertial Measurement Unit, Three-Axis Gyroscope, and Three-Axis Accelerometer blocks prior to 3.21 (R2018a)."
+        },
+        {
+            "heading": "Description",
+            "content": "This check searches for Three-Axis Inertial Measurement Unit, Three-Axis Gyroscope, and Three-Axis Accelerometer blocks that have been updated in R2018a."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThree-Axis Inertial Measurement Unit, Three-Axis Gyroscope, and Three-Axis Accelerometer blocks prior to R2018a.In R2018a or later, if you did not previously solve for steady state conditions, save the model now. If you previously solved for steady state conditions for the model, solve for these steady state conditions again, and then save the model."
+        },
+        {
+            "heading": "See Also",
+            "content": "Three-axis Accelerometer (Aerospace Blockset)Three-axis Gyroscope (Aerospace Blockset)Three-axis Inertial Measurement Unit (Aerospace Blockset)"
+        },
+        {
+            "heading": "Check and update masked blocks in library to use promoted parameters",
+            "content": "Check ID: mathworks.design.CheckAndUpdateOldMaskedBuiltinBlocks\n\nCheck for libraries that should be updated to use promoted parameters."
+        },
+        {
+            "heading": "Description",
+            "content": "This check searches libraries created before R2011b for masked blocks that should be updated to use promoted parameters. Since R2011b, if a block parameter is not promoted, its value in the linked block is locked to its value in the library block. This check excludes blocks of type Subsystem, Model reference, S-Function and M-S-Function."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionLibraries that need to be updated are foundClick Update. Once the libraries have been updated, run the check again"
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your library models.Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor. Model Upgrades Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check and update mask image display commands with unnecessary imread() function calls",
+            "content": "Check ID: mathworks.design.CheckMaskDisplayImageFormat\n\nCheck identifies masks using image display commands with unnecessary calls to the imread() function."
+        },
+        {
+            "heading": "Description",
+            "content": "This check searches for the mask display commands that make unnecessary calls to the imread() function, and updates them with mask display commands that do not call the imread() function. Since 2013a, a performance and memory optimization is available for mask images specified using the image path instead of the RGB triple matrix."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionMask display commands that make unnecessary calls to the imread() function are found.Click Update. Once the blocks have been updated, run the check again."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your library models.Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor. Model Upgrades Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check and update mask to affirm icon drawing commands dependency on mask workspace",
+            "content": "Check ID: mathworks.design.CheckMaskRunInitFlag\n\nCheck identifies if the mask icon drawing commands have dependency on the mask workspace."
+        },
+        {
+            "heading": "Description",
+            "content": "This check identifies if the mask icon drawing commands have dependency on the mask workspace and updates the RunInitForIconRedraw property accordingly. If there is no mask workspace dependency, the value of RunInitForIconRedraw is set to off, whereas, if there is mask workspace dependency the values is set to on.\n\nSetting the values of RunInitForIconRedraw to off when there is no mask workspace dependency optimizes the performance by not executing the mask initialization code before drawing the block icon."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionMask drawing commands that are dependent or independent of the mask workspace are found.Click Update. Once the blocks have been updated, run the check again."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your library models.Exclude blocks and charts from this check if you have a Simulink Check license."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor. Model Upgrades Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Identify masked blocks that specify tabs in mask dialog using MaskTabNames parameter",
+            "content": "Check ID: mathworks.design.CheckAndUpdateOldMaskTabnames\n\nThis check identifies masked blocks that specify tabs in mask dialog using the MaskTabNames parameter."
+        },
+        {
+            "heading": "Description",
+            "content": "This check identifies masked blocks that use the MaskTabNames parameter to programmatically create tabs in the mask dialog. Since R2013b, dialog controls are used to group parameters in a tab on the mask dialog."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionMasked blocks that use the MaskTabNames parameter to create tabs programmatically in the mask dialog are found.Click Upgrade available in the Action section. Once the blocks have been updated, run the check again."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can run this check on your library models."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor. Model Upgrades"
+        },
+        {
+            "heading": "Identify questionable operations for strict single-precision design",
+            "content": "Check ID: mathworks.design.StowawayDoubles\n\nFor a strict single-precision design, this check identifies the blocks that introduce double-precision operations, and non-optimal model settings."
+        },
+        {
+            "heading": "Description",
+            "content": "For a strict single-precision design, this check identifies the blocks that introduce double-precision operations, and non-optimal model settings."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionDouble-precision floating-point operations found in model. Verify that: Block input and output data types are set correctly.In the Configuration Parameters dialog box, Default for underspecified data type is set to single. Model uses a library standard that is not optimal for strict-single designs.Verify that:All target-specific math libraries used by the model support single-precision implementations.Set Configuration Parameters > Language standard to C99 (ISO).Logic signals are not implemented as Boolean data.Verify that:In the Configuration Parameters dialog box, Implement logic signals as Boolean data is selected."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "If you have a Simulink Check license, you can exclude blocks and charts from this check."
+        },
+        {
+            "heading": "See Also",
+            "content": "Validate a Floating-Point Embedded Model Upgrade Models Using Upgrade Advisor. Model Upgrades Model Advisor Exclusion Overview (Simulink Check)"
+        },
+        {
+            "heading": "Check get_param calls for block CompiledSampleTime",
+            "content": "Check ID: mathworks.design.CallsGetParamCompiledSampleTime\n\nUse this check to identify MATLAB files in your working environment that contain get_param function calls to return the block CompiledSampleTime parameter."
+        },
+        {
+            "heading": "Description",
+            "content": "For multi-rate blocks (including subsystems), Simulink returns the block compiled sample time as a cell array of the sample rates in the block. The return value is a cell array of pairs of doubles. MATLAB code that accepts this return value only as pairs of doubles can return an error when called with a multi-rate block. Use this check to identify such code in your environment. Modify these instances of code to accept a cell array of pairs of doubles instead.\n\nFor example, consider a variable blkTs, which has been assigned the compiled sample time of a multi-rate block.\n\nblkTs = get_param(block,'CompiledSampleTime');\n\nHere are some examples in which the original code works only if blkTs is a pair of doubles and the block is a single-rate block:\n\nExample 1if isinf(blkTs(1)) disp('found constant sample time') end Since blkTs is now a cell array, Simulink gives this error message:Undefined function 'isinf' for input arguments of type 'cell'Instead, use this code, for which blkTs can be a cell array or a pair of doubles.if isequal(blkTs, [inf,0]) disp('found constant sample time') end Example 2if all(blkTs == [-1,-1]) disp('found triggered sample time') end For the above example, since blkTs is now a cell array, Simulink gives this error:Undefined function 'eq' for input arguments of type 'cell'Instead, use this code, for which blkTs can be a cell array or a pair of doubles.if isequal(blkTs, [-1,-1]) disp('found triggered sample time') endExample 3if (blkTs(1) == -1) disp('found a triggered context') endAgain, since blkTs is now a cell array, Simulink gives this error:Undefined function 'eq' for input arguments of type 'cell'Instead, use this code.if ~iscell(blkTs) blkTs = {blkTs}; end for idx = 1:length(blkTs) thisTs = blkTs{idx}; if (thisTs(1) == -1) disp('found a triggered context') end endThe above code checks for a triggered type sample time (triggered or asynchronous). In cases in which a block has constant sample time ([inf,0]) in addition to triggered or asynchronous or when a block has multiple asynchronous rates, this alternative property detects the triggered type sample time.\n\nThis check scans MATLAB files in your environment. If the check finds instances of MATLAB code that contain get_param calls to output the block compiled sample time, Upgrade Advisor displays these results. It suggests that you modify code that accepts the block compiled sample time from multi-rate blocks."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionNo MATLAB files call get_param(block,CompiledSampleTime)NoneSome MATLAB files call get_param(block,CompiledSampleTime)If files use the block CompiledSampleTime parameter from multi-rate blocks, modify these files to accept the parameter as a cell array of pairs of doubles"
+        },
+        {
+            "heading": "See Also",
+            "content": "Sample Times in Subsystems Block Compiled Sample Time"
+        },
+        {
+            "heading": "Check if all simulation outputs are returned as a single Simulink.SimulationOutput object",
+            "content": "Check ID: mathworks.design.CheckSingleSimulationOutput\n\nUse this check to identify if the simulation result is returned as a single Simulink.SimulationOutput object."
+        },
+        {
+            "heading": "Description",
+            "content": "This check scans your model to verify if the parameter ReturnWorkspaceOutputs is enabled. Enabling this parameter, returns simulation outputs in a Simulink.SimulationOutput when simulating interactively. Simulation outputs include signal, state, output, DSM logging, and scope and To Workspace block logging.\n\nWhen ReturnWorkspaceOutputs is enabled, it provides:\n\nEasier management of simulation data.Automatic access to SimulationMetadata.Compatibility with multiple parallel simulations and batch simulations."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionSimulation outputs are not returned as a single Simulink.SimulationOutput objectReturn all simulation outputs as a single Simulink.SimulationOutput object"
+        },
+        {
+            "heading": "See Also",
+            "content": "Single simulation output Simulink.SimulationOutput"
+        },
+        {
+            "heading": "Check model for parameter initialization and tuning issues",
+            "content": "Check ID: mathworks.design.ParameterTuning\n\nUse this check to identify issues in the model that occur when you initialize parameters or tune them."
+        },
+        {
+            "heading": "Description",
+            "content": "This check scans your model for parameter initialization and tuning issues like:\n\nRate mismatch between blocksDivide by zero issue in conditionally executed subsystemsInvalid control port value in Index Vector blocks"
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThe model has rate transition issues.Select Automatically handle rate transition for data transfer in the Solver pane of the model configuration parameters.The model has a divide by zero issue in a conditionally executed subsystem with a control port.At the command prompt, run set_param(control_port,'DisallowConstTsAndPrmTs', 'on')The model has an invalid control port value in a conditionally executed subsystem.At the command prompt, run set_param(control_port,'DisallowConstTsAndPrmTs', 'on')"
+        },
+        {
+            "heading": "Action Results",
+            "content": "Select Upgrade model to resolve issues in the model related to parameter initialization and tuning."
+        },
+        {
+            "heading": "See Also",
+            "content": "Automatic Rate Transition"
+        },
+        {
+            "heading": "Check for virtual bus across model reference boundaries",
+            "content": "Check ID: mathworks.design.CheckVirtualBusAcrossModelReference\n\nCheck virtual buses that cross model reference boundaries."
+        },
+        {
+            "heading": "Description",
+            "content": "This Upgrade Advisor check identifies root Inport and Outport blocks that have these issues at model reference boundaries:\n\nIncompatible virtual busesLarge virtual buses that can slow performance (since R2024b)\n\nThis check also identifies the Model blocks that correspond with the affected Outport blocks.\n\nUsing nonvirtual buses instead of virtual buses resolves the issues."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "TipRun this check for all levels in the model reference hierarchy using the Analyze model hierarchy and continue upgrade sequence check.\n\nConditionRecommended ActionRoot Inport blocks receive incompatible or large virtual buses as input.Click Upgrade Model to select Output as nonvirtual bus for the Inport blocks and to insert Signal Conversion blocks that restore the virtual buses.Root Outport blocks receive incompatible or large virtual buses as input.Click Upgrade Model to select Output as nonvirtual bus in parent for the Outport blocks.Model blocks reference models that contain root Outport blocks that receive incompatible or large virtual buses as input.Click Upgrade Model to insert Signal Conversion blocks after the Model blocks, converting nonvirtual buses to virtual buses as necessary.The software inserts a Signal Conversion block after each Model block port whose Outport block was updated to address issues. The Signal Conversion block is configured to output a virtual bus.\n\nFor root-level Inport and Outport blocks that receive incompatible virtual buses, the conversion happens in models where you:\n\nUse function prototype control.Perform C++ code generation with the I/O arguments step method option.To change the C++ code generation function specification setting to Default step method: In the Configuration Parameters > Code Generation > Interface pane, click Configure C++ Class Interface.In the dialog box, set the Function specification parameter to Default step method. Use buses that have variable-dimension signals.Use an associated non-auto storage class for Outport block signals.The conversion for non-auto storage class occurs only if you have the target generation license that the model requires. For example, an ERT target requires an Embedded Coder license.Use export-function models where an Outport block is driven by a nonvirtual bus.Have Model blocks that reference models containing Outport blocks that have been fixed."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade AdvisorSimplify Subsystem and Model Interfaces with Bus Element PortsUse Buses at Model Interfaces"
+        },
+        {
+            "heading": "Check model for custom library blocks that rely on frame status of the signal",
+            "content": "Check ID: mathworks.design.DSPFrameUpgrade\n\nThis check identifies custom library blocks in the model that depend on the frame status of the signal.\n\nDescription\n\nThis check searches for the custom library blocks in a model that depend on the frame status of the signal. The check analyzes the blocks, recommends fixes, and gives reasons for the fixes. You must make the fixes manually."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThe check finds custom library blocks that depend on the frame status of the signal.Follow the recommendation given by the Upgrade Advisor."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can run this check only on custom library blocks in your model.\n\nYou must make the fixes manually.\n\nThis check appears only if you have the DSP System Toolboxâ¢ installed."
+        },
+        {
+            "heading": "Check model for S-function upgrade issues",
+            "content": "Check ID: 'mathworks.design.CheckForSFcnUpgradeIssues'\n\nUse this check on your model to identify your S-function's upgrade compatibility issues. These issues may include the use of 32-bit APIs, compilation with incompatible options, or use of deprecated separate complex APIs. Some common issues and information related to the fixes are described in results and recommendations section below."
+        },
+        {
+            "heading": "Description",
+            "content": "When upgrading your S-functions to use the features in the latest release, this check scans your model to warn against S-function upgrade incompatibility issues. If the result of this check gives a warning or error, fix your C MEX S-functions according to the description."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionCustom-built S-functions are not supported.Recompile your S-function with available compatible options. See Custom-built MEX File Not Supported In Current Release for more information.S-function is not compiled with the latest API (mex -R2018a).Recompile using the latest flag (mex -R2018a). See MEX File Is Compiled With Outdated Option for more information.S-function uses 32-bit functions.Modify your code according to the instructions in MEX File Calls A 32-bit Function.S-function is using deprecated separate complex APIs (mxGetPi, mxSetPi, mxGetImagData, mxSetImagData).Use interleaved complex APIs and recompile your code with the latest flag (mex -R2018a). See Upgrade MEX Files to Use Interleaved Complex API for more information.S-function is using deprecated type-unsafe data API (mxGetData, mxSetData).Use type-safe data APIs and recompile your code. See MEX File Calls An Untyped Data Access Function for more information.S-function is compiled with a future release and not supported in current release.See MEX File Built In MATLAB Release Not Supported In Current Release to recompile your files."
+        },
+        {
+            "heading": "See Also",
+            "content": "MATLAB Data in C S-Functions"
+        },
+        {
+            "heading": "Update System object syntax",
+            "content": "Check ID: 'mathworks.design.CheckSystemObjectUpdate'\n\nUse this check to identify and update any custom MATLAB System objectâ¢ in your model that have outdated syntax."
+        },
+        {
+            "heading": "Description",
+            "content": "This check scans your model to identify outdated System object syntax. If the check passes, all the syntax is up to date. If the check fails, you can update the syntax."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionSystem object syntax is up to date.None.System object syntax requires update.A report is generated for each unique System object associated with a MATLAB System block. Use Update to update the syntax."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor"
+        },
+        {
+            "heading": "Check Rapid accelerator signal logging",
+            "content": "Check ID: mathworks.design.CheckRapidAcceleratorSignalLogging\n\nWhen simulating your model in rapid accelerator mode, use this check to find signals logged in your model that are globally disabled. Rapid accelerator mode supports signal logging. Use this check to enable signal logging globally."
+        },
+        {
+            "heading": "Description",
+            "content": "This check scans your model to see if a simulation is in rapid accelerator mode and whether the model contains signals with signal logging. If the check finds an instance and signal logging is globally disabled, an option to turn on signal logging globally appears."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionSimulation mode is not rapid accelerator.None. You can enable signal logging in rapid accelerator mode.Simulation mode is rapid accelerator. Upgrade Advisor did not find signals with signal logging enabled.None. The model does not use signal logging. Enable signal logging for signals and globally if you want to log signals.Simulation mode is rapid accelerator. Upgrade Advisor found signals with signal logging enabled. However, global setting for signal logging was disabled. Enable signal logging globally if you want to log signals with signal logging enabled.Signal logging was already globally enabled.None."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Selecting Modify enables signal logging globally in your model."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor."
+        },
+        {
+            "heading": "Check virtual bus inputs to blocks",
+            "content": "Check ID: mathworks.design.VirtualBusUsage\n\nCheck bus input signals for a set of blocks."
+        },
+        {
+            "heading": "Description",
+            "content": "Check bus input signals for a set of blocks.\n\nStarting in R2015b, virtual bus inputs to blocks that require nonbus or nonvirtual bus input can cause an error. Examples of blocks that can specify a bus object as their output data type include a Bus Creator block and a root Inport block. The blocks that cause an error when they have a virtual bus input in this situation are:\n\nAssignmentDelayThe Delay block causes an error only if you use the Block Parameters dialog box to:Set an initial condition that is a MATLAB structure or zero.Specify a value for State name.Permute DimensionReshapeSelectorUnit DelayThe Unit Delay block causes an error only if you use the Block Parameters dialog box to:Set an initial condition that is a MATLAB structure or zero.Specify a value for State name.Vector Concatenate"
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionVirtual bus input to these blocks:AssignmentDelay (if you specify an initial condition from the dialog box that is a MATLAB structure or zero and the value for State name is not empty)Permute DimensionReshapeSelectorUnit Delay (if you specify an initial condition that is a MATLAB structure or zero and the value for State name is not empty)Vector ConcatenateIn the Upgrade Advisor, click Modify.The check inserts a Bus to Vector block to attempt to convert the virtual buses to vectors. For issues that the Upgrade Advisor identifies but cannot fix, modify the model manually. For details, see Identify Automatic Bus Conversions."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking Modify inserts a Bus to Vector block at the input ports of blocks.\n\nFor many models, running the Upgrade Advisor modifies your model so that buses are not treated as vectors. However, for some models you can encounter compatibility issues even after running the check. Modify your model manually to address those issues.\n\nAfter you compile the model using Upgrade Advisor, the Simulink Editor sometimes indicates that you need to save the model (the model is dirty), even though you did not make changes. To prevent this issue from reoccurring for this model, save the model.\n\nModeling PatternIssueSolutionData Store Memory block with Data Type set to Inherit: autoA Data Store Memory block whose associated Data Store Read or Data Store Write blocks read or write bus data must use a bus object.In the Data Store Memory block, set the Data Type signal attribute to Bus: <BusObject>.Signal Conversion block Output parameter matches input bus typeA Signal Conversion block whose Output parameter is set to Nonvirtual bus requires a virtual bus input.A Signal Conversion block whose Output parameter is set to Virtual bus requires a nonvirtual bus input.To create a copy of the input signal, set Output to Signal copy.Merge, Switch, or Multiport Switch block with multiple bus inputsMerge, Switch, or Multiport Switch blocks with multiple bus inputs require those inputs to have the same names and hierarchy.Reconfigure the model so that the bus inputs have the same names and hierarchy.Root Inport block outputting a virtual bus and specifying a value for Port dimensionsA root Inport block that outputs to a virtual bus must inherit the dimensions.Set the Inport block Port dimensions signal attribute to 1 or -1 (inherit).Mux block with nonvirtual bus inputsA Mux block cannot accept nonvirtual buses.To treat the output as an array, replace the Mux block with a Vector Concatenate block.If you want a virtual bus output, use a Bus Creator block to combine the signals.Bus to Vector block without a virtual bus inputA nonbus signal does not need a Bus to Vector block. Remove the Bus to Vector block.Assignment block with virtual bus inputsThe Upgrade Advisor converts the Assignment block Y0 port bus input to a vector.Add a Bus to Vector block before the Assignment block.S-function using a nonvirtual busAn S-function that is not a Level-2 C S-function does not support nonvirtual buses.Change the S-function to be a Level-2 C S-function.Consider using an S-Function Builder block to create a Level-2 C S-function.Stateflow chart with parameterized data typeIn a Stateflow chart, you cannot parameterize the data type of an input or output in terms of another input or output if the data type is a bus object.For the parameterized port, set Data Type to Bus: <object name>.Subsystem with bus operations in a Stateflow chartAn Inport block inside a subsystem in a Stateflow chart requires a bus object data type if its signal is a bus.In the Inport block, set Data type to Bus: <object name>.Ground block used as a bus sourceThe output signal of a Ground block cannot be a source for a bus.Use a Constant block with Constant value set to 0 and the Output data type signal attribute set to Bus: <object name>.Root Outport block with a single-element bus object data typeThe input to the Outport block must be a bus if it specifies a bus object as its data type.In the Outport block, set Data type to Inherit: auto."
+        },
+        {
+            "heading": "See Also",
+            "content": "Bus to Vector block Identify Automatic Bus Conversions Migrating to Simplified Initialization Mode Overview Simulink.BlockDiagram.addBusToVector"
+        },
+        {
+            "heading": "Check for root outports with constant sample time",
+            "content": "Check ID: mathworks.design.CheckConstRootOutportWithInterfaceUpgrade\n\nUse this check to identify root output ports with a constant sample time used with an AUTOSAR target, Function Prototype Control, or the model C++ class interface."
+        },
+        {
+            "heading": "Description",
+            "content": "Root output ports with constant sample time are not supported when using an AUTOSAR target, Function Prototype Control, or the model C++ class interface. Use this check to identify root Outport blocks with this condition and modify the blocks as recommended."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionRoot output port with constant sample time used with an AUTOSAR target, Function Prototype Control or the model C++ class interface.Consider one of the following:Set the sample time of the block to the fundamental sample time.Identify the source of the constant sample time and set its sample time to the fundamental sample time.Place a Rate Transition block with inherited sample time (-1) before the block."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor."
+        },
+        {
+            "heading": "Analyze model hierarchy and continue upgrade sequence",
+            "content": "Check ID: com.mathworks.Simulink.UpgradeAdvisor.UpgradeModelHierarchy\n\nCheck for child models and guide you through upgrade checks."
+        },
+        {
+            "heading": "Description",
+            "content": "This check identifies child models of this model, and guides you through upgrade checks to run both non-compile and compile checks. The Advisor provides tools to help with these tasks:\n\nIf the check finds child models, it offers to run the Upgrade Advisor upon each child model in turn and continue the upgrade sequence. If you have a model hierarchy you need to check and update each child model in turn.If there are no child models, you still need to continue the check sequence until you have run both non-compile and compile checks.\n\nYou must run upgrade checks in this order: first the checks that do not require compile time information and do not trigger an Update Diagram, then the compile checks.\n\nClick Continue Upgrade Sequence to run the next checks. If there are child models, this will open the next model. Keep clicking Continue Upgrade Sequence until the check passes."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionChild models foundClick Continue Upgrade Sequence to run the next checks. If there are child models, this will close the current Upgrade Advisor session, and open Upgrade Advisor for the next model in the hierarchy.No child models, but more checks to runIf there are no child models, click Continue Upgrade Sequence to refresh the Upgrade Advisor with compilation checks selected. The compile checks trigger an Update Diagram (marked with ^). Run the next checks and take advised actions. When you return to this check, click Continue Upgrade Sequence until this check passes."
+        },
+        {
+            "heading": "Tips",
+            "content": "Best practice for upgrading a model hierarchy is to check and upgrade each model starting at the leaf end and working up to the root model.\n\nWhen you click Continue Upgrade Sequence, the Upgrade Advisor opens the leaf model as far inside the hierarchy as it can find. Subsequent steps guide you through upgrading your hierarchy from leaf to root model.\n\nWhen you open the Upgrade Advisor, the checks that are selected do not require compile time information and do not trigger an Update Diagram. Checks that trigger an Update Diagram are not selected to run by default, and are marked with ^. When you use the Upgrade Advisor on a hierarchy, keep clicking Continue Upgrade Sequence to move through this sequence of analysis:\n\nThe Upgrade Advisor opens each model and library in turn, from leaf to root, and selects the non-compile checks. Run the checks, take any advised actions, then click Continue Upgrade Sequence to open the next model and continue.When you reach the root end of the hierarchy, the Upgrade Advisor then opens each model again in the same order (but not libraries) and selects only the checks that require a model compile. Run the checks, take any advised actions, then click Continue Upgrade Sequence to open the next model. Continue until you reach the end of the hierarchy and this check passes."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor. Model Upgrades"
+        },
+        {
+            "heading": "Check Access to Data Stores",
+            "content": "Check ID: mathworks.design.ConflictsForDataStoreReadWriters\n\nIdentify potential execution order sensitivity when reading and writing to data stores."
+        },
+        {
+            "heading": "Description",
+            "content": "The execution order of blocks that read and write to the same data store can change the simulation result. When blocks in the same hierarchy access the same data store, the execution order is not deterministic."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionData Store Memory block accessed by multiple blocks in the same hierarchy.To enforce execution order for the blocks, consider the following:Add a data dependency between the blocks.Set block priority.Move blocks into separate Function-Call Subsystem blocks and schedule them."
+        },
+        {
+            "heading": "See Also",
+            "content": "Local and Global Data Stores Data Store MemoryData Store ReadData Store Write"
+        },
+        {
+            "heading": "Check relative execution orders for Data Store Read and Data Store Write blocks",
+            "content": "Check ID: mathworks.design.TaskBasedSorting\n\nCheck relative execution order changes between legacy and task-based sorting for Data Store Read and Data Store Write blocks."
+        },
+        {
+            "heading": "Description",
+            "content": "Legacy models used block sorting to determine block execution order. With task-based sorting, the relative execution order involving Data Store Memory blocks can change. This check detects the changes and provides an option to update your model with the original execution order."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionExecution order with a Data Store Memory block changes. You want the original execution order.Click the Modify button."
+        },
+        {
+            "heading": "See Also",
+            "content": "Control and Display Execution Order"
+        },
+        {
+            "heading": "Check for case mismatches in references to models and libraries",
+            "content": "Check ID: mathworks.design.CaseSensitiveBlockDiagramNames\n\nIdentify and fix case-insensitive references to models and libraries."
+        },
+        {
+            "heading": "Description",
+            "content": "Starting R2020a, Simulink model and library names are case-sensitive. This check detects and provides an option to fix case-insensitive references to models and libraries."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionThe check finds case mismatches in references to models and libraries.Follow the recommendation given by the Upgrade Advisor."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor"
+        },
+        {
+            "heading": "Check model for Signal Builder blocks",
+            "content": "Check ID: mathworks.design.Sigbldr.upgradeCheck\n\nSearches for Signal Builder blocks in models."
+        },
+        {
+            "heading": "Description",
+            "content": "Find Signal Builder blocks in models and replace them with equivalently configured Signal Editor blocks."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModel contains one or more Signal Builder blocks.To replace all Signal Builder blocks with equivalent Signal Editor blocks, click the associated link."
+        },
+        {
+            "heading": "See Also",
+            "content": "Signal Editor Upgrade Models Using Upgrade Advisor"
+        },
+        {
+            "heading": "Check output dimensions of MATLAB Function blocks",
+            "content": "Check ID:mathworks.simulink.MLFBOutputDimensions\n\nCheck lists all the MATLAB Function blocks that have the Interpret output column vectors as one-dimensional data property enabled. If the property is enabled, the block converts output column vectors of size N-by-1 to one-dimensional signals with a signal size equal to N."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionMATLAB Function block produces one-dimensional output data and has property enabledClicking the Fix It button does not disable the property for the MATLAB function block. To disable the property: Select the MATLAB Function block.Open the Property Inspector. In the Modeling tab, in the Design section, click Property Inspector. In the General tab, clear the Interpret output column vectors as one-dimensional data property. Check the simulation behavior of the model, as disabling the property changes the size propagation of the MATLAB function block.MATLAB Function block does not produce one-dimensional data and has property enabledClick the Fix It button to disable the property for the MATLAB function block."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor Interpret output column vectors as one-dimensional data"
+        },
+        {
+            "heading": "Check model for RF Blockset Divider blocks using Wilkinson power divider component with broken connections",
+            "content": "Check ID: mathworks.design.rfblockset.ce.checkDisconnectedDividerBlocks\n\nSearch the model and list the RF Blocksetâ¢ Divider blocks using the Wilkinson power divider component with broken port connections on port 3."
+        },
+        {
+            "heading": "Description",
+            "content": "Starting R2021a, port positions of the RF Blockset Divider blocks using the Wilkinson power divider component are changed. This check searches and lists the Divider blocks using the Wilkinson power divider component model with broken port connections on port 3 prior to R2021a. You can then rewire the connections using the Modify button."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModels have RF Blockset Divider blocks using the Wilkinson power divider component with broken port connections on port 3.Click the Modify button to rewire the broken connections on port 3 of the RF Blockset Divider blocks."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking Modify rewires the broken port connections on port 3 of the RF Blockset Divider blocks.\n\nNoteThe Modify button will attempt to automatically rewire all the broken connections at port 3 of the Divider blocks using the Wilkinson power divider component in your model. To ensure accuracy, you must subsequently: Examine the details listed under the Result pane of the Upgrade Advisor. The first list enumerates the RF Blockset Divider blocks using the Wilkinson power divider component that require manual rewiring due to model complexity. The second list enumerates the automatically rewired blocks.Fixed and unfixed Divider blocks are temporarily highlighted in colors green and red, respectively. Click the Remove all temporary block highlighting link at the bottom of the Result pane to remove the highlights."
+        },
+        {
+            "heading": "See Also",
+            "content": "Upgrade Models Using Upgrade Advisor"
+        },
+        {
+            "heading": "Identify Environment Controller Blocks and Replace Them with Variant Source Blocks",
+            "content": "Check ID:mathworks.design.ReplaceEnvironmentControllerBlk\n\nSearch for Environment Controller blocks in the model."
+        },
+        {
+            "heading": "Description",
+            "content": "Find Environment Controller blocks in the model and replace them with Variant Source blocks with the Variant control mode parameter set to 'sim codegen switching'."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModel contains one or more Environment Controller blocks.Replace Environment Controller blocks with Variant Source blocks with the Variant control mode parameter set to 'sim codegen switching'."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can run this check on your library models.You cannot use this check to identify Environment Controller blocks in referenced models and linked blocks."
+        },
+        {
+            "heading": "See Also",
+            "content": "Environment Controller block has been removedVariant Source"
+        },
+        {
+            "heading": "Identify variant blocks with VariantActivation set to \"Inherit From Simulink.VariantControl\" but does not use Simulink.VariantControl",
+            "content": "Check ID: mathworks.simulink.InheritVATFromSlVarCtrlCheck\n\nIdentify variant blocks in the model that have no variant control variables of type Simulink.VariantControl to inherit activation time."
+        },
+        {
+            "heading": "Description",
+            "content": "Identify variant blocks with Variant activation time set to inherit from Simulink.VariantControl but no variant control variables of type Simulink.VariantControl."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionVariant block with inherit from Simulink.VariantControl activation time has no variant control variables of type Simulink.VariantControl.Change the type of at least one variant control variable to Simulink.VariantControl."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can run this check on your library models."
+        },
+        {
+            "heading": "See Also",
+            "content": "Simulink.VariantControlTypes of Variant Activation Time in Variant Blocks and Variant Parameters"
+        },
+        {
+            "heading": "Replacing Blocks That Will Be Removed Overview",
+            "content": "Checks to identify if the model contains any blocks that have been removed or will be removed in a future release."
+        },
+        {
+            "heading": "See Also",
+            "content": "Run Model Advisor Checks"
+        },
+        {
+            "heading": "Check for machine-parented data",
+            "content": "Check ID: mathworks.stateflow.MachineParentedData.check\n\nCheck the model for instances of machine-parented data."
+        },
+        {
+            "heading": "Description",
+            "content": "Machine-parented data prevents models from reusing generated code and other code optimizations. Machine-parented data is also incompatible with many Simulink and Stateflow features. To make Stateflow data accessible to other charts and blocks in a model, use chart-parented data of scope Data Store Memory. For more information, see Access Data Store Memory from a Chart (Stateflow).\n\nNoteStarting in R2023a, Stateflow charts no longer support machine-parented data. Use the Upgrade Advisor to convert machine-parented data to chart-parented data store memory. For more information, see Upgrade Models Using Upgrade Advisor and Check for machine-parented data."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionA Simulink model contains Stateflow machine-parented data.Upgrade the model by converting machine-parented data to chart-parented data with values in the model workspace."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking Upgrade model creates chart-parented data in the charts that use machine-parented data.\n\nIf a machine-parented data object has a scope of Parameter, the new chart-parented data object has a scope of Parameter. The value is stored as a Simulink.Parameter object in the model workspace.If a machine-parented data object has any other scope, the new chart-parented data object has a scope of Data Store Memory. The value is stored as a Simulink.Signal object in the model workspace."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "Automatic conversion fails when:\n\nThe model workspace contains a Simulink.Parameter or Simulink.Signal object with the same name as the machine-parented data.The model contains chart-parented data, events, or messages with the same name as the machine-parented data.The machine-parented data uses Stateflow semantics that do not have an equivalent for Simulink.Parameter or Simulink.Signal objects."
+        },
+        {
+            "heading": "Tips",
+            "content": "If your model contains a library chart or an atomic subchart linked from a library, you must upgrade every model that uses the library before you upgrade the library.\n\nOpen and upgrade each top model that uses the library.Upgrading the top model creates a Simulink.Parameter or Simulink.Signal object in the model workspace for each machine-parented data in the library.Save and close the top models.Open and upgrade the library model.Upgrading the library model creates chart-parented data that replaces the machine-parented data in the library.Save and close the library model."
+        },
+        {
+            "heading": "See Also",
+            "content": "Share Parameters with Simulink and the MATLAB Workspace (Stateflow)Access Data Store Memory from a Chart (Stateflow)Best Practices for Using Data in Charts (Stateflow)Upgrade Models Using Upgrade Advisor"
+        },
+        {
+            "heading": "Identify clones from the linked library",
+            "content": "Check ID: mathworks.cloneDetection.libraryEdittime\n\nIdentify clones in the model from the linked library file."
+        },
+        {
+            "heading": "Description",
+            "content": "Clones are modeling patterns that have identical block types and connections. The Clone Detector (Simulink Check) identifies clones across the model. You can reuse components in your model by identifying clone patterns and replacing clones with links to the library blocks.\n\nThis check highlights the clones present in the model from the linked library."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModel contains a clone pattern from the linked library.Replace the clones with links to the library file."
+        },
+        {
+            "heading": "Capabilities",
+            "content": "You can run this check to:\n\nHighlight exact clones from the linked library. For more information, see Exact Clones and Similar Clones (Simulink Check).Highlight both subsystem clones and Simulink blocks with identical patterns from the linked library. For more information, see Specify Where to Detect Clones (Simulink Check)."
+        },
+        {
+            "heading": "Limitations",
+            "content": "The check cannot identify clones in variants, Stateflow charts, and MATLAB Function blocks in the model.The check does not highlight clones if a subsystem contains a nested subsystem that is more than two levels deep."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Clicking the Fix button replaces the clones with links to the linked library file."
+        },
+        {
+            "heading": "See Also",
+            "content": "Enable Component Reuse by Using Clone Detection (Simulink Check)Replace Exact Clones with Subsystem Reference (Simulink Check)"
+        },
+        {
+            "heading": "Refactor Bus Selector and Bus Creator blocks to In Bus Element and Out Bus Element blocks",
+            "content": "Check ID: mathworks.m2m_edittime.BusPortsXform\n\nRefactor Bus Selector and Bus Creator blocks to In Bus Element and Out Bus Element blocks."
+        },
+        {
+            "heading": "Description",
+            "content": "To simplify your model, it is recommended to use In Bus Element and Out Bus Element blocks instead of Bus Selector blocks for inputs and Bus Creator blocks for outputs. For more information, see Simplify Subsystem and Model Interfaces with Bus Element Ports.\n\nThis check highlights the Bus Selector and Bus Creator blocks in the model and you can transform those blocks to In Bus Element and Out Bus Element blocks."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionModel contains Bus Selector and Bus Creator blocks.Replace the Bus Selector and Bus Creator blocks to In Bus Element and Out Bus Element blocks."
+        },
+        {
+            "heading": "Capabilities",
+            "content": "You can refactor the model by clicking Fix button in Model Advisor."
+        },
+        {
+            "heading": "Action Results",
+            "content": "Fix button transforms the model by replacing the suitable Bus Selector and Bus Creator blocks to In Bus Element and Out Bus Element blocks."
+        },
+        {
+            "heading": "See Also",
+            "content": "Check Model Compliance Using Edit-Time Checking (Simulink Check)Simplify Subsystem and Model Interfaces with Bus Element Ports"
+        },
+        {
+            "heading": "Clone Detection and Model Refactoring",
+            "content": "Use Clone Detection and Model Refactoring checks to improve model componentization, readability, and enable reuse. If you have a Simulink Check license, you can use edit-time checking to identify clones from the linked library file and refactor Bus Selector and Bus Creator blocks to In Bus Element and Out Bus Element blocks during the model development process."
+        },
+        {
+            "heading": "See Also",
+            "content": "Identify clones from the linked libraryCheck Model Compliance Using Edit-Time Checking"
+        },
+        {
+            "heading": "Check if the model settings to create an export-function model are satisfied",
+            "content": "Check ID: mathworks.design.CheckExpFcnMdlSpecification\n\nCheck if both the modeling style and the execution domain settings conform to export-function model design requirements.\n\nFor more information, see Designate Model as Export-Function Model and Satisfy Export-Function Model Requirements."
+        },
+        {
+            "heading": "Description",
+            "content": "This check searches for any mismatch between the execution domain setting on the Property Inspector tab and the modeling style when you create an export-function model."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "Condition Recommended ActionOn the Property Inspector tab, execution domain is set as Export function, but the modeling style does not satisfy the export-function model design requirements.Check fails. Consider changing the modeling style to satisfy the export-function model design requirements. For more information, see Designate Model as Export-Function Model and Satisfy Export-Function Model Requirements.However, if you need to keep the current modeling style, clear the Export function selection on the Property Inspector.The modeling style indicates an export-function model, but the execution domain is not set as Export function.Check fails. On the Property Inspector tab, go to the Execution tab. Select the Set execution domain parameter and, from the Domain list, select Export function."
+        },
+        {
+            "heading": "See Also",
+            "content": "Create Export-Function Model"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/slref/simulink-checks.html#bsgis28-1",
+    "images": []
+}

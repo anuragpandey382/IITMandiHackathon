@@ -1,0 +1,16 @@
+{
+    "title": "Troubleshoot S-Function Build Upgrade for R2020b",
+    "introduction": "A pre-R2020b model uses S-Functions. When migrating this model to the current release, this S-Function related message appears in the build log:",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "In R2020b, the compiler for model builds changed from a WindowsÂ® compatible C compiler to the QNXÂ® NeutrinoÂ® C++ compiler. To accommodate this change, update S-Function code for C++ compatibility.\n\nTipFortran S-Functions are not supported in R2020b and later releases of SimulinkÂ® Real-Timeâ¢."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "To update S-Function code for C++ compatibility, modify the declaration of the S-Function in the header file.\n\nFor example, update this C S-Function declaration:\n\nvoid getAllDataMyFunction(short); void myfunction_initialize(short, unsigned char*, short*); void myfunction_terminate(short, int);\n\nUpdated the code to this C++ S-Function declaration:\n\n#ifdef __cplusplus extern \"C\" { #endif void getAllDataMyFunction(short); void myfunction_initialize(short, unsigned char*, short*); void myfunction_terminate(short, int); #ifdef __cplusplus } #endif\n\nBefore building the updated code, remember to remove all artifacts from previous model builds."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug_upgrade/troubleshoot-s-function-build-upgrade-for-r2020b.html",
+    "images": []
+}

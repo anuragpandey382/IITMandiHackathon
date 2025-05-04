@@ -1,0 +1,80 @@
+{
+    "title": "Test Models in Real Time",
+    "introduction": "You can test your system in environments, such as SimulinkÂ® Real-Timeâ¢, that resemble your application. You begin with model simulation on a development computer, then use software-in-the-loop (SIL) and processor-in-the-loop (PIL) simulations. Real-time testing executes an application on a standalone target computer that can connect to a physical system. Real-time testing can include effects of timing, signal interfaces, system response, and production hardware. Real-time testing includes: setVariable",
+    "chunks": [
+        {
+            "heading": "Overall Workflow",
+            "content": "This example workflow describes the major steps of creating and executing a real-time test:\n\nCreate test cases that verify the model against requirements. Run the model simulation tests and save the baseline data.Set up the real-time target computer.Create test harnesses for real-time testing, or reuse model simulation test harnesses. In Test Sequence or Test Assessment blocks, verify statements assess the real-time execution.In the Test Manager, create real-time test cases.For the real-time test cases, configure target settings, inputs, callbacks, and iterations. Add baseline or equivalence criteria.Execute the real-time tests.Analyze the results in the Test Manager. Report the results."
+        },
+        {
+            "heading": "Real-Time Testing Considerations",
+            "content": "assert statements in a Test Sequence block or StateflowÂ® chart are not supported for code generation and are ignored, so no error occurs if the assert condition fails during a Simulink Real-Time simulation. However, verify statements are supported for Simulink Real-Time code generation and automatically log results for a test case in the Test Manager. The same logging behavior is available when using a Simulink Assert block.Baseline or equivalence comparisons can fail because of missing data or time-shifted data from the real-time target computer. When investigating real-time test failures, look for time shifts or missing data points.You cannot override the real-time execution sample time for applications built from models containing a Test Sequence block. The code generated for the Test Sequence block contains a hard-coded sample time. Overriding the target computer sample time can produce unexpected results.You cannot log states or, on some platforms, output ports.Your target computer must have a file system to use verify statements and test case logging. Your target computer must be running Simulink Real-Time.You cannot use variant configurations."
+        },
+        {
+            "heading": "Complete Basic Model Testing",
+            "content": "Real-time testing often takes longer than comparative model testing, especially if you execute a suite of real-time tests that cover several scenarios. Before executing real-time tests, complete requirements-based testing using desktop simulation. Using the desktop simulation results:\n\nDebug your model or make design changes that meet requirements.Debug your test sequence. Use the debugging features in the Test Sequence Editor. See Debug a Test Sequence.Update your requirements and add corresponding test cases."
+        },
+        {
+            "heading": "Set up the Target Computer",
+            "content": "Real-time testing requires a target computer or external hardware test bench. Simulink Test supports target computers running Simulink Real-Time. For more information, see:\n\nTarget Computer Settings (Simulink Real-Time) Troubleshooting in Simulink Real-Time (Simulink Real-Time)"
+        },
+        {
+            "heading": "Configure the Model or Test Harness",
+            "content": "Real-time applications require specific configuration parameters and signal properties."
+        },
+        {
+            "heading": "Code Generation",
+            "content": "A real-time test case requires a real-time system target file. In the model or harness configuration parameters, on the Apps tab, under Code Generation, click Simulink Coder. In the C Code tab, verify that the system target file (STF) is for a Simulink Real-Time model.\n\nIf the button in the Output section is Custom Target, click that button and verify that the Custom target is an STF for a Simulink Real-Time model. If it isn't, select Select system target file and select the STF to generate system target code.\n\nIf your model requires a different STF, you can set the parameter using a test case or test suite callback. After the real-time test executes, set the parameter to its original setting with a cleanup callback. For example, this callback opens the sltestProjectorController model and sets the STF parameter to speedgoat.tlc.\n\nopenExample('sltestProjectorController'); set_param('sltestProjectorController',... 'SystemTargetFile','speedgoat.tlc');"
+        },
+        {
+            "heading": "Data Import/Export Format",
+            "content": "Models must use a data format other than dataset. To set the data format:\n\nOpen the configuration parameters.Select the Data Import/Export pane.Select the Format."
+        },
+        {
+            "heading": "Log Signals from Real-Time Execution",
+            "content": "To configure your signals of interest for real-time testing:\n\nEnable signal logging in the Configuration Parameters, in the Data Import/Export pane.Name each signal of interest using the signal properties. Unnamed signals can be assigned a default name which does not match the name of the baseline or equivalence signal. In this example test harness, the logged signals have explicit names."
+        },
+        {
+            "heading": "Add Test Cases for Real-Time Testing",
+            "content": "Use the Test Manager to create real-time test cases.\n\nIn the Simulink toolstrip, on the Apps tab under Model Verification, Validation, and Test, select Simulink Test.Click Simulink Test Manager.In the Test Manager, select New > Test Case > Real-Time Test."
+        },
+        {
+            "heading": "Test Type",
+            "content": "You can select a baseline, equivalence, or simulation real-time test. For simulation test types, verify statements serve as pass/fail criteria in the test results. For equivalence and baseline test types, the equivalence or baseline criteria also serve as pass/fail criteria.\n\nBaseline â Compares the signal data returned from the target computer to the baseline in the test case. To compare a real-time execution result to a model simulation result, add the model baseline result to the real-time test case and apply optional tolerances to the signals.Equivalence â Compares signal data from a simulation and a real-time test, or two real-time tests. To run a real-time test on the target computer, then compare results to a model simulation:Select Simulation 1 on target.Clear Simulation 2 on target.The test case displays two simulation sections, Simulation 1 and Simulation 2.Comparing two real-time tests is similar, except that you select both simulations on target. In the Equivalence Criteria section, you can capture logged signals from the simulation and apply tolerances for pass/fail analysis.Simulation: Assesses the test result using only verify statements and real-time execution. If no verify statements fail, and the real-time test executes, the test case passes."
+        },
+        {
+            "heading": "Load Application From",
+            "content": "Using this option, specify how you want to load the real-time application. The real-time application is built from your model or test harness. You can load the application from:\n\nModel â Choose Model if you are running the real-time test for the first time, or your model changed since the last real-time execution. Model typically takes the longest because it includes model build and download. Model loads the application from the model, builds the real-time application, downloads it to the target computer, and executes it on the target computer.Target Application â Choose Target Application to send the target application from the host to a target computer, and execute the application. Target Application can be useful if you want to load an already-built application on multiple targets.Target Computer â This option executes an application that is already loaded on the real-time target computer. You can update the parameters in the test case and execute using Target Computer.\n\nThis table summarizes which steps and callbacks execute for each option.\n\nTest Case Execution Step (first to last)Load Application FromModelTarget ApplicationTarget ComputerExecutes pre-load callbackYesYesYesLoads Simulink modelYesNoNoExecutes post-load callbackYesNoNoSets Signal Editor scenarioYesNoNoBuilds real-time application from modelYesNoNoDownloads real-time application to target computerYesYesNoSets runtime parametersYesYesYesRuns Test Sequence scenariosYesNoNoExecutes pre-start real-time callbackYesYesYesExecutes real-time application YesYesYesExecutes cleanup callbackYesYesYes"
+        },
+        {
+            "heading": "Model",
+            "content": "Select the model from which to generate the real-time application."
+        },
+        {
+            "heading": "Test Harness",
+            "content": "If you use a test harness to generate the real-time application, select the test harness."
+        },
+        {
+            "heading": "Simulation Settings Overrides",
+            "content": "For real-time tests, you can override the simulation stop time, which can be useful in debugging a real-time test failure. Consider a 60-second test that returns a verify statement failure at 15 seconds due to a bug in the model. After debugging your model, you execute the real-time test to verify the fix. You can override the stop time to terminate the execution at 20 seconds, which reduces the time it takes to verify the fix."
+        },
+        {
+            "heading": "Callbacks",
+            "content": "Real-time tests offer a Pre-start real-time application callback which executes commands just before the application executes on the target computer. Real-time test callbacks execute in a sequence along with the model load, build, download, and execute steps. Callbacks and step execution depends on how the test case loads the application.\n\nSequenceLoad application from:ModelLoad application from:Target applicationLoad application from:Target computerExecutes firstPreload callbackPreload callbackPreload callbackÂ Post-load callbackââÂ Pre-start real-time callbackPre-start real-time callbackPre-start real-time callbackExecutes lastCleanup callbackCleanup callbackCleanup callback"
+        },
+        {
+            "heading": "Iterations",
+            "content": "You can execute iterations in real-time tests. Iterations are convenient for executing real-time tests that sweep through parameter values or Signal Editor scenarios. Results appear grouped by iteration. For more information on setting up iterations, see Test Iterations. You can create:\n\nTabled iterations from a parameter set â Define several parameter sets in the Parameter Overrides section of the test case. Under Iterations > Table Iterations, click Auto Generate and select Parameter Set.Tabled iterations from Signal Editor scenarios â If your model or test harness uses a Signal Editor input, below the IterationsTable Iterations table, click Auto Generate and select Signal Editor Scenario. If you use a Signal Editor scenario, load the application from the model.Tabled iterations from Test Sequence scenarios â If your test harness uses Test Sequence block scenarios, you can create an iteration for each scenario in the Test Manager. Below the Iterations table, click Auto Generate and select Test Sequence Scenario. If you use Test Sequence scenarios, load the application from the model.Scripted iterations â Use scripts to iterate using model variables or parameters. For example, assume you are testing an oscillator system and use a Test Sequence block to create a square wave test signal using the parameter frequency.In the test file, you can use real-time test scripted iterations to cover a frequency sweep from 5 Hz to 35 Hz. The script iterates the value of frequency in the Test Sequence block.%% Iterate over frequencies to determine best oscillator settings % Create parameter sets freq = 5.0:1.0:35.0; for i_iter = 1:length(freq) % Create iteration object testItr = sltestiteration(); % Set parameters setVariable(testItr,'Name','frequency','Source',... 'Test Sequence','Value',freq(i_iter)); % Register iteration addIteration(sltest_testCase, testItr); end"
+        },
+        {
+            "heading": "Assess Real-Time Execution Using verify Statements",
+            "content": "In addition to baseline and equivalence signal comparisons, you can assess real-time test execution using verify statements. A verify statement assesses a logical expression and returns results to the Test Manager. Use verify inside a Test Sequence or Test Assessment block or, if you have a Stateflow license, in a Stateflow chart. See Verify Model Simulation by Using When Decomposition."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/sltest/ug/test-models-in-real-time-and-assess-results.html",
+    "images": [
+        "https://in.mathworks.com/help/sltest/ug/sltest_projector_ctrl_realtime_harness.png",
+        "https://in.mathworks.com/help/sltest/ug/rtt_oscillator_test_function.png",
+        "https://in.mathworks.com/help/sltest/ug/sltestprojectorcontrollerrealtimeverifyresults.png"
+    ]
+}

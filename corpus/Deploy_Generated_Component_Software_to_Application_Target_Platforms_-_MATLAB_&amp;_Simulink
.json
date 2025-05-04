@@ -1,0 +1,12 @@
+{
+    "title": "Deploy Generated Component Software to Application Target Platforms",
+    "introduction": "The code generator supports integration of generated code with operating systems and processors. For details, see Embedded Coder Supported Hardware.",
+    "chunks": [
+        {
+            "heading": "Interface to an Example Real-Time Multitasking System",
+            "content": "Open Live Script\n\nThis example shows how to simulate and generate code for asynchronous events on a real-time multitasking system.\n\nThe operating system integration techniques that the example demonstrates use one or more blocks in the vxlib1 library. These blocks provide starting point examples to help you develop custom blocks for your target environment.\n\nExample ModelOpen the OSIntegration model.model = 'OSIntegration'; open_system(model);Model DescriptionThe example model contains two asynchronously executed subsystems, Count and Algorithm. Count executes at interrupt level. Algorithm executes in an asynchronous task. The generated code for these blocks is tailored for the VxWorksÂ® operating system. However, you can modify the Async Interrupt and Task Sync blocks to generate code for your run-time environment whether you are using an operating system or not.Data Transfer AssumptionsThis example assumes the following about the target platform environment:Data transitions occur between a single task that reads data and a single task that writes data.A read or write of a byte-sized variable is atomic.When two tasks interact during a data transfer, only one of the tasks can preempt the other task.For periodic tasks, the task that executes at the faster rate has a higher priority than the tasks that executes at the slower rate. The task executing at the faster rate preempts the tasks executing at the slower rate.Tasks run on a single processor. Time slicing is not allowed.Processes do not crash and restart during a data transfers.Related InformationAsync InterruptTask SyncGenerate Interrupt Service RoutinesTimers in Asynchronous TasksCreate a Customized Asynchronous LibraryImport Asynchronous Event Data for SimulationLoad Data to Root-Level Input PortsAsynchronous EventsRate Transitions and Asynchronous BlocksAsynchronous Support Limitations"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/ecoder/ug/operating-system-integration.html",
+    "images": []
+}

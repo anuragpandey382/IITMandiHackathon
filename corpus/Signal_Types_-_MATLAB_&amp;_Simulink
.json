@@ -1,0 +1,22 @@
+{
+    "title": "Signal Types",
+    "introduction": "Multiple types of signals can connect the blocks in a model. For example, a model may contain a control signal to initiate the execution of a block and buses to simplify line routing. This table summarizes the types of SimulinkÂ® signals.",
+    "chunks": [
+        {
+            "heading": "Control Signals",
+            "content": "A control signal is a signal used by a block to initiate the execution of another block. For example, a signal that executes a function-call or action subsystem is a control signal. When you update or simulate a block diagram, Simulink uses a dash-dot pattern to draw lines that represent the control signals."
+        },
+        {
+            "heading": "Composite Signals",
+            "content": "You can group multiple signals in a composite signal, route the signal from block to block, and extract the constituent signals where needed. When you have many parallel signals, composite signals can simplify the appearance of a model and clarify generated code. Composite signals can be virtual or nonvirtual.\n\nFor more information on composite signals, see Composite Interface Guidelines."
+        },
+        {
+            "heading": "Virtual and Nonvirtual Signals",
+            "content": "A virtual signal is a signal that graphically represents other signals or parts of other signals. Virtual signals do not exist in generated code. Some blocks, such as the Mux block, always generate virtual signals. Others, such as the Bus Creator block, can generate either virtual or nonvirtual signals. A signal is virtual if the block that generates it is virtual.\n\nA nonvirtual signal is a signal that plays an active role in simulation and code generation. Some blocks, such as the Vector Concatenate block, always generate nonvirtual signals. A signal is nonvirtual if the block that generates it is nonvirtual.\n\nFor information on virtual and nonvirtual blocks, see Nonvirtual and Virtual Blocks."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/signal-types.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/working_with_signals45.png"
+    ]
+}

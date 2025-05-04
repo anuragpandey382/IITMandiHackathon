@@ -1,0 +1,19 @@
+{
+    "title": "Stream Real-Time Signals by Using Simulink External Mode",
+    "introduction": "You can use SimulinkÂ® external mode to establish a communication channel between your Simulink block diagram and your real-time application. The block diagram becomes a user interface to your real-time application. Simulink scopes can display signal data from the real-time application, including from models referenced inside a top model. You can control which signals to upload through the External Signal & Triggering dialog box. See Select Signals to Upload and TCP/IP or Serial External Mode Control Panel. If using external mode simulation with the model serving as the interface to the real-time application and the model contains referenced models, use the Simulation Data Inspector to log signal data. Do not use Floating Scope or Scope Viewer blocks to display signals in the referenced models for external mode simulation.",
+    "chunks": [
+        {
+            "heading": "Set Up for External Mode Simulation",
+            "content": "This procedure uses model slrt_ex_osc. This model contains a Simulink Scope block. To set up triggering for the external mode simulation:\n\nOpen model slrt_ex_osc.Open the external mode control panel. In the Simulink Editor, on the Real-Time tab, click Prepare > Control Panel.In the external mode control panel, click Signal & Triggering.In the External Signal & Triggering dialog box, set the Source parameter to manual.Set the Mode parameter to normal. In this mode, the scope acquires data continuously.Select the Arm when connecting to target check box.In the Delay box, enter 0.In the Duration box, enter the number of samples for which external mode is to log data, for example, 1000. The External Signal & Triggering dialog box looks like this figure. Click Apply, and then Close. In the External Mode Control Panel dialog box, click OK."
+        },
+        {
+            "heading": "Set Stop Time and Simulate",
+            "content": "To set the stop time and run the simulation:\n\nIn the Simulink toolbar, increase the simulation stop time to, for example, 50.Save the model as ex_slrt_ext_osc. On the Simulation tab, from Save, click Save As.If a scope window is not displayed for the Scope block, double-click the Scope block.Connect to the target computer. On the Real-Time tab, toggle the Disconnected indicator to Connected.Build and download the real-time application to the target computer. Click Run on Target.The real-time application begins running on the target computer. The Scope window displays plotted data.To stop the simulation, on the Real-Time tab click Stop."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/strean-real-time-signals-by-using-simulink-external-mode.html",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/ug/window-external-mode-signal.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-external-mode-scope.png"
+    ]
+}

@@ -1,0 +1,43 @@
+{
+    "title": "Concurrent Execution on Simulink Real-Time - MATLAB &amp; Simulink\n",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Create Target Object and Connect",
+            "content": "Create a Target object for the default target computer and connect to the target computer. In the Command Window, type:\n\ntg = slrealtime; connect(tg);"
+        },
+        {
+            "heading": "Open, Build, and Download the Model",
+            "content": "The explicit partitioning in the top-level model occurs in subsystem1.\n\nopen_system('slrt_ex_mds_subsystem1');\n\nThe explicit partitioning in the top-level model occurs in subsystem2.\n\nopen_system('slrt_ex_mds_subsystem2');\n\nOpen the model slrt_ex_mds_and_tasks. The model is mapped to seven threads: Model1_R1, Model1_R2, Model1_R3, Model1_R4, Model2_R1, Model2_R3, and Model2_R4.\n\nThese threads run at sample rates of Ts, 2*Ts, 3*Ts, 4*Ts, Ts, 3*Ts, and 4*Ts.\n\nmodel = 'slrt_ex_mds_and_tasks'; open_system(model); modelSTF = getSTFName(tg); set_param(model,\"SystemTargetFile\",modelSTF); set_param(model,'RTWVerbose','off'); set_param('slrt_ex_mds_subsystem1',\"SystemTargetFile\",modelSTF); set_param('slrt_ex_mds_subsystem2',\"SystemTargetFile\",modelSTF);\n\nTo apply explicit partitioning, in the Simulink Editor, on the Real-Time tab, click Hardware Settings, and then select Solver > Configure Tasks. Select the Tasks and Mapping node.\n\nBuild, download, and run the model.\n\nevalc('slbuild(model)'); load(tg,model);\n\nOpen TET Monitor\n\nslrtTETMonitor;\n\nStart profiler on the target computer\n\nstartProfiler(tg); start(tg); pause(2); stop(tg);"
+        },
+        {
+            "heading": "Display Profiling Data",
+            "content": "The profiling data shows the execution time of each thread on a multi-core target computer.\n\nprofData = tg.getProfilerData; profData.plot;\n\nProcessing data on target computer ... Transferring data from target computer ... Processing data on host computer ..."
+        },
+        {
+            "heading": "View TET Information in TET monitor",
+            "content": ""
+        },
+        {
+            "heading": "View TET Information in the Simulation Data Inspector",
+            "content": ""
+        },
+        {
+            "heading": "See Also",
+            "content": "For more information, see:\n\nGenerate Subsystem Code as Separate Function and Files Generate Code and Executables for Individual Subsystems Generate Inlined Subsystem Code Generate Subsystem Code as Separate Function and Files Generate Reusable Code from Library Subsystems Shared Across Models"
+        },
+        {
+            "heading": "Close the Model",
+            "content": "bdclose('slrt_ex_mds_subsystem1'); bdclose('slrt_ex_mds_subsystem2'); bdclose(model);"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/concurrent-execution-on-simulink-real-time.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtConcurrentExecutionExample_01.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtConcurrentExecutionExample_02.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtConcurrentExecutionExample_03.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxconcurrent_execution_partitioning.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxwindow-slrtexplorer-tet-monitor.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxwindow-sdi-task-execution-plot.png"
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "title": "Monitor CPU Overload Rate - MATLAB &amp; Simulink\n",
+    "introduction": "SLRT Overload Options",
+    "chunks": [
+        {
+            "heading": "Create Target Object and Connect",
+            "content": "Create a Target object for the default target computer and connect to the target computer. In the Command Window, type:\n\ntg = slrealtime; connect(tg);"
+        },
+        {
+            "heading": "Open, Build, and Run the Model",
+            "content": "In the MATLAB Command Window, type:\n\nmodel = 'slrt_ex_overload'; open_system(model); modelSTF = getSTFName(tg); set_param(model,\"SystemTargetFile\",modelSTF); set_param(model, 'RTWVerbose', 'off');\n\nName the signal coming out from the outport of rate limiter block as Rate Limiter and log it in the Simulation Data Inspector.\n\np = get_param('slrt_ex_overload/Rate Limiter','PortHandles'); l = get_param(p.Outport,'Line'); set_param(l,'Name','Rate Limiter'); Simulink.sdi.markSignalForStreaming('slrt_ex_overload/Rate Limiter',1,'on');\n\nBuild the model.\n\nevalc('slbuild(model)');\n\nDownload the application and run it on the target computer.\n\nload(tg,model); start(tg); pause(20); stop(tg);"
+        },
+        {
+            "heading": "Open Simulation Data Inspector",
+            "content": "To view the rate at which CPU overloads occur, open the Simulation Data Inspector.\n\nIn the MATLAB Command Window, type:\n\nSimulink.sdi.view;"
+        },
+        {
+            "heading": "Examine CPU Overload Rate Data",
+            "content": "In the Simulation Data Inspector, the graph shows:\n\nBottom rising stair step signal -- This signal indicates the number of CPU overloads that occurred.Top rising stair step signal -- This signal indicates the number of CPU overloads that are allowed, which is (occurred + 2).Rising slew rate -- This signal indicates the rate at which CPU overloads occur. When the rising slew rate becomes greater than the top rising stair step signal, the rate of CPU overloads is greater than are allowed."
+        },
+        {
+            "heading": "Modify Rate of CPU Overloads",
+            "content": "To modify the rate at which CPU overloads occur in the model, modify the Constant2 parameter value."
+        },
+        {
+            "heading": "Modify Allowed Rate of CPU Overloads",
+            "content": "To modify the rate of CPU overloads that are acceptable in the model, modify the RisingSlewLimit parameter value."
+        },
+        {
+            "heading": "Build and Run Model with Changed Overload Rates",
+            "content": "In the MATLAB Command Window, type:\n\nload(tg,model);\n\nTo modify the rate of CPU overloads that are acceptable in the model.\n\ntg.setparam('slrt_ex_overload/Rate Limiter','RisingSlewLimit',4);\n\nTo modify the rate at which CPU overloads occur in the model.\n\ntg.setparam('slrt_ex_overload/Constant2','Value',4);\n\nRun the modified application on the target computer.\n\nstart(tg); pause(20); stop(tg);\n\nIn the Simulation Data Inspector, compare the signal data from the simulation runs and observe the change to the CPU overload rate.\n\nbdclose(model);"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/monitor-cpu-overload-rate.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtMonitorCPUOverloadRateExample_01.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxrate1.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxrate2.png"
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "title": "Troubleshoot Missing Real-Time Tab",
+    "introduction": "Where is the Real-Time tab? This tab is not visible in the SimulinkÂ® editor.",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "From the model configuration, the Simulink editor determines which tabs to display. The editor displays the Real-Time tab for models that are configured for Simulink Real-Timeâ¢."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "To configure your model for Simulink Real-Time, in Simulink Editor, from the Apps tab, click Simulink Real-Time.\n\nThis operation changes the code generation target for the model to a Simulink Real-Time system target file (STF) and applies other configuration parameter changes for compatibility. After changing the configuration, the Simulink editor displays the Real-Time tab for the model."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-missing-real-time-tab.html",
+    "images": []
+}

@@ -1,0 +1,24 @@
+{
+    "title": "Real-Time Signal Logging and Streaming Basics",
+    "introduction": "SimulinkÂ® Real-Timeâ¢ signal logging with a File Log block or signal streaming from a real-time application differs from non-real-time Signal logging in Simulink. The differences include: This graphic shows the signal data flow for visualizing signals by using real-time signal logging and streaming. File Log | Enable File Log | import | start | stop | startRecording | stopRecording",
+    "chunks": [
+        {
+            "heading": "Retain Real-Time Signal Data for Post-Processing",
+            "content": "You can visualize and analyze real-time signal data in the Simulation Data Inspector after running the real-time application. To select these signals in the model before building the real-time application:\n\nMark signals for logging to the Simulation Data Inspector. The streamed signal data for these signals is visible while the real-time application is running and available in the Simulation Data Inspector after the real-time application stops.Connect signals to File Log blocks for logging to a file on the target computer. After the real-time application stops writing the log file, the signal data is imported into the Simulation Data Inspector.\n\nWith regards to file logging:\n\nReal-time signal logging to a log file samples at the base sample time by default.You can observe signals that are present in the real-time application. Some signals are not observable.Simulink Real-Time Explorer works with multidimensional signals in column-major format."
+        },
+        {
+            "heading": "Display Real-Time Signal Data without Retaining for Post-Processing",
+            "content": "Most types of signal streaming permit viewing signal data only during a real-time application run on the target computer. For these run-time-only viewers, signal streaming can use a viewer that you add to the model before building the real-time application, use an instrument that you add to the real-time application, or use a viewerâsuch as an App Designer instrument panelâthat connects to the real-time application. Types of run-time-only signal viewers include:\n\nAdding a Scope block or other viewer to the model for viewing signals in a Scope window during external mode simulation with the model connected to the real-time application.Adding signals to an instrument in the real-time application by using selections from the Real-Time tab in the Simulink Editor or by selecting signals for streaming in the Simulink Real-Time Explorer. You can view these signals in the Simulation Data Inspector or on an Axes tab in the Simulink Real-Time Explorer.Connecting signals to an Axes component or other viewer in an App Designer instrument panel for viewing signals in the app while the real-time application runs."
+        },
+        {
+            "heading": "Real-Time Signal Logging is Affected by How Application is Run",
+            "content": "The Run on Target button provides slightly different data logging support than running the real-time application by using the start(tg) function:\n\nWhen you run the real-time application by using the start(tg) function, only signals marked for signal logging or connected to a File Log block are logged to the Simulation Data Inspector.When you run the real-time application by using the Run on Target button on the real-time tab in the Simulink Editor or the Start button in the Simulink Real-Time Explorer, signals marked for logging, signals connected to File Log blocks, and signals connected to Scope blocks are logged to the Simulation Data Inspector."
+        },
+        {
+            "heading": "Signal Triggering for External Mode Simulation",
+            "content": "When setting up signal triggering (Source set to signal), explicitly specify the element number of the signal in the Trigger signal:Element box. If the signal is a scalar, enter a value of 1. If the signal is a wide signal, enter a value from 1 to 10. When uploading Simulink Real-Time signals to Simulink scopes, do not enter Last or Any in this box.\n\nThe Direction:Holdoff value does not affect the Simulink Real-Time signal uploading feature.\n\nFor more information about external mode, see Simulink External Mode Interface."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/real-time-signal-logging-and-streaming-basics.html#mw_5565cf5a-d275-432c-8e46-878bba001c8d",
+    "images": []
+}

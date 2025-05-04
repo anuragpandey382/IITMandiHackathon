@@ -1,0 +1,18 @@
+{
+    "title": "Troubleshoot Long Build Times for Real-Time Application",
+    "introduction": "The model build process for a Simscapeâ¢ Multibodyâ¢ models is slow and uses an unexpected amount of memory.",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "The default QNXÂ® NeutrinoÂ® compiler switches for SimulinkÂ® Real-Timeâ¢ apply optimizations that lead to long build times or slow builds for some complex models, such as Simscape Multibody models."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "To improve the real-time application build speed, change the compiler switch selections from the default selections by adding the -fdisable-rtl-sched2 switch for the C/C++ compiler:\n\nOpen your Simulink Real-Time model.In the Simulink Editor, from the Real-Time tab, select Hardware Settings.Select Code Generation > Build configuration > SpecifyClick the C Compiler options and add option -fdisable-rtl-sched2.Click the C++ Compiler options and add option -fdisable-rtl-sched2.Click Apply and OK.\n\nAfter updating the compiler options, the options appear as shown.\n\nIf you prefer to use a programmatic approach to update these compiler switches, you could use this code.\n\n% add a compiler flag '-fdisable-rtl-sched2' set_param(modelName, 'BuildConfiguration', 'Specify'); options = get_param(modelName, 'CustomToolchainOptions'); ccompiler_idx = find(strcmp(options, 'C Compiler')); cppcompiler_idx = find(strcmp(options, 'C++ Compiler')); options{ccompiler_idx+1} = ... [options{ccompiler_idx+1} ' -fdisable-rtl-sched2']; options{cppcompiler_idx+1} = ... [options{cppcompiler_idx+1} ' -fdisable-rtl-sched2']; set_param(modelName, 'CustomToolchainOptions', options);"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-long-build-times-for-real-time-application.html",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/ug/window-config-parameters-qnx-c-compiler.png"
+    ]
+}

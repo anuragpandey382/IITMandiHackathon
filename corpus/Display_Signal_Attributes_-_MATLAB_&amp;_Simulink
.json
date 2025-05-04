@@ -1,0 +1,41 @@
+{
+    "title": "Display Signal Attributes",
+    "introduction": "A signal line in a model has attributes such as data type, dimensions, and numeric complexity. When you display these attributes on the block diagram, you can: Additionally, to inspect and specify these attributes in a searchable, sortable table, you can use the Model Data Editor.",
+    "chunks": [
+        {
+            "heading": "Ports & Signals Menu",
+            "content": "In the SimulinkÂ® Editor, on the Debug tab, the Information Overlays menu offers the following options for displaying signal properties on the block diagram:\n\nLinearization IndicatorsPort Data Types (See Port Data Types)Design Ranges (See Design Ranges)Signal Dimensions (See Signal Dimensions)Storage ClassTestpoint/Logging IndicatorsSignal Resolution Indicators (See Signal to Object Resolution Indicator)Viewer IndicatorsWide Nonscalar Lines (See Wide Nonscalar Lines)\n\nIn addition, you can display sample time information. In the Simulink Editor, on the Debug tab, the Information Overlays menu provides the choices of Colors and Text. The Colors option allows the block diagram signal lines and blocks to be color-coded based on the sample time types and relative rates. The Text option provides black codes on the signal lines which indicate the type of sample time. If you select both Colors and Text, then both the colors and the annotations display. All of these options cause a Sample Time Legend to appear. The legend contains a description of the type of sample time and the sample time rate. If Colors is enabled, color codes also appear in the legend. The same is true if Text is enabled."
+        },
+        {
+            "heading": "Port Data Types",
+            "content": "Displays the data type that each signal uses for simulation and code generation. The data type appears next to the output port that emits the signal.\n\nThe notation (c) indicates that the signal is numerically complex (i).\n\nIf you use data type aliases (such as a Simulink.AliasType objects in the base workspace or a data dictionary) to set output data types in your model, by default, the diagram displays the aliases.\n\nIf you create a chain of aliases (for example, by using one Simulink.AliasType object as the base type of another Simulink.AliasType object), the diagram displays only the alias that you use to set the output data type of each signal. The diagram does not display the underlying aliases in the chain.\n\nTo display the lowest underlying base data type (such as int8, single, or s16En14) as well as the alias, in the Debug tab, open the Information Overlays drop-down. Under Ports click Base Data Types and Alias Data Types.\n\nAlternatively, you can display the base type and not the alias by selecting Base Data Types.\n\nWhen you use a fixed-point data type, the diagram displays the base type by using a standard notation that indicates the characteristics of the type (such as signedness and binary fraction length). To interpret this notation, see Fixed-Point Data Type and Scaling Notation (Fixed-Point Designer).\n\nWhen you save a model with Base Data Types enabled, the next time you load the model, it displays the data type and complexity signal attributes."
+        },
+        {
+            "heading": "Design Ranges",
+            "content": "Displays the compiled design range of a signal next to the output port that emits the signal. The ranges are computed during an update diagram.\n\nRanges are displayed in the format [min..max]. In the above example, the design range at the output port of the Mux block is displayed as [-10..mixed], because the two signals the Mux block combines have the same design minimum but different design maximums.\n\nYou can also use command-line parameters CompiledPortDesignMin and CompiledPortDesignMax to access the design minimum and maximum of port signals, respectively, at compile time. For more information, see Common Block Properties."
+        },
+        {
+            "heading": "Signal Dimensions",
+            "content": "Display the dimensions of nonscalar signals next to the line that carries the signal.\n\nThe format of the display depends on whether the line represents a single signal or a bus. If the line represents a single vector signal, Simulink displays the width of the signal. If the line represents a single matrix signal, Simulink displays its dimensions as [N1xN2] where Ni is the size of the ith dimension of the signal. If the line represents a bus carrying signals of the same data type, Simulink displays N{M} where N is the number of signals carried by the bus and M is the total number of signal elements carried by the bus. If the bus carries signals of different data types, Simulink displays only the total number of signal elements {M}.\n\nTo display signal dimensions, in the Debug tab, open Information Overlays drop-down. Under Signals click Signal Dimensions.\n\nWhen you save a model with this option enabled, update (Ctrl+D) or simulate (Ctrl+T) the model next time you load it to view the signal dimensions.\n\nNoteFor versions R2024a or later, a scalar signal characterized by a matrix of size 1-by-1 is displayed as [1x1]."
+        },
+        {
+            "heading": "Signal to Object Resolution Indicator",
+            "content": "The Simulink Editor by default graphically indicates signals that must resolve to signal objects. For any labeled signal whose Signal name must resolve to signal object property is enabled, a signal resolution icon appears to the left of the signal name. The icon looks like this:\n\nA signal resolution icon indicates only that the Signal name must resolve to signal object property for a signal is enabled. The icon does not indicate whether the signal is actually resolved, and does not appear on a signal that is implicitly resolved without its Signal name must resolve to signal object property being enabled.\n\nWhere multiple labels exist, each label displays a signal resolution icon. No icon appears on an unlabeled branch. In the next figure, signal x2 must resolve to a signal object, so a signal resolution icon appears to the left of the signal name in each label:\n\nTo suppress the display of signal resolution icons, in the model window, on the Debug tab, select Information Overlays > Signal Resolves to Object to disable. This option is enabled default. To restore signal resolution icons, enable Signal Resolves to Object . Individual signals cannot be set to show or hide signal resolution indicators independently of the setting for the whole model. For additional information, see:\n\nSymbol Resolution Initialize Signals and Discrete States Simulink.Signal"
+        },
+        {
+            "heading": "Wide Nonscalar Lines",
+            "content": "Draws lines that carry vector or matrix signals wider than lines that carry scalar signals.\n\nFor more information on vector and matrix signals, see Signal Types."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/displaying-signal-properties.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/display_port_data_type.png",
+        "https://in.mathworks.com/help/simulink/ug/display_port_data_type_alias.png",
+        "https://in.mathworks.com/help/simulink/ug/display_port_data_type_alias_base.png",
+        "https://in.mathworks.com/help/simulink/ug/display_design_range.png",
+        "https://in.mathworks.com/help/simulink/ug/display_signal_dimensions.png",
+        "https://in.mathworks.com/help/simulink/ug/signal_res_icon.gif",
+        "https://in.mathworks.com/help/simulink/ug/signal_res_icon_model.png",
+        "https://in.mathworks.com/help/simulink/ug/display_wide_lines.png"
+    ]
+}

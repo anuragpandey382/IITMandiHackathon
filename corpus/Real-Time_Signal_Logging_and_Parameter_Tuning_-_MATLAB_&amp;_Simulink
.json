@@ -1,0 +1,27 @@
+{
+    "title": "Real-Time Signal Logging and Parameter Tuning - MATLAB &amp; Simulink\n",
+    "introduction": "slrtTETMonitor",
+    "chunks": [
+        {
+            "heading": "Create Target Object and Connect",
+            "content": "Create a Target object for the default target computer and connect to the target computer. In the Command Window, type:\n\ntg = slrealtime; connect(tg);"
+        },
+        {
+            "heading": "Open, Build, and Download Model to the Target Computer",
+            "content": "Open the model, slrt_ex_param_tuning. The model configuration parameters select the system target file (STF) that corresponds to the connected target computer, tg. Building the model creates a real-time application, slrt_ex_param_tuning.mldatx, that runs on the target computer.\n\nmodel = 'slrt_ex_param_tuning'; open_system(model); modelSTF = getSTFName(tg); set_param(model,\"SystemTargetFile\",modelSTF); set_param(model,'RTWVerbose','off'); set_param(model,'StopTime','0.2');\n\nBuild the model and download the real-time application, slrt_ex_param_tuning.mldatx, to the target computer.\n\nConfigure for a non-Verbose build.Build and download application.\n\nevalc('slbuild(model)'); load(tg,model);"
+        },
+        {
+            "heading": "Run Model, Sweep 'Gain' Parameter, Plot Logged Data",
+            "content": "This code accomplishes several tasks.\n\nTask 1: Create Target Object\n\nCreate the MATLAB\u00c2\u00ae variable, tg, that contains the Simulink Real-Time target object. This object lets you communicate with and control the target computer.\n\nCreate a Simulink Real-Time target object.Set stop time to 0.2s.\n\nTask 2: Run the Model and Plot Results\n\nRun the model, sweeping through and changing the gain (damping parameter) before each run. Plot the results for each run.\n\nIf no plot figure exist, create the figure.If the plot figure exist, make it the current figure.\n\nTask 3: Loop over damping factor z\n\nSet damping factor (Gain1/Gain).Start run of the real-time application.Store output data in outp, y, and t variables.Plot data for current run.\n\nTask 4: Create 3-D Plot (Oscillator Output vs. Time vs. Gain)\n\nLoop over damping factor.Create a plot of oscillator output versus time versus gain.Create 3-D plot.\n\nfigh = findobj('Name', 'parsweepdemo'); if isempty(figh) figh = figure; set(figh, 'Name', 'parsweepdemo', 'NumberTitle', 'off'); else figure(figh); end y = []; flag = 0; for z = 0.1 : 0.05 : 0.7 if isempty(find(get(0, 'Children') == figh, 1)) flag = 1; break; end load(tg,model); tg.setparam([model '/Gain1'],'Gain',2 * 1000 * z); tg.start('AutoImportFileLog',true, 'ExportToBaseWorkspace', true); pause(0.4); outp = logsOut{1}.Values; y = [y,outp.Data(:,1)]; t = outp.Time; plot(t,y); set(gca, 'XLim', [t(1), t(end)], 'YLim', [-10, 10]); title(['parsweepdemo: Damping Gain = ', num2str(z)]); xlabel('Time'); ylabel('Output'); drawnow; end if ~flag delete(gca); surf(t(1 : 200), 0.1 : 0.05 : 0.7, y(1 : 200, :)'); colormap cool shading interp h = light; set(h, 'Position', [0.0125, 0.6, 10], 'Style', 'local'); lighting gouraud title('parsweepdemo: finished'); xlabel('Time'); ylabel('Damping Gain'); zlabel('Output'); end\n\nImporting Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ... Importing Log file 1 of 1 ..."
+        },
+        {
+            "heading": "Close Model",
+            "content": "When done, close the model.\n\nbdclose(model);"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/parameter-tuning-and-data-logging.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtParameterTuningAndDataLoggingExample_01.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtParameterTuningAndDataLoggingExample_02.png"
+    ]
+}

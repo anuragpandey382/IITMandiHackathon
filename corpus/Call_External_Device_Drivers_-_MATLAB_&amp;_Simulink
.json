@@ -1,0 +1,7 @@
+{
+    "title": "Call External Device Drivers",
+    "introduction": "Device drivers for protocols and target hardware are essential to many real-time development projects. For example, you can have a working device driver that you want to integrate with algorithmic code that has to read data from and write data to the I/O device that the driver supports. The code generator can produce a single set of application source files from an algorithm model and integrated driver code written in C or C++. To call external device driver code from the SimulinkÂ® environment, iterate through the tasks in this table.",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/ecoder/ug/import-calls-to-external-hardware-specific-code-into-generated-algorithmic-code.html",
+    "images": []
+}

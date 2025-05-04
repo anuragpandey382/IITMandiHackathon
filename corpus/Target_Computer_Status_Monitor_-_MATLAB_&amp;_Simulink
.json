@@ -1,0 +1,18 @@
+{
+    "title": "Target Computer Status Monitor",
+    "introduction": "The status monitor application on the SpeedgoatÂ® target computer displays the status of the real-time application, disk usage, and other target computer status information. The target computer display supports multiple sessions. You can choose to display the status monitor (default, session 1) or display the target computer command-line interface (session 2).",
+    "chunks": [
+        {
+            "heading": "Display Status Monitor",
+            "content": "Start the target computer.\n\nThe target computer displays session 1 (default) and the target computer status monitor."
+        },
+        {
+            "heading": "Display Status Monitor by Using PuTTY",
+            "content": "To view the status monitor from the development computer, use PuTTY to open an SSH client and start the status monitor application statusmonitor on the target computer. Keyboard commands for the status monitor include:\n\nQ (quit)Up arrow (scroll up in the log)Down arrow (scroll down in the log)\n\nFor more information about PuTTY, see Execute Target Computer RTOS Commands at Target Computer Command Line.\n\nTo display the target computer command-line interface, switch to display session 2:\n\nStart the target computer. The target computer displays session 1 and the target computer status monitor.To switch to session 2 and use the target computer command-line interface, on the target computer keyboard (console), press Ctrl+Alt+2.To switch back to session 1 (status monitor), on the target computer keyboard (console), press Ctrl+Alt+1."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ref/target-computer-status-monitor.html",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/ref/window-simulink-real-time-target-computer-monitor-console.jpg"
+    ]
+}

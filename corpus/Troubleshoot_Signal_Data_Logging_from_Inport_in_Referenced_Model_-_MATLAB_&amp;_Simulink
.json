@@ -1,0 +1,20 @@
+{
+    "title": "Troubleshoot Signal Data Logging from Inport in Referenced Model",
+    "introduction": "A model contains referenced models. The referenced models have root-inport signals that would be helpful to log and stream to the Simulation Data Inspector for visualization. When these signals are marked in the model for logging, a warning occurs in the diagnostic viewer when building the model:",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "The warning message reports that the root-inport signals of referenced models are not available for streaming. Within top model A, the referenced model root inports that generate this warning message appear in referenced model A/B and referenced model A/B/C.\n\nTop Model A\n\nReferenced Model A/B\n\nReferenced Model A/B/C"
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "To instrument a root-inport signal in a referenced model and stream the signal to the Simulation Data Inspector, you can connect the signal to a Signal Conversion block that you configure as a Signal Copy block. Mark the output of the Signal Copy block for logging to the Simulation Data Inspector."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-signal-data-logging-from-inport-ref-model.html",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/ug/model-troubleshooting-sdi-a.png",
+        "https://in.mathworks.com/help/slrealtime/ug/model-troubleshooting-sdi-a-b.png",
+        "https://in.mathworks.com/help/slrealtime/ug/model-troubleshooting-sdi-a-b-c.png"
+    ]
+}

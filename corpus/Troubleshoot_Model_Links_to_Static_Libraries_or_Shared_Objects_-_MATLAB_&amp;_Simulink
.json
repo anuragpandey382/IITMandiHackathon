@@ -1,0 +1,28 @@
+{
+    "title": "Troubleshoot Model Links to Static Libraries or Shared Objects",
+    "introduction": "Some model build and runtime issues occur when linking a real-time application to static libraries (.a) or shared objects (.so). FMU",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "When building or running real-time an application that links to static link libraries (.a) or shared object libraries (.so), there are some considerations that help you use libraries that are compatible with the QNXÂ® NeutrinoÂ® RTOS on the SpeedgoatÂ® target computer. These recommendations are helpful when troubleshooting library usage, including:\n\nA link to a library from QNX Neutrino RTOS that is available in the Simulink Real-Time target support packageA shared object that is included in the model through an FMU blockA custom static library or shared object that is linked to the real-time application"
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "These workarounds explore the possible issues."
+        },
+        {
+            "heading": "Link to Accessible Libraries or Objects",
+            "content": "When you link to a static library or shared object, the library or object must be:\n\nCompatible with the QNX Neutrino RTOSAccessible to the toolchain at build time\n\nCheck to ensure that you have followed the guidelines for library compatibility. See External Code Integration of Libraries and C/C++ Code with Simulink Real-Time Models. Check that the toolchain can access the library at build time. Remember that the QNX Neutrino cannot process spaces in the path to files."
+        },
+        {
+            "heading": "Install Shared Objects on Target Computer",
+            "content": "After you build the real-time application that links to a shared object, install both the real-time application and the shared object on the target computer. Copy the shared objects to a location on the target computer where they can be found and loaded at runtime. The recommended locations are /lib, /usr/lib, or /usr/local/lib. Root access is required to copy files to these locations."
+        },
+        {
+            "heading": "Rebuild Real-Time Application When Rebuilding Static Libraries",
+            "content": "Because linked static libraries are included in the real-time application, when you modify and rebuild a static library, you rebuild any real-time applications that include that library. After rebuilding the static library and the real-time application, reinstall the real-time application on the target computer."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-model-links-to-static-libraries-or-shared-objects.html",
+    "images": []
+}

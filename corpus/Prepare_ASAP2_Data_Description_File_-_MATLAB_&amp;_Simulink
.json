@@ -1,0 +1,42 @@
+{
+    "title": "Prepare ASAP2 Data Description File - MATLAB &amp; Simulink\n",
+    "introduction": "n-D Lookup Table | coder.asap2.export",
+    "chunks": [
+        {
+            "heading": "Open the Model",
+            "content": "This example uses model slrt_ex_osc_cal. To open the model, in the MATLAB\u00c2\u00ae Command Window, type:\n\nmodel = 'slrt_ex_osc_cal'; open_system(model);\n\nCalibration of parameters reduces the ringing in signals DampedOsc, L_1D, and L_2D."
+        },
+        {
+            "heading": "Initial Setup",
+            "content": "Open the model and check for model data.\n\n1. The Model Workspace variables contain these functions:\n\nKg -- Parameter object for the Gain1 block DampedOsc, SignalGenerator, L_1D, L_2D -- Signal objects for output signals LUT_1D_obj, LUT_2D_obj -- 1-D and 2-D lookup tables data respectively SignalGenerator -- Test input data\n\n2. Set the Default parameter behavior configuration parameter to Tunable.\n\n3. In the Code Mappings Editor \u00e2\u0080\u0093 C in Data Defaults, specify the storage class as PageSwitching for Model parameters under Parameters.\n\nNote: The model default setting for parameters sets the storage class as PageSwitching."
+        },
+        {
+            "heading": "Set Up Parameters",
+            "content": "Set up parameter tuning by using Simulink\u00c2\u00ae parameter objects.\n\n1. In slrt_ex_osc_cal, on the Modeling tab, click Design > Model Explorer.\n\n2. Select Model Workspace in the Model Hierarchy pane.\n\n3. Make sure that the Kg parameter object exists and has these properties:\n\nValue -- 400 Data type -- double\n\n4. If the parameter object does not exist, add it. On the toolbar, click the Add Simulink Parameter button.\n\n5. Open slrt_ex_osc_cal/Gain1.\n\n6. Make sure that you have set the Gain value to the parameter object Kg."
+        },
+        {
+            "heading": "Set Up Signals",
+            "content": "As a best practice, set up signal viewing by using Simulink signal objects.\n\n1. In slrt_ex_osc_cal, on the Modeling tab, click Design > Model Explorer.\n\n2. Select Model Workspace in the Model Hierarchy pane.\n\n3. Make sure that the DampedOsc signal object exists and has these properties:\n\nMinimum -- -10 Maximum -- 10Data type* -- double\n\n4. Make sure that the SignalGenerator signal object exists and has these properties:\n\nMinimum -- -10 Maximum -- 10 Data type -- double\n\n5. Make sure that the L_1D signal object exists and has these properties:\n\nMinimum -- -15 Maximum -- 15 Data type -- double\n\n6. Make sure that the L_2D signal object exists and has these properties:\n\nMinimum -- -15 Maximum -- 15 Data type -- double\n\n7. If a signal does not exist, add it. On the toolbar, click the Add Simulink Signal button.\n\n8. For each signal, open its Properties dialog box.\n\n9. Make sure that you selected the Signal name must resolve to Simulink signal object and the Test point check boxes."
+        },
+        {
+            "heading": "Set Up Lookup Tables",
+            "content": "The example model contains 1-D and 2-D lookup tables.\n\n1. Open the block parameters for the 1-D Lookup Table block.\n\n2. In the Table and Breakpoints pane, verify these settings:\n\nNumber of table dimensions -- 1 Data specification -- Lookup table object Name -- LUT_1D_obj\n\n3. Open the block parameters for the 2-D Lookup Table block.\n\n4. In the Table and Breakpoints pane, check these settings:\n\nNumber of table dimensions -- 2 Data specification -- Lookup table object Name -- LUT_2D_obj\n\nTo view the contents of the lookup tables, click Edit table and breakpoints, and then click Plot > Mesh."
+        },
+        {
+            "heading": "Generate Data Description File",
+            "content": "1. On the Real-Time tab, select Run on Target > Build Application.\n\n2. On the C Code tab, select Share > Generate Calibration Files. Use the tool to generate the required version of ASAP2 file. For more information about using the tool, see Generate ASAP2 and CDF Calibration Files. You can perform the same operation by using the coder.asap2.export function.\n\ncoder.asap2.export('slrt_ex_osc_cal', ... 'MapFile','slrt_ex_osc_cal_slrealtime_rtw/slrt_ex_osc_cal', ... 'Comments',false);\n\n3. Connect to the target by using a third-party calibration tool."
+        },
+        {
+            "heading": "Close All Open Files",
+            "content": "bdclose(model);"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/prepare-third-party-calibrator-input-data-file.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/SlrtPrepareASAP2DataDescriptionFileExample_01.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxwindow-slrt_ex_osc_cal-scope.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxwindow-slrt_ex_osc_cal-scope1.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxwindow-slrt_ex_osc_cal-scope2.png",
+        "https://in.mathworks.com/help/examples/slrealtime/win64/xxwindow-slrt-code-mapping-editor.png"
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "title": "Filter Hierarchical List of Signals and Parameters in Simulink Real-Time Explorer",
+    "introduction": "In SimulinkÂ® Real-Timeâ¢ Explorer, the default view of the signal and parameter lists shows the signals and parameters only at the hierarchy level that you selected. You can display signals and parameters for the current level and below and filter the display to show only the items that you are interested in.",
+    "chunks": [
+        {
+            "heading": "Hierarchical Display",
+            "content": "To show signals and parameters from the current level and below, navigate to the hierarchical level that you are interested in. Click Contents of ( on the toolbar).\n\nThe figure shows the contents of the top level of the slrt_ex_sf_car real-time application. To open this example model, in the MATLAB Command Window, type:\n\nopenExample('slrealtime/SlrtCreateUpdateInstPanelForStateflowCarExample'); open_system('slrt_ex_sf_car');"
+        },
+        {
+            "heading": "Filtered Display",
+            "content": "To restrict the display to signals or parameters with a particular characteristic, use the Filter text box. You can restrict the scope of the filtered display by selecting a level of the application in the Application Tree panel.\n\nSimulink Real-Time Explorer supports filtering by values in these columns:\n\nSignals â Block Path and Signal NameParameters â Block Path and Name\n\nFor example, to restrict the display of signals and parameters to the shift_logic subsystem, select column Signal Name. Type shift_logic into the Filter text box."
+        },
+        {
+            "heading": "Sorted Display",
+            "content": "To group signals and parameters by columns, select the column head, hover the cursor near the right border of the column head (displays the Sort by icon), and click the Sort by icon.\n\nExplorer supports grouping by the following columns:\n\nSignals â Block Path and Signal NameParameters â Block Path, Name, Value, Type, and Size\n\nFor example, to sort signals by name, right-click the Signal Name column and select the Sort by icon."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/filter-hierarchical-list-of-signals-and-parameters-in-simulink-real-time-explorer.html",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/ug/gui-icon-current-system-16.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-slrt-explorer-slrt_ex_sf_car-hierarchy.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-slrt-explorer-slrt_ex_sf_car-hierarchy-filter.png",
+        "https://in.mathworks.com/help/slrealtime/ug/window-slrt-explorer-slrt_ex_sf_car-hierarchy-sort.png"
+    ]
+}

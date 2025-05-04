@@ -1,0 +1,36 @@
+{
+    "title": "Fixed-Point Data in MATLAB and Simulink",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Fixed-Point Data in Simulink",
+            "content": "You can use the fixdt function in SimulinkÂ® to specify a fixed-point data type. The fixdt function creates a Simulink.NumericType object."
+        },
+        {
+            "heading": "Fixed-Point Data Type and Scaling Notation",
+            "content": "Simulink data type names must be valid MATLABÂ® identifiers with less than 128 characters. The data type name provides information about container type, number encoding, and scaling.\n\nThe following table provides a key for various symbols that appear in Simulink products to indicate the data type and scaling of a fixed-point value.\n\nSymbolDescriptionExampleContainer TypeufixUnsigned fixed-point data typeufix8 is an 8-bit unsigned fixed-point data typesfixSigned fixed-point data typesfix128 is a 128-bit signed fixed-point data typefltuScaled double override of an unsigned fixed-point data type (ufix)fltu32 is a scaled doubles override of ufix32fltsScaled double override of a signed fixed-point data type (sfix)flts64 is a scaled doubles override of sfix64Number Encodinge10^125e8 equals 125*(10^(8))nNegativen31 equals -31pDecimal point1p5 equals 1.5p2 equals 0.2Scaling EncodingSSlopeufix16_S5_B7 is a 16-bit unsigned fixed-point data type with Slope of 5 and Bias of 7BBiasufix16_S5_B7 is a 16-bit unsigned fixed-point data type with Slope of 5 and Bias of 7EFixed exponent (2^)A negative fixed exponent describes the fraction lengthsfix32_En31 is a 32-bit signed fixed-point data type with a fraction length of 31FSlope adjustment factorufix16_F1p5_En50 is a 16-bit unsigned fixed-point data type with a SlopeAdjustmentFactor of 1.5 and a FixedExponent of -50C,c,D, or dCompressed encoding for BiasNoteIf you pass this character vector to the slDataTypeAndScale function, it returns a valid fixdt data type.No example available. For backward compatibility only.To identify and replace calls to slDataTypeAndScale, use the Check for calls to slDataTypeAndScale Model Advisor check.T or tCompressed encoding for SlopeNoteIf you pass this character vector to the slDataTypeAndScale, it returns a valid fixdt data type.No example available. For backward compatibility only.To identify and replace calls to slDataTypeAndScale, use the Check for calls to slDataTypeAndScale Model Advisor check."
+        },
+        {
+            "heading": "Fixed-Point Data in MATLAB",
+            "content": "To assign a fixed-point data type to a number or variable in MATLAB, use the fi (Fixed-Point Designer) constructor. The resulting fixed-point value is called a fi object. For example, the following creates fi objects a and b with attributes shown in the display, all of which we can specify when the variables are constructed. Note that when the FractionLength property is not specified, it is set automatically to \"best precision\" for the given word length, keeping the most-significant bits of the value. When the WordLength property is not specified it defaults to 16 bits.\n\na = fi(pi)\n\na = 3.1416015625 DataTypeMode: Fixed-point: binary point scaling Signedness: Signed WordLength: 16 FractionLength: 13\n\nb = fi(0.1)\n\nb = 0.0999984741210938 DataTypeMode: Fixed-point: binary point scaling Signedness: Signed WordLength: 16 FractionLength: 18"
+        },
+        {
+            "heading": "Read Fixed-Point Data from the Workspace",
+            "content": "Use the From Workspace block to read fixed-point data from the MATLAB workspace into a Simulink model. To do this, the data must be in structure format with a fi object in the values field. In array format, the From Workspace block only accepts real, double-precision data."
+        },
+        {
+            "heading": "Write Fixed-Point Data to the Workspace",
+            "content": "You can write fixed-point output from a model to the MATLAB workspace via theÂ To WorkspaceÂ block in either array or structure format. Fixed-point data written by a To Workspace block to the workspace in structure format can be read back into a Simulink model in structure format by a From Workspace block."
+        },
+        {
+            "heading": "Scaled Doubles",
+            "content": "Scaled doubles are a hybrid between floating-point and fixed-point numbers. Fixed-Point Designerâ¢ stores them as doubles with the scaling, sign, and word length information retained. For example, the storage container for a fixed-point data type sfix16_En14 is int16. The storage container of the equivalent scaled doubles data type, flts16_En14 is floating-point double. Fixed-Point Designer applies the scaling information to the stored floating-point double to obtain the real-world value. Storing the value in a double almost always eliminates overflow and precision issues."
+        },
+        {
+            "heading": "Functions",
+            "content": "• fi (Fixed-Point Designer) | fimath (Fixed-Point Designer) | fixdt | Simulink.NumericType"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/fixed-point-data-in-matlab-and-simulink.html",
+    "images": []
+}

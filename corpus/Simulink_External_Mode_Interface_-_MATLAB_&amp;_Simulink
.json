@@ -1,0 +1,7 @@
+{
+    "title": "Simulink External Mode Interface",
+    "introduction": "To connect your SimulinkÂ® model to your real-time application, use the procedure in Execute Real-Time Application in Simulink External Mode by Using Step-by-Step Commands. The model becomes a user interface to the real-time application. By changing parameters in the Simulink blocks, you also change parameters in the real-time application. The Simulink external mode interface includes:",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/gs/simulink-external-mode-interface.html",
+    "images": []
+}

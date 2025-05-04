@@ -1,0 +1,28 @@
+{
+    "title": "Troubleshoot Vector CANape Operation",
+    "introduction": "A third-party calibration tool (Vector CANapeÂ®) is not working with the real-time application.",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "You can use the Vector CANape tool to view signals and tune parameters in the real-time application. For more information, see the steps in Prepare ASAP2 Data Description File. In addition to the limitations listed in Vector CANape Limitations, there are various issues that can prevent the operation of this tool."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "For Vector CANape tool issues, try these workarounds."
+        },
+        {
+            "heading": "Simulation Data Inspector in Use",
+            "content": "Simulation Data Inspector and the third-party calibration tools (Vector CANape and ETASÂ® Inca) are mutually exclusive. If you use the Simulation Data Inspector to view signal data, you cannot use the calibration tools. If you use the calibration tools, you cannot use the Simulation Data Inspector to view signal data."
+        },
+        {
+            "heading": "Client Cannot Connect",
+            "content": "Check the IP address of the SpeedgoatÂ® target computer associated with the model and compare it to the address stored in the ASAP2 file."
+        },
+        {
+            "heading": "ASAP2 File Out of Date",
+            "content": "When you rebuild a SimulinkÂ® Real-Timeâ¢ application, update the ASAP2 file loaded in the calibration tool with the new version of the file. The ASAP2 file is valid only until the next time that you build the application."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/vector-canape-troubleshooting.html",
+    "images": []
+}

@@ -1,0 +1,50 @@
+{
+    "title": "Apply Persistent Variables in Real-Time Applications - MATLAB &amp; Simulink\n",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Examine Persistent Variables in the Model",
+            "content": "The model slrt_ex_persist computes the final position by using information from the speed input and initial position input. The Persistent Variable Read block variable position provides the initial value for the first run of the application from variable default value when the variable position does not exist on target computer. When the application stops, the Persistent Variable Write block variable position stores the final position from the run. The real-time application uses this value as the initial position for the next run."
+        },
+        {
+            "heading": "Create Target Object and Connect",
+            "content": "Create a Target object for the default target computer and connect to the target computer. In the Command Window, type:\n\ntg = slrealtime; connect(tg);"
+        },
+        {
+            "heading": "Build Real-Time Application",
+            "content": "To open the model and examine the Persistent Variable block values, in the Command Window, type:\n\nmodel = 'slrt_ex_persist'; open_system(model); modelSTF = getSTFName(tg); set_param(model,\"SystemTargetFile\",modelSTF)"
+        },
+        {
+            "heading": "Build and Load the Real-Time Application",
+            "content": "To build and load the real-time application, in the Command Window, type:\n\nevalc('slbuild(model)'); load(tg,model);"
+        },
+        {
+            "heading": "Initial Value of Persistent Variable",
+            "content": "The initial value of the persistent variable position when it does not exist on target computer is 0.\n\nThe value is set by the Default value parameter of the Persistent Variable Read block."
+        },
+        {
+            "heading": "Observe How Persistent Variable Changes in First Run",
+            "content": "To run the real-time application, in the Command Window, type:\n\nstart(tg);\n\nCheck the value of the persistent variable after the stop time expires and the real-time application stops.\n\npause(5); myPersistVars = getPersistentVariables(tg)\n\nmyPersistVars = struct with fields: position: 20"
+        },
+        {
+            "heading": "Observe How Persistent Variable Changes in Second Run",
+            "content": "To run the real-time application, in the Command Window, type:\n\nload(tg,model); start(tg);\n\nCheck the value of the persistent variable after the stop time expires and the real-time application stops.\n\npause(5); myPersistVars = getPersistentVariables(tg)\n\nmyPersistVars = struct with fields: position: 40"
+        },
+        {
+            "heading": "Clear the Persistent Variable Values",
+            "content": "Because the persistent variable values remain on the target computer after the real-time application stops, you must clear the retained values if the retained values are not needed. These steps show a way to clear the position persistent variable values.\n\nmyNewPersistVars = rmfield(myPersistVars,'position'); setPersistentVariables(tg,myNewPersistVars); myPersistVars = getPersistentVariables(tg)\n\nmyPersistVars = []\n\nYou can also remove all persistent variable values by using this command.\n\nsetPersistentVariables(tg, []);"
+        },
+        {
+            "heading": "Preserve Persistent Variable Data by Safe Shutdown of Target Computer",
+            "content": "The previous steps demonstrate how Persistent Variable values are stored when the real-time application stops and are reloaded when the real-time application starts. These variables are also retained when the target computer is shut down.\n\nTarget computers can handle being shut down by turning off power to the computer, but using this approach is not the best practice for the target computer. Also, if you just turn off the target computer while the real-time application is running, you can lose the last few seconds of data for the Persistent Variables.\n\nTo preserve all persistent variable data and safely shut down the target computer:\n\n1. On the target computer, stop the real-time application (for example, stop(tg)). The values for persistent variables are stored.\n\n2. Open a system terminal window.\n\n3. On the development computer, for user slrt and target computer IP address 192.168.7.5, type command: ssh slrt@192.168.7.5\n\n4. Complete the login with password: slrt\n\n5. At the target computer system prompt that appears in the terminal window, shut down the target computer by using QNX Neutrino command: shutdown -S system\n\n6. After the shutdown command runs, you can safely turn off power to the target computer.\n\nFor more shutdown command info, see shutdown in the QNX Neutrino documentation."
+        },
+        {
+            "heading": "Close All Files",
+            "content": "bdclose(model);"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/apply-persistent-variables-in-real-time-applications.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/slrealtime/win64/ApplyPersistentVariablesInRealTimeAppsExample_01.png"
+    ]
+}

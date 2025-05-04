@@ -1,0 +1,18 @@
+{
+    "title": "Troubleshoot Signal Data Logging from Inport in Referenced Model in Test Harness",
+    "introduction": "A SimulinkÂ® Testâ¢ test harness is available for a Simulink Real-Timeâ¢ model. The model has a referenced model that contains an inport whose signal are marked for data logging in the Simulation Data Inspector. During testing, this error occurs:",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "It is not possible to stream signal data from the referenced model inport for logging from within the test harness."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "Mark the input signals to the model block for logging. This model provides an example workaround. For more information, see the Simulink Test documentation."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-signal-data-logging-from-inport-ref-mode-test-harness.html",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/ug/model-example-harness1-workaround.png"
+    ]
+}

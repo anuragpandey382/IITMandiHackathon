@@ -1,0 +1,7 @@
+{
+    "title": "Configure Your Model for Concurrent Execution",
+    "introduction": "Follow these steps to configure your SimulinkÂ® model to take advantage of concurrent execution. Once you have a model that executes concurrently on your computer, you can further configure your model in the following ways:",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/simulink/ug/configure-your-model.html",
+    "images": []
+}

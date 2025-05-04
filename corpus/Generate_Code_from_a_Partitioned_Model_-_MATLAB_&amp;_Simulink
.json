@@ -1,0 +1,10 @@
+{
+    "title": "Generate Code from a Partitioned Model",
+    "introduction": "Partitioning and scheduling a model has an impact on the order of the function calls in the generated code. Using the Schedule Editor to edit the schedule of a rate-based model or a referenced export-function model, the order of the functions in the generated code depends on the specified schedule in the Schedule Editor. The resulting code shows every partition as an entry point. The generated code does not include the scheduler and it must be provided by the user. To see the impact of the Schedule Editor on the generated code, use the model that is created in Create Rate-Based Model. In the generated code, the order of the functions depends on the schedule specified in the Schedule Editor. Schedule Editor",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/simulink/ug/generate-code-from-a-partitioned-model.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/se_codegen_dd.png",
+        "https://in.mathworks.com/help/simulink/ug/rate_based_codegen.png"
+    ]
+}

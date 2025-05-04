@@ -1,0 +1,21 @@
+{
+    "title": "Execute Real-Time Application in Simulink External Mode by Using Step-by-Step Commands",
+    "introduction": "Control of the real-time application with SimulinkÂ® is limited to connecting a Simulink model to a real-time application through external mode, and then starting the real-time application. Using Simulink external mode is one method to tune parameters. The model connects to the target computer that you have selected in the Simulink Editor on the Real-Time tab. After you build and download a real-time application to the target computer, you can run the real-time application. This procedure uses the Simulink model slrt_ex_osc_rt. To open the model, in the MATLABÂ® Command Window, type: For more information about building applications, see Build and Download Real-Time Application by Using Run on Target. You must already have specified the required target computer environment. Specifically, in the Simulink Editor, from the target computers list on the Real-Time tab, you must select the target computer to which you want to connect. When the real-time application is deployed to the target computer, the step-by-step commands provide additional workflow options. Target | Mux | load",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/gs/execute-real-time-application-in-external-mode-with-step-by-step.html",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-disconnect-target-computer.png",
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-connect-target-computer.png",
+        "https://in.mathworks.com/help/slrealtime/gs/window-step-by-step-build-connect-load-run-pulldown.png",
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-build-real-time-application-mldatx.png",
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-deploy-real-time-application-mldatx-to-target-computer.png",
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-connect-model-to-real-time-application-mldatx.png",
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-start-real-time-application-mldatx.png",
+        "https://in.mathworks.com/help/slrealtime/gs/window-external-mode-scope.png",
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-stop-real-time-application-mldatx.png",
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-connect-model-to-real-time-application-mldatx.png",
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-disconnect-model-from-real-time-application-mldatx.png",
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-start-real-time-application-mldatx.png",
+        "https://in.mathworks.com/help/slrealtime/gs/gui-icon-button-restart-real-time-application-mldatx.png"
+    ]
+}

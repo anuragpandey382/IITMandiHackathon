@@ -1,0 +1,46 @@
+{
+    "title": "Choosing a Simulation Mode",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Simulation Mode Tradeoffs",
+            "content": "In general, you must trade off simulation speed against flexibility when choosing either accelerator mode or rapid accelerator mode instead of normal mode.\n\nNormal mode offers the greatest flexibility for making model adjustments and displaying results, but it runs the slowest.\n\nAccelerator mode lies between normal and rapid accelerator modes in performance and in interaction with your model. Accelerator mode does not support most runtime diagnostics.\n\nRapid accelerator mode runs the fastest, but this mode does not support the debugging utilities or the SimulinkÂ® Profiler, and works only with those models for which C code or MEX file is available for all of the blocks in the model.\n\nNoteAn exception to this rule occurs when you run multiple simulations, each of which executes in less than one second in normal mode. For example:for i=1:100 sim(model); % executes in less than one second in Normal mode endFor this set of conditions, you will typically obtain the best performance by simulating the model in normal mode.\n\nTipTo gain additional flexibility, consider using model referencing to componentize your model. If the top model uses normal mode, then you can simulate a referenced model in a different simulation mode than you use for other portions of a model. During the model development process, you can choose different simulation modes for different portions of a model. For details, see Choose Simulation Modes for Model Hierarchies."
+        },
+        {
+            "heading": "Comparing Modes",
+            "content": "The following table compares the characteristics of normal mode, accelerator mode, and rapid accelerator mode.\n\nIf you want to...Then use this mode...NormalAcceleratorRapid AcceleratorPerformanceRun your model in a separate address spaceÂ Â Efficiently run batch and Monte Carlo simulationsÂ Â Model AdjustmentChange model parameters such as solver, stop time without rebuildingChange block tunable parameters such as gainFor more information on configuration set parameters which can be modified without requiring rebuild, see Code Regeneration in Accelerated ModelsModel RequirementAccelerate your model even if C code or MEX file are not used for all blocksÂ Â Support Interpreted MATLAB Function blocksÂ Support Non-Inlined MATLABÂ® language or Fortran S-FunctionsÂ Permit algebraic loops in your modelsÂ Use debugging options or the Simulink ProfilerÂ Have your model include C++ codeÂ Data DisplayUse scopes and signal viewersSee Behavior of Scopes and Viewers with Rapid Accelerator ModeUse scopes and signal viewers when simulating your model programmaticallyÂ\n\nNoteScopes and viewers do not update if you run your model programmatically in rapid accelerator mode."
+        },
+        {
+            "heading": "Decision Tree",
+            "content": "Use this decision tree to select between accelerator mode and rapid accelerator mode.\n\nSee Comparing Performance to understand how effective acceleration will be in improving the performance of your model."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/choosing-a-simulation-mode.html",
+    "images": [
+        "https://in.mathworks.com/help/simulink/ug/choosingsimmodecomparisongraph.png",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/checkmark.gif",
+        "https://in.mathworks.com/help/simulink/ug/choosingsimulationmodeupdated.png"
+    ]
+}

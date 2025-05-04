@@ -1,0 +1,16 @@
+{
+    "title": "Troubleshoot Signals Not Accessible by Name",
+    "introduction": "Some signal types cannot be logged or streamed in the real-time application. Gain",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "You cannot log or stream by name these types of signals in the real-time application:\n\nVirtual or bus signals (including signals from bus creator blocks and virtual blocks). For example, assume that you connect the output of a Mux block (a virtual block) to a SimulinkÂ® Scope block. The Scope block displays the names of the Mux input signals rather than the names of the Mux output signals.Signals that Simulink optimizes away after you set the Signal storage reuse or Block reduction configuration parameters. The output of a block that was optimized away is replaced with the corresponding input signal to the block. To access these signals, make them test points.Signals of complex or multiword data types.If a block name consists only of spaces, Simulink Real-Timeâ¢ Explorer does not display a node for signals from that block. To reference such a block:Provide an alphanumeric name for the block.Rebuild and download the model to the SpeedgoatÂ® target computer.Reconnect the MATLABÂ® session to the target computer."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "Check these signal types are not being logged or streamed by name in the real-time application::\n\nVirtual or bus signals (including signals from bus creator blocks and virtual blocks)Signals that Simulink optimizes awaySignals of complex or multiword data typesBlocks without alphanumeric names"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-signals-not-accessible-by-name.html",
+    "images": []
+}

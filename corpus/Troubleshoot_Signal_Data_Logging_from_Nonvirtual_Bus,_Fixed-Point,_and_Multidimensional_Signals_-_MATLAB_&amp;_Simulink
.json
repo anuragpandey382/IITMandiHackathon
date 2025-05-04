@@ -1,0 +1,28 @@
+{
+    "title": "Troubleshoot Signal Data Logging from Nonvirtual Bus, Fixed-Point, and Multidimensional Signals",
+    "introduction": "Some models use signals in nonvirtual buses, signals with fixed-point data types, and multidimensional signals that have a number of dimensions greater than two. It would be helpful to view signal data from these signals in the Simulation Data Inspector. The data for these signals is not visible when they are selected in Simulink Real-Time Explorer for streaming to the Simulation Data Inspector. Bus Creator | fixdt | addSignal | connectLine | connectScalar",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "There are some guidelines to data logging signals in nonvirtual buses, signals with fixed-point data types, and multidimensional signals that have a number of dimensions greater than two:\n\nWhen these signals are marked for logging with the Simulation Data Inspector, the signal data displays in the Simulation Data Inspector.When these signals are connected to File Log blocks, the signal data displays in the Simulation Data Inspector.When these signals are selected for dynamic streaming with an instrument objectâeither by selecting the signals in Simulink Real-Time Explorer or adding the signals by using the Application object API, the signal data does not display in the Simulation Data Inspector or in App Designer instrument panel applications."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "There are workarounds to get signals in nonvirtual buses, signals with fixed-point data types, and mutidimensional signals (that have a number of dimensions greater than two) to display in the Simulation Data Inspector."
+        },
+        {
+            "heading": "Signals in Nonvirtual Buses",
+            "content": "To get signals in nonvirtual buses to display in the Simulation Data Inspector, mark the signals for data logging in the model or connect the signals to File Log blocks.\n\nTo instrument signals in nonvirtual buses to stream to an Instrument object, use the BusElement argument in the addSignal, connectLine, or connectScalar methods."
+        },
+        {
+            "heading": "Signals with Fixed-Point Data Types",
+            "content": "To get signals with fixed-point data types to display in the Simulation Data Inspector, mark the signals for data logging in the model or connect the signals to File Log blocks."
+        },
+        {
+            "heading": "Multidimensional Signal",
+            "content": "To get signals in multidimensional signals (that have a number of dimensions greater than two) to display in the Simulation Data Inspector, mark the signals for data logging in the model or connect the signals to File Log blocks."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-signal-data-logging-from-nonvirtual-bus-fixed-point-and-multidimensional-signals.html",
+    "images": []
+}

@@ -1,0 +1,7 @@
+{
+    "title": "Use makecfg to Customize Generated Makefiles for S-Functions",
+    "introduction": "With the toolchain or template makefile approach for building code, you can customize generated makefiles for S-functions. Through the customization, you can specify additional items for the S-function build process: To customize the generated makefile: After code generation, in the S-function MEX file folder, the code generator searches for makecfg.m and specificSFunction_makecfg.m files. If the files are present, the code generator uses these files to customize the generated makefile, model.mk. For example, consider a folder that contains signalConvert.mexa64 (S-function binary file) and signalConvert.tlc (inlined S-function implementation) after the TLC phase of the build process. The S-function requires an additional source code file, filterV1.c, which is located in anotherFolder. You can create a file, signalConvert_makecfg.m, that uses RTW.BuildInfo functions to specify filterV1.c for the build process.",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/ecoder/ug/use-makecfg-to-customize-generated-makefiles-for-s-functions.html",
+    "images": []
+}

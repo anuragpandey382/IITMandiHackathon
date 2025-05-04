@@ -1,0 +1,55 @@
+{
+    "title": "Programmatically Create Bus Element Ports - MATLAB &amp; Simulink\n",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Open Model",
+            "content": "Create and open a model named BusElementPortCreation.\n\nmodel = \"BusElementPortCreation\"; new_system(model); open_system(model);"
+        },
+        {
+            "heading": "Add Bus Element Ports",
+            "content": "Bus element ports correspond with In Bus Element and Out Bus Element blocks in a subsystem or model.\n\nWhen you add an In Bus Element or Out Bus Element block programmatically, specify properties such as the corresponding port name and the element to associate with the block. When you expect a subsystem or model to have more than one input or output bus element port, specifying unique and meaningful port names upfront can help capture your design intent.\n\nFor example, add an In Bus Element block that selects a signal named F1 from a port named Control.\n\nadd_block(\"simulink/Ports & Subsystems/In Bus Element\", ... \"BusElementPortCreation/InBusElement\", ... PortName=\"Control\", ... Element=\"F1\")\n\nAdd another In Bus Element block that selects the entire signal from a port named Disturbance. Set MakeNameUnique to \"on\" or specify a unique name for the new block. Optionally, specify a position for the new block so that it does not overlap the existing block.\n\nadd_block(\"simulink/Ports & Subsystems/In Bus Element\", ... \"BusElementPortCreation/InBusElement1\", ... Position=[230 65 240 75], ... PortName=\"Disturbance\", ... Element=\"\")\n\nThe block label does not include an element name because the block corresponds with the top-level element, which can be a bus, signal, or message.\n\nAdd an Out Bus Element block that provides output to an element named x1 for a port named Sensor.\n\nadd_block(\"simulink/Ports & Subsystems/Out Bus Element\", ... \"BusElementPortCreation/OutBusElement\", ... Position=[230 95 240 105], ... PortName=\"Sensor\", ... Element=\"x1\");\n\nAs you create bus element ports and the corresponding blocks, consider these details:\n\nMultiple In Bus Element blocks can select the same element from a port.Each Out Bus Element block must correspond with a unique element to avoid conflicts.When you rename a port after creation, the change applies to all blocks that correspond with the port."
+        },
+        {
+            "heading": "Add Block for Existing Port",
+            "content": "To add an In Bus Element or Out Bus Element block for an existing port, copy a block that corresponds with the port.\n\nFor example, copy the block that corresponds with the Control port and specify that the new block selects the element named F2 from the port.\n\nadd_block(\"BusElementPortCreation/InBusElement\", ... \"BusElementPortCreation/InBusElement\", ... MakeNameUnique=\"on\", ... Position=[230 35 240 45], ... PortName=\"Control\", ... Element=\"F2\")\n\nOptionally, get the full block path of the new block in the current model.\n\nControlF2Path = gcb\n\nControlF2Path = 'BusElementPortCreation/InBusElement2'"
+        },
+        {
+            "heading": "Edit Block Parameters",
+            "content": "Each In Bus Element and Out Bus Element block lets you change parameters such as the port name (PortName), the element associated with the block (Element), and the block color (BackgroundColor).\n\nFor example, change the background colors of the In Bus Element blocks for the Control port.\n\nset_param(\"BusElementPortCreation/InBusElement\", ... BackgroundColor=\"cyan\"); set_param(ControlF2Path, ... BackgroundColor=\"magenta\");\n\nFor another example, suppose the Disturbance port expects a bus that contains two elements:\n\nA signal named NoiseA nested bus named ExternalForce that contains signals named F1 and F2\n\nInstead of selecting the entire input from the Disturbance port, select only the signal named F1. When you specify the element, use dots to represent hierarchy within the bus.\n\nset_param(\"BusElementPortCreation/InBusElement1\", ... Element=\"ExternalForce.F1\");"
+        },
+        {
+            "heading": "Specify Attributes of Top-Level Bus, Signal, or Message",
+            "content": "To specify the attributes of the top-level bus, signal, or message at a bus element port, use the set_param function. For the first argument of this function, specify the port using:\n\nThe model name for a root port or the subsystem block path for a subsystem portThe port name\n\nFor example, suppose the Sensor port must provide a bus hierarchy defined by this Simulink.Bus object:\n\nelems(1) = Simulink.BusElement; elems(1).Name = 'x1'; elems(1).DataType = 'double'; elems(1).Min = 0.01; elems(1).Max = 4; elems(2) = Simulink.BusElement; elems(2).Name = 'x2'; elems(2).DataType = 'double'; elems(2).Min = 0.01; elems(2).Max = 4; Sensor = Simulink.Bus; Sensor.Elements = elems;\n\nSet the output data type of the port to the bus object named Sensor. For the first argument, combine the model name (BusElementPortCreation) and the port name (Sensor).\n\nset_param(\"BusElementPortCreation/Sensor\", ... OutDataTypeStr=\"Bus: Sensor\");\n\nTo view the interface definition, double-click the Out Bus Element block or use the Property Inspector.\n\nTo inspect the attribute values for an element programmatically, use the get_param function.\n\nget_param(\"BusElementPortCreation/Sensor.x2\",\"OutMin\")\n\nans = '0.01'"
+        },
+        {
+            "heading": "Specify Bus Elements and Their Attributes",
+            "content": "When a bus is not defined by a Simulink.Bus object, specify bus elements at the interface with or without adding blocks to the block diagram.\n\nTo specify element attributes for existing elements at the port, use the set_param function. For the first argument of this function, specify the element using:\n\nThe model name for a root port or the subsystem block path for a subsystem portThe port nameThe element path within the port\n\nFor example, specify attributes of the element named F1 at the Disturbance port. For the first argument, combine the model name (BusElementPortCreation), the port name (Disturbance), and the element path (ExternalForce.F1).\n\nset_param(\"BusElementPortCreation/Disturbance.ExternalForce.F1\", ... OutMin=\"-400\", ... OutMax=\"800\")\n\nTo define a new element at the port, add a block or add the element with the Simulink.Bus.addElementToPort function. To specify the new element, use the first three arguments to provide these values, respectively:\n\nThe model name for a root port or the subsystem block path for a subsystem portThe port nameThe element path within the port\n\nFor example, define these additional elements expected at the Disturbance port:\n\nA signal named NoiseA signal named F2 in the nested bus named ExternalForce\n\nFor the first argument, provide the model name (BusElementPortCreation). For the second argument, provide the port name (Disturbance). For the third argument, provide the element path (ExternalForce.F2 or Noise).\n\nSimulink.Bus.addElementToPort(\"BusElementPortCreation\", ... \"Disturbance\",\"ExternalForce.F2\"); Simulink.Bus.addElementToPort(\"BusElementPortCreation\", ... \"Disturbance\",\"Noise\");\n\nAfter you define a new element at the port, specify the element attributes with the set_param function.\n\nset_param(\"BusElementPortCreation/Disturbance.ExternalForce.F2\", ... OutMin=\"-400\", ... OutMax=\"800\") set_param(\"BusElementPortCreation/Disturbance.Noise\", ... OutMin=\"-10\", ... OutMax=\"10\")\n\nTo view the interface definition, double-click the related In Bus Element block or use the Property Inspector.\n\nTo inspect the attribute values for an element programmatically, use the get_param function.\n\nget_param(\"BusElementPortCreation/Disturbance.Noise\",\"OutMin\")\n\nans = '-10'"
+        },
+        {
+            "heading": "Examine Results",
+            "content": "This example creates three ports, named Control, Disturbance, and Sensor. While blocks provide access to some of the elements of the ports, other elements are not accessed by blocks. The ports let you specify the attributes of elements regardless of whether blocks access the elements."
+        },
+        {
+            "heading": "Blocks",
+            "content": "\u2022 In Bus Element | Out Bus Element"
+        },
+        {
+            "heading": "Functions",
+            "content": "\u2022 add_block | set_param | get_param | Simulink.Bus.addElementToPort | add_line\n\n\u2022 Simplify Bus Interfaces in Subsystems and Models\n\n\u2022 Reduced Bus Wiring: Bus Element Ports (2 min, 7 sec)"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/slref/programmatically-create-in-bus-element-blocks.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/simulink/win64/ProgrammaticallyCreateBusElementPortsExample_01.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ProgrammaticallyCreateBusElementPortsExample_02.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ProgrammaticallyCreateBusElementPortsExample_03.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ProgrammaticallyCreateBusElementPortsExample_04.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ProgrammaticallyCreateBusElementPortsExample_05.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ProgrammaticallyCreateBusElementPortsExample_06.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ProgrammaticallyCreateBusElementPortsExample_07.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ProgrammaticallyCreateBusElementPortsExample_08.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ProgrammaticallyCreateBusElementPortsExample_09.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ProgrammaticallyCreateBusElementPortsExample_10.png"
+    ]
+}

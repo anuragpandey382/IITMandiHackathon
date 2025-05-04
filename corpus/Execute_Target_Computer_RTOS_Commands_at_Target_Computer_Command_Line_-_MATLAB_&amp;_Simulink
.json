@@ -1,0 +1,9 @@
+{
+    "title": "Execute Target Computer RTOS Commands at Target Computer Command Line",
+    "introduction": "To enter target computer RTOS commands, type the commands by using a keyboard attached to the target computer or by using an SSH utility (such as PuTTY) to send commands to the target computer from a MATLABÂ® development computer. The target computer commands are case-sensitive. For more information, see Target Computer Command-Line Interface. The command examples use the PuTTy SSH utility. You can download and install this utility from www.putty.org. Targets",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/execute-target-computer-rtos-commands-at-target-computer-command-line.html",
+    "images": [
+        "https://in.mathworks.com/help/slrealtime/ug/window-target-computer-commands-putty.png"
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "title": "Establish Message Send and Receive Interfaces Between Software Components - MATLAB &amp; Simulink\n",
+    "introduction": "Sine Wave | Send | Receive | Queue | Sequence Viewer",
+    "chunks": [
+        {
+            "heading": "Send Component",
+            "content": "The algorithm in the Send Component can contain logic of any complexity. In the example, a simple Sine Wave block is used in a subsystem as the signal source. The Sample time parameter of the block is set to 0.1.\n\nTo prepare the Send Component for message-based communication, a Send block is connected to the root-level Outport block. The Send block converts data signals and send messages.\n\nTo prepare the Send Component for code generation, in the Model Configuration Parameters:\n\nIn the Solver pane, in the Solver selection section, the Type is set to Fixed-step.The Fixed-step size is set to 0.1.In the Code Generation pane, the System target file is set to ert.tlc and Language to C++.The model is saved as mSend."
+        },
+        {
+            "heading": "Receive Component",
+            "content": "In the Receive Component, a Scope block is used to represent the algorithm that receives messages.\n\nTo prepare the Receive Component, the Inport block is connected to a Receive block. The Receive block receives messages and converts them to signal data. By default, the Sample time parameter of the Receive block is -1.\n\nTo prepare the Receive Component for code generation, in the Model Configuration Parameters:\n\nIn the Solver pane, in the Solver selection section, the Type is set to Fixed-step.The Fixed-step size is set to 0.1.In the Code Generation pane, the System target file is set to ert.tlc and Language to C++.The model is saved as mReceive."
+        },
+        {
+            "heading": "Visualize Message Transitions Between Components Using the Sequence Viewer Block",
+            "content": "This is a composition model with Send and Receive components. The Model blocks, Send Component and Receive Component, refer to models mSend and mReceive, respectively.\n\nSimulate the model. Observe the queue inserted by default. An icon above the message line represents the default queue. The capacity of the default queue is 1 and the message overwriting policy is enabled. You can customize the queue by using a Queue block between components. For more information, see Use a Queue Block to Manage Messages.\n\nOpen the Sequence Viewer block. The block allows you to visualize message transition events and the data that the messages carry.\n\nThe Sequence Viewer block window shows the simulation time in the left vertical bar. Each time grid row contains events that occur at the same simulation time. Each message transition event is represented by an arrow that is labeled with the message data value. For more information about the Sequence Viewer block, see Use the Sequence Viewer to Visualize Messages, Events, and Entities.\n\nIn the Sequence Viewer block, scroll up or click Go to first event icon on the left. Observe that at time zero the Send block sends a message with data value 0 to the Receive block, and at time 0.1 the block sends another message with data value 0.0998. The block sends a message in every 0.1 simulation time."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/message-based-communication-between-software-components.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/simulink/win64/MessageBasedCommunicationBetweenSoftwareComponentsExample_01.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_sendreceive_basicmodel1.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_sendreceive_basicmodel4.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_sendreceive_defaultqueue.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_sendreceive_seqviewer.png"
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "title": "Troubleshoot Parameters Not Accessible by Name",
+    "introduction": "Some parameters cannot be observed or tuned in the real-time application.",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "Reasons that you cannot observe or tune some parameters in the real-time application are:\n\nSimulinkÂ® Real-Timeâ¢ does not support parameters of multiword data types.During execution, you cannot tune parameters that change the model structure, for example, by adding a port. To change these parameters, you must stop the execution, change the parameter, and rebuild the real-time application."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "Check the parameters for the issues described in What This Issue Means."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-parameters-not-accessible-by-name.html#mw_72c31b18-6244-491b-9212-ef3a816c316b",
+    "images": []
+}

@@ -1,0 +1,24 @@
+{
+    "title": "Check model for upgradable Simulink Real-Time features",
+    "introduction": "Check ID: mathworks.design.slrealtimeUpgrades Check the model for Simulink Real-Time features from a previous release that require an upgrade for compatibility with the current release.",
+    "chunks": [
+        {
+            "heading": "Description",
+            "content": "This check identifies upgradable Simulink Real-Time features and upgrades the features where possible and recommends manual upgrades when needed. Block forwarding in the slrealtimelib library and the Speedgoat I/O Blockset eases the upgrade process."
+        },
+        {
+            "heading": "Results and Recommended Actions",
+            "content": "ConditionRecommended ActionSystem Target File upgradeChange the System Target File to slrealtime.tlc.Simulink Real-Time block upgradesUpgrades blocks when possible. Identifies blocks for manual upgrade when needed.Signal UpgradesUpgrades signals for Instrument object compatibility.Simulink Real-Time configuration parameter upgradesUpgrades configuration parameters for toolchain build and real-time application options."
+        },
+        {
+            "heading": "Capabilities and Limitations",
+            "content": "You can:\n\nRun this check on your Simulink Real-Time models from release R2020a and previous releases."
+        },
+        {
+            "heading": "See Also",
+            "content": "Troubleshoot Model Upgrade for R2020b Troubleshoot System Upgrade for R2020b"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug_upgrade/check-model-for-upgradable-slrt-features.html",
+    "images": []
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Set Up and Configure Simulink Real-Time",
+    "introduction": "For this tutorial, you must have this configuration: Targets",
+    "chunks": [
+        {
+            "heading": "Configure Link Between Development and Target Computers",
+            "content": "To run a Simulink Real-Time model on a target computer, you must connect the development and target computers in a network.\n\nThe target network setting values are representative only. Consult your network administrator for actual values. For more information about network configuration, see Target Computer Settings.\n\nSelect the Simulink Real-Time template from the Simulink start page and create the exampleSlrtApp model. In the MATLAB Command Window, type:simulinkIn the Simulink Editor, open the Simulink Real-Time Explorer. In the Real-Time tab, from the targets list, click SLRT Explorer.From the Target Computers list, select the target computer node.To add a node representing another target computer, in the Targets pane, click the Add target button.To remove a node representing a target computer, select the node and click the Remove target button.If not previously configured, select the Target Configuration tab and set the target computer IP address for the target computer definition by using the Change IP Address button. For example, Speedgoat target machines are preconfigured to address 192.168.7.5. Check that you have started the target computer and wait until the target computer boots the RTOS.To connect Simulink Real-Time to the target computer, click Disconnected to toggle to Connected.\n\nNoteIf Simulink Real-Time reports a connection issue, contact MathWorksÂ® support. For more information, see the MathWorks Support website MathWorks Help Center website."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/gs/set-up-and-configure-simulink-real-time.html",
+    "images": []
+}

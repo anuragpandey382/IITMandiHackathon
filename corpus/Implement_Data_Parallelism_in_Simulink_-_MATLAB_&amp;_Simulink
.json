@@ -1,0 +1,39 @@
+{
+    "title": "Implement Data Parallelism in Simulink - MATLAB &amp; Simulink\n",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Configure Model for Concurrent Execution",
+            "content": "Open the ex_data_parallelism_initial model.Convert areas in this model to referenced models. Use the same referenced model to replace each of the functional components that process the input."
+        },
+        {
+            "heading": "Set Model Configuration Parameters",
+            "content": "Click Configure Tasks. In the Concurrent Execution dialog box, in the right pane, select the Enable explicit model partitioning for concurrent behavior check box. With explicit partitioning, you can partition your model manually.On the Modeling tab, click Model Settings.Select Code Generation > Interface > Advanced parameters. Clear the MAT-file logging check box.Select Solver, set Type to Fixed-step, and click Apply.On the Solver pane, expand Solver details. Check that Periodic sample time constraint is set to Unconstrained. Under Tasking and sample time options, select Allow tasks to execute concurrently on target."
+        },
+        {
+            "heading": "Partition Model Using Explicit Partitioning",
+            "content": "Partition the top model.\n\nIn the Concurrent Execution tree, under Tasks and Mapping, select CPU. Click Add task four times to add four new tasks."
+        },
+        {
+            "heading": "Map Blocks to Tasks",
+            "content": "In the Concurrent Execution tree, select Tasks and Mapping. On the Map block to tasks pane:\n\nUnder Block: Input, click select task and select Periodic: Task.Under Block: Function 1, select Periodic: Task1.Under Block: Function 2, select Periodic: Task2.Under Block: Function 3, select Periodic: Task3.Under Block: Output, select Periodic: Task.\n\nThis maps your partitions to the tasks you created. The Input and Output model blocks are on one task. Each functional component is assigned a separate task.\n\nIn the Concurrent Execution tree, select Data transfer. In the Data Transfer Options pane, set the parameter Periodic signals to Ensure deterministic transfer (minimum delay). Click Apply and close the Concurrent Execution dialog box."
+        },
+        {
+            "heading": "Finalize Model",
+            "content": ""
+        },
+        {
+            "heading": "Share Configuration Parameters with Referenced Models",
+            "content": "Apply configuration parameters to all referenced models."
+        },
+        {
+            "heading": "Initialize Data Dictionary to Store Configuration Set",
+            "content": "Create a Simulink.data.dictionary.Entry object that represents the configuration set, which is an entry in the dictionary. For this example, suppose the name of the dictionary is myData.sldd and the name of the Simulink.ConfigSet object is myConfigs.Store a copy of the target Simulink.ConfigSet object in a temporary variable.Save changes made to the dictionary.Create a freestanding configuration set in the base workspace by copying the active configuration set of the model.Create a separate configuration reference for the top model and each reference model. To point the reference to your freestanding configuration, set the SourceName property to freeConfigSet, the variable that represents your configuration.Attach the configuration reference to each model by using the ConfigSetRef object. To use the configuration reference in the model, activate it for each model.\n\nFor more information, see Share a Configuration with Multiple Models, Automate Model Configuration by Using a Script, and Make Changes to Configuration Set Stored in Dictionary."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/implement-data-parallelism-in-simulink.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/simulink/win64/ImplementDataParallelismInSimulinkExample_01.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/ImplementDataParallelismInSimulinkExample_02.png"
+    ]
+}

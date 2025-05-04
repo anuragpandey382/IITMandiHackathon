@@ -1,0 +1,7 @@
+{
+    "title": "Build and Download Real-Time Application by Using Run on Target",
+    "introduction": "The example model is a real-time model of a damped oscillator, slrt_ex_osc_rt. To open the model, in the MATLABÂ® Command Window, type: To generate C code, compile, link, and download the real-time application to the target computer, use the SimulinkÂ® Real-Timeâ¢ build process available from the Simulink Editor Real-Time tab. After you enter changes in the Configuration Parameters dialog box, you can build the real-time application. For information about real-time application options, see Simulink Real-Time Options Pane. Target | Mux | load",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/gs/build-and-download-with-run-on-target.html",
+    "images": []
+}

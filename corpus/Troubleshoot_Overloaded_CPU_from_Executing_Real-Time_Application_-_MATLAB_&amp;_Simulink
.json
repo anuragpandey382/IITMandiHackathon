@@ -1,0 +1,28 @@
+{
+    "title": "Troubleshoot Overloaded CPU from Executing Real-Time Application",
+    "introduction": "Some issue is producing a CPU overload when executing a real-time application. Compile with GCC -ffast-math",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "A CPU overload indicates that the CPU is unable to complete processing a model time step before restarting for the next time step.\n\nWhen this error occurs, the Simulink Real-Time RTOS halts model execution and the Target object property TargetStatus shows an error, for example:\n\nmCPUOverload: Sub-rate exception: Overload limit (0) exceeded in 0.02s rate with 1 overloads\n\nIf you allow the overload, model execution continues until the allowed overload limit is reached. If the model continues to run after a CPU overload, the time step lasts as long as the time required to finish the execution. This behavior delays the next time step.\n\nModel design or SpeedgoatÂ® target computer resources cause CPU overloads. Possible reasons are:\n\nThe target computer is too slow or the model sample time is too small.The model is too complex (algorithmic complexity).I/O latency, where each I/O channel used introduces latency into the system. I/O latency can cause the execution time to exceed the model time step.To find latency values for Speedgoat boards, see www.speedgoat.com and select Products & Services > Services."
+        },
+        {
+            "heading": "Try This Workaround",
+            "content": "The SimulinkÂ® Real-Timeâ¢ RTOS usually halts model execution when it encounters a CPU overload. You can configure the Simulink Real-Time model to allow CPU overloads. Use this capability to support long initializations and for overload diagnosis. You also can try to reduce overloads by improving application performance and enabling the Compile with GCC -ffast-math option."
+        },
+        {
+            "heading": "Permit Long Initialization Time",
+            "content": "For some real-time applications, normal initialization can extend beyond the first sample time. Use the SLRT Overload Options block to increase the number of startup time steps to ignore overloads. By default, only the first time step ignores overloads.\n\nNoteAllowing the target computer CPU to overload can cause incorrect results, especially for multirate models. Use the SLRT Overload Options block only for diagnosis. When your diagnosis is complete, turn off these options."
+        },
+        {
+            "heading": "Enable Compile with GCC -ffast-math Option",
+            "content": "The Compile with GCC -ffast-math option enables the GCC compiler -ffast-math option when compiling real-time application code. This option is disabled by default for Simulink Real-Time models.\n\nBy enabling the Compile with GCC -ffast-math option, you provide the compiler with more flexibility to optimize floating-point math at the expense of deviating from the IEEE-754 floating-point standard.\n\nFor more information about the -ffast-math option, see the Semantics of Floating-Point Math in GCC and gcc.gnu.org/wiki/FloatingPointMath/."
+        },
+        {
+            "heading": "Force Polling Mode",
+            "content": "The Force polling mode option enables polling mode â instead of interrupt-driven mode â for clocking the real-time application. Enabling this option can help reduce CPU overloads if:\n\nThe target computer has at least four CPU cores.The CPU overload is caused by sporadic TET spikes."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-overloaded-cpu-from-executing-real-time-application.html",
+    "images": []
+}

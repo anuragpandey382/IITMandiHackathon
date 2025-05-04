@@ -1,0 +1,7 @@
+{
+    "title": "TLC Command-Line Options",
+    "introduction": "TLC command-line options are model options set before code generation to configure the real-time application and the real-time RTOS. To set these options from the Code Generation pane in the Configuration Parameters dialog box, select Advanced Parameters. Type the option in the TLC command line options text box in this form: Prefix each option name with -a. Do not leave spaces around the equal sign. Do not place a comma between consecutive value assignments. To set these options from the Command Window, use the syntax: To read these options from the Command Window, use the syntax: To remove these options, use the syntax:",
+    "chunks": [],
+    "link": "https://in.mathworks.com/help/slrealtime/ref/tlc-command-line-options.html",
+    "images": []
+}

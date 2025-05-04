@@ -1,0 +1,33 @@
+{
+    "title": "Reuse Desktop Test Cases for Real-Time Testing",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Convert Desktop Test Cases to Real-Time",
+            "content": "In the Test Manager, you can reuse test cases for real-time testing by converting desktop test cases to real-time test cases. For convenience, data can be stored externally so that each test case accesses common inputs and baseline data. The overall workflow is as follows:\n\nCreate a baseline, equivalence, or simulation test case with external inputs. For baseline tests, add baseline data from external files.In the Test Manager, select the test case in the Test Browser.Copy the test case. Right-click the test case and select Copy.Paste the new test case into a test suite.Rename the new test case.Right-click the new test case, and select Convert to > Real-Time Test. For equivalence tests, select which simulation (simulation 1 or simulation 2) to run in real time.Select the Target Computer and Load Application From options.Ensure that the model settings are compatible with real-time test execution. For more information, see Development Computer Requirements (Simulink Real-Time)."
+        },
+        {
+            "heading": "Use External Data for Real-Time Tests",
+            "content": "You can simplify test input data management by defining the input data in an external MAT or ExcelÂ® file. Map the data to root inports in your model or test harness for desktop simulation. When you convert the desktop simulation test case into a real-time test, the test case uses the same inport mapping.\n\nUsing external data depends on how your test case loads the real-time application:"
+        },
+        {
+            "heading": "Load Real-Time Application from Model",
+            "content": "If you are using external data for a real-time test, loading the real-time application from the model gives you the option of using an Excel file, MAT file, or CSV file. The external data is built into the application, and you can rerun the application from the target application or target computer.\n\nIn the System Under Test section, set the application to load from Model. In the Inputs section of the test case, click Add, and select an Excel file, MAT file, or CSV file. Map the data to your model inports. For more information on input mapping, see Use External File Data in Test Cases."
+        },
+        {
+            "heading": "Load Real-Time Application from Target Application or Target Computer",
+            "content": "After running the test from the model, you can run the test from the target application or target computer without recompiling. The application uses the input mapping from when the test ran from the model.\n\nYou can map external data to a test case loaded from the target application or target computer, without first running from the model. The external data must be in a MAT file, in the same format used if the test is loaded from the model. In the System Under Test section, select to load the application from the Target Application or Target Computer. In the Inputs section, click Add and select a MAT file. The Input string is not editable."
+        },
+        {
+            "heading": "Reuse Desktop Test Case for Real-Time Testing",
+            "content": "This example uses:Simulink TestSimulink TestSimulink Real-TimeSimulink Real-TimeSimulink Real-Time Target Support PackageSimulink Real-Time Target Support PackageSimulinkSimulinkOpen Live Script\n\nThis example shows a basic desktop test case reuse workflow using external input data defined in an Excel file. You run the baseline test case on the desktop, update the baseline data, convert a copy of the test case to a real-time test, then run the test case on a target computer. The test file, baseline data, and Excel input data file are provided. This example runs only on Windows systems.\n\nOpen the Test Manager and Test FileThe test file runs a transmission shift controller algorithm through four iterations, each corresponding to a different test scenario: passing, gradual acceleration, hard braking, and coasting. Baseline data associated with each scenario for the signals vehicle speed and output torque. tf = sltest.testmanager.TestFile('sltestTestCaseRealTimeReuseExample.mldatx'); sltest.testmanager.load(tf.Name); sltest.testmanager.view;Run the Baseline Test and View ResultsClick Run in the toolbar.When the test finishes running, select output torque under Baseline Criteria Result to view the comparison. The Passing result fails due to transient signals that fall outside the relative tolerance.Update the BaselineAssume that the transient signals are not significant, and update the baseline data:Click Next Failure. The first failure region is bounded by data cursors.Click Update Baseline > Replace Signal Segment in Baseline File from the toolstrip, and confirm that you want to overwrite the data.Repeat this process for the other two failure regions.Convert Baseline Test to Real-Time TestIn the Test Browser, right-click Baseline Test and select Copy.Paste the new test case under the test suite.Rename the new test case RT Baseline Test.Right-click RT Baseline Test and select Convert to > Real-Time Test.Run the Real-Time Test CaseSet the Target Computer. 2. Set the system under test to load from Model. 3.Run the RT Baseline Test test case.Examine and Resolve Test FailuresIn this example, several of the scenarios fail due to timing impacts on the data output. For example, in the HardBrake iteration, the vehicle speed output falls outside the relative tolerance after the brake is applied. To resolve this failure, you could:Increase the relative tolerance for the real-time test.Create a separate set of baseline data for the real-time test."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/sltest/ug/reuse-desktop-test-cases-for-real-time-testing.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/simulinktest_slrealtime/win64/ReuseDesktopTestCaseForRTTestingExample_01.png",
+        "https://in.mathworks.com/help/examples/simulinktest_slrealtime/win64/ReuseDesktopTestCaseForRTTestingExample_02.png",
+        "https://in.mathworks.com/help/examples/simulinktest_slrealtime/win64/ReuseDesktopTestCaseForRTTestingExample_03.png",
+        "https://in.mathworks.com/help/examples/simulinktest_slrealtime/win64/ReuseDesktopTestCaseForRTTestingExample_04.png"
+    ]
+}

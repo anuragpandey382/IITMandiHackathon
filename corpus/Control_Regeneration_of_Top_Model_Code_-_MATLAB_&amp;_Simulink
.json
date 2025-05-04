@@ -1,0 +1,16 @@
+{
+    "title": "Control Regeneration of Top Model Code",
+    "introduction": "When you rebuild a model, by default, the build process performs checks to determine whether changes to the model or relevant settings require regeneration of the top model code. The model build regenerates top model code if any of the following conditions is true: Whether the top model code is regenerated, the build process calls the build process hooks and reruns the makefile. The hooks include the STF_make_rtw_hook functions and the post code generation command. This process recompiles and links the external dependencies. System target file authors can perform actions related to code regeneration in the STF_make_rtw_hook functions that the build process calls. These actions include forcing or reacting to code regeneration. For more information, see Control Code Regeneration Using STF_make_rtw_hook.m. codebuild",
+    "chunks": [
+        {
+            "heading": "Regeneration of Top Model Code",
+            "content": "If the checks determine that top model code generation is required, the build process fully regenerates and compiles the model code. An example check is whether previously generated code is not current due to a model update.\n\nThe build process omits regeneration of the top model code when the checks indicate both:\n\nThe top model generated code is current for the model. Model settings do not require full regeneration.\n\nThis omission can significantly reduce model build times.\n\nWith an Embedded CoderÂ® license, if you modify a code generation template (CGT) file then rebuild your model, the code generation process does not force a top model build. In this case, see Force Regeneration of Top Model Code."
+        },
+        {
+            "heading": "Force Regeneration of Top Model Code",
+            "content": "If you want to control or override the default top model build behavior, use one of the following command-line options:\n\nTo ignore the checksum and force regeneration of the top model code:slbuild(model,'ForceTopModelBuild',true)slbuild(model,'StandaloneCoderTarget','ForceTopModelBuild',true)To clean the model build area enough to trigger regeneration of the top model code at the next build (slbuild only):slbuild(model,'CleanTopModel')\n\nYou can also force regeneration of the top model code by deleting the slprj folder in the Code generation folder. If you delete the slprj folder, delete the model.slxc file too."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/rtw/ug/control-regeneration-of-top-model-code.html",
+    "images": []
+}

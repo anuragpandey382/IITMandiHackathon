@@ -1,0 +1,16 @@
+{
+    "title": "Write Fully Inlined S-Functions",
+    "introduction": "A fully inlined S-function builds your algorithm (block) into generated code that you cannot distinguish from a built-in block. Typically, a fully inlined S-function requires you to implement your algorithm twice: once for the Simulink model (C/C++ MEX S-function) and once for code generation (TLC file). Using the example in Write Wrapper S-Function and TLC Files, you can eliminate the call to my_alg entirely by specifying the explicit code (that is, 2.0 * u) in wrapsfcn.tlc. While this can improve performance, if you are working with a large amount of C/C++ code, the task can be lengthy. You also have to maintain your algorithm in two places, the C/C++ S-function itself and the corresponding TLC file. Consider whether the performance gains might outweigh the disadvantages. To inline the algorithm used in this example, in the Outputs section of your wrapsfcn.tlc file, instead of writing: Use: This code is the code produced in mdlOutputs: The Target Language Compiler replaces the call to my_alg with the algorithm itself.",
+    "chunks": [
+        {
+            "heading": "Multiport S-Function",
+            "content": "A more advanced multiport inlined S-function example is sfun_multiport.c and sfun_multiport.tlc. This S-function illustrates how to create a fully inlined TLC file for an S-function that contains multiple ports."
+        },
+        {
+            "heading": "Guidelines for Writing Inlined S-Functions",
+            "content": "Consider using the block property RTWdata (see S-Function RTWdata). This property is a structure of character vectors that you can associate with a block. The code generator saves the structure with the model in the model.rtw file and makes the .rtw file more readable. For example in the MATLAB Command Window, suppose you enter these commands:mydata.field1 = 'information for field1'; mydata.field2 = 'information for field2'; set_param(sfun_block, 'RTWdata', mydata);The .rtw file that the code generator produces for the block includes the comments specified in the structure mydata.Consider using the mdlRTW function to inline your C MEX S-function in the generated code for:Renaming tunable parameters in the generated code.Introducing non-tunable parameters into a TLC file."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/rtw/ug/write-fully-inlined-s-functions.html",
+    "images": []
+}

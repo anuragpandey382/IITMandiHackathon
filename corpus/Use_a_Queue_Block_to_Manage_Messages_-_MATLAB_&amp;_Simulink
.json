@@ -1,0 +1,57 @@
+{
+    "title": "Use a Queue Block to Manage Messages - MATLAB &amp; Simulink\n",
+    "introduction": "Sine Wave | Send | Receive | Queue | Hit Crossing Probe | Sequence Viewer",
+    "chunks": [
+        {
+            "heading": "Manipulate Message Transitions Using Queue Sorting Policies",
+            "content": "The Queue block supports three message sorting policies:\n\nLast-in-first-out (LIFO) \u00e2\u0080\u0094 The newest message in the storage departs first.\n\nFirst-in-first-out (FIFO) \u00e2\u0080\u0094 The oldest message in the storage departs first.\n\nPriority \u00e2\u0080\u0094 Messages are sorted based on their priority. The priority queue can be used only when the Overwrite the oldest element if queue is full check box is cleared.\n\nThis example uses a simple message-based communication model that is introduced in Animate and Understand Sending and Receiving Messages. The model includes Message Flow 1 and Message Flow 2 in which messages flow from Sine Wave1 to Scope1 and Sine Wave2 to Scope2."
+        },
+        {
+            "heading": "Model Description",
+            "content": "In Message Flow 1 and Message Flow 2:\n\nThe Sample time parameter of Sine Wave1 and Sine Wave2 are set to 0.1. They are identical sine wave sources.\n\nThe Sample time parameter of Receive1 and Receive2 are set to 0.5. They are identical Receive blocks.\n\nThe capacity of the Queue1 and Queue2 are 100. Both queues have the same capacity.\n\nThe sorting policy of the Queue1 is LIFO and Queue2 is FIFO, which is displayed under the block labels. The only difference between two message flow scenarios is the queue sorting policy.\n\nThe signals among Sine Wave1, Receive1, and Receive2 are logged."
+        },
+        {
+            "heading": "Simulate the Model and Review the Results",
+            "content": "Simulate the model and observe the results in the Simulation Data Inspector.\n\nObserve the output from Sine Wave1. The output from SineWave2 is not displayed because it is identical to SineWave1. Also observe that the signal from Receive1 is the representation of the sine wave but with longer intervals between samples. However, the signal from Receive2 is the first part of the sine wave reaching to the positive peak because the sorting policy of the Queue block is set to FIFO and its capacity is large enough to store messages."
+        },
+        {
+            "heading": "Queue Block Message Overwriting Policies",
+            "content": "You can also specify the Queue block message overwriting policy when the queue is full:\n\nBy default, the Overwrite the oldest element if queue is full check box is selected. The block is set to always accept an incoming message, overwriting the oldest message in the storage. In this case, the block overwrites the oldest message, but the message departing the block is determined by the queue sorting policy.\n\nIn this example of queue behavior, messages are enumerated based on their arrival time at the FIFO and LIFO queues with capacity 8. A new message with number 9 arrives. In FIFO and LIFO cases, message 9 replaces message 1 because it is the oldest element in the queue. However, observe the change of head and tail of the queue during this process. In the FIFO queue, message 2 departs first because it is the oldest message after message 1 is replaced. In the LIFO queue, message 9 departs first because it is the last message that arrives at the storage. After the message departure, a new message 10 arrives. The queue accepts the new messages to its empty storage bin.\n\nIf the Overwrite the oldest element if queue is full check box is cleared, the icon of the Queue block changes and the block does not accept new messages when the queue is full. This is a blocking queue behavior."
+        },
+        {
+            "heading": "Queue Block with Overwriting Policy Enabled",
+            "content": "In the QueueSortingPoliciesModelSequenceViewer model, the capacities of the Queue blocks in Message Flow 1 and Message Flow 2 are changed to 15. Decreasing the capacity causes the incoming messages to overwrite the existing ones in the storage.\n\nSimulate the model and open the Sequence Viewer block. In the Sequence Viewer block, scroll up or click the Go to first event icon on the left. Observe the messages departing the block based on FIFO and LIFO policies.\n\nBoth Queue blocks have limited capacity. When their capacity is full, a new incoming message overwrites the oldest existing message in the queue. Scroll down and observe that the Sequence Viewer block displays the messages that overwrite the existing ones."
+        },
+        {
+            "heading": "An Example of a Blocking Queue Behavior",
+            "content": "Open the QueueOverWritingPolicyModel to inspect the blocking queue behavior.\n\nIn the Receive block, set the Sample time parameter to 0.5.\n\nObserve that in the Queue block:\n\nThe Overwrite the oldest element if queue is full check box is cleared. Observe the block icon change.\n\nThe Capacity parameter is set to 16.\n\nIn the Statistics tab, the Number of entities departed, d and Number of entities in block, n check boxes are selected."
+        },
+        {
+            "heading": "Simulate the Model and Review Results",
+            "content": "Simulate the model. Observe the warning displayed in the Diagnostic Viewer. Messages sent by the Send block were dropped during simulation.\n\nThe Queue block blocks the messages when the Overwrite the oldest element if queue is full check box is cleared. You can increase the capacity of the Queue block to prevent message dropping."
+        },
+        {
+            "heading": "Use Statistics to Analyze Queue Behavior",
+            "content": "When the Overwrite the oldest element if queue is full check box is cleared the Statistics tab is enabled. Use Statistics tab to enable output ports and observe the Queue block statistics. Statistics are not supported for code generation.\n\nObserve the signals labeled Number of Messages in Block and Number of Messages Departed. Up to simulation time 2, there are 16 messages in the storage, which is the queue capacity. After that, Number of Messages in Block takes values 15 and 16 because messages depart every 0.5 simulation time and a new message arrives.\n\nAt simulation time 10, a total of 21 messages departs the block."
+        },
+        {
+            "heading": "Use Event Actions",
+            "content": "You can also use Event actions, when the Overwrite the oldest element if queue is full check box is cleared. Event actions are not supported for code generation. For more information, see Events and Event Actions (SimEvents).\n\nUse Event actions to specify the behavior of the message in certain events. For instance, the Entry and the Exit actions are called just after the message entry and just before message exit. The Blocked action is called after a message is blocked.\n\nFor more information, see Connect Message Receive Interface with Simulink Functions.\n\nYou can also model more complex communication policies by using blocks from the SimEvents\u00c2\u00ae library, which requires a SimEvents\u00c2\u00ae license."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/use-a-queue-block-to-manage-messages.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/simulink/win64/UseAQueueBlockToManageMessagesExample_01.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_queue_fifovslifo_sdi.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_queue_blockdialog.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_queue_fifovslifo_example.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/UseAQueueBlockToManageMessagesExample_02.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_queue_viewerfifovslifo.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_queue_vieweroverwriting.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/UseAQueueBlockToManageMessagesExample_03.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxqueue_overwrite_statistics_graphic.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_queue_fifovslifo_warning.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_queue_entityqueue_in.png",
+        "https://in.mathworks.com/help/examples/simulink/win64/xxmessages_ex_queue_entityqueue_departed.png"
+    ]
+}

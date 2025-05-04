@@ -1,0 +1,32 @@
+{
+    "title": "Troubleshoot Signals for Streaming or File Logging",
+    "introduction": "There are signals selected for streaming or connected to File Log blocks in a model that generate an error that includes the text: Unable stream signal signal_name.",
+    "chunks": [
+        {
+            "heading": "What This Issue Means",
+            "content": "This error message for signals selected for streaming or connected to File Log blocks could indicate that the signal has one or more of these issues:\n\nThe signal is not available in application.The signal does not use globally accessible memory in application.The signal connects to a Send/MessageSend block.The signal has inherited sample time.The signal is discontiguous."
+        },
+        {
+            "heading": "Try These Workarounds",
+            "content": "The workarounds for these issues vary. Try these."
+        },
+        {
+            "heading": "Workaround for Signal Not Available",
+            "content": "Make sure that these signal types are not being logged or streamed by name in the real-time application:\n\nVirtual or bus signals (including signals from bus creator blocks and virtual blocks)Signals that Simulink optimizes awaySignals of complex or multiword data typesBlocks without alphanumeric names"
+        },
+        {
+            "heading": "Workaround for Signal Not Global Available or Discontiguous Signal",
+            "content": "To resolve, try inserting a Signal Copy block (a Signal Conversion block in Signal Copy mode) into the signals that you want to stream. Log the copied signal output instead. If you use a Dashboard block, connect it to the output signal of the Signal Copy block."
+        },
+        {
+            "heading": "Workaround for Signal Connected to Message Block",
+            "content": "To resolve, try streaming or file logging the input signal to the Send/MessageSend block. The output of the block (a message) cannot be streamed or logged."
+        },
+        {
+            "heading": "Workaround for Signal Has Inherited Sample Time",
+            "content": "To resolve, change the signal sample time from inherited to a value. Signals with inherited sample time cannot be streamed or logged."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/ug/troubleshoot-signals-for-streaming-or-file-log-logging.html",
+    "images": []
+}

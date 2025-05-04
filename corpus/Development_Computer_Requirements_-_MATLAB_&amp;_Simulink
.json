@@ -1,0 +1,16 @@
+{
+    "title": "Development Computer Requirements",
+    "introduction": "To install and run SimulinkÂ® Real-Timeâ¢, MATLABÂ®, Simulink, and other required and optional software, the development computer must be a 64-bit, PC-compatible system. In the Simulink Real-Time software environment, the MATLAB development computer is usually your desktop computer. A notebook computer is also a viable development computer. For more information see Simulink Real-Time Product Requirements.",
+    "chunks": [
+        {
+            "heading": "Communication with Target Computer",
+            "content": "For communicating with the SpeedgoatÂ® target computer, the development computer requires one available Ethernet interface (PCI or USB) connected to a network. Configure the development computer Ethernet port to use Internet Protocol Version 4 (TCP/IPv4) only. Specify a nonroutable static IP address of the form 192.168.x.x."
+        },
+        {
+            "heading": "Security for Development-to-Target Computer Communication",
+            "content": "Ensure that access to your development computer and the target computer is secure.\n\nProvide a secure communication channel between your development computer and the real-time application on the target computer by applying the security measures listed in this table.\n\nCommunication ProtocolSecurity MeasureXCP on TCP/IP, TCP/IP Run your development computer and target computer within a trusted private network or virtual private network (VPN)."
+        }
+    ],
+    "link": "https://in.mathworks.com/help/slrealtime/gs/development-computer-requirements.html",
+    "images": []
+}

@@ -1,0 +1,18 @@
+{
+    "title": "Inspect Generated Code for Nonvirtual Buses - MATLAB &amp; Simulink\n",
+    "introduction": "",
+    "chunks": [
+        {
+            "heading": "Blocks",
+            "content": "\u2022 Bus Creator"
+        },
+        {
+            "heading": "Objects",
+            "content": "\u2022 Simulink.Bus\n\n\u2022 Composite Interface Guidelines\n\u2022 Specify Bus Properties with Bus Objects"
+        }
+    ],
+    "link": "https://in.mathworks.com/help/simulink/ug/inspect-generated-code-for-nonvirtual-buses.html",
+    "images": [
+        "https://in.mathworks.com/help/examples/simulink/win64/InspectGeneratedCodeForNonvirtualBusesExample_01.png"
+    ]
+}
