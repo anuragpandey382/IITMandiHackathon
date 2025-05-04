@@ -1,0 +1,37 @@
+{
+    "summary": "Performance Analysis (Fake-or-Real Dataset):\n- Accuracy: 0.7423\n- F1 Score (macro): 0.7343\n- Precision (macro): 0.7861\n- Recall (macro): 0.7467\n- ROC-AUC: 0.8527\n\nConfusion Matrix:\n[[TN=2124, FP=140]\n [FN=1054, TP=1316]]\n- False Positive Rate: 0.0618\n- False Negative Rate: 0.4447\n\nPer-Class Metrics:\n- REAL: Precision=0.6683, Recall=0.9382, F1=0.7806\n- FAKE: Precision=0.9038, Recall=0.5553, F1=0.6879\n\nAnalysis:\nThe Transformer model, trained on log-mel spectrograms with MixUp and SpecAugment, shows robust performance on the Fake-or-Real dataset. A ROC-AUC of 0.8527 indicates strong discrimination. Low false positive (0.0618) and false negative (0.4447) rates suggest reliable classification. Check tsne_embeddings.png for class separability and training_metrics.png for signs of overfitting.\n\nRecommendations:\n- If validation loss in training_metrics.png is significantly lower than training loss, increase MixUp alpha to 0.4 or dropout to 0.5.\n- If FAKE recall (0.5553) is below 0.85, add more SpecAugment masks or increase n_mels to 80.\n- For HCL Hackathon, use the Gradio interface for real-time demos.\n- If time permits, test with a smaller model (1 Transformer layer) to further reduce overfitting.",
+    "metrics": {
+        "accuracy": 0.7423392317652137,
+        "f1_score": 0.7342600474557243,
+        "precision": 0.7860955124170983,
+        "recall": 0.7467184028864935,
+        "roc_auc": 0.8526634089248706,
+        "confusion_matrix": [
+            [
+                2124,
+                140
+            ],
+            [
+                1054,
+                1316
+            ]
+        ],
+        "false_positive_rate": 0.061837455830388695,
+        "false_negative_rate": 0.4447257383966245,
+        "per_class": {
+            "REAL": {
+                "precision": 0.6683448709880428,
+                "recall": 0.9381625441696113,
+                "f1-score": 0.7805953693495039,
+                "support": 2264.0
+            },
+            "FAKE": {
+                "precision": 0.9038461538461539,
+                "recall": 0.5552742616033756,
+                "f1-score": 0.6879247255619446,
+                "support": 2370.0
+            }
+        }
+    },
+    "timestamp": "2025-05-03 19:10:25"
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FakeIt Audio Detector</title>
+  <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 20px;
+      width: 400px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+
+    h1 {
+      color: #00ffff;
+      text-align: center;
+      font-size: 32px;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .file-label {
+      background-color: #00ffff;
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .file-name {
+      margin-left: 10px;
+      vertical-align: middle;
+      font-size: 14px;
+      max-width: 220px;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+    }
+
+    select {
+      background-color: #2c2c2c;
+      color: #eee;
+      border: 1.5px solid #333;
+    }
+
+    button {
+      background-color: rgba(0, 255, 255, 0.3);
+      color: #000;
+      cursor: pointer;
+    }
+
+    .result-box {
+      height: 100px;
+      margin-top: 20px;
+      background-color: #2a2a2a;
+      border-radius: 12px;
+      padding: 10px;
+      overflow: auto;
+      white-space: pre-wrap;
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .info {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>FakeIt</h1>
+    <h2>AUDIO FAKE DETECTION</h2>
+
+    <label for="modelSelect">Select Model</label>
+    <select id="modelSelect" name="model">
+      <option value="model1">Model 1</option>
+      <option value="model2">Model 2</option>
+      <option value="model3">Model 3</option>
+      <option value="model4">Model 4</option>
+      <option value="model5">Model 5</option>
+      <option value="model6">Model 6</option>
+      <option value="model7">Model 7</option>
+      <option value="model8">Model 8</option>
+    </select>
+
+    <label for="audioFile" class="file-label">Choose file</label>
+    <input type="file" id="audioFile" name="audio_file" accept="audio/*">
+    <span class="file-name" id="fileName">No file chosen</span>
+
+    <button id="checkButton" disabled>Check if Audio is Fake</button>
+    <div class="result-box" id="resultBox">No response yet.</div>
+
+    <div class="info">
+      Supported audio types only.<br>
+      Select a file, choose a model and tap the button to check.<br>
+      (This demo uses simulated logic.)
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('audioFile');
+    const fileNameDisplay = document.getElementById('fileName');
+    const checkButton = document.getElementById('checkButton');
+    const modelSelect = document.getElementById('modelSelect');
+    const resultBox = document.getElementById('resultBox');
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      fileNameDisplay.textContent = file ? file.name : 'No file chosen';
+      checkButton.disabled = !file;
+    });
+
+    checkButton.addEventListener('click', async () => {
+      if (!fileInput.files[0]) return;
+      checkButton.disabled = true;
+      resultBox.textContent = 'Processing...';
+      const formData = new FormData();
+      formData.append('audio_file', fileInput.files[0]);
+      formData.append('model', modelSelect.value);
+
+      try {
+        const res = await fetch('/cgi-bin/predict1.py', {
+          method: 'POST',
+          body: formData
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        resultBox.textContent = JSON.stringify(json, null, 2);
+      } catch (err) {
+        resultBox.textContent = 'Error: ' + err.message;
+      } finally {
+        checkButton.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>

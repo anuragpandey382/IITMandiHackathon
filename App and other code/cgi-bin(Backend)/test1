@@ -1,0 +1,10 @@
+#!/home/prem/anaconda3/bin/python3
+import cgitb; cgitb.enable()
+import json
+
+# 1) Always send a Content-Type header + blank line
+print("Content-Type: application/json")
+print()
+
+# 2) Then your payload
+print(json.dumps({"result": "sex"}))
