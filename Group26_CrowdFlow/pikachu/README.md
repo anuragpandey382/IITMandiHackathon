@@ -61,10 +61,11 @@
 
 ### Ripple Simulation
 ### Initial Bomb Simulation
-[Video](https://github.com/user-attachments/assets/c0b9754f-5bfb-4a84-9737-427314f5c396)
+[Youtube Link](https://youtu.be/qhbcydOka58)
+
 
 ### Final Bomb Simulation
-[Video](https://github.com/user-attachments/assets/9f177e7a-303a-4096-ae2a-26b216a05ddd)
+[Youtube Link](https://youtube.com/shorts/aPbQQ4ZvJSw)
 
 
 ## Setting up project locally
