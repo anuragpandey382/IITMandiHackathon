@@ -1,0 +1,9 @@
+[project]
+name = "matlab-mcp"
+version = "0.1.0"
+description = "MATLAB MCP Server"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "mcp[cli]",
+]
