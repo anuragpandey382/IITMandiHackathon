@@ -1,0 +1,616 @@
+{% load static %}
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Netflix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'netflix/style.css' %}">
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <header>
+      <div class="netflixLogo">
+        <a id="logo" href="/"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
+      </div>      
+      <nav class="main-nav">                
+        <a href="#home">Home</a>
+        <a href="#tvShows">TV Shows</a>
+        <a href="#movies">Movies</a>
+        <a href="#originals">Originals</a>
+        <a href="#">Recently Added</a>
+        <a target="_blank" href="https://codepen.io/cb2307/full/NzaOrm"></a>        
+      </nav>
+      <nav class="sub-nav">
+        <a href="#"></a>
+        <form action="/" method="POST">
+            {% csrf_token %}
+            {{ search_form.as_p }}
+            <button type="submit">
+              <i class="fas fa-search sub-nav-logo"></i>
+            </button>
+        </form>
+        <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
+        {% if request.user.is_authenticated %}
+          {{ request.user }}
+          <a href="/logout"><i class="fas fa-power-off sub-nav-logo"></i>Logout</a>
+        {% else %}
+          <a href="/register">Register</a><a href="/login">Login</a>
+        {% endif %}
+      </nav>      
+    </header>
+    <!-- END OF HEADER -->
+
+    <!-- MAIN CONTAINER -->
+    <section class="main-container">
+      <div class="location" id="home">
+        {% for category, movies in data %}
+          <h1>{{category}}</h1>
+          <div class="box">
+          {% for movie in movies %}
+          <a href="/watch?movie_pk={{movie.pk}}" style="text-decoration: none; color: white">
+              <img src="/media/{{movie.preview_image}}" alt="{{movie.name}}">
+              <span>{{movie.name}}</span>
+            </a>
+          {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+      <div id="movie-categories"></div>
+
+      <!-- Button trigger modal -->
+<button type="button" data-toggle="modal" class="launch-survey-btn" data-target="#exampleModalCenter">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="24px" width="24px" version="1.1" id="Layer_1" viewBox="0 0 256 256" xml:space="preserve">
+    <g>
+      <path d="M173,44.5v14.2H84.8V44.5h-33v194.3H206V44.5H173z M90.5,188.7c-6.1,0-11-4.9-11-11c0-6.1,4.9-11,11-11c6.1,0,11,4.9,11,11   C101.5,183.7,96.6,188.7,90.5,188.7z M90.5,151.8c-6.1,0-11-4.9-11-11c0-6.1,4.9-11,11-11c6.1,0,11,4.9,11,11   C101.5,146.9,96.6,151.8,90.5,151.8z M90.5,115c-6.1,0-11-4.9-11-11s4.9-11,11-11c6.1,0,11,4.9,11,11S96.6,115,90.5,115z    M178.3,186.1h-65.5v-16.8h65.5V186.1z M178.3,149.2h-65.5v-16.8h65.5V149.2z M178.3,112.4h-65.5V95.6h65.5V112.4z"/>
+      <g>
+        <path d="M140.9,32.4c-0.2-6.5-5.5-11.7-12-11.7c-6.5,0-11.8,5.2-12,11.7H93.1v19.9h71.5V32.4H140.9z M128.9,38.2    c-3,0-5.5-2.5-5.5-5.5c0-0.1,0-0.2,0-0.3c0.2-2.9,2.6-5.2,5.5-5.2c2.9,0,5.3,2.3,5.5,5.2c0,0.1,0,0.2,0,0.3    C134.4,35.7,131.9,38.2,128.9,38.2z"/>
+      </g>
+    </g>
+    </svg>
+</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" style="color: #222;" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Survey</h5>
+        </div>
+        <div class="modal-body">
+          <form class="survey-form">
+            <label>🎬 What genre are you in the mood for?</label>
+            <div class="multi-column">
+              <div class="checkbox-item"><input type="checkbox" value="Action">Action</div>
+              <div class="checkbox-item"><input type="checkbox" value="Adventure">Adventure</div>
+              <div class="checkbox-item"><input type="checkbox" value="Animation">Animation</div>
+              <div class="checkbox-item"><input type="checkbox" value="Biography">Biography</div>
+              <div class="checkbox-item"><input type="checkbox" value="Comedy">Comedy</div>
+              <div class="checkbox-item"><input type="checkbox" value="Crime">Crime</div>
+              <div class="checkbox-item"><input type="checkbox" value="Documentary">Documentary</div>
+              <div class="checkbox-item"><input type="checkbox" value="Drama">Drama</div>
+              <div class="checkbox-item"><input type="checkbox" value="Family">Family</div>
+              <div class="checkbox-item"><input type="checkbox" value="Fantasy">Fantasy</div>
+              <div class="checkbox-item"><input type="checkbox" value="History">History</div>
+              <div class="checkbox-item"><input type="checkbox" value="Horror">Horror</div>
+              <div class="checkbox-item"><input type="checkbox" value="Musical">Musical</div>
+              <div class="checkbox-item"><input type="checkbox" value="Mystery">Mystery</div>
+              <div class="checkbox-item"><input type="checkbox" value="Romance">Romance</div>
+              <div class="checkbox-item"><input type="checkbox" value="Sci-Fi">SciFi</div>
+              <div class="checkbox-item"><input type="checkbox" value="Sport">Sport</div> 
+              <div class="checkbox-item"><input type="checkbox" value="Thriller">Thriller</div>
+              <div class="checkbox-item"><input type="checkbox" value="War">War</div>
+              <div class="checkbox-item"><input type="checkbox" value="Western">Western</div>
+            </div>
+          
+            <label for="language-select">🌍 Which language would you prefer the movie to be in?</label>
+            <select id="language-select">
+              <option>English</option>
+              <option>Hindi</option>
+              <option>French</option>
+            </select>
+          
+            <label for="description-input">📝 Briefly describe what you're looking for.</label>
+            <textarea id="description-input" placeholder="e.g., thrilling plot, love triangle, sci-fi adventure" rows="4" cols="50"></textarea>
+          
+            <label for="length-input">⏱️ How long do you want it to be?</label>
+            <input type="text" placeholder="e.g., Less than 2 hours, 6-episode series" id="length-input">
+          
+            <label for="year-input">📅 Are you looking for something from a specific year or era?</label>
+            <input type="range" id="eraSlider" min="1995" max="2017" step="0.1" value="1995" class="era-slider"/>
+            <div id="popupText"></div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" onclick="submitSurvey()" data-dismiss="modal">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- END OF MAIN CONTAINER -->
+
+    <!-- LINKS -->
+    <section class="link">
+      <div class="logos">
+        <a href="#"><i class="fab fa-facebook-square fa-2x logo"></i></a>
+        <a href="#"><i class="fab fa-instagram fa-2x logo"></i></a>
+        <a href="#"><i class="fab fa-twitter fa-2x logo"></i></a>
+        <a href="#"><i class="fab fa-youtube fa-2x logo"></i></a>
+      </div>
+      <div class="sub-links">
+        <ul>
+          <li><a href="#">Audio and Subtitles</a></li>
+          <li><a href="#">Audio Description</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Gift Cards</a></li>
+          <li><a href="#">Media Center</a></li>
+          <li><a href="#">Investor Relations</a></li>
+          <li><a href="#">Jobs</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Legal Notices</a></li>
+          <li><a href="#">Corporate Information</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </section>
+    <!-- END OF LINKS -->
+
+    <!-- FOOTER -->
+    <footer>
+      <p>&copy 1997-2018 Netflix, Inc.</p>
+      <p>Carlos Avila &copy 2018</p>
+    </footer>
+  </div>
+  <!-- CHATBOT WIDGET -->
+  <div id="chatbot-container">
+    <button id="open-modal-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="24px" width="24px" version="1.1" id="Layer_1" viewBox="0 0 458 458" xml:space="preserve">
+        <g>
+          <g>
+            <path d="M428,41.534H30c-16.569,0-30,13.431-30,30v252c0,16.568,13.432,30,30,30h132.1l43.942,52.243    c5.7,6.777,14.103,10.69,22.959,10.69c8.856,0,17.258-3.912,22.959-10.69l43.942-52.243H428c16.568,0,30-13.432,30-30v-252    C458,54.965,444.568,41.534,428,41.534z M323.916,281.534H82.854c-8.284,0-15-6.716-15-15s6.716-15,15-15h241.062    c8.284,0,15,6.716,15,15S332.2,281.534,323.916,281.534z M67.854,198.755c0-8.284,6.716-15,15-15h185.103c8.284,0,15,6.716,15,15    s-6.716,15-15,15H82.854C74.57,213.755,67.854,207.039,67.854,198.755z M375.146,145.974H82.854c-8.284,0-15-6.716-15-15    s6.716-15,15-15h292.291c8.284,0,15,6.716,15,15C390.146,139.258,383.43,145.974,375.146,145.974z"/>
+          </g>
+        </g>
+        </svg>
+    </button>
+    <div id="chat-window">
+      <span class="close" id="close-modal-btn" style="color: aliceblue;">&times;</span>
+      <div id="chat-messages"></div>
+      <div class="d-flex pr-2">
+      <input type="text" id="chat-input" placeholder="Ask me anything..." />
+      <button onclick="sendMessage()">Send</button>
+      <button onclick="startRecording()">🎤</button>
+    </div>
+    </div>
+  </div>
+
+  <style>
+    #chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: fit-content;
+      background: #222;
+      color: white;
+      border-radius: 4px;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    #chat-window {
+      padding: 10px;
+      width: 300px;
+    }
+    #chat-messages {
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    #chat-messages .user-message {
+      align-self: end;
+      padding: 4px;
+      background-color: aliceblue;
+      color: #222;
+      border-radius: 4px;
+      width: fit-content;
+      max-width: 75%;
+    }
+    #chat-messages .ai-message {
+      padding: 4px;
+      background-color: red;
+      color: aliceblue;
+      border-radius: 4px;
+      width: fit-content;
+      max-width: 75%;
+    }
+    #chat-input {
+      width: 70%;
+    }
+    button {
+      background: #e50914;
+      color: white;
+      border: none;
+      padding: 5px 8px;
+      margin-left: 5px;
+      border-radius: 4px;
+    }
+    .survey-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background-color: #1f1f1f;
+      padding: 20px;
+      border-radius: 8px;
+      width: 100%;
+      color: #fff;
+    }
+    .survey-form input {
+      padding: 4px;
+      border-radius: 4px;
+      width: 100%;
+    }
+    .survey-form label {
+      margin-bottom: 0px;
+      margin-top: 0.2rem;
+    }
+    .launch-survey-btn{
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .multi-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two vertical columns */
+      gap: 10px 30px; /* Row gap and column gap */
+      max-width: 100%;
+    }
+
+    .multi-column label {
+      width: 100%;
+    }
+
+    .multi-column .checkbox-item {
+      display: flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 6px;
+      width: fit-content;
+    }
+
+    .multi-column .checkbox-item input[type="checkbox"] {
+      margin-right: 10px;
+      margin-left: 30px;
+      transform: scale(1.2);
+      accent-color: #e50914;
+    }
+    .modal-body{background-color: black;}
+    .modal-content{
+      background-color: red;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;}
+    
+    .modal-footer {
+      background-color: black;
+    }
+    .modal-title {
+      color: white;
+    }
+
+    .era-slider-container {
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+      display: inline-block;
+    }
+
+    .era-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 60%;
+      height: 12px;
+      border-radius: 6px;
+      background: linear-gradient(to right, red 0%, #ddd 0%);
+      outline: none;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .era-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: red;
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    }
+
+    .era-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .era-slider::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #333;
+      cursor: pointer;
+    }
+
+    .eraSlider::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #333;
+      cursor: pointer;
+    }
+
+    .era-icon, .era-label {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .era-icon.show, .era-label.show {
+      opacity: 1;
+    }
+
+    .era-icon {
+      font-size: 80px;
+      margin: 30px;
+      color: #444;
+    }
+
+    .era-label {
+      font-size: 24px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .era-header {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .popupText {
+      position: absolute;
+      top: -40px;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+  </style>
+
+  <script>
+  // function fetchUpdatedMovies(searchText = '') {
+  //   fetch('/new/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //       'X-CSRFToken': getCookie('csrftoken') // needed if CSRF protection is enabled
+  //     },
+  //     body: new URLSearchParams({ search_text: searchText })
+  //   })
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     console.log("Movie categories and recommendations:", data);
+  //     // You can now render this data on the page
+  //   })
+  //   .catch(error => console.error('Error:', error));
+  // }
+  // function fetchUpdatedMovies() {
+  //   fetch('/new/')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       document.querySelector('.location').innerHTML = data.html;
+  //     })
+  //     .catch(error => console.error('Error updating movies:', error));
+  // }
+//   function fetchRecommendations() {
+//     fetch('/new/')
+//         .then(response => response.json())
+//         .then(data => {
+//             const container = document.getElementById('movie-categories');
+//             container.innerHTML = ''; // Clear old content
+
+//             for (const category in data) {
+//                 const categoryDiv = document.createElement('div');
+//                 categoryDiv.innerHTML = `<h2>${category}</h2>`;
+//                 const row = document.createElement('div');
+//                 row.classList.add('category-row');
+
+//                 data[category].forEach(movie => {
+//                     const movieDiv = document.createElement('div');
+//                     movieDiv.classList.add('movie-card');
+//                     movieDiv.innerHTML = `
+//                         <img src="${movie.img}" alt="${movie.title}" style="width:150px;height:auto;" />
+//                         <p>${movie.title}</p>
+//                     `;
+//                     row.appendChild(movieDiv);
+//                 });
+
+//                 categoryDiv.appendChild(row);
+//                 container.appendChild(categoryDiv);
+//             }
+//         });
+// }
+  function speakText(text) {
+    const synth = window.speechSynthesis;
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    synth.speak(utter);
+  }
+
+  let recognition;
+  if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    recognition.onresult = function(event) {
+      document.getElementById('chat-input').value = event.results[0][0].transcript;
+      sendMessage(); // Auto-send after audio input
+    };
+  }
+
+  function startRecording() {
+    if (recognition) recognition.start();
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const message = input.value;
+    if (!message) return;
+
+    const chatMessages = document.getElementById('chat-messages');
+    chatMessages.innerHTML += `<div class="user-message">${message}</div>`;
+    input.value = '';
+    chatMessages.scrollTo({top: chatMessages.scrollHeight,  behavior:"smooth"})
+
+    fetch('/chatbot/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+      },
+      body: JSON.stringify({ message })
+    })
+    .then(res => res.json())
+    .then(data => {
+      chatMessages.innerHTML += `<div class="ai-message">${(data.response + '\n' + data.titles).replace(/\n/g, '<br>')}</div>`;
+      chatMessages.innerHTML += `<div class="ai-message">${data.next_question}</div>`;
+      speakText(data.response); // Speak the chatbot response aloud
+      speakText(data.next_question);
+      // if (data.recommendations && data.recommendations.length > 0) {
+      //   chatMessages.innerHTML += `<div class="ai-message"><strong>Recommendations:</strong><ul>` +
+      //     data.recommendations.map(show => `<li>${show}</li>`).join('') + `</ul></div>`;
+      // }
+      // window.location.href = "/";
+      chatMessages.scrollTo({top: chatMessages.scrollHeight,  behavior:"smooth"})
+      // fetchRecommendations()
+      // fetchUpdatedMovies()
+    });
+  }
+
+  // Utility to get CSRF token
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + '=')) {
+          cookieValue = decodeURIComponent(cookie.slice(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  const modal = document.getElementById('chat-window');
+  const openBtn = document.getElementById('open-modal-btn');
+  const closeBtn = document.getElementById('close-modal-btn');
+  modal.style.display = 'none';
+  openBtn.onclick = function () {
+    modal.style.display = 'block';
+    openBtn.style.display = 'none'
+  }
+
+  closeBtn.onclick = function () {
+    modal.style.display = 'none';
+    openBtn.style.display = 'block'
+  }
+
+  // survey form
+  // survey form
+  function submitSurvey() {
+  // Collect selected genres (checkboxes)
+    const genreElements = document.querySelectorAll('.multi-column .checkbox-item input[type="checkbox"]:checked');
+    const genres = Array.from(genreElements).map(el => el.value);
+
+    // Collect selected languages (multi-select)
+    const languageSelect = document.getElementById("language-select");
+    const languages = languageSelect.value;
+
+    // Other fields
+    const description = document.getElementById("description-input").value;
+    const length = document.getElementById("length-input").value;
+    const releaseYear = Math.round(document.getElementById("eraSlider").value);
+
+
+    console.log({genres, languages, description, length, releaseYear});
+    // TODO: Make the API call here using fetch or axios
+  }
+  
+  const slider = document.getElementById("eraSlider");
+  const popupText = document.getElementById("popupText");
+  const submitBtn = document.getElementById("submitBtn");
+
+  let timeoutId;
+
+  function updatePopup(value) {
+      const year = Math.round(value);
+      popupText.textContent = year;
+      popupText.style.opacity = 1;
+
+      // Calculate thumb position
+      const sliderRect = slider.getBoundingClientRect();
+      const percent = (year - 1995) / (2017 - 1995);
+      const sliderWidth = slider.offsetWidth;
+      const thumbOffset = 24 / 2; // half thumb width to center popup
+      const pos = percent * sliderWidth;
+
+      popupText.style.left = `${pos}px`;
+
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        popupText.style.opacity = 0;
+      }, 500);
+      updateSliderBackground(value);
+  }
+
+  function updateSliderBackground(value) {
+    const percent = ((value - 1995) / (2017 - 1995)) * 100;
+    slider.style.background = `linear-gradient(to right, red 0%, red ${percent}%, #ddd ${percent}%, #ddd 100%)`;
+  }
+
+  slider.addEventListener("input", (e) => {
+    updatePopup(e.target.value);
+  });
+
+  submitBtn.addEventListener("click", () => {
+    const rounded = Math.round(slider.value);
+    alert("You selected: " + (icons[rounded]?.decade || "Unknown Era"));
+  });
+
+  // Initial display
+  updatePopup(slider.value);
+
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
