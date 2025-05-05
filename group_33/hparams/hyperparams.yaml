@@ -1,0 +1,44 @@
+output_neurons: 10
+sample_rate: 16000
+lr: 0.001
+epochs: 10
+batch_size: 8
+device: cuda
+
+train_csv: data/train_prepared.csv
+valid_csv: data/val_prepared.csv
+test_csv:  data/test_prepared.csv
+
+# Feature extraction
+compute_features: !new:speechbrain.lobes.features.Fbank
+  sample_rate: !ref <sample_rate>
+  n_mels: 80
+
+# Normalization
+mean_var_norm: !new:speechbrain.processing.features.InputNormalization
+  norm_type: global
+
+embedding_model: !new:speechbrain.lobes.models.ECAPA_TDNN.ECAPA_TDNN
+  input_size: 80
+  lin_neurons: 192
+
+classifier: !new:speechbrain.nnet.linear.Linear
+  input_shape: [1, 192]
+  n_neurons: !ref <output_neurons>
+
+modules:
+  compute_features: !ref <compute_features>
+  mean_var_norm: !ref <mean_var_norm>
+  embedding_model: !ref <embedding_model>
+  classifier: !ref <classifier>
+
+optimizer: !name:torch.optim.Adam
+  lr: !ref <lr>
+
+compute_cost: !name:torch.nn.CrossEntropyLoss
+error_stats: !new:speechbrain.utils.metric_stats.ErrorRateStats
+
+dataloader_options:
+  batch_size: !ref <batch_size>
+  shuffle: True
+  num_workers: 4
