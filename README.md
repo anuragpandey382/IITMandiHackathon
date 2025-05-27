@@ -26,7 +26,7 @@
 
 ## 🌟 Overview
 
-This repository contains a complete multi-agent Retrieval-Augmented Generation (RAG) stack designed to ingest MathWorks documentation and power an interactive troubleshooting assistant for MATLAB and Simulink users. The system provides full chain-of-thought transparency at every step of the reasoning process.
+This repository contains a complete hierarchical corrective multi-agent Retrieval-Augmented Generation (RAG) stack designed to ingest MathWorks documentation and power an interactive troubleshooting assistant for MATLAB and Simulink users. The system provides full chain-of-thought transparency at every step of the reasoning process.
 
 What makes this project unique:
 - **Multi-Agent Architecture**: Four distinct LLM calls orchestrated in a hierarchical pipeline
