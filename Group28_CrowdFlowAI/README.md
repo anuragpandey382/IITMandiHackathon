@@ -72,4 +72,5 @@ CrowdFlowAI is designed to be extendable. On the roadmap are:
 
 🚨 **Anomaly Detection**: Leveraging machine learning to spot unusual patterns (e.g. sudden surges, falls, or stalled movement) that deviate from normal behavior, triggering alerts for security teams.
 
+
 By combining advanced video preprocessing, state-of-the-art detection and tracking, and smart analytics, CrowdFlowAI provides comprehensive real-time situational awareness in crowded venues. The system's outputs (count estimates, trajectories, heatmaps, and annotated video) empower organizers and safety personnel to make informed decisions and keep large gatherings safe. Sources: Contemporary research and tools inform our approach. For instance, enhanced YOLOv5 models improve crowd detection accuracy, while real-time density mapping is known to aid crowd management. 
